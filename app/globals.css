@@ -1,0 +1,81 @@
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Cormorant+Unicase:wght@400;700&display=swap');
+@import "tailwindcss";
+/* @import "tw-animate-css"; */
+
+/* Light Theme */
+@theme {
+  --color-primary: #ffffff;
+  --color-secondary: #f9f9f9;
+  --color-accent: #8be9fd;
+  --color-text: #0e0e10;
+  --color-hover: #7aa2f7;
+  --color-border: #0e0e10;
+  --shadow-glow: 0 0 10px rgba(139, 233, 253, 0.4);
+}
+
+/* Inline theme configuration */
+@theme inline {
+  --color-background: var(--color-primary);
+  --color-foreground: var(--color-text);
+  --font-sans: 'Poppins', sans-serif;
+  --font-mono: 'Cormorant Unicase';
+  --font-display: 'Bungee Spice', cursive;
+
+  /* Background image (adjust URL to your actual image path) */
+  --bg-image: url('/assets/hero_bg.jpg');
+  --bg-feature-image: url('/assets/feature_section.jpg'); /* ← your image path */
+}
+
+*{
+  scrollbar-width: none;
+}
+/* Apply background image globally */
+
+.bg-hero {
+  background-image: var(--bg-image);
+}
+
+.features{
+background-image: var(--bg-feature-image);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 1rem;
+}
+
+.title {
+    font-family: serif;
+    letter-spacing: 0.1em;
+    line-height: 1.2;
+}
+
+.divider {
+    width: 6rem;
+    height: 1px;
+    background-color: #e5e5e5;
+}
+
+.knowMoreButton:hover {
+    opacity: 0.8;
+}
+
+.imageContainer {
+    position: relative;
+}
+
+.playButton {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    background: white;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
