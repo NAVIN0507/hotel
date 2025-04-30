@@ -2,6 +2,9 @@ import Image from "next/image";
 import Hero from "../components/Home/Hero";
 import AboutUsSection from "../components/Home/Aboutus";
 import SpecialSection from "@/components/Home/FeatureSectio";
+import BentoGrid from "@/components/Home/BentoGrid";
+
+
 
 export default function Home() {
   return (
@@ -9,6 +12,7 @@ export default function Home() {
 <Hero/>
 <SpecialSection/>
 <AboutUsSection/>
+<BentoGrid/>
   </main>
   );
-}
+} 

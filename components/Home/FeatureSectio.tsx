@@ -39,7 +39,7 @@ const SpecialSection: React.FC = () => {
                             whileHover="hover"
                             initial="rest"
                             animate="rest"
-                            className="relative h-[500px] rounded-xl features text-white bg-gray-100 shadow-xl group cursor-pointer overflow-hidden transition-all duration-500"
+                            className="relative h-[400px] rounded-xl features text-white bg-gray-100 shadow-xl group cursor-pointer overflow-hidden transition-all duration-500"
                         >
                             <motion.div
                                 variants={{

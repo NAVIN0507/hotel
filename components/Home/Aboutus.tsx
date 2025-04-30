@@ -4,12 +4,12 @@ import { Play } from 'lucide-react';
 const AboutUsSection = () => {
     return (
         <section className="bg-[#051932] text-white py-16 px-8 rounded-2xl w-full h-full  mx-auto pl-20 pr-20">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-10">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-14">
                 {/* Left: Heading and Button */}
                 <div className="flex flex-col items-start gap-8">
                     <h2 className="text-4xl md:text-5xl font-serif leading-tight">
-                        GET TO<br />KNOW<br />ABOUT<br />US
-                    </h2>
+                        GET TO<br />KNOW<br />ABOUT<br /><h2 className='flex'> US <div className="w-20 mt-7 hidden lg:block  ml-5  h-0 border border-gray-500" />
+                    </h2></h2>
                     <button className="bg-[#b79464] hover:bg-[#a28252] text-white px-6 py-3 rounded-full text-sm tracking-widest uppercase flex items-center gap-2">
                         Know More →
                     </button>
@@ -25,7 +25,7 @@ const AboutUsSection = () => {
                 </div>
 
                 {/* Right: Description and Video */}
-                <div className="flex flex-col gap-6 max-w-md text-sm leading-relaxed">
+                <div className="flex flex-col gap-6 max-w-md text-sm leading-relaxed text-[#C1C1C1]">
                     <p>
                         Qed Ut Perspiciatis Unde Omnis Iste Natus Error Sit Voluptatem
                         Accusantium Doloremque Laudantium Totam Aperiam. Eaque Ipsa Quae Ab
