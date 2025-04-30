@@ -1,6 +1,7 @@
 import AboutCard from '@/components/About/AboutCard'
 import Hero from '@/components/About/Hero'
 import Story from '@/components/About/Story'
+import SpecialSection from '@/components/About/Team'
 import React from 'react'
 
 const page = () => {
@@ -10,6 +11,7 @@ const page = () => {
     <Hero/>
     <Story/>
     <AboutCard/>
+    <SpecialSection/>
    </main>
    </>
   )
