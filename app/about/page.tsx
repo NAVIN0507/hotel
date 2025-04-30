@@ -1,4 +1,5 @@
 import Hero from '@/components/About/Hero'
+import Story from '@/components/About/Story'
 import React from 'react'
 
 const page = () => {
@@ -6,6 +7,7 @@ const page = () => {
    <>
    <main className='p-4 flex flex-col gap-10 mb-20'>
     <Hero/>
+    <Story/>
    </main>
    </>
   )
