@@ -1,6 +1,12 @@
 import Image from 'next/image'
 import React from 'react'
-
+import { InfiniteMovingPills } from '../ui/infinite-moving-cards'
+const activityItems = [
+  { label: "JEEP SAFARI" },
+  { label: "TRUCKING" },
+  { label: "RAFTING" },
+  { label: "CAMPING" },
+];
 const BentoGrid = () => {
   return (
    <section className='w-full h-full p-2'>
@@ -76,6 +82,34 @@ const BentoGrid = () => {
     </div>
     </div>
     </div>
+    <div className='flex flex-col md:flex-row gap-4 items-center justify-center mt-7 pl-30 pr-30'>
+        <div className='w-7/12 h-full p-10 rounded-md bg-[#011D38] text-white'>
+        <div className='flex flex-col'>
+        <p className='text-[10px]'>ACTIVITIES & GAMES</p>
+        <h1 className='uppercase font-mono text-4xl leading-relaxed -mt-3'>Unwind to Nature</h1>
+        <p className='text-[10px] text-[#C1C1C1]'>Nestled in the centre of Kodaikanal, we offer the perfect adventurous retreat. Numerous exhilarating activities are available at our opulent resort, guaranteeing you and your loved ones an experience they won’t soon forget.</p>
+           <InfiniteMovingPills
+        items={activityItems}
+        direction="right"
+        speed="slow"
+        className='p-5'
+      />
+        </div>
+        </div>
+         <div className='w-7/12 h-full p-10 text-white  rounded-md bg-[#011D38]'>
+          <div className='flex flex-col'>
+        <p className='text-[10px]'>ACTIVITIES & GAMES</p>
+        <h1 className='uppercase font-mono text-4xl leading-relaxed -mt-3'>Unwind to Nature</h1>
+        <p className='text-[10px] text-[#C1C1C1]'>Nestled in the centre of Kodaikanal, we offer the perfect adventurous retreat. Numerous exhilarating activities are available at our opulent resort, guaranteeing you and your loved ones an experience they won’t soon forget.</p>
+           <InfiniteMovingPills
+        items={activityItems}
+        direction="right"
+        speed="slow"
+        className='p-5'
+      />
+        </div>
+        </div>
+        </div>
    </section>
   )
 }
