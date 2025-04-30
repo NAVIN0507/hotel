@@ -32,8 +32,8 @@ const RoomInfo = () => {
    </div>
         </div>
 
-        <div className='flex gap-2 mt-10'>
-            <div className='w-8/12 p-7 rounded-lg h-full border border-[#D7D7D7] flex flex-col gap-2'>
+        <div className='flex gap-5 mt-10'>
+            <div className='w-12/12 p-7 rounded-lg h-full border border-[#D7D7D7] flex flex-col gap-2'>
             <div className='flex flex-col gap-4'>
                 <h1 className='font-mono text-4xl uppercase text-[#45443F]'>ABOUT STAY</h1>
                 <p className='mt-2 text-[#3A3A3A]'>
@@ -80,6 +80,76 @@ const RoomInfo = () => {
                     <p>Children are welcome Kids stay free! Children stay free when using existing bedding; children may not be eligible for complimentary breakfast Rollaway/extra beds are available for EUR 40.0 per day</p>
                 </div>
               </div>
+            </div>
+            <div className='w-5/12  flex flex-col gap-4  h-fit'>
+            <div className='w-full h-fit rounded-lg p-7 bg-[#011D38]'>
+                <h1 className='text-white text-center text-xl -mt-3'>STARTS FROM <span className='font-mono text-5xl'>1499</span>/PER NIGHT</h1>
+            </div>
+             <div className='w-full h-fit rounded-lg p-6 bg-[#011D38] pb-10'>
+                <h1 className='font-mono text-2xl text-white '>BOOK THIS ROOM</h1>
+                <div className='flex flex-col gap-2 mt-4 border-b border-[#D0D0D0] mb-2'>
+                    <label htmlFor="" className='text-[#C5C5C5] text-sm'>CHECK IN</label>
+                <input type='date' className='text-white mb-2'/>
+                </div>
+                <div className='flex flex-col gap-2 mt-4 border-b border-[#D0D0D0] mb-2'>
+                    <label htmlFor="" className='text-[#C5C5C5] text-sm'>CHECK OUT</label>
+                <input type='date' className='text-white mb-2'/>
+                </div>
+                <div className='flex flex-col gap-2 mt-4 border-b border-[#D0D0D0] mb-2'>
+                    <label htmlFor="" className='text-[#C5C5C5]'>ADULTS COUNT (18+)</label>
+                <input type='number' value={0} className='text-white mb-2'/>
+                </div>
+                  <div className='flex flex-col gap-2 mt-4 border-b border-[#D0D0D0] mb-2'>
+                    <label htmlFor="" className='text-[#C5C5C5]'>CHILDREN COUNT (0-17)</label>
+                <input type='number' value={0} className='text-white mb-2'/>
+                </div>
+            </div>
+            <div className='w-full h-fit rounded-lg p-6  bg-[#011D38]'>
+                <h1 className='font-mono text-2xl text-white'>ADD EXTRA</h1>
+                <div className='flex flex-col gap-2 mt-4 border-b border-[#D0D0D0] mb-2'>
+                    <label htmlFor="" className='text-[#C5C5C5]'>SPECIAL FOOD MENU</label>
+                    <select name="NORTH INDIAN" id="" className='text-white mb-2'>
+                        <option value="NORTH INDIAN" className='text-black'>NORTH INDIAN</option>
+                        <option value="SOUTH INDIAN" className='text-black'>SOUTH INDIAN</option>
+                    </select>
+                </div>
+                 <div className='flex flex-col gap-2 mt-4 border-b border-[#D0D0D0] mb-2'>
+                    <label htmlFor="" className='text-[#C5C5C5]'>ACTIVITES & GAMES</label>
+                    <select name="BASKET BALL" id="" className='text-white mb-2'>
+                        <option value="NORTH INDIAN" className='text-black'>BASKET BALL</option>
+                        <option value="SOUTH INDIAN" className='text-black'>CRICKET</option>
+                    </select>
+                </div>
+                <div className='flex flex-col gap-2 mt-7'>
+                    <div className='flex items-center justify-between'>
+                        <div className='flex gap-2'>
+                        <input type='checkbox' className='w-4 h-4 mt-1'/>
+                        <label htmlFor="" className='text-[#C5C5C5]'>ADD EXTRA BED (1)</label>
+                        </div>
+                        <p className='text-[#C5C5C5]'>₹ 299</p>
+                    </div>
+                     <div className='flex items-center justify-between'>
+                        <div className='flex gap-2'>
+                        <input type='checkbox' className='w-4 h-4 mt-1'/>
+                        <label htmlFor="" className='text-[#C5C5C5]'>FIRE CAMP ARRANGEMENTS</label>
+                        </div>
+                        <p className='text-[#C5C5C5]'>₹ 299</p>
+                    </div>
+                     <div className='flex items-center justify-between'>
+                        <div className='flex gap-2'>
+                        <input type='checkbox' className='w-4 h-4 mt-1'/>
+                        <label htmlFor="" className='text-[#C5C5C5]'>JEEP SAFARI</label>
+                        </div>
+                        <p className='text-[#C5C5C5]'>₹ 299</p>
+                    </div>
+                </div>
+                <div className='w-full p-1 h-1 border-b border-[#D0D0D0] mt-3'/>
+                <div className='flex items-center justify-between mt-3'>
+                    <p className='text-lg text-white'>TOTAL</p>
+                   <p className='text-[#C5C5C5]'>₹ 299</p>
+                </div>
+                <button className='w-full p-5 bg-[#AA9061] h-20 rounded-xl text-white mt-4'>BOOK NOW</button>
+            </div>
             </div>
         </div>
     </section>
