@@ -10,13 +10,13 @@ const AboutUsSection = () => {
                     <h2 className="text-4xl md:text-5xl font-serif leading-tight">
                         GET TO<br />KNOW<br />ABOUT<br /><h2 className='flex'> US <div className="w-20 mt-7 hidden lg:block  ml-5  h-0 border border-gray-500" />
                     </h2></h2>
-                    <button className="bg-[#b79464] hover:bg-[#a28252] text-white px-6 py-3 rounded-full text-sm tracking-widest uppercase flex items-center gap-2">
+                    <button className="bg-[#b79464] mt-20 hover:bg-[#a28252] text-white px-6 py-3 rounded-full text-sm tracking-widest uppercase flex items-center gap-2">
                         Know More →
                     </button>
                 </div>
 
                 {/* Center: Main Image */}
-                <div className="rounded-3xl overflow-hidden shadow-lg">
+                <div className="rounded-3xl overflow-hidden shadow-lg ">
                     <img
                         src="./assets/feature_section.jpg"
                         alt="Restaurant"
@@ -40,11 +40,11 @@ const AboutUsSection = () => {
                     </p>
 
                     {/* Video Preview */}
-                    <div className="flex flex-col gap-2 items-start">
-                        <span className="uppercase text-sm tracking-widest">Play Video</span>
+                    <div className="flex flex-col gap-2 items-end mt-10 justify-end">
+                        <p className="uppercase text-sm tracking-widest text-start flex items-start justify-center">Play Video</p>
                         <div className="relative w-48 h-28 rounded-xl overflow-hidden shadow-md">
                             <img
-                                src="/path-to-your-thumbnail.jpg"
+                                src="/assets/feature_section.jpg"
                                 alt="Video Thumbnail"
                                 className="w-full h-full object-cover"
                             />
