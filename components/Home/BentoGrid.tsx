@@ -24,7 +24,7 @@ const BentoGrid = () => {
             alt='feature_section'
             width={500}
             height={500}
-            className='w-[900px] h-[350px] object-cover rounded-lg mt-10 ml-10'
+            className='w-[1000px] h-[350px] object-cover rounded-lg mt-10 ml-10'
             />
         </div>
         <div className='md:w-3/12 h-[350px] bg-[#011D38] p-7 md:ml-14 mt-10 rounded-2xl'>
@@ -55,7 +55,7 @@ const BentoGrid = () => {
             alt='feature_section'
             width={500}
             height={500}
-            className='w-[900px] h-[350px] object-cover rounded-lg mt-10 ml-10'
+            className='w-[1000px] h-[350px] object-cover rounded-lg mt-10 ml-10'
             />
         </div>
      
@@ -67,7 +67,7 @@ const BentoGrid = () => {
             alt='feature_section'
             width={500}
             height={500}
-            className='w-[900px] h-[350px] object-cover rounded-lg mt-10 ml-10'
+            className='w-[1000px] h-[350px] object-cover rounded-lg mt-10 ml-10'
             />
         </div>
         <div className=' md:w-3/12 h-[350px] bg-[#011D38] p-7 md:ml-14 mt-10 rounded-2xl'>
