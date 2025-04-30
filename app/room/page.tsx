@@ -1,5 +1,6 @@
 import Hero from '@/components/Room/Hero'
 import NavBar from '@/components/Room/NavBar'
+import OtherRooms from '@/components/Room/OtherRooms'
 import RoomInfo from '@/components/Room/RoomInfo'
 import React from 'react'
 
@@ -9,6 +10,7 @@ const page = () => {
     <NavBar/>
     <Hero/>
     <RoomInfo/>
+    <OtherRooms/>
    </main>
   )
 }
