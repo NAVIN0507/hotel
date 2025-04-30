@@ -3,6 +3,7 @@ import Hero from "../components/Home/Hero";
 import AboutUsSection from "../components/Home/Aboutus";
 import SpecialSection from "@/components/Home/FeatureSectio";
 import BentoGrid from "@/components/Home/BentoGrid";
+import Amunities from "@/components/Home/Amunities";
 
 
 
@@ -13,6 +14,7 @@ export default function Home() {
 <SpecialSection/>
 <AboutUsSection/>
 <BentoGrid/>
+<Amunities/>
   </main>
   );
 } 

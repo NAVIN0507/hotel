@@ -1,0 +1,2 @@
+export const AmunitiesList = ['Swimming Pool' , '24/7 Security' , 'CCT surveillance' , 'Free Wifi' ];
+export const AmunitiesList2 = ['Play Area' , 'Daily house keeping' , 'flat screen Tv' , 'TEA/coffee Maker'];
