@@ -1,5 +1,6 @@
 
 import { Play } from 'lucide-react';
+import Link from 'next/link';
 
 const AboutUsSection = () => {
     return (
@@ -10,9 +11,11 @@ const AboutUsSection = () => {
                     <h2 className="text-4xl md:text-5xl font-serif leading-tight">
                         GET TO<br />KNOW<br />ABOUT<br /><h2 className='flex'> US <div className="w-20 mt-7 hidden lg:block  ml-5  h-0 border border-gray-500" />
                     </h2></h2>
+                    <Link href={"/about"}>
                     <button className="bg-[#b79464] mt-20 hover:bg-[#a28252] text-white px-6 py-3 rounded-full text-sm tracking-widest uppercase flex items-center gap-2">
                         Know More →
                     </button>
+                    </Link>
                 </div>
 
                 {/* Center: Main Image */}

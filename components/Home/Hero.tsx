@@ -12,8 +12,8 @@ const Hero = () => {
             <nav className="absolute top-0 left-0 w-full z-20 flex justify-between items-center max-sm:text-center px-10 py-6 text-white">
 
                 <ul className="hidden md:flex gap-30 uppercase text-sm tracking-wide ">
-                    <li><a href="#" className="hover:text-yellow-300 hover:underline">Home</a></li>
-                    <li><a href="#" className="hover:text-yellow-300 hover:underline">About Us</a></li>
+                    <li><a href="/" className="hover:text-yellow-300 hover:underline">Home</a></li>
+                    <li><a href="/about" className="hover:text-yellow-300 hover:underline">About Us</a></li>
                     <li><a href="#" className="hover:text-yellow-300 hover:underline">Activities</a></li>
                 </ul>
                 <div className="text-2xl font-bold font-mono text-yellow-400 tracking-widest">BRUNDHAVAN</div>
