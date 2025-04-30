@@ -2,6 +2,7 @@ import AboutCard from '@/components/About/AboutCard'
 import Hero from '@/components/About/Hero'
 import Story from '@/components/About/Story'
 import SpecialSection from '@/components/About/Team'
+import TestimonialsSection from '@/components/About/Testimonial'
 import React from 'react'
 
 const page = () => {
@@ -12,6 +13,7 @@ const page = () => {
     <Story/>
     <AboutCard/>
     <SpecialSection/>
+    <TestimonialsSection/>
    </main>
    </>
   )
