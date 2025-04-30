@@ -2,6 +2,7 @@ import Image from 'next/image'
 import React from 'react'
 import { InfiniteMovingPills } from '../ui/infinite-moving-cards'
 import { BedDouble, InspectionPanel, UsersRound } from 'lucide-react';
+import Link from 'next/link';
 const activityItems = [
   { label: "JEEP SAFARI" },
   { label: "TRUCKING" },
@@ -14,6 +15,7 @@ const BentoGrid = () => {
 
     <div className='flex flex-col gap-2 mx-auto items-center justify-center'>
     <div className='flex flex-col md:flex-row'>
+      <Link href={"/room"}>
         <div className='relative'>
             <Image
             src={"/assets/feature_section.jpg"}
@@ -22,6 +24,7 @@ const BentoGrid = () => {
             height={500}
             className='w-[800px] h-[400px] object-cover rounded-lg mt-10 ml-10'
             />
+            
             <div className='w-fit p-3 h-12 bg-white  absolute -mt-14 right-0 mr-5 rounded-full'>
             <div className='flex gap-1 items-center -mt-2'>
                 <h1 className='font-mono text-[18px] -mt-2'>STARTS FROM  <span className='text-3xl'>1499 </span> /PER NIGHT</h1>
@@ -29,6 +32,7 @@ const BentoGrid = () => {
             </div>
             </div>
         </div>
+        </Link>
         <div className='md:w-4/12 h-[400px] bg-[#011D38] p-7 md:ml-14 mt-10 rounded-2xl'>
        <div className='mt-10'>
         <h1 className='text-white font-mono text-3xl'>/01 WOOD HOUSE</h1>
