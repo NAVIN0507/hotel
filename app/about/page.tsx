@@ -1,4 +1,5 @@
 import AboutCard from '@/components/About/AboutCard'
+import Contact from '@/components/About/Contact'
 import Hero from '@/components/About/Hero'
 import Story from '@/components/About/Story'
 import SpecialSection from '@/components/About/Team'
@@ -14,6 +15,7 @@ const page = () => {
     <AboutCard/>
     <SpecialSection/>
     <TestimonialsSection/>
+    <Contact/>
    </main>
    </>
   )
