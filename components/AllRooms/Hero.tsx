@@ -1,5 +1,4 @@
 import { ArrowRightIcon } from 'lucide-react'
-import Link from 'next/link'
 
 
 const Hero = () => {
@@ -29,21 +28,17 @@ const Hero = () => {
 
             {/* Content */}
             <div className="relative z-10 flex flex-col justify-center items-center h-full text-white text-center px-4">
-                <p className="uppercase tracking-widest text-sm mb-4">Relax on the most peaceful place – on Kodaikanal</p>
+                <p className="uppercase tracking-widest text-sm mb-4">Rooms and cottages</p>
                 <h1 className="text-5xl md:text-6xl  font-semibold font-mono uppercase leading-tight">
-                    Stay Comfort<br />and Feel Comfort
+                    WE HAVE CURATED <br /> VILLAS & COTTAGES
                 </h1>
 
                 {/* Buttons */}
                 <div className="mt-8 flex ">
-                    <button className="px-8 pr-20 cursor-pointer border border-white rounded-full inset-0 bg-white/20 text-white hover:bg-white hover:text-black transition">
-                        Explore
+                    <button className="px-8 pr-20 h-14 cursor-pointer border border-white rounded-full inset-0 bg-white/20 text-white hover:bg-white hover:text-black transition text-xl flex items-center justify-center text-center">
+                        Explore →
                     </button>
-                    <Link href={"/allrooms"}>
-                    <button className="px-8 py-3 -ml-10 flex gap-2 rounded-full bg-yellow-400 text-white cursor-pointer  hover:bg-yellow-300 transition">
-                        Check Rooms <ArrowRightIcon className='w-7' />
-                    </button>
-                    </Link>
+                  
                 </div>
             </div>
         </section>
