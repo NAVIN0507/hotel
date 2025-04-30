@@ -4,7 +4,7 @@ import React from 'react'
 
 const Amunities = () => {
   return (
-  <section className=' pl-10 pr-10'>
+  <section className=' pl-14 pr-14'>
     <div className=' flex items-center justify-between gap-1'>
         <div className='flex flex-col gap-1'>
             <p className='text-sm text-[#5C5C5C]'>AMUNITIES</p>
@@ -24,12 +24,12 @@ const Amunities = () => {
             </div>
         ))}
     </div>
-     <div className='grid grid-cols-1 md:grid-cols-4 gap-10 mt-20'>
+     <div className=' grid-cols-1 md:grid-cols-4 gap-32 mt-10 ml-20 hidden md:grid'>
         {AmunitiesList.map((item, index) => (
-         <div className='w-28 h-4 '></div>
+         <div className='w-28 border  border-[#D7D7D7] flex items-center justify-center'></div>
         ))}
     </div>
-     <div className='grid grid-cols-1 md:grid-cols-4 gap-10 mt-20'>
+     <div className='grid grid-cols-1 md:grid-cols-4 gap-10 mt-10'>
         {AmunitiesList2.map((item, index) => (
             <div className='flex flex-col gap-2 items-center justify-center'>
                 <div className='w-24 h-16 bg-[#D9D9D9] '></div>

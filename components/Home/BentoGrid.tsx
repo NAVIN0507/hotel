@@ -17,17 +17,17 @@ const BentoGrid = () => {
 <div className="w-20 hidden lg:block  ml-2 h-0 border border-gray-500" />
     </div>
     <div className='flex flex-col gap-2 mx-auto items-center justify-center'>
-    <div className='flex'>
+    <div className='flex flex-col md:flex-row'>
         <div>
             <Image
             src={"/assets/feature_section.jpg"}
             alt='feature_section'
             width={500}
             height={500}
-            className='w-[800px] h-[350px] object-cover rounded-lg mt-10 ml-10'
+            className='w-[900px] h-[350px] object-cover rounded-lg mt-10 ml-10'
             />
         </div>
-        <div className='w-3/12 h-[350px] bg-[#011D38] p-7 ml-10 mt-10 rounded-2xl'>
+        <div className='md:w-3/12 h-[350px] bg-[#011D38] p-7 md:ml-10 mt-10 rounded-2xl'>
        <div className='mt-10'>
         <h1 className='text-white font-mono text-3xl'>WOOD HOUSE</h1>
         <p className='text-[#C1C1C1] text-sm mt-4'>Spoil yourself with the assortment in cuisine and taste. Explore & Investigate the wide range of food you'd be honored with no place else.
@@ -38,8 +38,8 @@ const BentoGrid = () => {
       </div>
     </div>
     </div>
-       <div className='flex'>
-           <div className='w-3/12 h-[350px] bg-[#011D38] p-7 ml-10 mt-10 rounded-2xl'>
+       <div className='flex flex-col md:flex-row'>
+           <div className='md:w-3/12 h-[350px] bg-[#011D38] p-7 md:ml-10 mt-10 rounded-2xl'>
        <div className='mt-10'>
         <h1 className='text-white font-mono text-3xl'>WOOD HOUSE</h1>
         <p className='text-[#C1C1C1] text-sm mt-4'>Spoil yourself with the assortment in cuisine and taste. Explore & Investigate the wide range of food you'd be honored with no place else.
@@ -55,22 +55,22 @@ const BentoGrid = () => {
             alt='feature_section'
             width={500}
             height={500}
-            className='w-[800px] h-[350px] object-cover rounded-lg mt-10 ml-10'
+            className='w-[900px] h-[350px] object-cover rounded-lg mt-10 ml-10'
             />
         </div>
      
     </div>
-       <div className='flex'>
+       <div className='flex md:flex-row flex-col'>
         <div>
             <Image
             src={"/assets/feature_section.jpg"}
             alt='feature_section'
             width={500}
             height={500}
-            className='w-[800px] h-[350px] object-cover rounded-lg mt-10 ml-10'
+            className='w-[900px] h-[350px] object-cover rounded-lg mt-10 ml-10'
             />
         </div>
-        <div className='w-3/12 h-[350px] bg-[#011D38] p-7 ml-10 mt-10 rounded-2xl'>
+        <div className=' md:w-3/12 h-[350px] bg-[#011D38] p-7 md:ml-10 mt-10 rounded-2xl'>
        <div className='mt-10'>
         <h1 className='text-white font-mono text-3xl'>WOOD HOUSE</h1>
         <p className='text-[#C1C1C1] text-sm mt-4'>Spoil yourself with the assortment in cuisine and taste. Explore & Investigate the wide range of food you'd be honored with no place else.
@@ -83,7 +83,7 @@ const BentoGrid = () => {
     </div>
     </div>
     <div className='flex flex-col md:flex-row gap-4 items-center justify-center mt-7 pl-30 pr-30 mx-auto'>
-        <div className='w-7/12 h-full p-10 rounded-md bg-[#011D38] text-white'>
+        <div className= 'w-[300px] md:w-7/12 h-full p-10 rounded-md bg-[#011D38] text-white'>
         <div className='flex flex-col'>
         <p className='text-[10px]'>ACTIVITIES & GAMES</p>
         <h1 className='uppercase font-mono text-4xl leading-relaxed -mt-3'>Unwind to Nature</h1>
@@ -103,7 +103,7 @@ const BentoGrid = () => {
       />
         </div>
         </div>
-         <div className='w-7/12 h-full p-10 text-white  rounded-md bg-[#011D38]'>
+         <div className='w-[300px] md:w-7/12 h-full p-10  text-white  rounded-md bg-[#011D38]'>
           <div className='flex flex-col'>
         <p className='text-[10px]'>ACTIVITIES & GAMES</p>
         <h1 className='uppercase font-mono text-4xl leading-relaxed -mt-3'>Unwind to Nature</h1>
