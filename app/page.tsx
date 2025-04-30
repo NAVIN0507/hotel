@@ -5,6 +5,7 @@ import SpecialSection from "@/components/Home/FeatureSectio";
 import BentoGrid from "@/components/Home/BentoGrid";
 import Amunities from "@/components/Home/Amunities";
 import Testimonials from "@/components/Home/Testimonials";
+import FAQ from "@/components/Home/FAQ";
 
 
 
@@ -17,6 +18,7 @@ export default function Home() {
 <BentoGrid/>
 <Amunities/>
 <Testimonials/>
+<FAQ/>
   </main>
   );
 } 
