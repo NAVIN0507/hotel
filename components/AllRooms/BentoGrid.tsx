@@ -22,10 +22,10 @@ const BentoGrid = () => {
             height={500}
             className='w-[800px] h-[400px] object-cover rounded-lg mt-10 ml-10'
             />
-            <div className='w-9/12 p-6 h-10 bg-white absolute -mt-14 ml-[225px] rounded-full'>
-            <div className='flex gap-1 -mt-5 ml-10'>
-                <h1 className='font-mono text-xl'>STARTS FROM  <span className='text-3xl'>1499 </span> /PER NIGHT</h1>
-                <button className='w-[150px] h-10 ml-10 bg-[#AA9061] rounded-full text-white'>EXPLORE</button>
+            <div className='w-fit p-3 h-12 bg-white  absolute -mt-14 right-0 mr-5 rounded-full'>
+            <div className='flex gap-1 items-center -mt-2'>
+                <h1 className='font-mono text-[18px] -mt-2'>STARTS FROM  <span className='text-3xl'>1499 </span> /PER NIGHT</h1>
+                <button className='w-[150px] h-10 ml-4 bg-[#AA9061] rounded-full text-white'>EXPLORE</button>
             </div>
             </div>
         </div>
@@ -73,18 +73,18 @@ const BentoGrid = () => {
    </div>
       </div>
     </div>
-        <div className='relative'>
+         <div className='relative'>
             <Image
             src={"/assets/feature_section.jpg"}
             alt='feature_section'
             width={500}
             height={500}
-            className='w-[800px] h-[400px] object-cover rounded-lg mt-10  ml-5'
+            className='w-[800px] h-[400px] object-cover rounded-lg mt-10 ml-10'
             />
-            <div className='w-9/12 p-6 h-10 bg-white absolute -mt-14 ml-[195px] rounded-full'>
-            <div className='flex gap-1 -mt-5 ml-10'>
-                <h1 className='font-mono text-xl'>STARTS FROM  <span className='text-3xl'>1499 </span> /PER NIGHT</h1>
-                <button className='w-[150px] h-10 ml-1 bg-[#AA9061] rounded-full text-white'>EXPLORE</button>
+            <div className='w-fit p-3 h-12 bg-white  absolute -mt-14 right-0 mr-5 rounded-full'>
+            <div className='flex gap-1 items-center -mt-2'>
+                <h1 className='font-mono text-[18px] -mt-2'>STARTS FROM  <span className='text-3xl'>1499 </span> /PER NIGHT</h1>
+                <button className='w-[150px] h-10 ml-4 bg-[#AA9061] rounded-full text-white'>EXPLORE</button>
             </div>
             </div>
         </div>
@@ -99,10 +99,10 @@ const BentoGrid = () => {
             height={500}
             className='w-[800px] h-[400px] object-cover rounded-lg mt-10 ml-10'
             />
-            <div className='w-9/12 p-6 h-10 bg-white absolute -mt-14 ml-[225px] rounded-full'>
-            <div className='flex gap-1 -mt-5 ml-10'>
-                <h1 className='font-mono text-xl'>STARTS FROM  <span className='text-3xl'>1499 </span> /PER NIGHT</h1>
-                <button className='w-[150px] h-10 ml-10 bg-[#AA9061] rounded-full text-white'>EXPLORE</button>
+            <div className='w-fit p-3 h-12 bg-white  absolute -mt-14 right-0 mr-5 rounded-full'>
+            <div className='flex gap-1 items-center -mt-2'>
+                <h1 className='font-mono text-[18px] -mt-2'>STARTS FROM  <span className='text-3xl'>1499 </span> /PER NIGHT</h1>
+                <button className='w-[150px] h-10 ml-4 bg-[#AA9061] rounded-full text-white'>EXPLORE</button>
             </div>
             </div>
         </div>
@@ -156,12 +156,12 @@ const BentoGrid = () => {
             alt='feature_section'
             width={500}
             height={500}
-            className='w-[800px] h-[400px] object-cover rounded-lg mt-10  ml-5'
+            className='w-[800px] h-[400px] object-cover rounded-lg mt-10 ml-10'
             />
-            <div className='w-9/12 p-6 h-10 bg-white absolute -mt-14 ml-[195px] rounded-full'>
-            <div className='flex gap-1 -mt-5 ml-7'>
-                <h1 className='font-mono text-xl'>STARTS FROM  <span className='text-3xl'>1499 </span> /PER NIGHT</h1>
-                <button className='w-[150px] h-10 ml-16 bg-[#AA9061] rounded-full text-white'>EXPLORE</button>
+            <div className='w-fit p-3 h-12 bg-white  absolute -mt-14 right-0 mr-5 rounded-full'>
+            <div className='flex gap-1 items-center -mt-2'>
+                <h1 className='font-mono text-[18px] -mt-2'>STARTS FROM  <span className='text-3xl'>1499 </span> /PER NIGHT</h1>
+                <button className='w-[150px] h-10 ml-4 bg-[#AA9061] rounded-full text-white'>EXPLORE</button>
             </div>
             </div>
         </div>
