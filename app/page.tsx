@@ -4,6 +4,7 @@ import AboutUsSection from "../components/Home/Aboutus";
 import SpecialSection from "@/components/Home/FeatureSectio";
 import BentoGrid from "@/components/Home/BentoGrid";
 import Amunities from "@/components/Home/Amunities";
+import Testimonials from "@/components/Home/Testimonials";
 
 
 
@@ -15,6 +16,7 @@ export default function Home() {
 <AboutUsSection/>
 <BentoGrid/>
 <Amunities/>
+<Testimonials/>
   </main>
   );
 } 

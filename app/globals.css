@@ -79,7 +79,7 @@
      gap: 0.5rem;
  }
  @theme inline {
-  --animate-scroll: scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite;
+  --animate-scroll: scroll var(--animation-duration, 2000s) var(--animation-direction, forwards) linear infinite;
  
   @keyframes scroll {
     to {
