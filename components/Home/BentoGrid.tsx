@@ -9,14 +9,14 @@ const activityItems = [
 ];
 const BentoGrid = () => {
   return (
-   <section className='w-full h-full p-2'>
+   <section className='w-full h-full p-2 mx-auto'>
     <p className='text-[#5C5C5C] text-center'>ROOMS AND COTTAGES</p>
     <div className='flex gap-2 items-center justify-center mt-4 mb-4'>
 <div className="w-20 mr-2  hidden lg:block ml-10 h-0 border border-gray-500" />
 <h1 className='text-[#5C5C5C] font-mono text-5xl'>DISCOVER OUR ROOMS</h1>
 <div className="w-20 hidden lg:block  ml-2 h-0 border border-gray-500" />
     </div>
-    <div className='flex flex-col gap-2'>
+    <div className='flex flex-col gap-2 mx-auto items-center justify-center'>
     <div className='flex'>
         <div>
             <Image
@@ -82,7 +82,7 @@ const BentoGrid = () => {
     </div>
     </div>
     </div>
-    <div className='flex flex-col md:flex-row gap-4 items-center justify-center mt-7 pl-30 pr-30'>
+    <div className='flex flex-col md:flex-row gap-4 items-center justify-center mt-7 pl-30 pr-30 mx-auto'>
         <div className='w-7/12 h-full p-10 rounded-md bg-[#011D38] text-white'>
         <div className='flex flex-col'>
         <p className='text-[10px]'>ACTIVITIES & GAMES</p>
@@ -93,6 +93,13 @@ const BentoGrid = () => {
         direction="right"
         speed="slow"
         className='p-5'
+      />
+      <Image
+      src={"/assets/feature_section.jpg"}
+      alt='feature_section'
+      width={500}  
+        height={500}
+        className='w-[800px] h-[300px] object-cover rounded-lg'
       />
         </div>
         </div>
@@ -106,6 +113,13 @@ const BentoGrid = () => {
         direction="right"
         speed="slow"
         className='p-5'
+      />
+       <Image
+      src={"/assets/feature_section.jpg"}
+      alt='feature_section'
+      width={500}  
+        height={500}
+        className='w-[800px] h-[300px] object-cover rounded-lg'
       />
         </div>
         </div>
