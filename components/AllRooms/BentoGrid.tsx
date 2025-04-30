@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 import { InfiniteMovingPills } from '../ui/infinite-moving-cards'
+import { BedDouble, InspectionPanel, UsersRound } from 'lucide-react';
 const activityItems = [
   { label: "JEEP SAFARI" },
   { label: "TRUCKING" },
@@ -30,12 +31,23 @@ const BentoGrid = () => {
         </div>
         <div className='md:w-4/12 h-[400px] bg-[#011D38] p-7 md:ml-14 mt-10 rounded-2xl'>
        <div className='mt-10'>
-        <h1 className='text-white font-mono text-3xl'>WOOD HOUSE</h1>
+        <h1 className='text-white font-mono text-3xl'>/01 WOOD HOUSE</h1>
         <p className='text-[#C1C1C1] text-sm mt-4'>Spoil yourself with the assortment in cuisine and taste. Explore & Investigate the wide range of food you'd be honored with no place else.
     </p>
-    <button className="bg-[#b79464] hover:bg-[#a28252] text-white px-6 py-3 mt-8 -ml-2 rounded-full text-sm tracking-widest uppercase flex items-center gap-2">
-                        Know More →
-     </button>
+   <div className='flex gap-16   mt-10'>
+    <div className='flex flex-col gap-1 items-center justify-center'>
+        <InspectionPanel  color='#ffffff' width={40} height={40}/>
+        <p className='text-white'>55M2</p>
+    </div>
+      <div className='flex flex-col gap-1 items-center justify-center'>
+        <UsersRound   color='#ffffff' width={40} height={40}/>
+        <p className='text-white'>1-6 PERSON</p>
+    </div>
+      <div className='flex flex-col gap-1 items-center justify-center'>
+        <BedDouble   color='#ffffff' width={40} height={40}/>
+        <p className='text-white'>2 BEDS</p>
+    </div>
+   </div>
       </div>
     </div>
     </div>
