@@ -39,7 +39,7 @@ const BentoGrid = () => {
     </div>
     </div>
        <div className='flex flex-col md:flex-row'>
-           <div className='md:w-3/12 h-[350px] bg-[#011D38] p-7 md:ml-14 mt-10 rounded-2xl'>
+           <div className='md:w-3/12 h-[350px] bg-[#011D38] p-7 md:ml-10 mt-10 rounded-2xl'>
        <div className='mt-10'>
         <h1 className='text-white font-mono text-3xl'>WOOD HOUSE</h1>
         <p className='text-[#C1C1C1] text-sm mt-4'>Spoil yourself with the assortment in cuisine and taste. Explore & Investigate the wide range of food you'd be honored with no place else.
@@ -70,7 +70,7 @@ const BentoGrid = () => {
             className='w-[900px] h-[350px] object-cover rounded-lg mt-10 ml-10'
             />
         </div>
-        <div className=' md:w-3/12 h-[350px] bg-[#011D38] p-7 md:ml-10 mt-10 rounded-2xl'>
+        <div className=' md:w-3/12 h-[350px] bg-[#011D38] p-7 md:ml-14 mt-10 rounded-2xl'>
        <div className='mt-10'>
         <h1 className='text-white font-mono text-3xl'>WOOD HOUSE</h1>
         <p className='text-[#C1C1C1] text-sm mt-4'>Spoil yourself with the assortment in cuisine and taste. Explore & Investigate the wide range of food you'd be honored with no place else.
