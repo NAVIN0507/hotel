@@ -12,7 +12,7 @@ const OtherRooms = () => {
            
             <div className='relative'>
                 <Image
-                src={"/assets/feature_section.jpg"}
+                src={"/assets/images/feature_section.jpg"}
                 alt='room'
                 width={400}
                 height={400}

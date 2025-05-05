@@ -6,7 +6,7 @@ const Hero = () => {
    <section className='max-w-screen'>
     <div className='flex gap-2'>
         <Image
-        src={"/assets/hero_bg.jpg"}
+        src={"/assets/images/hero_bg.jpg"}
         alt="hero"
         width={1000}
         height={1000}
@@ -14,7 +14,7 @@ const Hero = () => {
         />
         <div className='h-full relative'>
           <Image
-        src={"/assets/hero_bg.jpg"}
+        src={"/assets/images//hero_bg.jpg"}
         alt="hero"
         width={1000}
         height={1000}

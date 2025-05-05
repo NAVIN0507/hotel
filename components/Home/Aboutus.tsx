@@ -21,7 +21,7 @@ const AboutUsSection = () => {
                 {/* Center: Main Image */}
                 <div className="rounded-3xl overflow-hidden shadow-lg ">
                     <img
-                        src="./assets/feature_section.jpg"
+                        src="./assets/images/feature_section.jpg"
                         alt="Restaurant"
                         className="w-[350px] h-auto object-cover"
                     />
@@ -47,7 +47,7 @@ const AboutUsSection = () => {
                         <p className="uppercase text-sm tracking-widest text-start flex items-start justify-center">Play Video</p>
                         <div className="relative w-48 h-28 rounded-xl overflow-hidden shadow-md">
                             <img
-                                src="/assets/feature_section.jpg"
+                                src="/assets/images/feature_section.jpg"
                                 alt="Video Thumbnail"
                                 className="w-full h-full object-cover"
                             />

@@ -39,7 +39,7 @@ const SpecialSection: React.FC = () => {
                   {specials.map((special, index) => (
                    <div className='flex flex-col gap-2' key={index}>
                     <Image
-                    src={'/assets/feature_section.jpg'}
+                    src={'/assets/images/feature_section.jpg'}
                     alt='alt'
                     width={300}
                     height={300}

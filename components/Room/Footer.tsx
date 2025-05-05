@@ -8,7 +8,7 @@ const Footer = () => {
     <div className='flex flex-col gap-1'>
         <h1 className='font-mono text-3xl'>LOCATION</h1>
         <Image
-        src={"/assets/map1.png"}
+        src={"/assets/images/map1.png"}
         alt='map'
         width={200}
         height={200}

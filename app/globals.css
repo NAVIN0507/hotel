@@ -23,8 +23,8 @@
    --font-display: 'Bungee Spice', cursive;
  
    /* Background image (adjust URL to your actual image path) */
-   --bg-image: url('/assets/hero_bg.jpg');
-   --bg-feature-image: url('/assets/feature_section.jpg'); /* ← your image path */
+   --bg-image: url('/assets/images/hero_bg.jpg');
+   --bg-feature-image: url('/assets/images/feature_section.jpg'); /* ← your image path */
  }
  
  *{

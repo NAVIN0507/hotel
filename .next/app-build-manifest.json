@@ -12,43 +12,43 @@
       "static/chunks/4bd1b696-741695a9d0097750.js",
       "static/chunks/684-0f42ae189f9f0705.js",
       "static/chunks/main-app-2ca405ea4849bdd1.js",
-      "static/css/4c2c25bd9c9ffaf6.css",
+      "static/css/02f2ac30d88fa65c.css",
       "static/chunks/app/layout-15bc6e8d5e56f51f.js"
-    ],
-    "/allrooms/page": [
-      "static/chunks/webpack-60ed60c210eb03b3.js",
-      "static/chunks/4bd1b696-741695a9d0097750.js",
-      "static/chunks/684-0f42ae189f9f0705.js",
-      "static/chunks/main-app-2ca405ea4849bdd1.js",
-      "static/chunks/63-a596303a523a3138.js",
-      "static/chunks/874-67e37bca924255ec.js",
-      "static/chunks/app/allrooms/page-9e4ef21c8bf23edb.js"
     ],
     "/about/page": [
       "static/chunks/webpack-60ed60c210eb03b3.js",
       "static/chunks/4bd1b696-741695a9d0097750.js",
       "static/chunks/684-0f42ae189f9f0705.js",
       "static/chunks/main-app-2ca405ea4849bdd1.js",
-      "static/chunks/63-a596303a523a3138.js",
-      "static/chunks/app/about/page-07404ee88c09bbaa.js"
-    ],
-    "/room/page": [
-      "static/chunks/webpack-60ed60c210eb03b3.js",
-      "static/chunks/4bd1b696-741695a9d0097750.js",
-      "static/chunks/684-0f42ae189f9f0705.js",
-      "static/chunks/main-app-2ca405ea4849bdd1.js",
-      "static/chunks/63-a596303a523a3138.js",
-      "static/chunks/app/room/page-8b96477b80cb4844.js"
+      "static/chunks/63-42ec54b3c45f4c53.js",
+      "static/chunks/app/about/page-6d72d69ec0ab2fec.js"
     ],
     "/page": [
       "static/chunks/webpack-60ed60c210eb03b3.js",
       "static/chunks/4bd1b696-741695a9d0097750.js",
       "static/chunks/684-0f42ae189f9f0705.js",
       "static/chunks/main-app-2ca405ea4849bdd1.js",
-      "static/chunks/63-a596303a523a3138.js",
+      "static/chunks/63-42ec54b3c45f4c53.js",
       "static/chunks/874-67e37bca924255ec.js",
       "static/chunks/520-be1a7cdcca5993ec.js",
-      "static/chunks/app/page-a90ec604cddaabb1.js"
+      "static/chunks/app/page-5bb69f8c25ea2998.js"
+    ],
+    "/allrooms/page": [
+      "static/chunks/webpack-60ed60c210eb03b3.js",
+      "static/chunks/4bd1b696-741695a9d0097750.js",
+      "static/chunks/684-0f42ae189f9f0705.js",
+      "static/chunks/main-app-2ca405ea4849bdd1.js",
+      "static/chunks/63-42ec54b3c45f4c53.js",
+      "static/chunks/874-67e37bca924255ec.js",
+      "static/chunks/app/allrooms/page-9e4ef21c8bf23edb.js"
+    ],
+    "/room/page": [
+      "static/chunks/webpack-60ed60c210eb03b3.js",
+      "static/chunks/4bd1b696-741695a9d0097750.js",
+      "static/chunks/684-0f42ae189f9f0705.js",
+      "static/chunks/main-app-2ca405ea4849bdd1.js",
+      "static/chunks/63-42ec54b3c45f4c53.js",
+      "static/chunks/app/room/page-8b96477b80cb4844.js"
     ]
   }
 }
