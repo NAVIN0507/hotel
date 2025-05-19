@@ -1545,8 +1545,16 @@
     border-color: #d7d7d7;
   }
 
+  .border-\[\#\] {
+    border-color: # ;
+  }
+
   .border-\[\#b79464\] {
     border-color: #b79464;
+  }
+
+  .border-\[b79464\] {
+    border-color: b79464;
   }
 
   .border-amber-600 {
@@ -2077,6 +2085,10 @@
     color: var(--color-gray-500);
   }
 
+  .text-gray-600 {
+    color: var(--color-gray-600);
+  }
+
   .text-gray-700 {
     color: var(--color-gray-700);
   }
@@ -2415,6 +2427,10 @@
 
   .ring-inset {
     --tw-ring-inset: inset;
+  }
+
+  :is(.\*\:mt-10 > *) {
+    margin-top: calc(var(--spacing) * 10);
   }
 
   .group-data-\[disabled\=true\]\:pointer-events-none:is(:where(.group)[data-disabled="true"] *) {
