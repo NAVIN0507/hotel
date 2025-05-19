@@ -25,6 +25,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import Link from "next/link"
 const SignUp = () => {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -43,7 +44,7 @@ const SignUp = () => {
   return (
 <section className='flex gap-2 '>
 
-<div className='w-full max-sm:mt-20 max-sm:- md:w-1/2 flex items-center justify-center'>
+<div className='w-full max-sm:mt-20 max-sm:- md:w-7/12 flex items-center justify-center p-4'>
 <div className='w-full md:w-9/12 p-8 rounded-lg border border-gray-300'>
 <h1 className='font-mono text-[#b79464] text-5xl text-center uppercase'>Brindhavan</h1>
 <div className='flex flex-col gap-2 items-center justify-center mt-7'>
@@ -94,6 +95,21 @@ const SignUp = () => {
             </FormItem>
           )}
         />
+        
+         <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              
+              <FormControl>
+                <Input placeholder="Enter Your Email" {...field} className="p-8 border border-gray-300 focus-within:border-gray-300"/>
+              </FormControl>
+           
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <FormField
           control={form.control}
           name="email"
@@ -128,7 +144,7 @@ const SignUp = () => {
     </Form>
 
 </div>
-<p className="mt-8 text-gray-500">Already Have an account ? <span className="underline">SignIn</span></p>
+<p className="mt-8 text-gray-500">Already Have an account ? <Link href={"/sign-in"}> <span className="underline">SignIn</span></Link></p>
 </div>
 </div>
 <div className='sticky h-40 w-full pr-10 sm:top-0 sm:min-h-screen sm:flex-1 hidden md:block'>

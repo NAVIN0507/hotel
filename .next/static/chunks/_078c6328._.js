@@ -390,8 +390,6 @@ const SignIn = ()=>{
         }
     });
     function onSubmit(values) {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
         console.log(values);
     }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -406,12 +404,12 @@ const SignIn = ()=>{
                     className: " object-fill"
                 }, void 0, false, {
                     fileName: "[project]/app/(auth)/sign-in/page.tsx",
-                    lineNumber: 40,
+                    lineNumber: 38,
                     columnNumber: 1
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/(auth)/sign-in/page.tsx",
-                lineNumber: 39,
+                lineNumber: 37,
                 columnNumber: 1
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -424,7 +422,7 @@ const SignIn = ()=>{
                             children: "Brindhavan"
                         }, void 0, false, {
                             fileName: "[project]/app/(auth)/sign-in/page.tsx",
-                            lineNumber: 50,
+                            lineNumber: 48,
                             columnNumber: 1
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -447,28 +445,28 @@ const SignIn = ()=>{
                                                                 className: "p-8 border border-gray-300 focus-within:border-gray-300"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(auth)/sign-in/page.tsx",
-                                                                lineNumber: 61,
+                                                                lineNumber: 59,
                                                                 columnNumber: 17
                                                             }, void 0)
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(auth)/sign-in/page.tsx",
-                                                            lineNumber: 60,
+                                                            lineNumber: 58,
                                                             columnNumber: 15
                                                         }, void 0),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormMessage"], {}, void 0, false, {
                                                             fileName: "[project]/app/(auth)/sign-in/page.tsx",
-                                                            lineNumber: 64,
+                                                            lineNumber: 62,
                                                             columnNumber: 15
                                                         }, void 0)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(auth)/sign-in/page.tsx",
-                                                    lineNumber: 58,
+                                                    lineNumber: 56,
                                                     columnNumber: 13
                                                 }, void 0)
                                         }, void 0, false, {
                                             fileName: "[project]/app/(auth)/sign-in/page.tsx",
-                                            lineNumber: 54,
+                                            lineNumber: 52,
                                             columnNumber: 9
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormField"], {
@@ -484,28 +482,28 @@ const SignIn = ()=>{
                                                                 className: "p-8 border border-gray-300"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(auth)/sign-in/page.tsx",
-                                                                lineNumber: 75,
+                                                                lineNumber: 73,
                                                                 columnNumber: 17
                                                             }, void 0)
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(auth)/sign-in/page.tsx",
-                                                            lineNumber: 74,
+                                                            lineNumber: 72,
                                                             columnNumber: 15
                                                         }, void 0),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormMessage"], {}, void 0, false, {
                                                             fileName: "[project]/app/(auth)/sign-in/page.tsx",
-                                                            lineNumber: 78,
+                                                            lineNumber: 76,
                                                             columnNumber: 15
                                                         }, void 0)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(auth)/sign-in/page.tsx",
-                                                    lineNumber: 72,
+                                                    lineNumber: 70,
                                                     columnNumber: 13
                                                 }, void 0)
                                         }, void 0, false, {
                                             fileName: "[project]/app/(auth)/sign-in/page.tsx",
-                                            lineNumber: 68,
+                                            lineNumber: 66,
                                             columnNumber: 10
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -519,7 +517,7 @@ const SignIn = ()=>{
                                                             className: "w-5 h-5 accent-[#b79464] text-white"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(auth)/sign-in/page.tsx",
-                                                            lineNumber: 83,
+                                                            lineNumber: 81,
                                                             columnNumber: 55
                                                         }, this),
                                                         "  ",
@@ -528,13 +526,13 @@ const SignIn = ()=>{
                                                             children: "Remember me"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(auth)/sign-in/page.tsx",
-                                                            lineNumber: 83,
+                                                            lineNumber: 81,
                                                             columnNumber: 129
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(auth)/sign-in/page.tsx",
-                                                    lineNumber: 83,
+                                                    lineNumber: 81,
                                                     columnNumber: 13
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -542,13 +540,13 @@ const SignIn = ()=>{
                                                     children: "Forgot Password ?"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(auth)/sign-in/page.tsx",
-                                                    lineNumber: 84,
+                                                    lineNumber: 82,
                                                     columnNumber: 13
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(auth)/sign-in/page.tsx",
-                                            lineNumber: 82,
+                                            lineNumber: 80,
                                             columnNumber: 9
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -557,23 +555,23 @@ const SignIn = ()=>{
                                             children: "Log In"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(auth)/sign-in/page.tsx",
-                                            lineNumber: 86,
+                                            lineNumber: 84,
                                             columnNumber: 9
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(auth)/sign-in/page.tsx",
-                                    lineNumber: 53,
+                                    lineNumber: 51,
                                     columnNumber: 7
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/(auth)/sign-in/page.tsx",
-                                lineNumber: 52,
+                                lineNumber: 50,
                                 columnNumber: 1
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/(auth)/sign-in/page.tsx",
-                            lineNumber: 51,
+                            lineNumber: 49,
                             columnNumber: 1
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -585,30 +583,30 @@ const SignIn = ()=>{
                                     children: "SignUp"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(auth)/sign-in/page.tsx",
-                                    lineNumber: 91,
+                                    lineNumber: 89,
                                     columnNumber: 59
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(auth)/sign-in/page.tsx",
-                            lineNumber: 91,
+                            lineNumber: 89,
                             columnNumber: 1
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/(auth)/sign-in/page.tsx",
-                    lineNumber: 49,
+                    lineNumber: 47,
                     columnNumber: 1
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/(auth)/sign-in/page.tsx",
-                lineNumber: 48,
+                lineNumber: 46,
                 columnNumber: 1
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/(auth)/sign-in/page.tsx",
-        lineNumber: 38,
+        lineNumber: 36,
         columnNumber: 1
     }, this);
 };

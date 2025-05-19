@@ -2717,8 +2717,26 @@
   }
 
   @media (width >= 48rem) {
+    .md\:w-6\/12 {
+      width: 50%;
+    }
+  }
+
+  @media (width >= 48rem) {
     .md\:w-7\/12 {
       width: 58.3333%;
+    }
+  }
+
+  @media (width >= 48rem) {
+    .md\:w-8\/2 {
+      width: 400%;
+    }
+  }
+
+  @media (width >= 48rem) {
+    .md\:w-8\/12 {
+      width: 66.6667%;
     }
   }
 
