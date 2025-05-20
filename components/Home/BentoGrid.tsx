@@ -9,7 +9,7 @@ const activityItems = [
 ];
 const BentoGrid = () => {
   return (
-   <section className='w-full h-full p-2 mx-auto'>
+   <section className='w-full h-full p-2 mx-auto lg:pl-18'>
     <p className='text-[#5C5C5C] text-center'>ROOMS AND COTTAGES</p>
     <div className='flex gap-2 items-center justify-center mt-4 mb-4'>
 <div className="w-20 mr-2  hidden lg:block ml-10 h-0 border border-gray-500" />
