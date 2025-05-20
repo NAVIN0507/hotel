@@ -26,7 +26,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
-import { Phone } from "lucide-react"
+import { Eye, Mail, NotebookPen, Phone, User } from "lucide-react"
 const SignUp = () => {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -61,7 +61,13 @@ const SignUp = () => {
             <FormItem>
               
               <FormControl>
+              <div className="flex gap-2">
+
                 <Input placeholder="Enter Your Name" {...field} className="p-8 border border-gray-300 focus-within:border-gray-300"/>
+                <div className="p-4 border border-gray-300 rounded-md">
+                    <NotebookPen className="text-gray-500"/>
+                  </div>
+                </div>
               </FormControl>
            
               <FormMessage />
@@ -75,7 +81,14 @@ const SignUp = () => {
             <FormItem>
               
               <FormControl>
+                <div className="flex gap-2">
+                 
                 <Input placeholder="Enter Your Username" {...field} className="p-8 border border-gray-300 focus-within:border-gray-300"/>
+                <div className="p-4 border border-gray-300 rounded-md">
+                    <User className="text-gray-500"/>
+                  </div>
+                </div>
+
               </FormControl>
            
               <FormMessage />
@@ -92,8 +105,9 @@ const SignUp = () => {
               
               <FormControl>
                 <div className="flex gap-2">
-                <h1 className="border border-gray-300 rounded-md p-4 flex items-center justify-center">+91</h1>
+               
                 <Input placeholder="Enter Your Phone Number" {...field} className="p-8 border border-gray-300 focus-within:border-gray-300"/>
+                <h1 className="border border-gray-300 rounded-md p-4 flex items-center justify-center text-gray-500">+91</h1>
                 
             </div>
               </FormControl>
@@ -109,7 +123,13 @@ const SignUp = () => {
             <FormItem>
               
               <FormControl>
-                <Input placeholder="Enter Your Email" {...field} className="p-8 border border-gray-300 focus-within:border-gray-300"/>
+              <div className="flex gap-2">
+                  
+                <Input placeholder="Enter Your E-Mail" {...field} className="p-8 border border-gray-300 focus-within:border-gray-300"/>
+                <div className="p-4 border border-gray-300 rounded-md text-gray-500">
+                    <Mail/>
+                  </div>
+                </div>
               </FormControl>
            
               <FormMessage />
@@ -123,7 +143,13 @@ const SignUp = () => {
             <FormItem>
              
               <FormControl>
-                <Input placeholder="Enter Your Password" type="password" {...field}  className="p-8 border border-gray-300" />
+              <div className="flex gap-2">
+                  
+                <Input placeholder="Enter Your Password" {...field} className="p-8 border border-gray-300 focus-within:border-gray-300"/>
+                <div className="p-4 border border-gray-300 rounded-md text-gray-500">
+                    <Eye/>
+                  </div>
+                </div>
               </FormControl>
              
               <FormMessage />
@@ -139,12 +165,13 @@ const SignUp = () => {
 <p className="mt-8 text-gray-500">Already Have an account ? <Link href={"/sign-in"}> <span className="underline">SignIn</span></Link></p>
 </div>
 </div>
-<div className='sticky h-40 w-full pr-10 sm:top-0 sm:min-h-screen sm:flex-1 hidden md:block'>
+<div className='h-40 w-11/12  sm:top-0 sm:min-h-screen sm:flex-1 hidden md:block p-4'>
 <Image
 src={"/assets/images/feature_section.jpg"}
 alt="feature section"
-fill
-className=' object-fill'
+width={100}
+height={100}
+className='h-full w-full rounded-xl  object-fill'
 
 />
 </div>
