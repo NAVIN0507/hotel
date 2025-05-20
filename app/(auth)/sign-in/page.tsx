@@ -28,9 +28,10 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
+import { login } from "@/lib/actions/users.actions"
 const formSchema = z.object({
   email: z.string().email("Invalid email address"),
-password: z.string().min(6, "Password must be at least 6 characters long"),
+password: z.string()
 })
 const SignIn = () => {
     const form = useForm<z.infer<typeof formSchema>>({
@@ -40,8 +41,11 @@ const SignIn = () => {
           password:""
         },
       })
-      function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log(values)
+    async  function onSubmit(values: z.infer<typeof formSchema>) {
+    const response =   await login(values.email , values.password);
+    if(response?.success){
+      alert(JSON.stringify(response?.data))
+    }
       }
   return (
 <section className='flex gap-2 '>

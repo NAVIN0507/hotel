@@ -2900,12 +2900,6 @@
   }
 
   @media (width >= 64rem) {
-    .lg\:pl-10 {
-      padding-left: calc(var(--spacing) * 10);
-    }
-  }
-
-  @media (width >= 64rem) {
     .lg\:pl-18 {
       padding-left: calc(var(--spacing) * 18);
     }
