@@ -26,6 +26,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
+import { Phone } from "lucide-react"
 const SignUp = () => {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -55,12 +56,12 @@ const SignUp = () => {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
       <FormField
           control={form.control}
-          name="email"
+          name="name"
           render={({ field }) => (
             <FormItem>
               
               <FormControl>
-                <Input placeholder="Enter Your Email" {...field} className="p-8 border border-gray-300 focus-within:border-gray-300"/>
+                <Input placeholder="Enter Your Name" {...field} className="p-8 border border-gray-300 focus-within:border-gray-300"/>
               </FormControl>
            
               <FormMessage />
@@ -69,41 +70,32 @@ const SignUp = () => {
         />
          <FormField
           control={form.control}
-          name="email"
+          name="username"
           render={({ field }) => (
             <FormItem>
               
               <FormControl>
-                <Input placeholder="Enter Your Email" {...field} className="p-8 border border-gray-300 focus-within:border-gray-300"/>
+                <Input placeholder="Enter Your Username" {...field} className="p-8 border border-gray-300 focus-within:border-gray-300"/>
               </FormControl>
            
               <FormMessage />
             </FormItem>
           )}
         />
-         <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              
-              <FormControl>
-                <Input placeholder="Enter Your Email" {...field} className="p-8 border border-gray-300 focus-within:border-gray-300"/>
-              </FormControl>
-           
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+      
         
          <FormField
           control={form.control}
-          name="email"
+          name="phone"
           render={({ field }) => (
             <FormItem>
               
               <FormControl>
-                <Input placeholder="Enter Your Email" {...field} className="p-8 border border-gray-300 focus-within:border-gray-300"/>
+                <div className="flex gap-2">
+                <h1 className="border border-gray-300 rounded-md p-4 flex items-center justify-center">+91</h1>
+                <Input placeholder="Enter Your Phone Number" {...field} className="p-8 border border-gray-300 focus-within:border-gray-300"/>
+                
+            </div>
               </FormControl>
            
               <FormMessage />
