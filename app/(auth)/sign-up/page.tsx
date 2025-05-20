@@ -165,7 +165,7 @@ const SignUp = () => {
 <p className="mt-8 text-gray-500">Already Have an account ? <Link href={"/sign-in"}> <span className="underline">SignIn</span></Link></p>
 </div>
 </div>
-<div className='h-40 w-11/12  sm:top-0 sm:min-h-screen sm:flex-1 hidden md:block p-4'>
+<div className='h-40 w-11/12 sticky sm:top-0 sm:min-h-screen sm:flex-1 hidden md:block p-4'>
 <Image
 src={"/assets/images/feature_section.jpg"}
 alt="feature section"

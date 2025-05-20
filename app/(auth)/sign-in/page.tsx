@@ -3,10 +3,16 @@
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-const formSchema = z.object({
-  email: z.string().email("Invalid email address"),
-password: z.string().min(6, "Password must be at least 6 characters long"),
-})
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+
+
 
 import Image from 'next/image'
 import React from 'react'
@@ -22,6 +28,10 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
+const formSchema = z.object({
+  email: z.string().email("Invalid email address"),
+password: z.string().min(6, "Password must be at least 6 characters long"),
+})
 const SignIn = () => {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -81,9 +91,19 @@ className='h-full w-full rounded-xl  object-fill'
         />
         <div className="flex items-center justify-between gap-2 ml-2">
             <div className="flex gap-2 text-gray-500"><input type="checkbox" className="w-5 h-5 accent-[#b79464] text-white"/>  <p className="-mt-1">Remember me</p></div>
-            <p className="text-gray-500 underline cursor-pointer">Forgot Password ?</p>
+            <Dialog>
+  <DialogTrigger>  <p className="text-gray-500 underline cursor-pointer">Forgot Password ?</p></DialogTrigger>
+  <DialogContent>
+  <DialogHeader>
+    <DialogTitle className="font-normal text-gray-700">Forgot Password ?</DialogTitle>
+  </DialogHeader>
+  <input placeholder="Enter Your Email"  className="p-4 rounded-lg border border-gray-300 focus-within:border-gray-300"/>
+  <Button className="bg-[#b79464] hover:bg-[#b79464] hover:text-white cursor-pointer text-white w-full h-16 text-xl">Verify Your E-Mail</Button>
+  </DialogContent>
+</Dialog>
+          
         </div>
-        <Button type="submit" className="bg-[#b79464] hover:bg-[#b79464] hover:text-white cursor-pointer text-white w-full h-16 text-2xl">Log In</Button>
+        <Button type="submit" className="bg-[#b79464] hover:bg-[#b79464] hover:text-white cursor-pointer text-white w-full h-16 text-xl">Log In</Button>
       </form>
     </Form>
 
