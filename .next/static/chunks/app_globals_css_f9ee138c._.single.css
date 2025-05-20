@@ -698,6 +698,10 @@
     margin-bottom: calc(var(--spacing) * 6);
   }
 
+  .mb-10 {
+    margin-bottom: calc(var(--spacing) * 10);
+  }
+
   .mb-20 {
     margin-bottom: calc(var(--spacing) * 20);
   }
@@ -2603,6 +2607,12 @@
   }
 
   @media (width >= 48rem) {
+    .md\:w-6\/12 {
+      width: 50%;
+    }
+  }
+
+  @media (width >= 48rem) {
     .md\:w-7\/12 {
       width: 58.3333%;
     }
@@ -2611,6 +2621,18 @@
   @media (width >= 48rem) {
     .md\:w-9\/12 {
       width: 75%;
+    }
+  }
+
+  @media (width >= 48rem) {
+    .md\:w-10\/12 {
+      width: 83.3333%;
+    }
+  }
+
+  @media (width >= 48rem) {
+    .md\:w-11\/12 {
+      width: 91.6667%;
     }
   }
 

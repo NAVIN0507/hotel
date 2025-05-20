@@ -45,8 +45,8 @@ const SignUp = () => {
   return (
 <section className='flex gap-2 '>
 
-<div className='w-full max-sm:mt-20 max-sm:- md:w-7/12 flex items-center justify-center p-4'>
-<div className='w-full md:w-9/12 p-8 rounded-lg border border-gray-300'>
+<div className='w-full max-sm:mt-20 max-sm:- md:w-6/12 flex items-center justify-center p-10'>
+<div className='w-full md:w-11/12 p-8 rounded-lg border border-gray-300 -mt-5'>
 <h1 className='font-mono text-[#b79464] text-5xl text-center uppercase'>Brindhavan</h1>
 <div className='flex flex-col gap-2 items-center justify-center mt-7'>
         <h1 className='flex uppercase gap-2 text-xl font-mono'> <div className="w-20 mt-4 hidden lg:block mr-2 h-0 border border-[#b79464] " /><span className="text-[#b79464] font-semibold">Explore Brindhavan</span> <div className="w-20 mt-4 hidden lg:block ml-2 h-0 border border-[#b79464]" /></h1>

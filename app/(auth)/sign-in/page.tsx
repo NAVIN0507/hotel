@@ -21,6 +21,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import Link from "next/link"
 const SignIn = () => {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -34,12 +35,13 @@ const SignIn = () => {
       }
   return (
 <section className='flex gap-2 '>
-<div className='sticky h-40 w-full pr-10 sm:top-0 sm:min-h-screen sm:flex-1 hidden md:block'>
+<div className='h-40 w-11/12  sm:top-0 sm:min-h-screen sm:flex-1 hidden md:block p-4'>
 <Image
 src={"/assets/images/feature_section.jpg"}
 alt="feature section"
-fill
-className=' object-fill'
+width={100}
+height={100}
+className='h-full w-full rounded-xl  object-fill'
 
 />
 </div>
@@ -86,7 +88,7 @@ className=' object-fill'
     </Form>
 
 </div>
-<p className="mt-8 text-gray-500">Don't Have an Account ? <span className="underline">SignUp</span></p>
+<p className="mt-8 text-gray-500">Don't Have an Account ? <Link href={"/sign-up"}> <span className="underline">SignUp</span> </Link></p>
 </div>
 </div>
 </section>
