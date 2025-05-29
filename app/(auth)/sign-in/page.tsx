@@ -20,20 +20,22 @@ import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
-import { login } from "@/lib/actions/users.actions"
+import { userLogin } from "@/lib/actions/users.actions"
+import { toast } from "sonner"
+import { useRouter } from "next/navigation"
+import { Check } from "lucide-react"
 const formSchema = z.object({
   email: z.string().email("Invalid email address"),
 password: z.string()
 })
 const SignIn = () => {
+  const router = useRouter();
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -42,10 +44,23 @@ const SignIn = () => {
         },
       })
     async  function onSubmit(values: z.infer<typeof formSchema>) {
-    const response =   await login(values.email , values.password);
-    if(response?.success){
-      alert(JSON.stringify(response?.data))
-    }
+  const logins = await userLogin(values.email,values.password);
+  if(logins.success){
+    toast.success("Successfully Signed In", {
+      duration: 5000,
+      position: "top-center",
+      icon: <Check width={20} height={20} className="rounded-full object-fill" />,
+      style: {
+        background: "#4ade80", // Tailwind green-400 hex
+        color: "white",
+        fontWeight: "bold",
+        border: "none",
+      },
+    });
+    localStorage.setItem("user_token", JSON.stringify(logins.data?.token));
+     console.log(logins.data)
+     router.push("/")
+  }
       }
   return (
 <section className='flex gap-2 '>

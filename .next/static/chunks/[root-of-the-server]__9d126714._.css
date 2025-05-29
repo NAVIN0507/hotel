@@ -1604,6 +1604,11 @@
     border-left-width: 0;
   }
 
+  .border-none {
+    --tw-border-style: none;
+    border-style: none;
+  }
+
   .border-\[\#D0D0D0\] {
     border-color: #d0d0d0;
   }
@@ -2735,20 +2740,8 @@
   }
 
   @media (width < 40rem) {
-    .max-sm\:ml-5 {
-      margin-left: calc(var(--spacing) * 5);
-    }
-  }
-
-  @media (width < 40rem) {
     .max-sm\:ml-8 {
       margin-left: calc(var(--spacing) * 8);
-    }
-  }
-
-  @media (width < 40rem) {
-    .max-sm\:ml-10 {
-      margin-left: calc(var(--spacing) * 10);
     }
   }
 
@@ -2773,30 +2766,6 @@
   @media (width < 40rem) {
     .max-sm\:p-3 {
       padding: calc(var(--spacing) * 3);
-    }
-  }
-
-  @media (width < 40rem) {
-    .max-sm\:p-5 {
-      padding: calc(var(--spacing) * 5);
-    }
-  }
-
-  @media (width < 40rem) {
-    .max-sm\:p-10 {
-      padding: calc(var(--spacing) * 10);
-    }
-  }
-
-  @media (width < 40rem) {
-    .max-sm\:pl-10 {
-      padding-left: calc(var(--spacing) * 10);
-    }
-  }
-
-  @media (width < 40rem) {
-    .max-sm\:pl-30 {
-      padding-left: calc(var(--spacing) * 30);
     }
   }
 
@@ -2833,12 +2802,6 @@
   @media (width >= 40rem) {
     .sm\:grid-cols-2 {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
-  @media (width >= 40rem) {
-    .sm\:grid-cols-3 {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
 

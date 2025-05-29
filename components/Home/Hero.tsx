@@ -1,8 +1,12 @@
+"use client"
 import { ArrowRightIcon } from 'lucide-react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 
 const Hero = () => {
+    const router = useRouter();
+    const token = localStorage.getItem("user_token");
     return (
         <section className="relative h-screen bg-cover bg-center bg-hero  rounded-2xl max-sm:w-full max-sm:p-0">
             {/* Overlay (optional) */}
@@ -20,9 +24,12 @@ const Hero = () => {
                 <ul className='hidden md:flex gap-30 uppercase text-sm tracking-wide font-sans'>
                     <li><a href="#" className="hover:text-yellow-300 hover:underline font-sans">Rooms</a></li>
                     <li><a href="#" className="hover:text-yellow-300 hover:underline font-sans">Contact</a></li>
-                    <li>        <a href="#" className="border border-white px-5 py-2 rounded-full bg-white/10  hover:bg-white hover:text-black transition-all inset-0 ">
-                        Book Now
+                    <Link href={token?'/my-profile':'sign-in'}>
+                    <li><a href={token?'/my-profile':'sign-in'} className="border border-white px-5 py-2 rounded-full bg-white/10  hover:bg-white hover:text-black transition-all inset-0 ">
+
+                       {token?"My Profile" :"Sign-In/Up"}
                     </a></li>
+                    </Link>
                 </ul>
 
             </nav>
