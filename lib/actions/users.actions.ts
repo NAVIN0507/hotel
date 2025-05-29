@@ -84,20 +84,35 @@ export const  userLogin = async(email:string , password:string)=>{
         }
     }
 }
-export const fetchUserDetails = async (token:string) => {
-   
-    if (!token) {
-      console.error("No token found in localStorage");
-      return;
+export const fetchUserDetails = async (token: string) => {
+    if (!token || token === "undefined") {
+      console.error("Invalid or missing token");
+      return {
+        success: false,
+        message: "Token missing",
+        data: null,
+      };
     }
   
-    const axiosInstance = createAxiosInstance(token);
-  
     try {
-      const response = await axiosInstance.get("/user/details");
-     console.log(response.data.user)
-    } catch (error) {
+      const { data } = await axios.get("https://portal.brundhavangarden.com/api/user/details", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+  
+      return {
+        success: true,
+        message: "User Details 👍",
+        data: data?.user ?? data,
+      };
+    } catch (error: any) {
       console.error("Error fetching user details:", error);
+      return {
+        success: false,
+        message: error.response?.data?.message || "Login failed",
+        data: null,
+      };
     }
   };
   

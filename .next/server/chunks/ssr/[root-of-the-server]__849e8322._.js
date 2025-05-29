@@ -149,16 +149,33 @@ const userLogin = async (email, password)=>{
         };
     }
 };
-const fetchUserDetails = async ()=>{
+const fetchUserDetails = async (token)=>{
+    if (!token || token === "undefined") {
+        console.error("Invalid or missing token");
+        return {
+            success: false,
+            message: "Token missing",
+            data: null
+        };
+    }
     try {
-        const response = await set // 🔁 use the actual endpoint
-        ;
-        const userData = response.data.user;
-        console.log("User details:", userData);
-        // Optional: Store it
-        localStorage.setItem("userDetails", JSON.stringify(userData));
+        const { data } = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"].get("https://portal.brundhavangarden.com/api/user/details", {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return {
+            success: true,
+            message: "User Details 👍",
+            data: data?.user ?? data
+        };
     } catch (error) {
-        console.error("Failed to fetch user details", error);
+        console.error("Error fetching user details:", error);
+        return {
+            success: false,
+            message: error.response?.data?.message || "Login failed",
+            data: null
+        };
     }
 };
 ;
@@ -555,7 +572,7 @@ const activityItems = [
 ];
 const BentoGrid = ()=>{
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
-        className: "w-full h-full p-2 mx-auto lg:pl-18",
+        className: "w-full h-full p-2 mx-auto ",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                 className: "text-[#5C5C5C] text-center",
