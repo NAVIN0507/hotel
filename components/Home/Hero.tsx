@@ -1,12 +1,17 @@
 "use client"
+import { fetchUserDetails } from '@/lib/actions/users.actions'
 import { ArrowRightIcon } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 
 
 const Hero = () => {
     const router = useRouter();
     const token = localStorage.getItem("user_token");
+    useEffect(()=>{
+        fetchUserDetails(token!);
+    })
     return (
         <section className="relative h-screen bg-cover bg-center bg-hero  rounded-2xl max-sm:w-full max-sm:p-0">
             {/* Overlay (optional) */}

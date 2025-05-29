@@ -1,6 +1,7 @@
 "use server"
 import axios from "axios"
 import { data } from "framer-motion/client"
+import createAxiosInstance from "./axiosInstance";
 import { string } from "zod"
 // export const login = async(email:string , password : string)=>{
 //     const {data} = await axios.post("https://zenpose.solvixsoftworks.com/api/login" , {
@@ -83,3 +84,20 @@ export const  userLogin = async(email:string , password:string)=>{
         }
     }
 }
+export const fetchUserDetails = async (token:string) => {
+   
+    if (!token) {
+      console.error("No token found in localStorage");
+      return;
+    }
+  
+    const axiosInstance = createAxiosInstance(token);
+  
+    try {
+      const response = await axiosInstance.get("/user/details");
+     console.log(response.data.user)
+    } catch (error) {
+      console.error("Error fetching user details:", error);
+    }
+  };
+  
