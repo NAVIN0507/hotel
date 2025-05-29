@@ -9,25 +9,29 @@ password: z.string().min(6, "Password must be at least 6 characters long"),
 name: z.string().min(2, "Name must be at least 2 characters long"), 
 username: z.string().min(2, "Username must be at least 2 characters long"),
   phone: z.string().min(10, "Phone number must be at least 10 characters long"),
+  address:z.string()
 
 })
 
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
 import { Eye, Mail, NotebookPen, Phone, User } from "lucide-react"
+import { Textarea } from "@/components/ui/textarea"
+import { toast } from "sonner"
+import { userRegister } from "@/lib/actions/users.actions"
+
 const SignUp = () => {
+  const [isSubmitting, setisSubmitting] = useState(false)
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -35,12 +39,27 @@ const SignUp = () => {
           password:"",
           name:"",
           username:"",
-          phone:""
+          phone:"",
+          address:""
         },
       })
-      function onSubmit(values: z.infer<typeof formSchema>) {
-       
-        console.log(values)
+     async  function onSubmit(values: z.infer<typeof formSchema>) {
+      setisSubmitting(true)
+      const regitation = await userRegister({
+        name:values.name,
+        email:values.email,
+        phone:values.phone,
+        address:values.address,
+        password:values.password
+      })
+      if(regitation.success){
+        toast("Verfication Mail has been sent to your E-Mail" , {position:'top-center', className:'bg-green-400 text-white'})
+      }
+      else{
+        toast("Registration Cancelled")
+      }
+      setisSubmitting(false)
+        
       }
   return (
 <section className='flex gap-2 '>
@@ -74,28 +93,7 @@ const SignUp = () => {
             </FormItem>
           )}
         />
-         <FormField
-          control={form.control}
-          name="username"
-          render={({ field }) => (
-            <FormItem>
-              
-              <FormControl>
-                <div className="flex gap-2">
-                 
-                <Input placeholder="Enter Your Username" {...field} className="p-8 border border-gray-300 focus-within:border-gray-300"/>
-                <div className="p-4 border border-gray-300 rounded-md">
-                    <User className="text-gray-500"/>
-                  </div>
-                </div>
-
-              </FormControl>
-           
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-      
+    
         
          <FormField
           control={form.control}
@@ -107,9 +105,30 @@ const SignUp = () => {
                 <div className="flex gap-2">
                
                 <Input placeholder="Enter Your Phone Number" {...field} className="p-8 border border-gray-300 focus-within:border-gray-300"/>
-                <h1 className="border border-gray-300 rounded-md p-4 flex items-center justify-center text-gray-500">+91</h1>
+                <h1 className="border border-gray-300 rounded-md p-4 flex items-center justify-center text-gray-500"><Phone/></h1>
                 
             </div>
+              </FormControl>
+           
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+           <FormField
+          control={form.control}
+          name="username"
+          render={({ field }) => (
+            <FormItem>
+              
+              <FormControl>
+                <div className="flex gap-2">
+                 
+                <Textarea placeholder="Enter Your Address" {...field} className="p-8 border border-gray-300 focus-within:border-gray-300" rows={7}/>
+                <div className="p-4 border border-gray-300 rounded-md flex items-center justify-center">
+                    <NotebookPen className="text-gray-500"/>
+                  </div>
+                </div>
+
               </FormControl>
            
               <FormMessage />
@@ -145,7 +164,7 @@ const SignUp = () => {
               <FormControl>
               <div className="flex gap-2">
                   
-                <Input placeholder="Enter Your Password" {...field} className="p-8 border border-gray-300 focus-within:border-gray-300"/>
+                <Input placeholder="Enter Your Password" type="password" {...field} className="p-8 border border-gray-300 focus-within:border-gray-300"/>
                 <div className="p-4 border border-gray-300 rounded-md text-gray-500">
                     <Eye/>
                   </div>
@@ -157,7 +176,7 @@ const SignUp = () => {
           )}
         />
        
-        <Button type="submit" className="bg-[#b79464] hover:bg-[#b79464] hover:text-white cursor-pointer text-white w-full h-16 text-xl">Register</Button>
+        <Button type="submit" className="bg-[#b79464] hover:bg-[#b79464] hover:text-white cursor-pointer text-white w-full h-16 text-xl" disabled={isSubmitting}>{isSubmitting ? 'Registering...' :'Register'}</Button>
       </form>
     </Form>
 

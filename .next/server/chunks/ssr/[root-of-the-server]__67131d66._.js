@@ -77,8 +77,9 @@ module.exports = mod;
 
 var { g: global, __dirname } = __turbopack_context__;
 {
-/* __next_internal_action_entry_do_not_use__ [{"7fbaa7a1632718f7c30d370adec3073c6cf1c047fd":"login"},"",""] */ __turbopack_context__.s({
-    "login": (()=>login)
+/* __next_internal_action_entry_do_not_use__ [{"7fbaa7a1632718f7c30d370adec3073c6cf1c047fd":"login","7ff6430c4f227be631c976e6ed00a1da1d7cf79f7a":"userRegister"},"",""] */ __turbopack_context__.s({
+    "login": (()=>login),
+    "userRegister": (()=>userRegister)
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/build/webpack/loaders/next-flight-loader/server-reference.js [app-rsc] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$app$2d$render$2f$encryption$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/app-render/encryption.js [app-rsc] (ecmascript)");
@@ -101,11 +102,45 @@ const login = async (email, password)=>{
         data: data
     };
 };
+const userRegister = async ({ name, email, password, phone, address })=>{
+    try {
+        const { data } = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"].post("https://portal.brundhavangarden.com/api/auth/register", {
+            name: name,
+            email: email,
+            phone: phone,
+            address: address,
+            password: password,
+            password_confirmation: password
+        });
+        if (!data) {
+            throw new Error("Error from registration");
+            return {
+                success: false,
+                message: 'Regitration Canceled',
+                data: null
+            };
+        }
+        return {
+            success: true,
+            message: 'Registration SuccessFull',
+            data: data
+        };
+    } catch (error) {
+        throw new Error(error.message);
+        return {
+            success: false,
+            message: 'Regitration Canceled',
+            data: error
+        };
+    }
+};
 ;
 (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$action$2d$validate$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["ensureServerEntryExports"])([
-    login
+    login,
+    userRegister
 ]);
 (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(login, "7fbaa7a1632718f7c30d370adec3073c6cf1c047fd", null);
+(0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(userRegister, "7ff6430c4f227be631c976e6ed00a1da1d7cf79f7a", null);
 }}),
 "[project]/.next-internal/server/app/(auth)/sign-in/page/actions.js { ACTIONS_MODULE0 => \"[project]/lib/actions/users.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript) <locals>": ((__turbopack_context__) => {
 "use strict";

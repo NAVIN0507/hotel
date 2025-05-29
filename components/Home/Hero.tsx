@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 const Hero = () => {
     return (
-        <section className="relative h-screen bg-cover bg-center bg-hero  rounded-2xl">
+        <section className="relative h-screen bg-cover bg-center bg-hero  rounded-2xl max-sm:w-full max-sm:p-0">
             {/* Overlay (optional) */}
             <div className="absolute inset-0 bg-black/50 rounded-2xl"></div>
 
