@@ -77,8 +77,10 @@ module.exports = mod;
 
 var { g: global, __dirname } = __turbopack_context__;
 {
-/* __next_internal_action_entry_do_not_use__ [{"7f528cb9fa2bcfa593f74bf36b9ec417c48490e3ca":"fetchUserDetails","7ff6430c4f227be631c976e6ed00a1da1d7cf79f7a":"userRegister","7ffbe6dc4f0cd3161bf0c14ef9464176984f17efae":"userLogin"},"",""] */ __turbopack_context__.s({
+/* __next_internal_action_entry_do_not_use__ [{"7f2cbe8243f51d07d3a6f3bf5f83505c146446fcc2":"resetPassword","7f528cb9fa2bcfa593f74bf36b9ec417c48490e3ca":"fetchUserDetails","7fec1eb0512591fa733d634bc9595753afafde9daf":"forgotPassword","7ff6430c4f227be631c976e6ed00a1da1d7cf79f7a":"userRegister","7ffbe6dc4f0cd3161bf0c14ef9464176984f17efae":"userLogin"},"",""] */ __turbopack_context__.s({
     "fetchUserDetails": (()=>fetchUserDetails),
+    "forgotPassword": (()=>forgotPassword),
+    "resetPassword": (()=>resetPassword),
     "userLogin": (()=>userLogin),
     "userRegister": (()=>userRegister)
 });
@@ -166,7 +168,7 @@ const fetchUserDetails = async (token)=>{
         });
         return {
             success: true,
-            message: "User Details 👍",
+            message: "User Details",
             data: data?.user ?? data
         };
     } catch (error) {
@@ -178,15 +180,56 @@ const fetchUserDetails = async (token)=>{
         };
     }
 };
+const forgotPassword = async (email)=>{
+    if (!email) {
+        return {
+            success: false,
+            message: "Email is Required",
+            data: null
+        };
+    }
+    try {
+        const { data } = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"].post("https://portal.brundhavangarden.com/api/auth/forgot-password", {
+            email: email
+        });
+        if (!data) {
+            return {
+                success: false,
+                message: "Not Found",
+                data: null
+            };
+        }
+        return {
+            success: true,
+            message: `Reset password is sent to ${email}`,
+            data: data
+        };
+    } catch (error) {
+        return {
+            success: false,
+            message: "Internal Server Error",
+            data: null
+        };
+    }
+};
+const resetPassword = async ({ email, token, password, confirmPassword })=>{
+    try {
+        const {} = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"].post("");
+    } catch (error) {}
+};
 ;
 (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$action$2d$validate$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["ensureServerEntryExports"])([
     userRegister,
     userLogin,
-    fetchUserDetails
+    fetchUserDetails,
+    forgotPassword,
+    resetPassword
 ]);
 (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(userRegister, "7ff6430c4f227be631c976e6ed00a1da1d7cf79f7a", null);
 (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(userLogin, "7ffbe6dc4f0cd3161bf0c14ef9464176984f17efae", null);
 (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(fetchUserDetails, "7f528cb9fa2bcfa593f74bf36b9ec417c48490e3ca", null);
+(0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(forgotPassword, "7fec1eb0512591fa733d634bc9595753afafde9daf", null);
+(0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(resetPassword, "7f2cbe8243f51d07d3a6f3bf5f83505c146446fcc2", null);
 }}),
 "[project]/.next-internal/server/app/page/actions.js { ACTIONS_MODULE0 => \"[project]/lib/actions/users.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript) <locals>": ((__turbopack_context__) => {
 "use strict";

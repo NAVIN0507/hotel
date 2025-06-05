@@ -15,7 +15,7 @@ import {
 
 
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -26,7 +26,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
-import { userLogin } from "@/lib/actions/users.actions"
+import { forgotPassword, userLogin } from "@/lib/actions/users.actions"
 import { toast } from "sonner"
 import { useRouter } from "next/navigation"
 import { Check } from "lucide-react"
@@ -36,6 +36,7 @@ password: z.string()
 })
 const SignIn = () => {
   const router = useRouter();
+  const [reset_email, setreset_email] = useState("");
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -62,6 +63,12 @@ const SignIn = () => {
      router.push("/")
   }
       }
+    const handleResetPassowrd = async()=>{
+      const result = await forgotPassword(reset_email);
+      if(result.success){
+        router.push("/")
+      }
+    }
   return (
 <section className='flex gap-2 '>
 <div className='h-40 w-11/12  sm:top-0 sm:min-h-screen sm:flex-1 hidden md:block p-4'>
@@ -116,7 +123,7 @@ className='h-full w-full rounded-xl  object-fill'
   <DialogHeader>
     <DialogTitle className="font-normal text-gray-700">Forgot Password ?</DialogTitle>
   </DialogHeader>
-  <input placeholder="Enter Your Email"  className="p-4 rounded-lg border border-gray-300 focus-within:border-gray-300"/>
+  <input placeholder="Enter Your Email"  className="p-4 rounded-lg border border-gray-300 focus-within:border-gray-300" value={reset_email} onChange={(e)=>setreset_email(e.target.value)}/>
   <Button className="bg-[#b79464] hover:bg-[#b79464] hover:text-white cursor-pointer text-white w-full h-16 text-xl">Verify Your E-Mail</Button>
   </DialogContent>
 </Dialog>

@@ -15,3 +15,10 @@ type User ={
     phone:string;
     address:string | null;
 }
+
+type ResetPassword = {
+    email:string | null;
+    token:string | null;
+    password:string;
+    confirmPassword:string;
+}

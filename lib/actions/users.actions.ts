@@ -103,7 +103,7 @@ export const fetchUserDetails = async (token: string) => {
   
       return {
         success: true,
-        message: "User Details 👍",
+        message: "User Details",
         data: data?.user ?? data,
       };
     } catch (error: any) {
@@ -116,3 +116,69 @@ export const fetchUserDetails = async (token: string) => {
     }
   };
   
+export const forgotPassword = async(email:string)=>{
+  if(!email){
+    return{
+      success:false,
+      message:"Email is Required",
+      data:null
+    }
+  }
+  try {
+    const {data}  = await axios.post("https://portal.brundhavangarden.com/api/auth/forgot-password", {
+      email:email
+    })
+
+    if(!data){
+      return{
+        success:false,
+        message:"Not Found",
+        data:null
+      }
+    }
+    return {
+      success:true,
+      message:`Reset password is sent to ${email}`,
+      data:data
+    }
+  } catch (error) {
+    return{
+      success:false,
+      message:"Internal Server Error",
+      data:null
+    }
+  }
+}
+
+
+export const resetPassword = async({
+  email , token , password , confirmPassword
+}:ResetPassword)=>{
+  try {
+    const {data} =  await axios.post("https://portal.brundhavangarden.com/api/auth/reset-password" , {
+      email:email,
+      token:token,
+      password:password,
+      confirmPassword:confirmPassword
+    })
+
+    if(!data){
+      return {
+        success:false,
+        message:"Sorry Some thing went wrong",
+        data:null
+      }
+    }
+    return {
+      success:true,
+      message:"Password Changed",
+      data:data
+    }
+  } catch (error) {
+    return{
+      success:false,
+      message:"Internal server error",
+      data:null
+    }
+  }
+}

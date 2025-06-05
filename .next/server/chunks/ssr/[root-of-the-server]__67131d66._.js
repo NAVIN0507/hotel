@@ -77,8 +77,9 @@ module.exports = mod;
 
 var { g: global, __dirname } = __turbopack_context__;
 {
-/* __next_internal_action_entry_do_not_use__ [{"7f528cb9fa2bcfa593f74bf36b9ec417c48490e3ca":"fetchUserDetails","7ff6430c4f227be631c976e6ed00a1da1d7cf79f7a":"userRegister","7ffbe6dc4f0cd3161bf0c14ef9464176984f17efae":"userLogin"},"",""] */ __turbopack_context__.s({
+/* __next_internal_action_entry_do_not_use__ [{"7f528cb9fa2bcfa593f74bf36b9ec417c48490e3ca":"fetchUserDetails","7fec1eb0512591fa733d634bc9595753afafde9daf":"forgotPassword","7ff6430c4f227be631c976e6ed00a1da1d7cf79f7a":"userRegister","7ffbe6dc4f0cd3161bf0c14ef9464176984f17efae":"userLogin"},"",""] */ __turbopack_context__.s({
     "fetchUserDetails": (()=>fetchUserDetails),
+    "forgotPassword": (()=>forgotPassword),
     "userLogin": (()=>userLogin),
     "userRegister": (()=>userRegister)
 });
@@ -166,7 +167,7 @@ const fetchUserDetails = async (token)=>{
         });
         return {
             success: true,
-            message: "User Details 👍",
+            message: "User Details",
             data: data?.user ?? data
         };
     } catch (error) {
@@ -178,15 +179,49 @@ const fetchUserDetails = async (token)=>{
         };
     }
 };
+const forgotPassword = async (email)=>{
+    if (!email) {
+        return {
+            success: false,
+            message: "Email is Required",
+            data: null
+        };
+    }
+    try {
+        const { data } = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"].post("https://portal.brundhavangarden.com/api/auth/forgot-password", {
+            email: email
+        });
+        if (!data) {
+            return {
+                success: false,
+                message: "Not Found",
+                data: null
+            };
+        }
+        return {
+            success: true,
+            message: `Reset password is sent to ${email}`,
+            data: data
+        };
+    } catch (error) {
+        return {
+            success: false,
+            message: "Internal Server Error",
+            data: null
+        };
+    }
+};
 ;
 (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$action$2d$validate$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["ensureServerEntryExports"])([
     userRegister,
     userLogin,
-    fetchUserDetails
+    fetchUserDetails,
+    forgotPassword
 ]);
 (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(userRegister, "7ff6430c4f227be631c976e6ed00a1da1d7cf79f7a", null);
 (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(userLogin, "7ffbe6dc4f0cd3161bf0c14ef9464176984f17efae", null);
 (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(fetchUserDetails, "7f528cb9fa2bcfa593f74bf36b9ec417c48490e3ca", null);
+(0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(forgotPassword, "7fec1eb0512591fa733d634bc9595753afafde9daf", null);
 }}),
 "[project]/.next-internal/server/app/(auth)/sign-in/page/actions.js { ACTIONS_MODULE0 => \"[project]/lib/actions/users.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript) <locals>": ((__turbopack_context__) => {
 "use strict";
@@ -195,6 +230,7 @@ var { g: global, __dirname } = __turbopack_context__;
 {
 __turbopack_context__.s({});
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$users$2e$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/actions/users.actions.ts [app-rsc] (ecmascript)");
+;
 ;
 }}),
 "[project]/.next-internal/server/app/(auth)/sign-in/page/actions.js { ACTIONS_MODULE0 => \"[project]/lib/actions/users.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript) <module evaluation>": ((__turbopack_context__) => {
@@ -212,6 +248,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f2e$next$2d$internal$2f$server
 var { g: global, __dirname } = __turbopack_context__;
 {
 __turbopack_context__.s({
+    "7fec1eb0512591fa733d634bc9595753afafde9daf": (()=>__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$users$2e$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["forgotPassword"]),
     "7ffbe6dc4f0cd3161bf0c14ef9464176984f17efae": (()=>__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$users$2e$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["userLogin"])
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$users$2e$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/actions/users.actions.ts [app-rsc] (ecmascript)");
@@ -223,6 +260,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f2e$next$2d$internal$2f$server
 var { g: global, __dirname } = __turbopack_context__;
 {
 __turbopack_context__.s({
+    "7fec1eb0512591fa733d634bc9595753afafde9daf": (()=>__TURBOPACK__imported__module__$5b$project$5d2f2e$next$2d$internal$2f$server$2f$app$2f28$auth$292f$sign$2d$in$2f$page$2f$actions$2e$js__$7b$__ACTIONS_MODULE0__$3d3e$__$225b$project$5d2f$lib$2f$actions$2f$users$2e$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$2922$__$7d$__$5b$app$2d$rsc$5d$__$28$server__actions__loader$2c$__ecmascript$29$__$3c$exports$3e$__["7fec1eb0512591fa733d634bc9595753afafde9daf"]),
     "7ffbe6dc4f0cd3161bf0c14ef9464176984f17efae": (()=>__TURBOPACK__imported__module__$5b$project$5d2f2e$next$2d$internal$2f$server$2f$app$2f28$auth$292f$sign$2d$in$2f$page$2f$actions$2e$js__$7b$__ACTIONS_MODULE0__$3d3e$__$225b$project$5d2f$lib$2f$actions$2f$users$2e$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$2922$__$7d$__$5b$app$2d$rsc$5d$__$28$server__actions__loader$2c$__ecmascript$29$__$3c$exports$3e$__["7ffbe6dc4f0cd3161bf0c14ef9464176984f17efae"])
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f2e$next$2d$internal$2f$server$2f$app$2f28$auth$292f$sign$2d$in$2f$page$2f$actions$2e$js__$7b$__ACTIONS_MODULE0__$3d3e$__$225b$project$5d2f$lib$2f$actions$2f$users$2e$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$2922$__$7d$__$5b$app$2d$rsc$5d$__$28$server__actions__loader$2c$__ecmascript$29$__$3c$module__evaluation$3e$__ = __turbopack_context__.i('[project]/.next-internal/server/app/(auth)/sign-in/page/actions.js { ACTIONS_MODULE0 => "[project]/lib/actions/users.actions.ts [app-rsc] (ecmascript)" } [app-rsc] (server actions loader, ecmascript) <module evaluation>');
