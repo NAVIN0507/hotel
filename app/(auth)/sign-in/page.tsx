@@ -125,7 +125,7 @@ className='h-full w-full rounded-xl  object-fill'
     <DialogTitle className="font-normal text-gray-700">Forgot Password ?</DialogTitle>
   </DialogHeader>
   <input placeholder="Enter Your Email"  className="p-4 rounded-lg border border-gray-300 focus-within:border-gray-300" value={reset_email} onChange={(e)=>setreset_email(e.target.value)}/>
-  <Button className="bg-[#b79464] hover:bg-[#b79464] hover:text-white cursor-pointer text-white w-full h-16 text-xl">Verify Your E-Mail</Button>
+  <Button className="bg-[#b79464] hover:bg-[#b79464] hover:text-white cursor-pointer text-white w-full h-16 text-xl" onClick={handleResetPassowrd}>Verify Your E-Mail</Button>
   </DialogContent>
 </Dialog>
           
