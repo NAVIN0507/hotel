@@ -3,25 +3,26 @@
 import { fetchUserDetails } from '@/lib/actions/users.actions';
 import { ArrowRightIcon } from 'lucide-react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 const Hero = () => {
   const router = useRouter();
-  const [user, setUser] = useState<any>(null);
-
+  const [user, setUser] = useState<User  | null>(null);
   useEffect(() => {
     const rawToken = localStorage.getItem("user_token");
     const token = rawToken?.replace(/^"(.*)"$/, '$1')
+    console.log(token)
     if (token) {
       fetchUserDetails(token).then((res) => {
         if (res.success) {
-          setUser(res.data); // 👈 Set user data in state
+          setUser(res.data);
         }
       });
     }
   }, []);
-console.log(user.name)
+
+console.log(user?.name)
   return (
     <section className="relative h-screen bg-cover bg-center bg-hero rounded-2xl max-sm:w-full max-sm:p-0">
       <div className="absolute inset-0 bg-black/50 rounded-2xl"></div>
