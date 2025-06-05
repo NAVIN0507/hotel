@@ -66,7 +66,8 @@ const SignIn = () => {
     const handleResetPassowrd = async()=>{
       const result = await forgotPassword(reset_email);
       if(result.success){
-        router.push("/")
+        router.push("/sign-in")
+        toast.success("Reset Mail has been sent to your email")
       }
     }
   return (
