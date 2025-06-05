@@ -19,6 +19,7 @@ export default function PasswordResetForm() {
   const searchparams = useSearchParams();
   const email = searchparams.get("email");
   const token = searchparams.get("token");
+  console.log(email , token)
   const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -30,6 +31,7 @@ export default function PasswordResetForm() {
   })
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+
     const reseting_password = await resetPassword({
       email: email!,
       token: token!,
@@ -37,8 +39,9 @@ export default function PasswordResetForm() {
       confirmPassword: values.confirmPassword
     });
 
+    router.push("/sign-in")
     if (reseting_password.success) {
-      router.push("/sign-in")
+     return router.push("/sign-in")
     }
   }
 
