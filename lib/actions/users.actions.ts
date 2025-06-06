@@ -1,4 +1,4 @@
-"use server"
+// "use server"
 import axios from "axios"
 import { data } from "framer-motion/client"
 import createAxiosInstance from "./axiosInstance";
@@ -29,6 +29,11 @@ export const userRegister = async({name , email , password , phone , address }:R
             address:address,
             password:password,
             password_confirmation:password
+        } , {
+          headers:{
+            "Accept":"application/json",
+            "Content-Type":"application/json"
+          }
         })
         if(!data){
             throw new Error("Error from registration")
@@ -44,7 +49,7 @@ export const userRegister = async({name , email , password , phone , address }:R
             data:data
         }
     } catch (error:any) {
-        throw new Error(error.message)
+      console.log(error.message)
         return{
            
                success:false,
@@ -59,10 +64,15 @@ export const  userLogin = async(email:string , password:string)=>{
         const {data} = await axios.post("https://portal.brundhavangarden.com/api/auth/login" , {
             email:email,
             password:password
+        } , {
+          headers:{
+            "Accept":"application/json",
+            "Content-Type":"application/json"
+          }
         })
 
         if(!data){
-            throw new Error("Error from login from catch ")
+          console.log()
             return {
                 success:false,
                 message:'Login Failed',
