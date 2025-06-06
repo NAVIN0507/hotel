@@ -182,3 +182,27 @@ export const resetPassword = async({
     }
   }
 }
+
+export const fetchAllRoomCategories = async()=>{
+  try {
+    const {data} = await axios.get("https://portal.brundhavangarden.com/api/room-categories");
+    if(!data){
+      return{
+        success:false,
+        message:"Sorry Some thing went wrong",
+        data:null
+      }
+    }
+    return {
+      success:true,
+      message:"Recived Ok",
+      data:data
+    }
+  } catch (error) {
+    return{
+      success:false,
+      message:"Internal Server Error",
+      data:null
+    }
+  }
+}

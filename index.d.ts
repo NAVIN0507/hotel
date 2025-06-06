@@ -22,3 +22,14 @@ type ResetPassword = {
     password:string;
     confirmPassword:string;
 }
+
+type RoomCategories = {
+    id:number;
+    name:string;
+    description:string;
+    pictures:Array<string>;
+    price:number;
+    square_ft:number;
+    capability:string;
+    beds:string;
+}

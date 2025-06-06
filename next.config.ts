@@ -12,6 +12,11 @@ const nextConfig: NextConfig = {
   //   images: {
   //   unoptimized: true, // Important for next export
   // },
+  images:{
+    remotePatterns:[
+      {hostname:'portal.brundhavangarden.com'}
+    ]
+  }
 };
 
 export default nextConfig;
