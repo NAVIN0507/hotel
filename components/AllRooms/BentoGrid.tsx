@@ -25,11 +25,14 @@ const BentoGrid = () => {
   return (
    <section className='w-full h-full p-2 mx-auto'>
 
-    <div className='flex flex-col gap-2 mx-auto items-center justify-center'>
-
-{room_categories?.map((rooms)=>(
-  <RoomCard {...rooms} key={rooms.id}/>
-))}
+    <div className='flex flex-col gap-2 mx-auto items-center justify-center ml-10'>
+    
+    {room_categories?.map((rooms, index) => {
+  const isRotate = index % 2 === 0; // true for even index
+  return (
+    <RoomCard c={isRotate} {...rooms} key={rooms.id} />
+  );
+})}
 
     {/* <div className='flex flex-col md:flex-row'>
       <Link href={"/room"}>

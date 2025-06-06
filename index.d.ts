@@ -33,3 +33,14 @@ type RoomCategories = {
     capability:string;
     beds:string;
 }
+type RoomCategoriesProps = {
+    id:number;
+    name:string;
+    description:string;
+    pictures:Array<string>;
+    price:number;
+    square_ft:number;
+    capability:string;
+    beds:string;
+    c:boolean;
+}
