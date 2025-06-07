@@ -13,7 +13,6 @@ const page = () => {
     <Hero/>
     <RoomInfo/>
     <OtherRooms/>
-    
    </main>
    <Footer/>
    </>

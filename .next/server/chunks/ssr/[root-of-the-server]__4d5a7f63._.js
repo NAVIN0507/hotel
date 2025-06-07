@@ -153,7 +153,6 @@ const userLogin = async (email, password)=>{
             }
         });
         if (!data) {
-            console.log();
             return {
                 success: false,
                 message: 'Login Failed',
@@ -166,7 +165,6 @@ const userLogin = async (email, password)=>{
             data: data
         };
     } catch (error) {
-        throw new Error("Error from login from catch ");
         return {
             success: false,
             message: 'Login Failed',
@@ -335,7 +333,7 @@ const RoomCard = ({ id, name, description, pictures, price, square_ft, capabilit
             className: "flex flex-col md:flex-row",
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                    href: "/room",
+                    href: `/room/${id}`,
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "relative",
                         children: [
@@ -787,7 +785,7 @@ const BentoGrid = ()=>{
     }, []);
     console.log(room_categories);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
-        className: "w-full h-full p-2 mx-auto",
+        className: "w-full h-full p-2 mx-auto flex items-center justify-center",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "flex flex-col gap-2 mx-auto items-center justify-center ml-10",
             children: room_categories?.map((rooms, index)=>{
@@ -798,7 +796,7 @@ const BentoGrid = ()=>{
                     key: rooms.id,
                     __source: {
                         fileName: "[project]/components/AllRooms/BentoGrid.tsx",
-                        lineNumber: 33,
+                        lineNumber: 34,
                         columnNumber: 5
                     },
                     __self: this

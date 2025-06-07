@@ -25,10 +25,11 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
-import { Eye, Mail, NotebookPen, Phone, User } from "lucide-react"
+import { Check, Eye, Mail, NotebookPen, Phone, User, X } from "lucide-react"
 import { Textarea } from "@/components/ui/textarea"
 import { toast } from "sonner"
 import { userRegister } from "@/lib/actions/users.actions"
+import ShowToast from "@/components/error"
 
 const SignUp = () => {
   const [isSubmitting, setisSubmitting] = useState(false)
@@ -52,11 +53,21 @@ const SignUp = () => {
         address:values.address,
         password:values.password
       })
-      if(regitation.success){
-        toast("Verfication Mail has been sent to your E-Mail" , {position:'top-center', className:'bg-green-400 text-white'})
+      if(!regitation.success){
+        ShowToast({
+          title:regitation.message,
+          description:"Signed up Cancelled",
+          type:"danger",
+          icon:<X className="p-1  rounded-full w-7 h-7"/>
+        })
       }
       else{
-        toast("Registration Cancelled")
+        ShowToast({
+          title:"Signed Up",
+          description:"Verification Mail Has ben sent to your Email",
+          type:"success",
+          icon:<Check className="p-1  rounded-full w-7 h-7"/>
+        })
       }
       setisSubmitting(false)
         

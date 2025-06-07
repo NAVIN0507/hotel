@@ -23,14 +23,16 @@ const BentoGrid = () => {
   } , [])
   console.log(room_categories);
   return (
-   <section className='w-full h-full p-2 mx-auto'>
+   <section className='w-full h-full p-2 mx-auto flex items-center justify-center'>
 
     <div className='flex flex-col gap-2 mx-auto items-center justify-center ml-10'>
     
     {room_categories?.map((rooms, index) => {
   const isRotate = index % 2 === 0; // true for even index
   return (
+    
     <RoomCard c={isRotate} {...rooms} key={rooms.id} />
+  
   );
 })}
 

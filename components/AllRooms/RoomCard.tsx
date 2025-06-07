@@ -14,7 +14,7 @@ const RoomCard = ({id,
     <>
     {c ? (
     <div className='flex flex-col md:flex-row'>
-    <Link href={"/room"}>
+    <Link href={`/room/${id}`}>
       <div className='relative'>
           <Image
           src={pictures[0]}

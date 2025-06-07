@@ -26,7 +26,7 @@ interface Props {
 
 const ShowToast = ({ title, type, icon, description }: Props) => {
   if (title) {
-    toast(type === "success" ? title : `Error: ${title}`, {
+    toast(type === "success" ? title : title, {
       description: (
         <span className="text-sm text-white font-medium leading-relaxed">
           {description}
