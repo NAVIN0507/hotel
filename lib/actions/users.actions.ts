@@ -72,7 +72,7 @@ export const  userLogin = async(email:string , password:string)=>{
         })
 
         if(!data){
-          console.log()
+        
             return {
                 success:false,
                 message:'Login Failed',
@@ -86,7 +86,6 @@ export const  userLogin = async(email:string , password:string)=>{
             data:data
         }
     } catch (error:any) {
-        throw new Error("Error from login from catch ")
         return {
             success:false,
             message:'Login Failed',

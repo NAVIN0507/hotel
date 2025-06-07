@@ -153,7 +153,6 @@ const userLogin = async (email, password)=>{
             }
         });
         if (!data) {
-            console.log();
             return {
                 success: false,
                 message: 'Login Failed',
@@ -166,7 +165,6 @@ const userLogin = async (email, password)=>{
             data: data
         };
     } catch (error) {
-        throw new Error("Error from login from catch ");
         return {
             success: false,
             message: 'Login Failed',

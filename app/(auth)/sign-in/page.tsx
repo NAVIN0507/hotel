@@ -29,13 +29,15 @@ import Link from "next/link"
 import { forgotPassword, userLogin } from "@/lib/actions/users.actions"
 import { toast } from "sonner"
 import { useRouter } from "next/navigation"
-import { Check } from "lucide-react"
+import { Check, X } from "lucide-react"
+import ShowToast from "@/components/error"
 const formSchema = z.object({
   email: z.string().email("Invalid email address"),
 password: z.string()
 })
 const SignIn = () => {
   const router = useRouter();
+  const [isLoading, setisLoading] = useState(false)
   const [reset_email, setreset_email] = useState("");
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -45,23 +47,41 @@ const SignIn = () => {
         },
       })
     async  function onSubmit(values: z.infer<typeof formSchema>) {
+      setisLoading(true);
   const logins = await userLogin(values.email,values.password);
-  if(logins.success){
-    toast.success("Successfully Signed In", {
-      duration: 5000,
-      position: "top-center",
-      icon: <Check width={20} height={20} className="rounded-full object-fill" />,
-      style: {
-        background: "#4ade80", // Tailwind green-400 hex
-        color: "white",
-        fontWeight: "bold",
-        border: "none",
-      },
-    });
-    localStorage.setItem("user_token", JSON.stringify(logins.data?.token));
-     console.log(logins.data)
-     router.push("/")
+  if(!logins.success){
+    // toast.success("Successfully Signed In", {
+    //   duration: 5000,
+    //   position: "top-center",
+    //   icon: <Check width={20} height={20} className="rounded-full object-fill" />,
+    //   style: {
+    //     background: "#4ade80", // Tailwind green-400 hex
+    //     color: "white",
+    //     fontWeight: "bold",
+    //     border: "none",
+    //   },
+    // });
+    ShowToast({
+      title:logins.message,
+      description:"Signed In Cancelled",
+      type:"danger",
+      icon:<X className="p-1  rounded-full w-7 h-7"/>
+    })
+    
   }
+  else{
+  ShowToast({
+    title:"Signed In",
+    description:"Signed In Successfully",
+    type:"success",
+    icon:<Check className="p-1  rounded-full w-7 h-7"/>
+  })
+
+  localStorage.setItem("user_token", JSON.stringify(logins.data?.token));
+   console.log(logins.data)
+   router.push("/")
+}
+  setisLoading(false);
       }
     const handleResetPassowrd = async()=>{
       const result = await forgotPassword(reset_email);
@@ -130,7 +150,7 @@ className='h-full w-full rounded-xl  object-fill'
 </Dialog>
           
         </div>
-        <Button type="submit" className="bg-[#b79464] hover:bg-[#b79464] hover:text-white cursor-pointer text-white w-full h-16 text-xl">Log In</Button>
+        <Button type="submit" className="bg-[#b79464] hover:bg-[#b79464] hover:text-white cursor-pointer text-white w-full h-16 text-xl" disabled={isLoading}>{isLoading ? "Loging In..." :"Log IN"}</Button>
       </form>
     </Form>
 
