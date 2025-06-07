@@ -13,7 +13,16 @@
     }
   ],
   "headers": [],
-  "dynamicRoutes": [],
+  "dynamicRoutes": [
+    {
+      "page": "/room/[id]",
+      "regex": "^/room/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/room/(?<nxtPid>[^/]+?)(?:/)?$"
+    }
+  ],
   "staticRoutes": [
     {
       "page": "/",
@@ -46,10 +55,22 @@
       "namedRegex": "^/favicon\\.ico(?:/)?$"
     },
     {
-      "page": "/room",
-      "regex": "^/room(?:/)?$",
+      "page": "/reset-password",
+      "regex": "^/reset\\-password(?:/)?$",
       "routeKeys": {},
-      "namedRegex": "^/room(?:/)?$"
+      "namedRegex": "^/reset\\-password(?:/)?$"
+    },
+    {
+      "page": "/sign-in",
+      "regex": "^/sign\\-in(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/sign\\-in(?:/)?$"
+    },
+    {
+      "page": "/sign-up",
+      "regex": "^/sign\\-up(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/sign\\-up(?:/)?$"
     }
   ],
   "dataRoutes": [],
