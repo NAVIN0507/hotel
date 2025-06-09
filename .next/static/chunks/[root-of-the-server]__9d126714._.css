@@ -1609,10 +1609,6 @@
     border-left-width: 1px;
   }
 
-  .border-\[\#555\] {
-    border-color: #555;
-  }
-
   .border-\[\#D0D0D0\] {
     border-color: #d0d0d0;
   }
@@ -2138,10 +2134,6 @@
     color: #45443f;
   }
 
-  .text-\[\#B0B0B0\] {
-    color: #b0b0b0;
-  }
-
   .text-\[\#C1C1C1\] {
     color: #c1c1c1;
   }
@@ -2602,12 +2594,6 @@
   @media (hover: hover) {
     .hover\:cursor-pointer:hover {
       cursor: pointer;
-    }
-  }
-
-  @media (hover: hover) {
-    .hover\:bg-\[\#997d54\]:hover {
-      background-color: #997d54;
     }
   }
 

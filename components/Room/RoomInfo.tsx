@@ -46,8 +46,8 @@ const RoomInfo = ({ id }: { id: string }) => {
     check_out: '',
     adult_count: 0,
     child_count: 0,
-    special_food_menu: '',
-    activities: '',
+    special_food_menu: 'South Indian',
+    activities: 'Cricket',
     extra_bed: false,
     fire_camp: false,
     jeep_safari: false,
@@ -127,11 +127,11 @@ const RoomInfo = ({ id }: { id: string }) => {
     const addBooking = await addBookingWithToken(formattedBookingDetails);
     if (addBooking.success) {
       alert("Booking Created");
-      console.log(addBooking.data)
+      console.log("There is an no error")
     }
     else {
       alert("Booking is Not Created");
-      console.log(addBooking.data)
+      console.log("There is an Error")
     }
   }
 

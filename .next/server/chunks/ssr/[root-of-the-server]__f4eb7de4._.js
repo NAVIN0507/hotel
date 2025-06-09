@@ -328,7 +328,9 @@ const addBookingWithToken = async ({ token, room_categories_id, check_in, check_
             total
         }, {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`,
+                "Accept": "application/json",
+                "Content-Type": "application/json"
             }
         });
         if (data?.errors) {

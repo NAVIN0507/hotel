@@ -453,7 +453,9 @@ const addBookingWithToken = async ({ token, room_categories_id, check_in, check_
             total
         }, {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`,
+                "Accept": "application/json",
+                "Content-Type": "application/json"
             }
         });
         if (data?.errors) {
@@ -514,8 +516,8 @@ const RoomInfo = ({ id })=>{
         check_out: '',
         adult_count: 0,
         child_count: 0,
-        special_food_menu: '',
-        activities: '',
+        special_food_menu: 'South Indian',
+        activities: 'Cricket',
         extra_bed: false,
         fire_camp: false,
         jeep_safari: false,
@@ -589,10 +591,10 @@ const RoomInfo = ({ id })=>{
         const addBooking = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$users$2e$actions$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["addBookingWithToken"])(formattedBookingDetails);
         if (addBooking.success) {
             alert("Booking Created");
-            console.log(addBooking.data);
+            console.log("There is an no error");
         } else {
             alert("Booking is Not Created");
-            console.log(addBooking.data);
+            console.log("There is an Error");
         }
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -1351,7 +1353,7 @@ const RoomInfo = ({ id })=>{
         columnNumber: 5
     }, this);
 };
-_s(RoomInfo, "dzxGPgMsBwNuHvmJGEjrR0L6jj0=");
+_s(RoomInfo, "fzGFEFTkEcPLyXe9+lJczxNe3nM=");
 _c = RoomInfo;
 const __TURBOPACK__default__export__ = RoomInfo;
 var _c;
