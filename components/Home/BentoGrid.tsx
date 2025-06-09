@@ -20,7 +20,7 @@ const BentoGrid = () => {
     <div className='flex flex-col md:flex-row'>
         <div>
             <Image
-            src={"/assets/images/feature_section.jpg"}
+            src="./assets/images/feature_section.jpg"
             alt='feature_section'
             width={500}
             height={500}
@@ -51,7 +51,7 @@ const BentoGrid = () => {
     </div>
         <div>
             <Image
-            src={"/assets/images/feature_section.jpg"}
+            src="./assets/images/feature_section.jpg"
             alt='feature_section'
             width={500}
             height={500}
@@ -63,7 +63,7 @@ const BentoGrid = () => {
        <div className='flex md:flex-row flex-col'>
         <div>
             <Image
-            src={"/assets/images/feature_section.jpg"}
+            src="./assets/images/feature_section.jpg"
             alt='feature_section'
             width={500}
             height={500}
@@ -95,7 +95,7 @@ const BentoGrid = () => {
         className='p-5'
       />
       <Image
-      src={"/assets/images/feature_section.jpg"}
+      src="./assets/images/feature_section.jpg"
       alt='feature_section'
       width={500}  
         height={500}
@@ -115,7 +115,7 @@ const BentoGrid = () => {
         className='p-5'
       />
        <Image
-      src={"/assets/images/feature_section.jpg"}
+      src="./assets/images/feature_section.jpg"
       alt='feature_section'
       width={500}  
         height={500}
