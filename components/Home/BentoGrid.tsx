@@ -1,6 +1,8 @@
 import Image from 'next/image'
 import React from 'react'
 import { InfiniteMovingPills } from '../ui/infinite-moving-cards'
+import featureSectionImg from '@/public/assets/images/feature_section.jpg'; // adjust if path is different
+
 const activityItems = [
   { label: "JEEP SAFARI" },
   { label: "TRUCKING" },
@@ -20,7 +22,7 @@ const BentoGrid = () => {
     <div className='flex flex-col md:flex-row'>
         <div>
             <Image
-            src="./assets/images/feature_section.jpg"
+            src={featureSectionImg}
             alt='feature_section'
             width={500}
             height={500}
@@ -50,8 +52,8 @@ const BentoGrid = () => {
       </div>
     </div>
         <div>
-            <Image
-            src="./assets/images/feature_section.jpg"
+        <Image
+            src={featureSectionImg}
             alt='feature_section'
             width={500}
             height={500}
@@ -62,8 +64,8 @@ const BentoGrid = () => {
     </div>
        <div className='flex md:flex-row flex-col'>
         <div>
-            <Image
-            src="./assets/images/feature_section.jpg"
+        <Image
+            src={featureSectionImg}
             alt='feature_section'
             width={500}
             height={500}
@@ -95,7 +97,7 @@ const BentoGrid = () => {
         className='p-5'
       />
       <Image
-      src="./assets/images/feature_section.jpg"
+      src={featureSectionImg}
       alt='feature_section'
       width={500}  
         height={500}
@@ -115,7 +117,7 @@ const BentoGrid = () => {
         className='p-5'
       />
        <Image
-      src="./assets/images/feature_section.jpg"
+      src={featureSectionImg}
       alt='feature_section'
       width={500}  
         height={500}
