@@ -78,6 +78,7 @@ const RoomCard = ({id,
     </div>
   </div>
        <div className='relative'>
+        <Link href={`room/${id}`}>
           <Image
           src={pictures[1]}
           alt='feature_section'
@@ -85,6 +86,7 @@ const RoomCard = ({id,
           height={500}
           className='w-[800px] h-[400px] object-cover rounded-lg mt-10 ml-10'
           />
+          </Link>
           <div className='w-fit p-3 h-12 bg-white  absolute -mt-14 right-0 mr-5 rounded-full'>
           <div className='flex gap-1 items-center -mt-2'>
               <h1 className='font-mono text-[18px] -mt-2'>STARTS FROM  <span className='text-3xl'>1499 </span> /PER NIGHT</h1>

@@ -44,3 +44,26 @@ type RoomCategoriesProps = {
     beds:string;
     c:boolean;
 }
+type Service = {
+    service_name: string;
+    icon_pic: string;
+  };
+  
+
+type RoomProps = {
+    id:number;
+    name:string;
+    description:string;
+    pictures:Array<string>;
+    video:string;
+    price:number;
+    square_ft:number;
+    capability:string;
+    beds:string;
+    about_stay:string;
+    check_in_rules:string;
+    check_out_rules:string;
+    room_rules:string;
+    services:Service[]
+    
+}

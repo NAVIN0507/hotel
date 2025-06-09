@@ -1,5 +1,8 @@
-import React from 'react'
+"use client"
+import React, { useEffect, useState } from 'react'
 import { BedDouble, Dot, InspectionPanel, UsersRound, X } from 'lucide-react';
+import { fetchAllRoomByID } from '@/lib/actions/users.actions';
+import Image from 'next/image';
 const services = [
     '24-Hour In-Room Dining',
     '24-Hour In-Room Dining',
@@ -8,7 +11,27 @@ const services = [
     'EXTRA BED',
     'EXTRA BED',
 ]
-const RoomInfo = () => {
+const RoomInfo = ({id}:{id:string}) => {
+    const [roomDetails, setroomDetails] = useState<RoomProps | null>(null);
+    useEffect(()=>{
+        const fetchRoom = async()=>{
+            const room = await fetchAllRoomByID(id);
+            setroomDetails(room.data)
+        }
+        fetchRoom()
+    })
+
+    console.log(roomDetails?.services[0])
+    const aboutRawText = roomDetails?.about_stay;
+    const plainText = aboutRawText?.replace(/<[^>]+>/g, '');
+    const checkInRules =  roomDetails?.check_in_rules
+
+const ruleList = checkInRules?.match(/<li>(.*?)<\/li>/g)?.map(item =>
+  item.replace(/<\/?li>/g, '')
+);
+
+console.log(ruleList);
+
   return (
     <section className='flex flex-col gap-4 pl-10 pr-10 mt-10'>
         <div className='flex gap-1 items-center justify-between'>
@@ -37,19 +60,22 @@ const RoomInfo = () => {
             <div className='flex flex-col gap-4'>
                 <h1 className='font-mono text-4xl uppercase text-[#45443F]'>ABOUT STAY</h1>
                 <p className='mt-2 text-[#3A3A3A]'>
-                    Qraesent eros turpis, commodo vel justo at, pulvinar mollis eros. Mauris aliquet eu quam id ornare. Morbi ac quam enim. Cras vitae nulla condimentum, semper dolor non, faucibus dolor. Vivamus adipiscing eros quis orci fringilla, sed pretium lectus viverra. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec nec velit non odio aliquam suscipit. Sed non neque faucibus, condimentum lectus at, accumsan enim.
-                </p>
-                <p className='mt-2 text-[#3A3A3A]'>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat. In fermentum facilisis massa, a consequat purus viverra. Interdum et malesu they adamale fames ac anteipsu pimsine faucibus curabitur arcu site feugiat in tortor in, volutpat sollicitudin libero. Hotel non lorem acer suscipit bibendum vulla facilisi nedeuter.  
-                </p>
+                    {plainText}
+                   </p>
             </div>
             <div className='w-full mt-10 p-1 h-1 border-b border-[#D7D7D7]' />
             <div className='mt-10'>
                 <h1 className='font-mono text-4xl uppercase text-[#45443F]'>services & AMENITIES</h1>
                 <div className='grid md:grid-cols-3 gap-5 mt-10'>
-                {services.map((service, index) => (
+                {roomDetails?.services.map((service, index) => (
                     <div className='p-7 rounded-lg bg-[#F6F5F5] flex gap-3 text-black text-sm'>
-                        <X /> {service}
+                        <Image
+                        src={service.icon_pic}
+                        alt='services'
+                        width={20}
+                        height={20}
+                        />
+                         {service.service_name}
                     </div>
                 ))}
             </div>
@@ -60,9 +86,11 @@ const RoomInfo = () => {
                 <div className='flex gap-30 mt-7 pl-5'>
                     <div>
                         <h3 className='text-[#3A3A3A]'>Check In</h3>
-                        <p className='flex gap-1 text-[#3A3A3A]'><Dot />Check-In From 9:00 AM - Anytime</p>
-                        <p className='flex gap-1 text-[#3A3A3A]'><Dot />Early Check-In Subject To Availability</p>
-                        <p className='flex gap-1 text-[#3A3A3A]'><Dot />Minimum Check-In Age - 18</p>
+                        {ruleList?.map((rule)=>(
+                             <p className='flex gap-1 text-[#3A3A3A]'><Dot />{rule}</p>
+                        ))}
+                        
+                     
                     </div>
                       <div>
                         <h3 className='text-[#3A3A3A]'>Check Out</h3>

@@ -215,3 +215,28 @@ export const fetchAllRoomCategories = async()=>{
     }
   }
 }
+
+
+export const fetchAllRoomByID = async(id:string)=>{
+  try {
+    const {data} = await axios.get(`https://portal.brundhavangarden.com/api/room-categories/${id}`);
+    if(!data){
+      return{
+        success:false,
+        message:"Sorry some thing went wrong",
+        data:null
+      }
+    }
+    return {
+      success:true,
+      message:"",
+      data:data
+    }
+  } catch (error) {
+    return{
+      success:false,
+      message:"Internal server error",
+      data:null
+    }
+  }
+}

@@ -1,17 +1,22 @@
 import Image from 'next/image'
 import React from 'react'
 
-const Hero = () => {
+const Hero = ({pictures}:RoomProps) => {
+  console.log(pictures[0])
   return (
    <section className='max-w-screen'>
     <div className='flex gap-2'>
-        <Image
-        src={"/assets/images/hero_bg.jpg"}
-        alt="hero"
-        width={1000}
-        height={1000}
-        className='rounded-2xl'
-        />
+      {pictures.map((pic)=>(
+ <Image
+ src={pic[0]}
+ key={pic}
+ alt="hero"
+ width={1000}
+ height={1000}
+ className='rounded-2xl'
+ />
+      ))}
+       
         <div className='h-full relative'>
           <Image
         src={"/assets/images//hero_bg.jpg"}
