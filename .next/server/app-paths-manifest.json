@@ -1,4 +1,6 @@
 {
+  "/(auth)/sign-in/page": "app/(auth)/sign-in/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
   "/allrooms/page": "app/allrooms/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
   "/page": "app/page.js",

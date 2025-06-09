@@ -7,6 +7,7 @@ var { g: global, __dirname, k: __turbopack_refresh__, m: module } = __turbopack_
 {
 // "use server"
 __turbopack_context__.s({
+    "addBookingWithToken": (()=>addBookingWithToken),
     "fetchAllRoomByID": (()=>fetchAllRoomByID),
     "fetchAllRoomCategories": (()=>fetchAllRoomCategories),
     "fetchUserDetails": (()=>fetchUserDetails),
@@ -16,6 +17,8 @@ __turbopack_context__.s({
     "userRegister": (()=>userRegister)
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/axios/lib/axios.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$elements$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__MotionData__as__data$3e$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/render/components/motion/elements.mjs [app-client] (ecmascript) <export MotionData as data>");
+;
 ;
 const userRegister = async ({ name, email, password, phone, address })=>{
     try {
@@ -217,6 +220,46 @@ const fetchAllRoomByID = async (id)=>{
             success: false,
             message: "Internal server error",
             data: null
+        };
+    }
+};
+const addBookingWithToken = async ({ token, room_categories_id, check_in, check_out, adult_count, child_count, special_food_menu, activities, extra_bed, fire_camp, jeep_safari, total })=>{
+    try {
+        const { data } = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].post("https://portal.brundhavangarden.com/api/room-booking", {
+            token,
+            room_categories_id,
+            check_in,
+            check_out,
+            adult_count,
+            child_count,
+            special_food_menu,
+            activities,
+            extra_bed,
+            fire_camp,
+            jeep_safari,
+            total
+        }, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        if (data?.errors) {
+            return {
+                success: false,
+                message: "Sorry some thing went wrong",
+                data: data?.errors
+            };
+        }
+        return {
+            success: true,
+            message: "",
+            data: data
+        };
+    } catch (error) {
+        return {
+            success: false,
+            message: "Internal server error",
+            data: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$elements$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__MotionData__as__data$3e$__["data"]
         };
     }
 };

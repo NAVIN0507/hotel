@@ -67,3 +67,19 @@ type RoomProps = {
     services:Service[]
     
 }
+
+type BookingDetails  =  {
+    token:string;
+    room_categories_id: number;
+    check_in: string;
+    check_out: string;
+    adult_count: number;
+    child_count: number;
+    special_food_menu: string;
+    activities: string;
+    extra_bed: boolean;
+    fire_camp: boolean;
+    jeep_safari: boolean;
+    total:number;
+  }
+  
