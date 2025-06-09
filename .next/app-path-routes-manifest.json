@@ -1,11 +1,11 @@
 {
   "/_not-found/page": "/_not-found",
   "/favicon.ico/route": "/favicon.ico",
+  "/about/page": "/about",
+  "/(auth)/reset-password/page": "/reset-password",
+  "/allrooms/page": "/allrooms",
   "/(auth)/sign-up/page": "/sign-up",
   "/(auth)/sign-in/page": "/sign-in",
-  "/about/page": "/about",
   "/page": "/",
-  "/allrooms/page": "/allrooms",
-  "/(auth)/reset-password/page": "/reset-password",
   "/room/[id]/page": "/room/[id]"
 }
