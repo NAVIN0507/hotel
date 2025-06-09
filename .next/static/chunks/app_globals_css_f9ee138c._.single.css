@@ -1648,16 +1648,6 @@
     }
   }
 
-  .bg-white\/70 {
-    background-color: #ffffffb3;
-  }
-
-  @supports (color: color-mix(in lab, red, red)) {
-    .bg-white\/70 {
-      background-color: color-mix(in oklab, var(--color-white) 70%, transparent);
-    }
-  }
-
   .bg-white\/80 {
     background-color: #fffc;
   }
@@ -2776,32 +2766,8 @@
   }
 
   @media (width >= 48rem) {
-    .md\:w-1\/4 {
-      width: 25%;
-    }
-  }
-
-  @media (width >= 48rem) {
-    .md\:w-2\/4 {
-      width: 50%;
-    }
-  }
-
-  @media (width >= 48rem) {
-    .md\:w-3\/4 {
-      width: 75%;
-    }
-  }
-
-  @media (width >= 48rem) {
     .md\:w-3\/12 {
       width: 25%;
-    }
-  }
-
-  @media (width >= 48rem) {
-    .md\:w-4 {
-      width: calc(var(--spacing) * 4);
     }
   }
 
@@ -2832,12 +2798,6 @@
   @media (width >= 48rem) {
     .md\:w-11\/12 {
       width: 91.6667%;
-    }
-  }
-
-  @media (width >= 48rem) {
-    .md\:w-full {
-      width: 100%;
     }
   }
 

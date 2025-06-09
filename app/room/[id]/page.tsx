@@ -13,7 +13,7 @@ const page = async({params}:{params:{id:string}}) => {
    <main className='p-4 flex flex-col gap-10 mb-20'>
     <NavBar/>
     <Hero {...roomDetails.data}/>
-    <RoomInfo id={await(params.id)}/>
+    <RoomInfo id={params.id}/>
     <OtherRooms/>
    </main>
    <Footer/>

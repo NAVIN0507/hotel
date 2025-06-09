@@ -3,14 +3,6 @@ import React, { useEffect, useState } from 'react'
 import { BedDouble, Dot, InspectionPanel, UsersRound, X } from 'lucide-react';
 import { fetchAllRoomByID } from '@/lib/actions/users.actions';
 import Image from 'next/image';
-const services = [
-    '24-Hour In-Room Dining',
-    '24-Hour In-Room Dining',
-    '24-Hour In-Room Dining',
-    '24-Hour In-Room Dining',
-    'EXTRA BED',
-    'EXTRA BED',
-]
 const RoomInfo = ({id}:{id:string}) => {
     const [roomDetails, setroomDetails] = useState<RoomProps | null>(null);
     useEffect(()=>{
@@ -19,38 +11,39 @@ const RoomInfo = ({id}:{id:string}) => {
             setroomDetails(room.data)
         }
         fetchRoom()
-    })
-
-    console.log(roomDetails?.services[0])
+    } , [id])
     const aboutRawText = roomDetails?.about_stay;
     const plainText = aboutRawText?.replace(/<[^>]+>/g, '');
     const checkInRules =  roomDetails?.check_in_rules
-
-const ruleList = checkInRules?.match(/<li>(.*?)<\/li>/g)?.map(item =>
+    const checkInruleList = checkInRules?.match(/<li>(.*?)<\/li>/g)?.map(item =>
   item.replace(/<\/?li>/g, '')
 );
+const checkoutRules = roomDetails?.check_out_rules
+const checkOutruleList = checkoutRules?.match(/<li>(.*?)<\/li>/g)?.map(item =>
+    item.replace(/<\/?li>/g, '')
+  );
 
-console.log(ruleList);
+
 
   return (
     <section className='flex flex-col gap-4 pl-10 pr-10 mt-10'>
         <div className='flex gap-1 items-center justify-between'>
             <div className='flex flex-col gap-1'>
-                <h3 className='text-[#5C5C5C]'>HOME / ROOMS / WOODEN STAY</h3>
-                <h1 className='text-6xl font-mono text-[#45443F]'>WOODEN STAY</h1>
+                <h3 className='text-[#5C5C5C]'>HOME / ROOMS / {roomDetails?.name}</h3>
+                <h1 className='text-6xl font-mono text-[#45443F]'>{roomDetails?.name}</h1>
             </div>
              <div className='flex gap-16   mt-10'>
     <div className='flex flex-col gap-1 items-center justify-center'>
         <InspectionPanel  color='#5C5C5C' width={40} height={40}/>
-        <p className='text-[#5C5C5C]'>55M2</p>
+        <p className='text-[#5C5C5C]'>{roomDetails?.square_ft}M2</p>
     </div>
       <div className='flex flex-col gap-1 items-center justify-center'>
         <UsersRound   color='#5C5C5C' width={40} height={40}/>
-        <p className='text-[#5C5C5C]'>1-6 PERSON</p>
+        <p className='text-[#5C5C5C]'>{roomDetails?.capability} PERSON</p>
     </div>
       <div className='flex flex-col gap-1 items-center justify-center'>
         <BedDouble   color='#5C5C5C' width={40} height={40}/>
-        <p className='text-[#5C5C5C]'>2 BEDS</p>
+        <p className='text-[#5C5C5C]'>{roomDetails?.beds} BEDS</p>
     </div>
    </div>
         </div>
@@ -67,17 +60,22 @@ console.log(ruleList);
             <div className='mt-10'>
                 <h1 className='font-mono text-4xl uppercase text-[#45443F]'>services & AMENITIES</h1>
                 <div className='grid md:grid-cols-3 gap-5 mt-10'>
-                {roomDetails?.services.map((service, index) => (
+                {roomDetails?.services.length!==0 ?  roomDetails?.services.map((service, index) => (
                     <div className='p-7 rounded-lg bg-[#F6F5F5] flex gap-3 text-black text-sm'>
                         <Image
                         src={service.icon_pic}
                         alt='services'
                         width={20}
                         height={20}
+                        key={index}
                         />
                          {service.service_name}
                     </div>
-                ))}
+                )) : (
+                   <div className='p-7 rounded-lg bg-[#F6F5F5] flex gap-3 text-black text-md items-center justify-center'>
+                    No services availabel for this Room.
+                   </div>
+                )}
             </div>
             </div>
               <div className='w-full mt-10 p-1 h-1 border-b border-[#D7D7D7]' />
@@ -86,32 +84,32 @@ console.log(ruleList);
                 <div className='flex gap-30 mt-7 pl-5'>
                     <div>
                         <h3 className='text-[#3A3A3A]'>Check In</h3>
-                        {ruleList?.map((rule)=>(
-                             <p className='flex gap-1 text-[#3A3A3A]'><Dot />{rule}</p>
+                        {checkInruleList?.map((rule , i)=>(
+                             <p className='flex gap-1 text-[#3A3A3A]' key={i}><Dot />{rule}</p>
                         ))}
                         
                      
                     </div>
                       <div>
                         <h3 className='text-[#3A3A3A]'>Check Out</h3>
-                        <p className='flex gap-1 text-[#3A3A3A]'><Dot />Check-Out Before Noon</p>
-                        <p className='flex gap-1 text-[#3A3A3A]'><Dot />Express Ckeck-Out</p>
+                        {checkOutruleList?.map((rule , i)=>(
+                             <p className='flex gap-1 text-[#3A3A3A]' key={i}><Dot />{rule}</p>
+                        ))}
                       
                     </div>
                 </div>
                     <div className='flex flex-col gap-1 mt-10 pl-5 leading-relaxed text-[#3A3A3A]'>
-                    <p>Special check-in instructions</p>
-                    <p>Guests will receive an email 5 days before arrival with check-in instructions; front desk staff will greet guests on arrival For more details, please contact the property using the information on the booking confirmation.</p>
-                </div>
-                  <div className='flex flex-col gap-1 mt-10 pl-5 leading-relaxed text-[#3A3A3A]'>
-                    <p>Children and extra beds</p>
-                    <p>Children are welcome Kids stay free! Children stay free when using existing bedding; children may not be eligible for complimentary breakfast Rollaway/extra beds are available for EUR 40.0 per day</p>
+                    <div
+  className=""
+  dangerouslySetInnerHTML={{ __html: roomDetails?.room_rules || "" }}
+/>
+
                 </div>
               </div>
             </div>
             <div className='w-5/12  flex flex-col gap-4  h-fit'>
             <div className='w-full h-fit rounded-lg p-7 bg-[#011D38]'>
-                <h1 className='text-white text-center text-xl -mt-3'>STARTS FROM <span className='font-mono text-5xl'>1499</span>/PER NIGHT</h1>
+                <h1 className='text-white text-center text-xl -mt-3'>STARTS FROM <span className='font-mono text-5xl'>{roomDetails?.price}</span>/PER NIGHT</h1>
             </div>
              <div className='w-full h-fit rounded-lg p-6 bg-[#011D38] pb-10'>
                 <h1 className='font-mono text-2xl text-white '>BOOK THIS ROOM</h1>
