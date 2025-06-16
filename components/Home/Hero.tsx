@@ -39,7 +39,7 @@ const Hero = () => {
         </div>
 
         {/* Right Menu (hidden on mobile) */}
-        <ul className="hidden md:flex gap-40 uppercase text-sm tracking-wide font-sans items-center">
+        <ul className="hidden md:flex gap-30 uppercase text-sm tracking-wide font-sans items-center">
           <li><a href="#" className="hover:text-yellow-300 hover:underline">Rooms</a></li>
           <li><a href="#" className="hover:text-yellow-300 hover:underline">Contact</a></li>
           <Link href={user ? "/my-profile" : "/sign-in"}>

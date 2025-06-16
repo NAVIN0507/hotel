@@ -1,8 +1,23 @@
+"use client";
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import Image from 'next/image'
-import React from 'react'
 
 const Footer = () => {
+    const [width, setWidth] = useState<number>(0);
+    
+      useEffect(() => {
+        const updateWidth = () => setWidth(window.innerWidth);
+        updateWidth(); // Get initial width
+    
+        window.addEventListener("resize", updateWidth); // Listen for resize
+        return () => window.removeEventListener("resize", updateWidth);
+      }, []);
   return (
+    <>
+    {width < 768 ? (<>
+    
+    </>) :(<>
    <footer className='bg-[#E9E9E9] w-full h-full p-10'>
     <div className='flex items-center justify-between gap-4'>
     <div className='flex flex-col gap-1'>
@@ -44,6 +59,8 @@ const Footer = () => {
         <h1>Made by solvix softworks</h1>
     </div>
    </footer>
+   </>)}
+   </>
   )
 }
 

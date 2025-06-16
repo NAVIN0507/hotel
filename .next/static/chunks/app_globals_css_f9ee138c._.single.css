@@ -1161,10 +1161,6 @@
     width: calc(var(--spacing) * 100);
   }
 
-  .w-\[90\%\] {
-    width: 90%;
-  }
-
   .w-\[150px\] {
     width: 150px;
   }
@@ -1363,6 +1359,10 @@
 
   .grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  .grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .flex-col {
@@ -1735,14 +1735,6 @@
     border-color: var(--color-white);
   }
 
-  .bg-\[\#0D1B2A\]\/90 {
-    background-color: oklab(21.7686% -.0114072 -.0336887 / .9);
-  }
-
-  .bg-\[\#011D38EB\] {
-    background-color: #011d38eb;
-  }
-
   .bg-\[\#011D38\] {
     background-color: #011d38;
   }
@@ -1803,16 +1795,6 @@
     background-color: var(--color-black);
   }
 
-  .bg-black\/30 {
-    background-color: #0000004d;
-  }
-
-  @supports (color: color-mix(in lab, red, red)) {
-    .bg-black\/30 {
-      background-color: color-mix(in oklab, var(--color-black) 30%, transparent);
-    }
-  }
-
   .bg-black\/40 {
     background-color: #0006;
   }
@@ -1830,16 +1812,6 @@
   @supports (color: color-mix(in lab, red, red)) {
     .bg-black\/50 {
       background-color: color-mix(in oklab, var(--color-black) 50%, transparent);
-    }
-  }
-
-  .bg-black\/90 {
-    background-color: #000000e6;
-  }
-
-  @supports (color: color-mix(in lab, red, red)) {
-    .bg-black\/90 {
-      background-color: color-mix(in oklab, var(--color-black) 90%, transparent);
     }
   }
 
@@ -2329,10 +2301,6 @@
     color: #c5c5c5;
   }
 
-  .text-\[\#FFFFFF\] {
-    color: #fff;
-  }
-
   .text-\[\#b79464\] {
     color: #b79464;
   }
@@ -2375,16 +2343,6 @@
 
   .text-white {
     color: var(--color-white);
-  }
-
-  .text-white\/10 {
-    color: #ffffff1a;
-  }
-
-  @supports (color: color-mix(in lab, red, red)) {
-    .text-white\/10 {
-      color: color-mix(in oklab, var(--color-white) 10%, transparent);
-    }
   }
 
   .text-white\/90 {
@@ -2828,12 +2786,6 @@
   @media (hover: hover) {
     .hover\:bg-\[\#b79464\]:hover {
       background-color: #b79464;
-    }
-  }
-
-  @media (hover: hover) {
-    .hover\:bg-\[\#c09d2e\]:hover {
-      background-color: #c09d2e;
     }
   }
 
@@ -3357,13 +3309,6 @@
     .md\:text-2xl {
       font-size: var(--text-2xl);
       line-height: var(--tw-leading, var(--text-2xl--line-height));
-    }
-  }
-
-  @media (width >= 48rem) {
-    .md\:text-3xl {
-      font-size: var(--text-3xl);
-      line-height: var(--tw-leading, var(--text-3xl--line-height));
     }
   }
 

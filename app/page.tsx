@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <>
       {/* Main content */}
-      <main className="flex flex-col space-y-4 sm:space-y-20 md:space-y-24 lg:space-y-28 xl:space-y-32  p-4">
+      <main className="flex flex-col space-y-4 sm:space-y-20 md:space-y-24 lg:space-y-28 xl:space-y-32  p-3">
         <Hero />
         <SpecialSection />
         <AboutUsSection />

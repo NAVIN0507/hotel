@@ -1,51 +1,93 @@
 "use client";
-import React from "react";
-import Image from "next/image";
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import Image from 'next/image'
 
+import { InfiniteMovingPills } from '../ui/infinite-moving-cards'
+import featureSectionImg from '@/public/assets/images/feature_section.jpg'; // adjust if path is different
+
+
+const activityItems = [
+  { label: "JEEP SAFARI" },
+  { label: "TRUCKING" },
+  { label: "RAFTING" },
+  { label: "CAMPING" },
+];
 const MobileBentoGrid = () => {
   return (
-    <section className="flex flex-col items-center justify-center px-4 py-10 bg-white">
-      {/* Section Title */}
-      <div className="text-center mb-6">
-        <p className="uppercase tracking-widest text-xs text-gray-500">Rooms and Cottages</p>
-        <h2 className="text-2xl md:text-3xl font-serif font-light text-gray-800 mt-2">
-          <span className="inline-block border-t border-b border-gray-400 px-4 py-1">
-            DISCOVER OUR ROOMS
-          </span>
-        </h2>
+    <div className="flex flex-col items-center py-10 px-5 bg-gray-50 font-serif text-gray-800">
+      {/* Header for the section */}
+      <div className="flex items-center mb-2 w-full max-w-xs justify-center">
+        <span className="flex-grow h-px bg-gray-300 mx-2"></span>
+        <p className="text-xs text-gray-600 tracking-widest uppercase whitespace-nowrap font-sans">
+          ROOMS AND COTTAGES
+        </p>
+        <span className="flex-grow h-px bg-gray-300 mx-2"></span>
       </div>
 
-      {/* Room Card */}
-      <div className="relative w-[90%] max-w-sm rounded-xl overflow-hidden shadow-lg">
-        <Image
-          src="/room.jpg" // replace with your own image path
-          alt="Wood House"
-          width={500}
-          height={400}
-          className="object-cover w-full h-[300px]"
-        />
+      <h1 className="text-3xl sm:text-4xl md:text-5xl mt-0 mb-10 text-center uppercase tracking-wide text-gray-800">
+        DISCOVER OUR ROOMS
+      </h1>
 
-        {/* Overlay */}
-        <div className="absolute bottom-0 left-0 w-full bg-[#0D1B2A]/90 px-6 py-6 rounded-t-xl text-white">
-          <h3 className="text-lg sm:text-xl font-semibold mb-2 tracking-wide">WOOD HOUSE</h3>
-          <p className="text-sm mb-4 leading-relaxed font-light">
-            Spoil Yourself With The Assortment In Cuisine And Taste. Explore & Investigate
-            The Wide Range Of Food You’d Be Honored With No Place Else.
+      <div className="relative h-fit p-4 bg-cover bg-center rounded-md bg-hero w-full">
+      
+        {/* Content box */}
+        <div className="relative z-10 bg-[#011D38]/90 w-full h-fit p-5 mt-40 rounded-xl">
+          <h1 className="text-center uppercase text-white text-2xl font-mono font-bold tracking-wide">
+            Wood House
+          </h1>
+            <p className="text-[#C1C1C1] text-center mt-5 leading-relaxed text-sm">
+            Spoil yourself with the assortment in cuisine and taste. Explore & Investigate the wide
+            range of food you'd be honored with no place else.
           </p>
-
-          <button className="bg-[#D4AF37] text-sm text-white px-5 py-2 rounded-full font-medium tracking-wide hover:bg-[#c09d2e] transition-all">
-            KNOW MORE →
+          <button className="bg-[#D4AF37] hover:bg-[#b9982e] text-white px-6 py-2 rounded-full w-full text-center justify-center items-center flex mx-auto mt-4 transition-all">
+            Know more
           </button>
         </div>
       </div>
-
-      {/* Dots (Pagination indicators like in your screenshot) */}
-      <div className="mt-6 flex gap-1">
-        <span className="w-2 h-2 rounded-full bg-black/90"></span>
-        <span className="w-2 h-2 rounded-full bg-black/30"></span>
-        <span className="w-2 h-2 rounded-full bg-black/30"></span>
-      </div>
-    </section>
+      <div className='flex flex-col md:flex-row gap-4 items-center justify-center mt-7 p-4 '>
+        <div className= 'w-[350px] h-full p-5 rounded-md bg-[#011D38] text-white'>
+        <div className='flex flex-col'>
+        <p className='text-[10px]'>ACTIVITIES & GAMES</p>
+        <h1 className='uppercase font-mono text-4xl leading-relaxed -mt-3'>Unwind to Nature</h1>
+        <p className='text-[10px] text-[#C1C1C1]'>Nestled in the centre of Kodaikanal, we offer the perfect adventurous retreat. Numerous exhilarating activities are available at our opulent resort, guaranteeing you and your loved ones an experience they won’t soon forget.</p>
+           <InfiniteMovingPills
+        items={activityItems}
+        direction="right"
+        speed="slow"
+        className='p-5'
+      />
+      <Image
+      src={featureSectionImg}
+      alt='feature_section'
+      width={500}  
+        height={500}
+        className='w-[800px] h-[300px] object-cover rounded-lg'
+      />
+        </div>
+        </div>
+         <div className= 'w-[350px] h-full p-5 rounded-md bg-[#011D38] text-white'>
+          <div className='flex flex-col'>
+        <p className='text-[10px]'>ACTIVITIES & GAMES</p>
+        <h1 className='uppercase font-mono text-4xl leading-relaxed -mt-3'>Unwind to Nature</h1>
+        <p className='text-[10px] text-[#C1C1C1]'>Nestled in the centre of Kodaikanal, we offer the perfect adventurous retreat. Numerous exhilarating activities are available at our opulent resort, guaranteeing you and your loved ones an experience they won’t soon forget.</p>
+           <InfiniteMovingPills
+        items={activityItems}
+        direction="right"
+        speed="slow"
+        className='p-5'
+      />
+       <Image
+      src={featureSectionImg}
+      alt='feature_section'
+      width={500}  
+        height={500}
+        className='w-[800px] h-[300px] object-cover rounded-lg'
+      />
+        </div>
+        </div>
+        </div>
+    </div>
   );
 };
 
