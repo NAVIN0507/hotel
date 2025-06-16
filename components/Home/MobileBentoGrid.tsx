@@ -2,7 +2,7 @@
 import React from "react";
 import Image from "next/image";
 
-const RoomCard = () => {
+const MobileBentoGrid = () => {
   return (
     <section className="flex flex-col items-center justify-center px-4 py-10 bg-white">
       {/* Section Title */}
@@ -49,4 +49,4 @@ const RoomCard = () => {
   );
 };
 
-export default RoomCard;
+export default MobileBentoGrid;

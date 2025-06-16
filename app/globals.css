@@ -87,3 +87,184 @@
     }
   }
 }
+/* RoomSection.css */
+
+.room-section-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  background-color: #f8f8f8; /* Light background similar to the image */
+  font-family: 'Playfair Display', serif; /* Assuming a serif font for titles */
+  color: #333;
+}
+
+.room-section-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 100%;
+  max-width: 300px; /* Adjust as needed */
+  justify-content: center;
+}
+
+.header-line {
+  flex-grow: 1;
+  height: 1px;
+  background-color: #ccc;
+  margin: 0 10px;
+}
+
+.header-text {
+  font-size: 0.8em;
+  color: #888;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  white-space: nowrap; /* Prevent wrapping for smaller screens */
+  font-family: Arial, sans-serif; /* A more neutral font for small text */
+}
+
+.section-title {
+  font-size: 2.2em;
+  margin-top: 0;
+  margin-bottom: 40px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #333;
+}
+
+.room-card {
+  position: relative;
+  width: 100%;
+  max-width: 600px; /* Adjust based on desired card width */
+  aspect-ratio: 3 / 4; /* To maintain aspect ratio similar to the image */
+  border-radius: 8px; /* Slightly rounded corners */
+  overflow: hidden; /* Ensures background image is clipped */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.room-card-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.8); /* Slightly darken the background to make text pop */
+}
+
+.room-card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(30, 48, 77, 0.9); /* Dark blue, semi-transparent */
+  color: white;
+  padding: 30px;
+  text-align: center;
+  box-sizing: border-box; /* Include padding in the element's total width and height */
+}
+
+.overlay-title {
+  font-size: 2em;
+  margin-bottom: 15px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.overlay-description {
+  font-size: 0.95em;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  max-width: 450px; /* Constrain text width for readability */
+  margin-left: auto;
+  margin-right: auto;
+  font-family: Arial, sans-serif; /* A more neutral font for body text */
+}
+
+.know-more-button {
+  background-color: #d4af37; /* Gold/yellow color */
+  color: #333; /* Dark text for contrast */
+  border: none;
+  padding: 12px 25px;
+  border-radius: 5px;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.know-more-button:hover {
+  background-color: #c09a27; /* Slightly darker gold on hover */
+}
+
+.know-more-button .arrow {
+  margin-left: 10px;
+  font-size: 1.2em;
+}
+
+.pagination-dots {
+  display: flex;
+  margin-top: 30px;
+}
+
+.dot {
+  height: 8px;
+  width: 8px;
+  background-color: #bbb;
+  border-radius: 50%;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.dot.active {
+  background-color: #333; /* Darker dot for active state */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .room-section-container {
+    padding: 30px 15px;
+  }
+
+  .section-title {
+    font-size: 1.8em;
+    margin-bottom: 30px;
+  }
+
+  .overlay-title {
+    font-size: 1.8em;
+  }
+
+  .overlay-description {
+    font-size: 0.9em;
+    padding: 0 10px; /* Add some horizontal padding for smaller screens */
+  }
+
+  .know-more-button {
+    padding: 10px 20px;
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-text {
+    font-size: 0.7em;
+  }
+  .section-title {
+    font-size: 1.5em;
+  }
+  .overlay-title {
+    font-size: 1.5em;
+  }
+  .overlay-description {
+    font-size: 0.85em;
+  }
+}
