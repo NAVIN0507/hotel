@@ -32,7 +32,7 @@ const NavBar = () => {
        <nav className='flex items-center justify-between w-full h-full pl-2'>
           <ul className="hidden md:flex gap-30 uppercase text-lg tracking-wide ">
                     <li><a href="/" className="text-white hover:underline">Home</a></li>
-                    <li><a href="/about" className="text-white hover:underline">About Us</a></li>
+                    <li><a href="/aboutus" className="text-white hover:underline">About Us</a></li>
                     <li><a href="https://portal.brundhavangarden.com" className="text-white hover:underline">Portal</a></li>
                 </ul>
                 <div className="text-2xl font-bold font-mono text-yellow-400 tracking-widest">BRUNDHAVAN</div>

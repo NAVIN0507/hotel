@@ -42,7 +42,7 @@ exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
                     <h2 className="text-lg md:text-5xl font-serif leading-tight">
                         GET TO KNOW ABOUT <h2 className='flex'> US <div className="w-20 mt-7 hidden lg:block  ml-5  h-0 border border-gray-500" />
                     </h2></h2>
-                    <Link href={"/about"}>
+                    <Link href={"/aboutus"}>
                     <button className="bg-[#b79464] mt-20 hover:bg-[#a28252] text-white px-6 py-3 rounded-full text-sm tracking-widest uppercase flex items-center gap-2 max-sm:hidden">
                         Know More →
                     </button>
@@ -88,7 +88,7 @@ exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
                         </div>
                     </div>
                 </div>
-                <Link href={"/about"}>
+                <Link href={"/aboutus"}>
                     <button className="bg-[#b79464]  hover:bg-[#a28252] text-white px-6 py-3 rounded-full text-sm tracking-widest uppercase flex items-center gap-2 md:hidden">
                         Know More →
                     </button>

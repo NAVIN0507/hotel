@@ -38,7 +38,7 @@ const Hero = () => {
 
                 <ul className="hidden md:flex gap-30 uppercase text-sm tracking-wide ">
                     <li><a href="/" className="hover:text-yellow-300 hover:underline">Home</a></li>
-                    <li><a href="/about" className="hover:text-yellow-300 hover:underline">About Us</a></li>
+                    <li><a href="/aboutus" className="hover:text-yellow-300 hover:underline">About Us</a></li>
                     <li><a href="https://portal.brundhavangarden.com" className="hover:text-yellow-300 hover:underline">Portal</a></li>
                 </ul>
                 <div className="text-2xl font-bold font-mono text-yellow-400 tracking-widest">BRUNDHAVAN</div>

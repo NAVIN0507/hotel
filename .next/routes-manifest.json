@@ -37,10 +37,10 @@
       "namedRegex": "^/_not\\-found(?:/)?$"
     },
     {
-      "page": "/about",
-      "regex": "^/about(?:/)?$",
+      "page": "/aboutus",
+      "regex": "^/aboutus(?:/)?$",
       "routeKeys": {},
-      "namedRegex": "^/about(?:/)?$"
+      "namedRegex": "^/aboutus(?:/)?$"
     },
     {
       "page": "/allrooms",
