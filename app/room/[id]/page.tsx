@@ -22,3 +22,11 @@ const page = async({params}:{params:{id:string}}) => {
 }
 
 export default page
+
+export function generateStaticParams() {
+  return [
+    { id: '2' },
+    { id: '2' },
+    { id: '3' },
+  ];
+}

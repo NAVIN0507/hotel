@@ -8,14 +8,13 @@ const nextConfig: NextConfig = {
   eslint:{
     ignoreDuringBuilds: true,
   },
-  // output:"export",
-  //   images: {
-  //   unoptimized: true, // Important for next export
-  // },
+  output:"export",
+    
   images:{
     remotePatterns:[
       {hostname:'portal.brundhavangarden.com'}
-    ]
+    ],
+    unoptimized: true, 
   }
 };
 

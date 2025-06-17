@@ -63,7 +63,7 @@
           "hostname": "portal.brundhavangarden.com"
         }
       ],
-      "unoptimized": false
+      "unoptimized": true
     },
     "devIndicators": {
       "position": "bottom-left"
