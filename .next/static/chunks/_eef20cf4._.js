@@ -547,15 +547,322 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
     __turbopack_context__.k.registerExports(module, globalThis.$RefreshHelpers$);
 }
 }}),
-"[project]/lib/actions/users.actions.ts [app-client] (ecmascript)": (function(__turbopack_context__) {
+"[project]/lib/actions/users.actions.ts [app-client] (ecmascript)": ((__turbopack_context__) => {
+"use strict";
 
-var { g: global, __dirname, k: __turbopack_refresh__, m: module, e: exports } = __turbopack_context__;
+var { g: global, __dirname, k: __turbopack_refresh__, m: module } = __turbopack_context__;
 {
-const e = new Error(`Could not parse module '[project]/lib/actions/users.actions.ts'
-
-Expected ',', got '.'`);
-e.code = 'MODULE_UNPARSEABLE';
-throw e;}}),
+// "use server"
+__turbopack_context__.s({
+    "addBookingWithToken": (()=>addBookingWithToken),
+    "addBookingWithoutToken": (()=>addBookingWithoutToken),
+    "fetchAllRoomByID": (()=>fetchAllRoomByID),
+    "fetchAllRoomCategories": (()=>fetchAllRoomCategories),
+    "fetchUserDetails": (()=>fetchUserDetails),
+    "forgotPassword": (()=>forgotPassword),
+    "resetPassword": (()=>resetPassword),
+    "userLogin": (()=>userLogin),
+    "userRegister": (()=>userRegister)
+});
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/axios/lib/axios.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$elements$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__MotionData__as__data$3e$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/render/components/motion/elements.mjs [app-client] (ecmascript) <export MotionData as data>");
+;
+;
+const userRegister = async ({ name, email, password, phone, address })=>{
+    try {
+        const { data } = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].post("https://portal.brundhavangarden.com/api/auth/register", {
+            name: name,
+            email: email,
+            phone: phone,
+            address: address,
+            password: password,
+            password_confirmation: password
+        }, {
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }
+        });
+        if (!data) {
+            throw new Error("Error from registration");
+            return {
+                success: false,
+                message: 'Regitration Canceled',
+                data: null
+            };
+        }
+        return {
+            success: true,
+            message: 'Registration SuccessFull',
+            data: data
+        };
+    } catch (error) {
+        console.log(error.message);
+        return {
+            success: false,
+            message: 'Regitration Canceled',
+            data: error
+        };
+    }
+};
+const userLogin = async (email, password)=>{
+    try {
+        const { data } = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].post("https://portal.brundhavangarden.com/api/auth/login", {
+            email: email,
+            password: password
+        }, {
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }
+        });
+        if (!data) {
+            return {
+                success: false,
+                message: 'Login Failed',
+                data: 'Login Failed'
+            };
+        }
+        return {
+            success: true,
+            message: 'Login SuccessFull',
+            data: data
+        };
+    } catch (error) {
+        return {
+            success: false,
+            message: 'Login Failed',
+            data: error.message
+        };
+    }
+};
+const fetchUserDetails = async (token)=>{
+    if (!token || token === "undefined") {
+        console.error("Invalid or missing token");
+        return {
+            success: false,
+            message: "Token missing",
+            data: null
+        };
+    }
+    try {
+        const { data } = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].get("https://portal.brundhavangarden.com/api/user/details", {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return {
+            success: true,
+            message: "User Details",
+            data: data?.user ?? data
+        };
+    } catch (error) {
+        console.error("Error fetching user details:", error);
+        return {
+            success: false,
+            message: error.response?.data?.message || "Login failed",
+            data: null
+        };
+    }
+};
+const forgotPassword = async (email)=>{
+    if (!email) {
+        return {
+            success: false,
+            message: "Email is Required",
+            data: null
+        };
+    }
+    try {
+        const { data } = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].post("https://portal.brundhavangarden.com/api/auth/forgot-password", {
+            email: email
+        });
+        if (!data) {
+            return {
+                success: false,
+                message: "Not Found",
+                data: null
+            };
+        }
+        return {
+            success: true,
+            message: `Reset password is sent to ${email}`,
+            data: data
+        };
+    } catch (error) {
+        return {
+            success: false,
+            message: "Internal Server Error",
+            data: null
+        };
+    }
+};
+const resetPassword = async ({ email, token, password, confirmPassword })=>{
+    try {
+        const { data } = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].post("https://portal.brundhavangarden.com/api/auth/reset-password", {
+            email: email,
+            token: token,
+            password: password,
+            confirmPassword: confirmPassword
+        });
+        if (!data) {
+            return {
+                success: false,
+                message: "Sorry Some thing went wrong",
+                data: null
+            };
+        }
+        return {
+            success: true,
+            message: "Password Changed",
+            data: data
+        };
+    } catch (error) {
+        return {
+            success: false,
+            message: "Internal server error",
+            data: null
+        };
+    }
+};
+const fetchAllRoomCategories = async ()=>{
+    try {
+        const { data } = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].get("https://portal.brundhavangarden.com/api/room-categories");
+        if (!data) {
+            return {
+                success: false,
+                message: "Sorry Some thing went wrong",
+                data: null
+            };
+        }
+        return {
+            success: true,
+            message: "Recived Ok",
+            data: data
+        };
+    } catch (error) {
+        return {
+            success: false,
+            message: "Internal Server Error",
+            data: null
+        };
+    }
+};
+const fetchAllRoomByID = async (id)=>{
+    try {
+        const { data } = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].get(`https://portal.brundhavangarden.com/api/room-categories/${id}`);
+        if (!data) {
+            return {
+                success: false,
+                message: "Sorry some thing went wrong",
+                data: null
+            };
+        }
+        return {
+            success: true,
+            message: "",
+            data: data
+        };
+    } catch (error) {
+        return {
+            success: false,
+            message: "Internal server error",
+            data: null
+        };
+    }
+};
+const addBookingWithToken = async ({ token, room_categories_id, check_in, check_out, adult_count, child_count, special_food_menu, activities, extra_bed, fire_camp, jeep_safari, total })=>{
+    try {
+        const { data } = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].post("https://portal.brundhavangarden.com/api/room-booking", {
+            token,
+            room_categories_id,
+            check_in,
+            check_out,
+            adult_count,
+            child_count,
+            special_food_menu,
+            activities,
+            extra_bed,
+            fire_camp,
+            jeep_safari,
+            total
+        }, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }
+        });
+        if (data?.errors) {
+            return {
+                success: false,
+                message: "Sorry some thing went wrong",
+                data: data?.errors
+            };
+        }
+        return {
+            success: true,
+            message: "",
+            data: data
+        };
+    } catch (error) {
+        return {
+            success: false,
+            message: "Internal server error",
+            data: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$elements$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__MotionData__as__data$3e$__["data"]
+        };
+    }
+};
+const addBookingWithoutToken = async ({ room_categories_id, check_in, check_out, adult_count, child_count, special_food_menu, activities, extra_bed, fire_camp, jeep_safari, total, customer_data: { name, email, address, phone } })=>{
+    try {
+        const { data } = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].post("https://portal.brundhavangarden.com/api/room-booking", {
+            room_categories_id,
+            check_in,
+            check_out,
+            adult_count,
+            child_count,
+            special_food_menu,
+            activities,
+            extra_bed,
+            fire_camp,
+            jeep_safari,
+            total,
+            customer_data: {
+                name,
+                email,
+                address,
+                phone
+            }
+        }, {
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }
+        });
+        if (data?.errors) {
+            return {
+                success: false,
+                message: "Sorry some thing went wrong",
+                data: data?.errors
+            };
+        }
+        return {
+            success: true,
+            message: "",
+            data: data
+        };
+    } catch (error) {
+        return {
+            success: false,
+            message: "Internal server error",
+            data: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$elements$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__MotionData__as__data$3e$__["data"]
+        };
+    }
+};
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(module, globalThis.$RefreshHelpers$);
+}
+}}),
 "[project]/components/error.tsx [app-client] (ecmascript)": ((__turbopack_context__) => {
 "use strict";
 

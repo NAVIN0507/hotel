@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useState, useMemo } from 'react'
 import { BedDouble, Dot, InspectionPanel, UsersRound } from 'lucide-react';
-import { addBookingWithToken, fetchAllRoomByID } from '@/lib/actions/users.actions';
+import { addBookingWithoutToken, addBookingWithToken, fetchAllRoomByID } from '@/lib/actions/users.actions';
 import Image from 'next/image';
 
 // interface RoomProps {
@@ -36,6 +36,25 @@ interface BookingDetails {
   total: number;
 }
 
+interface BookingDetailsWithoutToken{
+  room_categories_id: number;
+  check_in: string;
+  check_out: string;
+  adult_count: number;
+  child_count: number;
+  special_food_menu: string;
+  activities: string;
+  extra_bed: boolean;
+  fire_camp: boolean;
+  jeep_safari: boolean;
+  total: number;
+  customer_data:{
+    name:string;
+    email:string;
+    phone:string;
+    address:string;
+  }
+}
 const RoomInfo = ({ id }: { id: string }) => {
   const [roomDetails, setroomDetails] = useState<RoomProps | null>(null);
   const [userToken, setuserToken] = useState("")
@@ -53,6 +72,25 @@ const RoomInfo = ({ id }: { id: string }) => {
     jeep_safari: false,
     total: 0
   });
+  const [bookingDetailsWithoutToken, setbookingDetailsWithoutToken] = useState<BookingDetailsWithoutToken>({
+    room_categories_id:Number(id),
+    check_in:'',
+    check_out:'',
+    adult_count:0,
+    child_count:0,
+    special_food_menu:'South Indian',
+    activities:'Cricket',
+    extra_bed:false,
+    fire_camp:false,
+    jeep_safari:false,
+    total:0,
+    customer_data:{
+      name:'',
+      email:'',
+      address:'',
+      phone:''
+    }
+  })
 
   // Format datetime from "YYYY-MM-DDTHH:mm" to "YYYY-MM-DD HH:mm:ss"
   function formatDateTime(input: string) {
@@ -114,26 +152,56 @@ const RoomInfo = ({ id }: { id: string }) => {
   );
 
   const onClick = async () => {
-    // Format check_in and check_out before sending
-    const formattedBookingDetails = {
-      ...bookingDetails,
-      check_in: formatDateTime(bookingDetails.check_in),
-      check_out: formatDateTime(bookingDetails.check_out),
-      total: totalPrice,
-    };
+    try {
+      if (userToken) {
+        // Logged-in flow
+        const formattedBookingDetails = {
+          ...bookingDetails,
+          check_in: formatDateTime(bookingDetails.check_in),
+          check_out: formatDateTime(bookingDetails.check_out),
+          total: totalPrice,
+          token: userToken,
+        };
+        console.log(formattedBookingDetails)
+  
+        const addBooking = await addBookingWithToken(formattedBookingDetails);
+  
+        if (addBooking.success) {
+          alert("✅ Booking Created Successfully!");
+          console.log("Booking success with token");
+        } else {
+          alert("❌ Booking Failed");
+          console.error("Error in token-based booking");
+        }
+      } else {
+        // Guest flow
+        const formattedBookingDetailsWithoutToken = {
+          ...bookingDetailsWithoutToken,
+          check_in: formatDateTime(bookingDetails.check_in),
+          check_out: formatDateTime(bookingDetails.check_out),
+          child_count:bookingDetails.child_count,
+          adult_count:bookingDetails.adult_count,
+          total: totalPrice,
+        };
 
-    console.log(formattedBookingDetails);
-
-    const addBooking = await addBookingWithToken(formattedBookingDetails);
-    if (addBooking.success) {
-      alert("Booking Created");
-      console.log("There is an no error")
+        console.log(formattedBookingDetailsWithoutToken)
+  
+        const addBooking = await addBookingWithoutToken(formattedBookingDetailsWithoutToken);
+  
+        if (addBooking.success) {
+          alert("✅ Booking Created Successfully!");
+          console.log("Booking success without token");
+        } else {
+          alert("❌ Booking Failed");
+          console.error("Error in non-token-based booking");
+        }
+       }
+    } catch (error) {
+      console.error("Unexpected Error:", error);
+      alert("⚠️ Something went wrong. Please try again.");
     }
-    else {
-      alert("Booking is Not Created");
-      console.log("There is an Error")
-    }
-  }
+  };
+  
 
   return (
     <section className='flex flex-col gap-4 pl-10 pr-10 mt-10'>
@@ -220,6 +288,91 @@ const RoomInfo = ({ id }: { id: string }) => {
               STARTS FROM <span className="font-mono text-5xl">{roomDetails?.price}</span>/PER NIGHT
             </h1>
           </div>
+          {!userToken && (
+            <div className="w-full h-fit rounded-lg p-6 bg-[#011D38] pb-10">
+              <h1 className="font-mono text-2xl text-white">ENTER YOUR DETAILS</h1>
+
+              {/* Name */}
+              <div className="flex flex-col gap-2 mt-4 border-b border-[#D0D0D0] mb-2">
+                <label className="text-[#C5C5C5] text-sm">Name</label>
+                <input
+                  type="text"
+                  value={bookingDetailsWithoutToken.customer_data.name}
+                  onChange={(e) =>
+                    setbookingDetailsWithoutToken((prev) => ({
+                      ...prev,
+                      customer_data: {
+                        ...prev.customer_data,
+                        name: e.target.value,
+                      },
+                    }))
+                  }
+                  placeholder="Enter your Name"
+                  className="text-white mb-2 bg-transparent outline-none"
+                />
+              </div>
+
+              {/* Email */}
+              <div className="flex flex-col gap-2 mt-4 border-b border-[#D0D0D0] mb-2">
+                <label className="text-[#C5C5C5] text-sm">Email</label>
+                <input
+                  type="email"
+                  value={bookingDetailsWithoutToken.customer_data.email}
+                  onChange={(e) =>
+                    setbookingDetailsWithoutToken((prev) => ({
+                      ...prev,
+                      customer_data: {
+                        ...prev.customer_data,
+                        email: e.target.value,
+                      },
+                    }))
+                  }
+                  placeholder="Enter your E-Mail"
+                  className="text-white mb-2 bg-transparent outline-none"
+                />
+              </div>
+
+              {/* Address */}
+              <div className="flex flex-col gap-2 mt-4 border-b border-[#D0D0D0] mb-2">
+                <label className="text-[#C5C5C5] text-sm">Address</label>
+                <input
+                  type="text"
+                  value={bookingDetailsWithoutToken.customer_data.address}
+                  onChange={(e) =>
+                    setbookingDetailsWithoutToken((prev) => ({
+                      ...prev,
+                      customer_data: {
+                        ...prev.customer_data,
+                        address: e.target.value,
+                      },
+                    }))
+                  }
+                  placeholder="Enter your Address"
+                  className="text-white mb-2 bg-transparent outline-none"
+                />
+              </div>
+
+              {/* Phone */}
+              <div className="flex flex-col gap-2 mt-4 border-b border-[#D0D0D0] mb-2">
+                <label className="text-[#C5C5C5] text-sm">Phone</label>
+                <input
+                  type="text"
+                  value={bookingDetailsWithoutToken.customer_data.phone}
+                  onChange={(e) =>
+                    setbookingDetailsWithoutToken((prev) => ({
+                      ...prev,
+                      customer_data: {
+                        ...prev.customer_data,
+                        phone: e.target.value,
+                      },
+                    }))
+                  }
+                  placeholder="Enter your Phone Number"
+                  className="text-white mb-2 bg-transparent outline-none"
+                />
+              </div>
+            </div>
+          )}
 
           {/* BOOKING FORM */}
           <div className="w-full h-fit rounded-lg p-6 bg-[#011D38] pb-10">

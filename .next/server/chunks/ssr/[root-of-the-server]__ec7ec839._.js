@@ -96,6 +96,7 @@ var { g: global, __dirname } = __turbopack_context__;
 // "use server"
 __turbopack_context__.s({
     "addBookingWithToken": (()=>addBookingWithToken),
+    "addBookingWithoutToken": (()=>addBookingWithoutToken),
     "fetchAllRoomByID": (()=>fetchAllRoomByID),
     "fetchAllRoomCategories": (()=>fetchAllRoomCategories),
     "fetchUserDetails": (()=>fetchUserDetails),
@@ -329,6 +330,52 @@ const addBookingWithToken = async ({ token, room_categories_id, check_in, check_
         }, {
             headers: {
                 Authorization: `Bearer ${token}`,
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }
+        });
+        if (data?.errors) {
+            return {
+                success: false,
+                message: "Sorry some thing went wrong",
+                data: data?.errors
+            };
+        }
+        return {
+            success: true,
+            message: "",
+            data: data
+        };
+    } catch (error) {
+        return {
+            success: false,
+            message: "Internal server error",
+            data: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$elements$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__MotionData__as__data$3e$__["data"]
+        };
+    }
+};
+const addBookingWithoutToken = async ({ room_categories_id, check_in, check_out, adult_count, child_count, special_food_menu, activities, extra_bed, fire_camp, jeep_safari, total, customer_data: { name, email, address, phone } })=>{
+    try {
+        const { data } = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].post("https://portal.brundhavangarden.com/api/room-booking", {
+            room_categories_id,
+            check_in,
+            check_out,
+            adult_count,
+            child_count,
+            special_food_menu,
+            activities,
+            extra_bed,
+            fire_camp,
+            jeep_safari,
+            total,
+            customer_data: {
+                name,
+                email,
+                address,
+                phone
+            }
+        }, {
+            headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json"
             }

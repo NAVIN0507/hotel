@@ -221,6 +221,7 @@ var { g: global, __dirname, k: __turbopack_refresh__, m: module } = __turbopack_
 // "use server"
 __turbopack_context__.s({
     "addBookingWithToken": (()=>addBookingWithToken),
+    "addBookingWithoutToken": (()=>addBookingWithoutToken),
     "fetchAllRoomByID": (()=>fetchAllRoomByID),
     "fetchAllRoomCategories": (()=>fetchAllRoomCategories),
     "fetchUserDetails": (()=>fetchUserDetails),
@@ -478,6 +479,52 @@ const addBookingWithToken = async ({ token, room_categories_id, check_in, check_
         };
     }
 };
+const addBookingWithoutToken = async ({ room_categories_id, check_in, check_out, adult_count, child_count, special_food_menu, activities, extra_bed, fire_camp, jeep_safari, total, customer_data: { name, email, address, phone } })=>{
+    try {
+        const { data } = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].post("https://portal.brundhavangarden.com/api/room-booking", {
+            room_categories_id,
+            check_in,
+            check_out,
+            adult_count,
+            child_count,
+            special_food_menu,
+            activities,
+            extra_bed,
+            fire_camp,
+            jeep_safari,
+            total,
+            customer_data: {
+                name,
+                email,
+                address,
+                phone
+            }
+        }, {
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }
+        });
+        if (data?.errors) {
+            return {
+                success: false,
+                message: "Sorry some thing went wrong",
+                data: data?.errors
+            };
+        }
+        return {
+            success: true,
+            message: "",
+            data: data
+        };
+    } catch (error) {
+        return {
+            success: false,
+            message: "Internal server error",
+            data: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$elements$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__MotionData__as__data$3e$__["data"]
+        };
+    }
+};
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(module, globalThis.$RefreshHelpers$);
 }
@@ -522,6 +569,25 @@ const RoomInfo = ({ id })=>{
         fire_camp: false,
         jeep_safari: false,
         total: 0
+    });
+    const [bookingDetailsWithoutToken, setbookingDetailsWithoutToken] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({
+        room_categories_id: Number(id),
+        check_in: '',
+        check_out: '',
+        adult_count: 0,
+        child_count: 0,
+        special_food_menu: 'South Indian',
+        activities: 'Cricket',
+        extra_bed: false,
+        fire_camp: false,
+        jeep_safari: false,
+        total: 0,
+        customer_data: {
+            name: '',
+            email: '',
+            address: '',
+            phone: ''
+        }
     });
     // Format datetime from "YYYY-MM-DDTHH:mm" to "YYYY-MM-DD HH:mm:ss"
     function formatDateTime(input) {
@@ -580,21 +646,48 @@ const RoomInfo = ({ id })=>{
     const checkoutRules = roomDetails?.check_out_rules;
     const checkOutruleList = checkoutRules?.match(/<li>(.*?)<\/li>/g)?.map((item)=>item.replace(/<\/?li>/g, ''));
     const onClick = async ()=>{
-        // Format check_in and check_out before sending
-        const formattedBookingDetails = {
-            ...bookingDetails,
-            check_in: formatDateTime(bookingDetails.check_in),
-            check_out: formatDateTime(bookingDetails.check_out),
-            total: totalPrice
-        };
-        console.log(formattedBookingDetails);
-        const addBooking = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$users$2e$actions$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["addBookingWithToken"])(formattedBookingDetails);
-        if (addBooking.success) {
-            alert("Booking Created");
-            console.log("There is an no error");
-        } else {
-            alert("Booking is Not Created");
-            console.log("There is an Error");
+        try {
+            if (userToken) {
+                // Logged-in flow
+                const formattedBookingDetails = {
+                    ...bookingDetails,
+                    check_in: formatDateTime(bookingDetails.check_in),
+                    check_out: formatDateTime(bookingDetails.check_out),
+                    total: totalPrice,
+                    token: userToken
+                };
+                console.log(formattedBookingDetails);
+                const addBooking = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$users$2e$actions$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["addBookingWithToken"])(formattedBookingDetails);
+                if (addBooking.success) {
+                    alert("✅ Booking Created Successfully!");
+                    console.log("Booking success with token");
+                } else {
+                    alert("❌ Booking Failed");
+                    console.error("Error in token-based booking");
+                }
+            } else {
+                // Guest flow
+                const formattedBookingDetailsWithoutToken = {
+                    ...bookingDetailsWithoutToken,
+                    check_in: formatDateTime(bookingDetails.check_in),
+                    check_out: formatDateTime(bookingDetails.check_out),
+                    child_count: bookingDetails.child_count,
+                    adult_count: bookingDetails.adult_count,
+                    total: totalPrice
+                };
+                console.log(formattedBookingDetailsWithoutToken);
+                const addBooking = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$users$2e$actions$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["addBookingWithoutToken"])(formattedBookingDetailsWithoutToken);
+                if (addBooking.success) {
+                    alert("✅ Booking Created Successfully!");
+                    console.log("Booking success without token");
+                } else {
+                    alert("❌ Booking Failed");
+                    console.error("Error in non-token-based booking");
+                }
+            }
+        } catch (error) {
+            console.error("Unexpected Error:", error);
+            alert("⚠️ Something went wrong. Please try again.");
         }
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -614,7 +707,7 @@ const RoomInfo = ({ id })=>{
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/Room/RoomInfo.tsx",
-                                lineNumber: 142,
+                                lineNumber: 210,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -622,13 +715,13 @@ const RoomInfo = ({ id })=>{
                                 children: roomDetails?.name
                             }, void 0, false, {
                                 fileName: "[project]/components/Room/RoomInfo.tsx",
-                                lineNumber: 143,
+                                lineNumber: 211,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                        lineNumber: 141,
+                        lineNumber: 209,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -643,7 +736,7 @@ const RoomInfo = ({ id })=>{
                                         height: 40
                                     }, void 0, false, {
                                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                                        lineNumber: 147,
+                                        lineNumber: 215,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -654,13 +747,13 @@ const RoomInfo = ({ id })=>{
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                                        lineNumber: 148,
+                                        lineNumber: 216,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/Room/RoomInfo.tsx",
-                                lineNumber: 146,
+                                lineNumber: 214,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -672,7 +765,7 @@ const RoomInfo = ({ id })=>{
                                         height: 40
                                     }, void 0, false, {
                                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                                        lineNumber: 151,
+                                        lineNumber: 219,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -683,13 +776,13 @@ const RoomInfo = ({ id })=>{
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                                        lineNumber: 152,
+                                        lineNumber: 220,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/Room/RoomInfo.tsx",
-                                lineNumber: 150,
+                                lineNumber: 218,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -701,7 +794,7 @@ const RoomInfo = ({ id })=>{
                                         height: 40
                                     }, void 0, false, {
                                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                                        lineNumber: 155,
+                                        lineNumber: 223,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -712,25 +805,25 @@ const RoomInfo = ({ id })=>{
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                                        lineNumber: 156,
+                                        lineNumber: 224,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/Room/RoomInfo.tsx",
-                                lineNumber: 154,
+                                lineNumber: 222,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                        lineNumber: 145,
+                        lineNumber: 213,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/Room/RoomInfo.tsx",
-                lineNumber: 140,
+                lineNumber: 208,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -747,7 +840,7 @@ const RoomInfo = ({ id })=>{
                                         children: "ABOUT STAY"
                                     }, void 0, false, {
                                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                                        lineNumber: 164,
+                                        lineNumber: 232,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -755,20 +848,20 @@ const RoomInfo = ({ id })=>{
                                         children: plainText
                                     }, void 0, false, {
                                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                                        lineNumber: 165,
+                                        lineNumber: 233,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/Room/RoomInfo.tsx",
-                                lineNumber: 163,
+                                lineNumber: 231,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "w-full mt-10 p-1 h-1 border-b border-[#D7D7D7]"
                             }, void 0, false, {
                                 fileName: "[project]/components/Room/RoomInfo.tsx",
-                                lineNumber: 169,
+                                lineNumber: 237,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -779,7 +872,7 @@ const RoomInfo = ({ id })=>{
                                         children: "services & AMENITIES"
                                     }, void 0, false, {
                                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                                        lineNumber: 171,
+                                        lineNumber: 239,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -794,39 +887,39 @@ const RoomInfo = ({ id })=>{
                                                         height: 20
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                                                        lineNumber: 175,
+                                                        lineNumber: 243,
                                                         columnNumber: 19
                                                     }, this),
                                                     service.service_name
                                                 ]
                                             }, index, true, {
                                                 fileName: "[project]/components/Room/RoomInfo.tsx",
-                                                lineNumber: 174,
+                                                lineNumber: 242,
                                                 columnNumber: 17
                                             }, this)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "p-7 rounded-lg bg-[#F6F5F5] flex gap-3 text-black text-md items-center justify-center",
                                             children: "No services availabel for this Room."
                                         }, void 0, false, {
                                             fileName: "[project]/components/Room/RoomInfo.tsx",
-                                            lineNumber: 184,
+                                            lineNumber: 252,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                                        lineNumber: 172,
+                                        lineNumber: 240,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/Room/RoomInfo.tsx",
-                                lineNumber: 170,
+                                lineNumber: 238,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "w-full mt-10 p-1 h-1 border-b border-[#D7D7D7]"
                             }, void 0, false, {
                                 fileName: "[project]/components/Room/RoomInfo.tsx",
-                                lineNumber: 190,
+                                lineNumber: 258,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -837,7 +930,7 @@ const RoomInfo = ({ id })=>{
                                         children: "ROOM RULES"
                                     }, void 0, false, {
                                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                                        lineNumber: 192,
+                                        lineNumber: 260,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -850,7 +943,7 @@ const RoomInfo = ({ id })=>{
                                                         children: "Check In"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                                                        lineNumber: 195,
+                                                        lineNumber: 263,
                                                         columnNumber: 17
                                                     }, this),
                                                     checkInruleList?.map((rule, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -858,20 +951,20 @@ const RoomInfo = ({ id })=>{
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$dot$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Dot$3e$__["Dot"], {}, void 0, false, {
                                                                     fileName: "[project]/components/Room/RoomInfo.tsx",
-                                                                    lineNumber: 197,
+                                                                    lineNumber: 265,
                                                                     columnNumber: 68
                                                                 }, this),
                                                                 rule
                                                             ]
                                                         }, i, true, {
                                                             fileName: "[project]/components/Room/RoomInfo.tsx",
-                                                            lineNumber: 197,
+                                                            lineNumber: 265,
                                                             columnNumber: 19
                                                         }, this))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/Room/RoomInfo.tsx",
-                                                lineNumber: 194,
+                                                lineNumber: 262,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -881,7 +974,7 @@ const RoomInfo = ({ id })=>{
                                                         children: "Check Out"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                                                        lineNumber: 201,
+                                                        lineNumber: 269,
                                                         columnNumber: 17
                                                     }, this),
                                                     checkOutruleList?.map((rule, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -889,26 +982,26 @@ const RoomInfo = ({ id })=>{
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$dot$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Dot$3e$__["Dot"], {}, void 0, false, {
                                                                     fileName: "[project]/components/Room/RoomInfo.tsx",
-                                                                    lineNumber: 203,
+                                                                    lineNumber: 271,
                                                                     columnNumber: 68
                                                                 }, this),
                                                                 rule
                                                             ]
                                                         }, i, true, {
                                                             fileName: "[project]/components/Room/RoomInfo.tsx",
-                                                            lineNumber: 203,
+                                                            lineNumber: 271,
                                                             columnNumber: 19
                                                         }, this))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/Room/RoomInfo.tsx",
-                                                lineNumber: 200,
+                                                lineNumber: 268,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                                        lineNumber: 193,
+                                        lineNumber: 261,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -920,24 +1013,24 @@ const RoomInfo = ({ id })=>{
                                             }
                                         }, void 0, false, {
                                             fileName: "[project]/components/Room/RoomInfo.tsx",
-                                            lineNumber: 208,
+                                            lineNumber: 276,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                                        lineNumber: 207,
+                                        lineNumber: 275,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/Room/RoomInfo.tsx",
-                                lineNumber: 191,
+                                lineNumber: 259,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                        lineNumber: 162,
+                        lineNumber: 230,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -954,20 +1047,173 @@ const RoomInfo = ({ id })=>{
                                             children: roomDetails?.price
                                         }, void 0, false, {
                                             fileName: "[project]/components/Room/RoomInfo.tsx",
-                                            lineNumber: 220,
+                                            lineNumber: 288,
                                             columnNumber: 27
                                         }, this),
                                         "/PER NIGHT"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/Room/RoomInfo.tsx",
-                                    lineNumber: 219,
+                                    lineNumber: 287,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/Room/RoomInfo.tsx",
-                                lineNumber: 218,
+                                lineNumber: 286,
                                 columnNumber: 11
+                            }, this),
+                            !userToken && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "w-full h-fit rounded-lg p-6 bg-[#011D38] pb-10",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+                                        className: "font-mono text-2xl text-white",
+                                        children: "ENTER YOUR DETAILS"
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/Room/RoomInfo.tsx",
+                                        lineNumber: 293,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex flex-col gap-2 mt-4 border-b border-[#D0D0D0] mb-2",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                                className: "text-[#C5C5C5] text-sm",
+                                                children: "Name"
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/Room/RoomInfo.tsx",
+                                                lineNumber: 297,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                type: "text",
+                                                value: bookingDetailsWithoutToken.customer_data.name,
+                                                onChange: (e)=>setbookingDetailsWithoutToken((prev)=>({
+                                                            ...prev,
+                                                            customer_data: {
+                                                                ...prev.customer_data,
+                                                                name: e.target.value
+                                                            }
+                                                        })),
+                                                placeholder: "Enter your Name",
+                                                className: "text-white mb-2 bg-transparent outline-none"
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/Room/RoomInfo.tsx",
+                                                lineNumber: 298,
+                                                columnNumber: 17
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/components/Room/RoomInfo.tsx",
+                                        lineNumber: 296,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex flex-col gap-2 mt-4 border-b border-[#D0D0D0] mb-2",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                                className: "text-[#C5C5C5] text-sm",
+                                                children: "Email"
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/Room/RoomInfo.tsx",
+                                                lineNumber: 317,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                type: "email",
+                                                value: bookingDetailsWithoutToken.customer_data.email,
+                                                onChange: (e)=>setbookingDetailsWithoutToken((prev)=>({
+                                                            ...prev,
+                                                            customer_data: {
+                                                                ...prev.customer_data,
+                                                                email: e.target.value
+                                                            }
+                                                        })),
+                                                placeholder: "Enter your E-Mail",
+                                                className: "text-white mb-2 bg-transparent outline-none"
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/Room/RoomInfo.tsx",
+                                                lineNumber: 318,
+                                                columnNumber: 17
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/components/Room/RoomInfo.tsx",
+                                        lineNumber: 316,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex flex-col gap-2 mt-4 border-b border-[#D0D0D0] mb-2",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                                className: "text-[#C5C5C5] text-sm",
+                                                children: "Address"
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/Room/RoomInfo.tsx",
+                                                lineNumber: 337,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                type: "text",
+                                                value: bookingDetailsWithoutToken.customer_data.address,
+                                                onChange: (e)=>setbookingDetailsWithoutToken((prev)=>({
+                                                            ...prev,
+                                                            customer_data: {
+                                                                ...prev.customer_data,
+                                                                address: e.target.value
+                                                            }
+                                                        })),
+                                                placeholder: "Enter your Address",
+                                                className: "text-white mb-2 bg-transparent outline-none"
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/Room/RoomInfo.tsx",
+                                                lineNumber: 338,
+                                                columnNumber: 17
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/components/Room/RoomInfo.tsx",
+                                        lineNumber: 336,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex flex-col gap-2 mt-4 border-b border-[#D0D0D0] mb-2",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                                className: "text-[#C5C5C5] text-sm",
+                                                children: "Phone"
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/Room/RoomInfo.tsx",
+                                                lineNumber: 357,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                type: "text",
+                                                value: bookingDetailsWithoutToken.customer_data.phone,
+                                                onChange: (e)=>setbookingDetailsWithoutToken((prev)=>({
+                                                            ...prev,
+                                                            customer_data: {
+                                                                ...prev.customer_data,
+                                                                phone: e.target.value
+                                                            }
+                                                        })),
+                                                placeholder: "Enter your Phone Number",
+                                                className: "text-white mb-2 bg-transparent outline-none"
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/Room/RoomInfo.tsx",
+                                                lineNumber: 358,
+                                                columnNumber: 17
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/components/Room/RoomInfo.tsx",
+                                        lineNumber: 356,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/components/Room/RoomInfo.tsx",
+                                lineNumber: 292,
+                                columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "w-full h-fit rounded-lg p-6 bg-[#011D38] pb-10",
@@ -977,7 +1223,7 @@ const RoomInfo = ({ id })=>{
                                         children: "BOOK THIS ROOM"
                                     }, void 0, false, {
                                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                                        lineNumber: 226,
+                                        lineNumber: 379,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -988,7 +1234,7 @@ const RoomInfo = ({ id })=>{
                                                 children: "CHECK IN"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/Room/RoomInfo.tsx",
-                                                lineNumber: 230,
+                                                lineNumber: 383,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1001,13 +1247,13 @@ const RoomInfo = ({ id })=>{
                                                 className: "text-white mb-2 bg-transparent outline-none"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/Room/RoomInfo.tsx",
-                                                lineNumber: 231,
+                                                lineNumber: 384,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                                        lineNumber: 229,
+                                        lineNumber: 382,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1018,7 +1264,7 @@ const RoomInfo = ({ id })=>{
                                                 children: "CHECK OUT"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/Room/RoomInfo.tsx",
-                                                lineNumber: 243,
+                                                lineNumber: 396,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1031,13 +1277,13 @@ const RoomInfo = ({ id })=>{
                                                 className: "text-white mb-2 bg-transparent outline-none"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/Room/RoomInfo.tsx",
-                                                lineNumber: 244,
+                                                lineNumber: 397,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                                        lineNumber: 242,
+                                        lineNumber: 395,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1048,7 +1294,7 @@ const RoomInfo = ({ id })=>{
                                                 children: "ADULTS COUNT (18+)"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/Room/RoomInfo.tsx",
-                                                lineNumber: 256,
+                                                lineNumber: 409,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1062,13 +1308,13 @@ const RoomInfo = ({ id })=>{
                                                 className: "text-white mb-2 bg-transparent outline-none"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/Room/RoomInfo.tsx",
-                                                lineNumber: 257,
+                                                lineNumber: 410,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                                        lineNumber: 255,
+                                        lineNumber: 408,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1079,7 +1325,7 @@ const RoomInfo = ({ id })=>{
                                                 children: "CHILDREN COUNT (0-17)"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/Room/RoomInfo.tsx",
-                                                lineNumber: 270,
+                                                lineNumber: 423,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1093,19 +1339,19 @@ const RoomInfo = ({ id })=>{
                                                 className: "text-white mb-2 bg-transparent outline-none"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/Room/RoomInfo.tsx",
-                                                lineNumber: 271,
+                                                lineNumber: 424,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                                        lineNumber: 269,
+                                        lineNumber: 422,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/Room/RoomInfo.tsx",
-                                lineNumber: 225,
+                                lineNumber: 378,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1116,7 +1362,7 @@ const RoomInfo = ({ id })=>{
                                         children: "ADD EXTRA"
                                     }, void 0, false, {
                                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                                        lineNumber: 285,
+                                        lineNumber: 438,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1127,7 +1373,7 @@ const RoomInfo = ({ id })=>{
                                                 children: "SPECIAL FOOD MENU"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/Room/RoomInfo.tsx",
-                                                lineNumber: 289,
+                                                lineNumber: 442,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -1144,7 +1390,7 @@ const RoomInfo = ({ id })=>{
                                                         children: "NORTH INDIAN"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                                                        lineNumber: 297,
+                                                        lineNumber: 450,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -1153,19 +1399,19 @@ const RoomInfo = ({ id })=>{
                                                         children: "SOUTH INDIAN"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                                                        lineNumber: 298,
+                                                        lineNumber: 451,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/Room/RoomInfo.tsx",
-                                                lineNumber: 290,
+                                                lineNumber: 443,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                                        lineNumber: 288,
+                                        lineNumber: 441,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1176,7 +1422,7 @@ const RoomInfo = ({ id })=>{
                                                 children: "ACTIVITIES & GAMES"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/Room/RoomInfo.tsx",
-                                                lineNumber: 304,
+                                                lineNumber: 457,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -1193,7 +1439,7 @@ const RoomInfo = ({ id })=>{
                                                         children: "BASKET BALL"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                                                        lineNumber: 312,
+                                                        lineNumber: 465,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -1202,19 +1448,19 @@ const RoomInfo = ({ id })=>{
                                                         children: "CRICKET"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                                                        lineNumber: 313,
+                                                        lineNumber: 466,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/Room/RoomInfo.tsx",
-                                                lineNumber: 305,
+                                                lineNumber: 458,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                                        lineNumber: 303,
+                                        lineNumber: 456,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1248,7 +1494,7 @@ const RoomInfo = ({ id })=>{
                                                                 className: "w-4 h-4 mt-1"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/Room/RoomInfo.tsx",
-                                                                lineNumber: 326,
+                                                                lineNumber: 479,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -1256,13 +1502,13 @@ const RoomInfo = ({ id })=>{
                                                                 children: item.label
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/Room/RoomInfo.tsx",
-                                                                lineNumber: 337,
+                                                                lineNumber: 490,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                                                        lineNumber: 325,
+                                                        lineNumber: 478,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1270,25 +1516,25 @@ const RoomInfo = ({ id })=>{
                                                         children: "₹ 299"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                                                        lineNumber: 339,
+                                                        lineNumber: 492,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, item.key, true, {
                                                 fileName: "[project]/components/Room/RoomInfo.tsx",
-                                                lineNumber: 324,
+                                                lineNumber: 477,
                                                 columnNumber: 17
                                             }, this))
                                     }, void 0, false, {
                                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                                        lineNumber: 318,
+                                        lineNumber: 471,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "w-full p-1 h-1 border-b border-[#D0D0D0] mt-3"
                                     }, void 0, false, {
                                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                                        lineNumber: 345,
+                                        lineNumber: 498,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1299,7 +1545,7 @@ const RoomInfo = ({ id })=>{
                                                 children: "TOTAL"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/Room/RoomInfo.tsx",
-                                                lineNumber: 347,
+                                                lineNumber: 500,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1310,13 +1556,13 @@ const RoomInfo = ({ id })=>{
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/Room/RoomInfo.tsx",
-                                                lineNumber: 348,
+                                                lineNumber: 501,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                                        lineNumber: 346,
+                                        lineNumber: 499,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1325,35 +1571,35 @@ const RoomInfo = ({ id })=>{
                                         children: "BOOK NOW"
                                     }, void 0, false, {
                                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                                        lineNumber: 352,
+                                        lineNumber: 505,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/Room/RoomInfo.tsx",
-                                lineNumber: 284,
+                                lineNumber: 437,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/Room/RoomInfo.tsx",
-                        lineNumber: 216,
+                        lineNumber: 284,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/Room/RoomInfo.tsx",
-                lineNumber: 161,
+                lineNumber: 229,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/Room/RoomInfo.tsx",
-        lineNumber: 139,
+        lineNumber: 207,
         columnNumber: 5
     }, this);
 };
-_s(RoomInfo, "fzGFEFTkEcPLyXe9+lJczxNe3nM=");
+_s(RoomInfo, "7tfwaq6L9oW2Eij3bCSB69yi8Xo=");
 _c = RoomInfo;
 const __TURBOPACK__default__export__ = RoomInfo;
 var _c;

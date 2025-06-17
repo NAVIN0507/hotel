@@ -296,3 +296,68 @@ total
     }
   }
 }
+export const addBookingWithoutToken = async({
+  room_categories_id,
+  check_in,
+  check_out,
+  adult_count,
+  child_count,
+  special_food_menu,
+  activities,
+  extra_bed,
+  fire_camp,
+  jeep_safari,
+  total,
+  customer_data:{
+    name,
+    email,
+    address, 
+    phone
+  }
+  }:BookingDetailsWithoutToken)=>{
+    try {
+      const {data} = await axios.post("https://portal.brundhavangarden.com/api/room-booking" , {
+        
+        room_categories_id,
+        check_in,
+        check_out,
+        adult_count,
+        child_count,
+        special_food_menu,
+        activities,
+        extra_bed,
+        fire_camp,
+        jeep_safari,
+        total,
+        customer_data:{
+          name,
+          email,
+          address,
+          phone
+        }
+    } , {
+      headers:{
+        "Accept":"application/json",
+        "Content-Type":"application/json"
+      }
+    })
+      if(data?.errors){
+        return{
+          success:false,
+          message:"Sorry some thing went wrong",
+          data:data?.errors
+        }
+      }
+      return {
+        success:true,
+        message:"",
+        data:data
+      }
+    } catch (error) {
+       return{
+        success:false,
+        message:"Internal server error",
+        data:data
+      }
+    }
+  }

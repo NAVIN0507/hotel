@@ -59,7 +59,7 @@ const Hero = () => {
         </p>
         <h1 className="text-3xl sm:text-5xl md:text-6xl font-semibold font-mono uppercase leading-tight">
           Stay Comfort<br />and Feel Comfort
-        </h1>
+        </h1> 
 
         {/* Buttons */}
         <div className="mt-8 flex flex-col sm:flex-row gap-4 sm:gap-0 sm:items-center">
