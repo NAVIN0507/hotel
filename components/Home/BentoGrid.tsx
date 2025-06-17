@@ -122,7 +122,7 @@ const BentoGrid = () => {
       />
         </div>
         </div>
-         <div className='w-[300px] md:w-7/12 h-full p-10  text-white  rounded-md bg-[#011D38]'>
+         <div className='w-[400px] md:w-7/12 h-full p-10  text-white  rounded-md bg-[#011D38]'>
           <div className='flex flex-col'>
         <p className='text-[10px]'>ACTIVITIES & GAMES</p>
         <h1 className='uppercase font-mono text-4xl leading-relaxed -mt-3'>Unwind to Nature</h1>
