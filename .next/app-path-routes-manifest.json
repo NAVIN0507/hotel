@@ -2,9 +2,9 @@
   "/_not-found/page": "/_not-found",
   "/favicon.ico/route": "/favicon.ico",
   "/(auth)/reset-password/page": "/reset-password",
-  "/(auth)/sign-in/page": "/sign-in",
   "/(auth)/sign-up/page": "/sign-up",
   "/about/page": "/about",
+  "/(auth)/sign-in/page": "/sign-in",
   "/page": "/",
   "/allrooms/page": "/allrooms",
   "/room/[id]/page": "/room/[id]"
