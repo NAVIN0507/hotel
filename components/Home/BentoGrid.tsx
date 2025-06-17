@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { InfiniteMovingPills } from '../ui/infinite-moving-cards'
 import featureSectionImg from '@/public/assets/images/feature_section.jpg'; // adjust if path is different
 import MobileBentoGrid from "./MobileBentoGrid";
+import Link from "next/link";
 
 const activityItems = [
   { label: "JEEP SAFARI" },
@@ -51,9 +52,11 @@ const BentoGrid = () => {
         <h1 className='text-white font-mono text-3xl'>WOOD HOUSE</h1>
         <p className='text-[#C1C1C1] text-sm mt-4'>Spoil yourself with the assortment in cuisine and taste. Explore & Investigate the wide range of food you'd be honored with no place else.
     </p>
+    <Link href={"/allrooms"}>
     <button className="bg-[#b79464] hover:bg-[#a28252] text-white px-6 py-3 mt-8 -ml-2 rounded-full text-sm tracking-widest uppercase flex items-center gap-2">
                         Know More →
      </button>
+     </Link>
       </div>
     </div>
     </div>
@@ -63,9 +66,11 @@ const BentoGrid = () => {
         <h1 className='text-white font-mono text-3xl'>WOOD HOUSE</h1>
         <p className='text-[#C1C1C1] text-sm mt-4'>Spoil yourself with the assortment in cuisine and taste. Explore & Investigate the wide range of food you'd be honored with no place else.
     </p>
+    <Link href={"/allrooms"}>
     <button className="bg-[#b79464] hover:bg-[#a28252] text-white px-6 py-3 mt-8 -ml-2 rounded-full text-sm tracking-widest uppercase flex items-center gap-2">
                         Know More →
      </button>
+     </Link>
       </div>
     </div>
         <div>
@@ -94,9 +99,11 @@ const BentoGrid = () => {
         <h1 className='text-white font-mono text-3xl'>WOOD HOUSE</h1>
         <p className='text-[#C1C1C1] text-sm mt-4'>Spoil yourself with the assortment in cuisine and taste. Explore & Investigate the wide range of food you'd be honored with no place else.
     </p>
+    <Link href={"/allrooms"}>
     <button className="bg-[#b79464] hover:bg-[#a28252] text-white px-6 py-3 mt-8 -ml-2 rounded-full text-sm tracking-widest uppercase flex items-center gap-2">
                         Know More →
      </button>
+     </Link>
       </div>
     </div>
     </div>

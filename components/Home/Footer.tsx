@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from 'next/image'
+import Link from "next/link";
 
 const Footer = () => {
     const [width, setWidth] = useState<number>(0);
@@ -55,8 +56,9 @@ const Footer = () => {
         </div>
     </div>
     <div className='flex items-center justify-between mt-24'>
-        <h1>Copyright © 2025 BRINDHAVAN | All Rights Reserved</h1>
-        <h1>Made by solvix softworks</h1>
+
+        <h1>Copyright © 2025 <Link href={"/"}> BRUNDHAVAN </Link> | All Rights Reserved</h1>
+      <h1>Made by <Link href={"https://solvixsoftworks.com/"}>SolvixSoftworks</Link>  </h1>
     </div>
    </footer>
    </>)}

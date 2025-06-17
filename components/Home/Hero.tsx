@@ -36,18 +36,18 @@ const Hero = () => {
             <nav className="absolute top-0 left-0 w-full z-20 flex justify-between items-center max-sm:text-center px-10 py-6 text-white">
 
                 <ul className="hidden md:flex gap-30 uppercase text-sm tracking-wide ">
-                    <li><a href="#" className="hover:text-yellow-300 hover:underline">Home</a></li>
-                    <li><a href="#" className="hover:text-yellow-300 hover:underline">About Us</a></li>
-                    <li><a href="#" className="hover:text-yellow-300 hover:underline">Activities</a></li>
+                    <li><a href="/" className="hover:text-yellow-300 hover:underline">Home</a></li>
+                    <li><a href="/about" className="hover:text-yellow-300 hover:underline">About Us</a></li>
+                    <li><a href="https://portal.brundhavangarden.com" className="hover:text-yellow-300 hover:underline">Portal</a></li>
                 </ul>
                 <div className="text-2xl font-bold font-mono text-yellow-400 tracking-widest">BRUNDHAVAN</div>
                 <ul className='hidden md:flex gap-30 uppercase text-sm tracking-wide font-sans'>
-                    <li><a href="#" className="hover:text-yellow-300 hover:underline font-sans">Rooms</a></li>
-                    <li><a href="#" className="hover:text-yellow-300 hover:underline font-sans">Contact</a></li>
+                    <li><a href="/allrooms" className="hover:text-yellow-300 hover:underline font-sans">Rooms</a></li>
+                    <li><a href="/" className="hover:text-yellow-300 hover:underline font-sans">Contact</a></li>
                     <li
             className="cursor-pointer border border-white px-5 py-2 rounded-full bg-white/10 hover:bg-white hover:text-black transition-all"
             onClick={() => {
-              const destination = user ? "/my-profile" : "/sign-in";
+              const destination = user ? "/" : "/sign-in";
               router.push(destination);
             }}
           >
@@ -66,12 +66,16 @@ const Hero = () => {
 
                 {/* Buttons */}
                 <div className="mt-8 flex ">
-                    <button className="px-8 pr-20 cursor-pointer border border-white rounded-full inset-0 bg-white/20 text-white hover:bg-white hover:text-black transition">
+                  <Link href={"/allrooms"} className="px-8 pr-20 cursor-pointer border border-white rounded-full inset-0 bg-white/20 text-white hover:bg-white hover:text-black transition flex items-center justify-center">
+                    <button >
                         Explore
                     </button>
-                    <button className="px-8 py-3 -ml-10 flex gap-2 rounded-full bg-yellow-400 text-white cursor-pointer  hover:bg-yellow-300 transition">
-                        Check Rooms <ArrowRightIcon className='w-7' />
-                    </button>
+                    </Link>
+                    <Link href="/allrooms">
+            <button className="px-6 py-2 sm:px-8 sm:py-3 flex items-center gap-2 -ml-0 sm:-ml-10 rounded-full bg-yellow-400 text-white hover:bg-yellow-300 transition text-sm sm:text-base">
+              Check Rooms <ArrowRightIcon className="w-5 sm:w-7" />
+            </button>
+          </Link>
                 </div>
             </div>
         </section>

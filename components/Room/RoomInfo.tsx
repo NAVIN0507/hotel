@@ -1,6 +1,6 @@
 "use client"
 import React, { useEffect, useState, useMemo } from 'react'
-import { BedDouble, Dot, InspectionPanel, UsersRound } from 'lucide-react';
+import { BedDouble, Dot, InspectionPanel, UsersRound, Calendar, Clock } from 'lucide-react';
 import { addBookingWithoutToken, addBookingWithToken, fetchAllRoomByID } from '@/lib/actions/users.actions';
 import Image from 'next/image';
 
@@ -55,6 +55,7 @@ interface BookingDetailsWithoutToken{
     address:string;
   }
 }
+
 const RoomInfo = ({ id }: { id: string }) => {
   const [roomDetails, setroomDetails] = useState<RoomProps | null>(null);
   const [userToken, setuserToken] = useState("")
@@ -201,7 +202,21 @@ const RoomInfo = ({ id }: { id: string }) => {
       alert("⚠️ Something went wrong. Please try again.");
     }
   };
-  
+
+  // Function to format date for display
+  const formatDateForDisplay = (dateString: string) => {
+    if (!dateString) return "";
+    const date = new Date(dateString);
+    const options: Intl.DateTimeFormatOptions = {
+      weekday: 'short',
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    };
+    return date.toLocaleDateString('en-US', options);
+  };
 
   return (
     <section className='flex flex-col gap-4 pl-10 pr-10 mt-10'>
@@ -378,34 +393,60 @@ const RoomInfo = ({ id }: { id: string }) => {
           <div className="w-full h-fit rounded-lg p-6 bg-[#011D38] pb-10">
             <h1 className="font-mono text-2xl text-white">BOOK THIS ROOM</h1>
 
-            {/* Check In */}
-            <div className="flex flex-col gap-2 mt-4 border-b border-[#D0D0D0] mb-2">
-              <label className="text-[#C5C5C5] text-sm">CHECK IN</label>
-              <input
-                type="datetime-local"
-                value={bookingDetails.check_in}
-                onChange={(e) =>
-                  setBookingDetails({ ...bookingDetails, check_in: e.target.value })
-                }
-                className="text-white mb-2 bg-transparent outline-none"
-              />
+            {/* Check In - Elegant Date Field */}
+            <div className="mt-6">
+              <label className="text-[#C5C5C5] text-sm font-medium mb-3 block">CHECK IN</label>
+              <div className="relative group">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
+                  <Calendar className="h-5 w-5 text-[#AA9061] group-hover:text-[#C5C5C5] transition-colors duration-200" />
+                </div>
+                <input
+                  type="datetime-local"
+                  value={bookingDetails.check_in}
+                  onChange={(e) =>
+                    setBookingDetails({ ...bookingDetails, check_in: e.target.value })
+                  }
+                  className="w-full pl-10 pr-4 py-3 bg-gradient-to-r from-[#1a2f4a] to-[#2a3f5a] border border-[#3a4f6a] rounded-xl text-white placeholder-[#8a9aaa] focus:outline-none focus:ring-2 focus:ring-[#AA9061] focus:border-transparent transition-all duration-200 hover:border-[#AA9061] shadow-inner"
+                  style={{
+                    colorScheme: 'dark',
+                  }}
+                />
+                {bookingDetails.check_in && (
+                  <div className="mt-2 pl-3 text-xs text-[#AA9061] font-medium">
+                    {formatDateForDisplay(bookingDetails.check_in)}
+                  </div>
+                )}
+              </div>
             </div>
 
-            {/* Check Out */}
-            <div className="flex flex-col gap-2 mt-4 border-b border-[#D0D0D0] mb-2">
-              <label className="text-[#C5C5C5] text-sm">CHECK OUT</label>
-              <input
-                type="datetime-local"
-                value={bookingDetails.check_out}
-                onChange={(e) =>
-                  setBookingDetails({ ...bookingDetails, check_out: e.target.value })
-                }
-                className="text-white mb-2 bg-transparent outline-none"
-              />
+            {/* Check Out - Elegant Date Field */}
+            <div className="mt-6">
+              <label className="text-[#C5C5C5] text-sm font-medium mb-3 block">CHECK OUT</label>
+              <div className="relative group">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
+                  <Calendar className="h-5 w-5 text-[#AA9061] group-hover:text-[#C5C5C5] transition-colors duration-200" />
+                </div>
+                <input
+                  type="datetime-local"
+                  value={bookingDetails.check_out}
+                  onChange={(e) =>
+                    setBookingDetails({ ...bookingDetails, check_out: e.target.value })
+                  }
+                  className="w-full pl-10 pr-4 py-3 bg-gradient-to-r from-[#1a2f4a] to-[#2a3f5a] border border-[#3a4f6a] rounded-xl text-white placeholder-[#8a9aaa] focus:outline-none focus:ring-2 focus:ring-[#AA9061] focus:border-transparent transition-all duration-200 hover:border-[#AA9061] shadow-inner"
+                  style={{
+                    colorScheme: 'dark',
+                  }}
+                />
+                {bookingDetails.check_out && (
+                  <div className="mt-2 pl-3 text-xs text-[#AA9061] font-medium">
+                    {formatDateForDisplay(bookingDetails.check_out)}
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Adults Count */}
-            <div className="flex flex-col gap-2 mt-4 border-b border-[#D0D0D0] mb-2">
+            <div className="flex flex-col gap-2 mt-6 border-b border-[#D0D0D0] mb-2">
               <label className="text-[#C5C5C5]">ADULTS COUNT (18+)</label>
               <input
                 type="number"
