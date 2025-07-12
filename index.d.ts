@@ -42,7 +42,8 @@ type RoomCategoriesProps = {
     square_ft:number;
     capability:string;
     beds:string;
-    c:boolean;
+    c?:boolean;
+    index:number;
 }
 type Service = {
     service_name: string;

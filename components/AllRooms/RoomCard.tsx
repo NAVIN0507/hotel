@@ -9,7 +9,7 @@ const RoomCard = ({id,
     price,
     square_ft,
     capability,
-    beds , c}:RoomCategoriesProps) => {
+    beds , c , index}:RoomCategoriesProps) => {
   return (
     <>
     {c ? (
@@ -17,7 +17,7 @@ const RoomCard = ({id,
     <Link href={`/room/${id}`}>
       <div className='relative'>
           <Image
-          src={pictures[0]}
+          src={pictures[index]}
           alt='feature_section'
           width={500}
           height={500}
@@ -80,7 +80,7 @@ const RoomCard = ({id,
        <div className='relative'>
         <Link href={`room/${id}`}>
           <Image
-          src={pictures[1]}
+          src={pictures[index]}
           alt='feature_section'
           width={500}
           height={500}

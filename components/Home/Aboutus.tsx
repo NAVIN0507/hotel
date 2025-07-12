@@ -16,7 +16,7 @@ const AboutUsSection = () => {
     return (
         <>
         {width < 768 ? (<>
-        <section className='bg-[#011D38] h-fit w-full p-7 rounded-md '>
+        <section className='bg-[#011D38] h-fit w-full p-10 rounded-md '>
         <div className='flex items-center justify-between gap-8'>
             <h1 className='font-mono  text-2xl text-white uppercase'>get to know about us</h1>
             <div className='w-6 h-6   p-5 rounded-full border border-gray-50 text-center '>

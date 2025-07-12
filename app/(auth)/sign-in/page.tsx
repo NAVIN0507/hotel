@@ -102,7 +102,7 @@ className='h-full w-full rounded-xl  object-fill'
 
 />
 </div>
-<div className='w-full max-sm:mt-20 max-sm:- md:w-1/2 flex items-center justify-center'>
+<div className='w-full max-sm:mt-30 max-sm:p-10  md:w-1/2 flex items-center justify-center'>
 <div className='w-full md:w-9/12 p-8 rounded-lg border border-gray-300'>
 <h1 className='font-mono text-[#b79464] text-5xl text-center uppercase'>Brindhavan</h1>
 <div className="mt-10">
