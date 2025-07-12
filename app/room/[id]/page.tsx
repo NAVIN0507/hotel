@@ -7,6 +7,7 @@ import { fetchAllRoomByID } from '@/lib/actions/users.actions'
 import React from 'react'
 
 const page = async({params}:{params:{id:string}}) => {
+  
   const roomDetails = await fetchAllRoomByID(params.id);
   return (
     <>
@@ -30,3 +31,4 @@ export function generateStaticParams() {
     { id: '3' },
   ];
 }
+

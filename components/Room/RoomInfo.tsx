@@ -4,22 +4,6 @@ import { BedDouble, Dot, InspectionPanel, UsersRound, Calendar, Clock } from 'lu
 import { addBookingWithoutToken, addBookingWithToken, fetchAllRoomByID } from '@/lib/actions/users.actions';
 import Image from 'next/image';
 
-// interface RoomProps {
-//   id: string;
-//   name: string;
-//   square_ft: number;
-//   capability: number;
-//   beds: number;
-//   price: number; // base price per night
-//   about_stay: string;
-//   check_in_rules: string;
-//   check_out_rules: string;
-//   room_rules: string;
-//   services: {
-//     icon_pic: string;
-//     service_name: string;
-//   }[];
-// }
 
 interface BookingDetails {
   token: string;
@@ -217,8 +201,18 @@ const RoomInfo = ({ id }: { id: string }) => {
     };
     return date.toLocaleDateString('en-US', options);
   };
+const [width, setWidth] = useState<number>(0);
 
+  useEffect(() => {
+    const updateWidth = () => setWidth(window.innerWidth);
+    updateWidth(); // Get initial width
+
+    window.addEventListener("resize", updateWidth); // Listen for resize
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
   return (
+    <>
+    {width < 768 ? (<></>) : ( <>
     <section className='flex flex-col gap-4 pl-10 pr-10 mt-10'>
       <div className='flex gap-1 items-center justify-between'>
         <div className='flex flex-col gap-1'>
@@ -550,6 +544,8 @@ const RoomInfo = ({ id }: { id: string }) => {
         </div>
       </div>
     </section>
+    </>)}
+  </>
   )
 }
 
