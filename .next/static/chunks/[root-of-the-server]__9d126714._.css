@@ -2777,6 +2777,25 @@
     background-color: var(--color-accent);
   }
 
+  @media (width < 48rem) {
+    .max-md\:absolute {
+      position: absolute;
+    }
+  }
+
+  @media (width < 48rem) {
+    .max-md\:left-1\/2 {
+      left: 50%;
+    }
+  }
+
+  @media (width < 48rem) {
+    .max-md\:-translate-x-1\/2 {
+      --tw-translate-x: calc(calc(1 / 2 * 100%) * -1);
+      translate: var(--tw-translate-x) var(--tw-translate-y);
+    }
+  }
+
   @media (width < 40rem) {
     .max-sm\:mx-auto {
       margin-inline: auto;
@@ -3035,6 +3054,12 @@
     .sm\:text-xl {
       font-size: var(--text-xl);
       line-height: var(--tw-leading, var(--text-xl--line-height));
+    }
+  }
+
+  @media (width >= 48rem) {
+    .md\:static {
+      position: static;
     }
   }
 

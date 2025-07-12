@@ -570,12 +570,12 @@ const NavBar = ()=>{
         router.push(path);
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("header", {
-        className: "w-full h-full bg-[#00000040] p-4 rounded-full",
+        className: "w-full h-full bg-[#00000040] p-4 rounded-full relative max-sm:p-10",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
-            className: "flex items-center justify-between w-full h-full pl-2",
+            className: "flex items-center justify-between w-full h-full pl-2  relative",
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
-                    className: "hidden md:flex gap-20 uppercase text-lg tracking-wide ",
+                    className: "hidden md:flex gap-20 uppercase text-lg tracking-wide",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -584,13 +584,13 @@ const NavBar = ()=>{
                                 children: "Home"
                             }, void 0, false, {
                                 fileName: "[project]/components/Room/NavBar.tsx",
-                                lineNumber: 34,
-                                columnNumber: 25
+                                lineNumber: 36,
+                                columnNumber: 11
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/Room/NavBar.tsx",
-                            lineNumber: 34,
-                            columnNumber: 21
+                            lineNumber: 36,
+                            columnNumber: 7
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -599,13 +599,13 @@ const NavBar = ()=>{
                                 children: "About Us"
                             }, void 0, false, {
                                 fileName: "[project]/components/Room/NavBar.tsx",
-                                lineNumber: 35,
-                                columnNumber: 25
+                                lineNumber: 37,
+                                columnNumber: 11
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/Room/NavBar.tsx",
-                            lineNumber: 35,
-                            columnNumber: 21
+                            lineNumber: 37,
+                            columnNumber: 7
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -614,27 +614,27 @@ const NavBar = ()=>{
                                 children: "Portal"
                             }, void 0, false, {
                                 fileName: "[project]/components/Room/NavBar.tsx",
-                                lineNumber: 36,
-                                columnNumber: 25
+                                lineNumber: 38,
+                                columnNumber: 11
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/Room/NavBar.tsx",
-                            lineNumber: 36,
-                            columnNumber: 21
+                            lineNumber: 38,
+                            columnNumber: 7
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/Room/NavBar.tsx",
-                    lineNumber: 33,
-                    columnNumber: 11
+                    lineNumber: 35,
+                    columnNumber: 5
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "text-2xl font-bold font-mono text-yellow-400 tracking-widest",
+                    className: "text-2xl font-bold font-mono text-yellow-400 tracking-widest    md:static max-md:absolute max-md:left-1/2 max-md:-translate-x-1/2",
                     children: "BRUNDHAVAN"
                 }, void 0, false, {
                     fileName: "[project]/components/Room/NavBar.tsx",
-                    lineNumber: 38,
-                    columnNumber: 17
+                    lineNumber: 42,
+                    columnNumber: 5
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
                     className: "hidden md:flex gap-30 uppercase text-lg tracking-wide font-sans",
@@ -646,13 +646,13 @@ const NavBar = ()=>{
                                 children: "Rooms"
                             }, void 0, false, {
                                 fileName: "[project]/components/Room/NavBar.tsx",
-                                lineNumber: 40,
-                                columnNumber: 25
+                                lineNumber: 49,
+                                columnNumber: 11
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/Room/NavBar.tsx",
-                            lineNumber: 40,
-                            columnNumber: 21
+                            lineNumber: 49,
+                            columnNumber: 7
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -661,48 +661,45 @@ const NavBar = ()=>{
                                 children: "Contact"
                             }, void 0, false, {
                                 fileName: "[project]/components/Room/NavBar.tsx",
-                                lineNumber: 41,
-                                columnNumber: 25
+                                lineNumber: 50,
+                                columnNumber: 11
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/Room/NavBar.tsx",
-                            lineNumber: 41,
-                            columnNumber: 21
+                            lineNumber: 50,
+                            columnNumber: 7
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                            children: [
-                                "        ",
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
-                                    href: user ? "/" : '/sign-in',
-                                    className: "border border-white px-5 text-white  py-2 rounded-full bg-white/10 transition-all inset-0 ",
-                                    children: user ? 'My Profile' : 'Sign-In/Up'
-                                }, void 0, false, {
-                                    fileName: "[project]/components/Room/NavBar.tsx",
-                                    lineNumber: 42,
-                                    columnNumber: 33
-                                }, this)
-                            ]
-                        }, void 0, true, {
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                href: user ? "/" : "/sign-in",
+                                className: "border border-white px-5 text-white py-2 rounded-full bg-white/10 transition-all",
+                                children: user ? "My Profile" : "Sign-In/Up"
+                            }, void 0, false, {
+                                fileName: "[project]/components/Room/NavBar.tsx",
+                                lineNumber: 52,
+                                columnNumber: 9
+                            }, this)
+                        }, void 0, false, {
                             fileName: "[project]/components/Room/NavBar.tsx",
-                            lineNumber: 42,
-                            columnNumber: 21
+                            lineNumber: 51,
+                            columnNumber: 7
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/Room/NavBar.tsx",
-                    lineNumber: 39,
-                    columnNumber: 17
+                    lineNumber: 48,
+                    columnNumber: 5
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/components/Room/NavBar.tsx",
             lineNumber: 32,
-            columnNumber: 8
+            columnNumber: 3
         }, this)
     }, void 0, false, {
         fileName: "[project]/components/Room/NavBar.tsx",
         lineNumber: 31,
-        columnNumber: 5
+        columnNumber: 3
     }, this);
 };
 _s(NavBar, "ocZTZ8m72GkfgAfkTHk7sW+OJyw=", false, function() {

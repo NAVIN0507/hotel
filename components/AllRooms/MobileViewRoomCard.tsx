@@ -1,5 +1,6 @@
 import { BedDouble, InspectionPanel, UsersRound } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 const MobileViewRoomCard = ({id,
@@ -11,6 +12,7 @@ const MobileViewRoomCard = ({id,
     capability,
     beds , c , index}:RoomCategoriesProps) => {
   return (
+    <Link href={`/room/${id}`}>
    <div className="w-[400px] rounded-xl m-10 p-4 h-full bg-[#011D38] -ml-5 text-white">
   {/* Header */}
   <div className="flex">
@@ -59,7 +61,7 @@ const MobileViewRoomCard = ({id,
     </div>
   </div>
 </div>
-
+</Link>
   )
 }
 

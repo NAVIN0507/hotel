@@ -775,200 +775,209 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$inspection$2d$panel$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__InspectionPanel$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/inspection-panel.js [app-client] (ecmascript) <export default as InspectionPanel>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2d$round$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__UsersRound$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/users-round.js [app-client] (ecmascript) <export default as UsersRound>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/image.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-client] (ecmascript)");
+;
 ;
 ;
 ;
 const MobileViewRoomCard = ({ id, name, description, pictures, price, square_ft, capability, beds, c, index })=>{
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "w-[400px] rounded-xl m-10 p-4 h-full bg-[#011D38] -ml-5 text-white",
-        children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex",
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: "text-xl mt-2",
-                        children: "/01"
-                    }, void 0, false, {
-                        fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
-                        lineNumber: 17,
-                        columnNumber: 5
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                        className: "font-mono uppercase ml-1 text-4xl",
-                        children: name
-                    }, void 0, false, {
-                        fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
-                        lineNumber: 18,
-                        columnNumber: 5
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
-                lineNumber: 16,
-                columnNumber: 3
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                className: "text-[#C1C1C1] text-sm mt-3",
-                children: description
-            }, void 0, false, {
-                fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
-                lineNumber: 22,
-                columnNumber: 3
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex p-10 items-center justify-between -mt-5",
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex flex-col items-center gap-2",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$inspection$2d$panel$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__InspectionPanel$3e$__["InspectionPanel"], {
-                                color: "#ffffff",
-                                width: 40,
-                                height: 40
-                            }, void 0, false, {
-                                fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
-                                lineNumber: 27,
-                                columnNumber: 7
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                className: "text-white",
-                                children: [
-                                    square_ft,
-                                    "M2"
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
-                                lineNumber: 28,
-                                columnNumber: 7
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
-                        lineNumber: 26,
-                        columnNumber: 5
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex flex-col items-center gap-2",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2d$round$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__UsersRound$3e$__["UsersRound"], {
-                                color: "#ffffff",
-                                width: 40,
-                                height: 40
-                            }, void 0, false, {
-                                fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
-                                lineNumber: 31,
-                                columnNumber: 7
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                className: "text-white text-center",
-                                children: capability
-                            }, void 0, false, {
-                                fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
-                                lineNumber: 32,
-                                columnNumber: 7
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
-                        lineNumber: 30,
-                        columnNumber: 5
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex flex-col items-center gap-2",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$bed$2d$double$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__BedDouble$3e$__["BedDouble"], {
-                                color: "#ffffff",
-                                width: 40,
-                                height: 40
-                            }, void 0, false, {
-                                fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
-                                lineNumber: 35,
-                                columnNumber: 7
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                className: "text-white",
-                                children: [
-                                    beds,
-                                    " Beds"
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
-                                lineNumber: 36,
-                                columnNumber: 7
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
-                        lineNumber: 34,
-                        columnNumber: 5
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
-                lineNumber: 25,
-                columnNumber: 3
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "relative mt-5",
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                        src: pictures[index],
-                        alt: "room",
-                        width: 400,
-                        height: 250,
-                        className: "rounded-xl w-full h-[250px] object-cover"
-                    }, void 0, false, {
-                        fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
-                        lineNumber: 43,
-                        columnNumber: 5
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "absolute -mt-14  left-1/2 -translate-x-1/2 w-full bg-white rounded-full p-2 shadow-lg flex items-center justify-between ",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                                className: "font-mono text-black text-sm sm:text-base",
-                                children: [
-                                    "STARTS FROM ",
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-lg font-bold",
-                                        children: price
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
-                                        lineNumber: 54,
-                                        columnNumber: 21
-                                    }, this),
-                                    " /PER NIGHT"
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
-                                lineNumber: 53,
-                                columnNumber: 7
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                className: "bg-[#AA9061] text-white rounded-full px-5 py-2 text-sm",
-                                children: "EXPLORE"
-                            }, void 0, false, {
-                                fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
-                                lineNumber: 56,
-                                columnNumber: 7
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
-                        lineNumber: 52,
-                        columnNumber: 5
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
-                lineNumber: 41,
-                columnNumber: 3
-            }, this)
-        ]
-    }, void 0, true, {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+        href: `/room/${id}`,
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "w-[400px] rounded-xl m-10 p-4 h-full bg-[#011D38] -ml-5 text-white",
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "flex",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                            className: "text-xl mt-2",
+                            children: "/01"
+                        }, void 0, false, {
+                            fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
+                            lineNumber: 19,
+                            columnNumber: 5
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+                            className: "font-mono uppercase ml-1 text-4xl",
+                            children: name
+                        }, void 0, false, {
+                            fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
+                            lineNumber: 20,
+                            columnNumber: 5
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
+                    lineNumber: 18,
+                    columnNumber: 3
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                    className: "text-[#C1C1C1] text-sm mt-3",
+                    children: description
+                }, void 0, false, {
+                    fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
+                    lineNumber: 24,
+                    columnNumber: 3
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "flex p-10 items-center justify-between -mt-5",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "flex flex-col items-center gap-2",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$inspection$2d$panel$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__InspectionPanel$3e$__["InspectionPanel"], {
+                                    color: "#ffffff",
+                                    width: 40,
+                                    height: 40
+                                }, void 0, false, {
+                                    fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
+                                    lineNumber: 29,
+                                    columnNumber: 7
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                    className: "text-white",
+                                    children: [
+                                        square_ft,
+                                        "M2"
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
+                                    lineNumber: 30,
+                                    columnNumber: 7
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
+                            lineNumber: 28,
+                            columnNumber: 5
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "flex flex-col items-center gap-2",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2d$round$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__UsersRound$3e$__["UsersRound"], {
+                                    color: "#ffffff",
+                                    width: 40,
+                                    height: 40
+                                }, void 0, false, {
+                                    fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
+                                    lineNumber: 33,
+                                    columnNumber: 7
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                    className: "text-white text-center",
+                                    children: capability
+                                }, void 0, false, {
+                                    fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
+                                    lineNumber: 34,
+                                    columnNumber: 7
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
+                            lineNumber: 32,
+                            columnNumber: 5
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "flex flex-col items-center gap-2",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$bed$2d$double$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__BedDouble$3e$__["BedDouble"], {
+                                    color: "#ffffff",
+                                    width: 40,
+                                    height: 40
+                                }, void 0, false, {
+                                    fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
+                                    lineNumber: 37,
+                                    columnNumber: 7
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                    className: "text-white",
+                                    children: [
+                                        beds,
+                                        " Beds"
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
+                                    lineNumber: 38,
+                                    columnNumber: 7
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
+                            lineNumber: 36,
+                            columnNumber: 5
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
+                    lineNumber: 27,
+                    columnNumber: 3
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "relative mt-5",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                            src: pictures[index],
+                            alt: "room",
+                            width: 400,
+                            height: 250,
+                            className: "rounded-xl w-full h-[250px] object-cover"
+                        }, void 0, false, {
+                            fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
+                            lineNumber: 45,
+                            columnNumber: 5
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "absolute -mt-14  left-1/2 -translate-x-1/2 w-full bg-white rounded-full p-2 shadow-lg flex items-center justify-between ",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+                                    className: "font-mono text-black text-sm sm:text-base",
+                                    children: [
+                                        "STARTS FROM ",
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "text-lg font-bold",
+                                            children: price
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
+                                            lineNumber: 56,
+                                            columnNumber: 21
+                                        }, this),
+                                        " /PER NIGHT"
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
+                                    lineNumber: 55,
+                                    columnNumber: 7
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                    className: "bg-[#AA9061] text-white rounded-full px-5 py-2 text-sm",
+                                    children: "EXPLORE"
+                                }, void 0, false, {
+                                    fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
+                                    lineNumber: 58,
+                                    columnNumber: 7
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
+                            lineNumber: 54,
+                            columnNumber: 5
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
+                    lineNumber: 43,
+                    columnNumber: 3
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
+            lineNumber: 16,
+            columnNumber: 4
+        }, this)
+    }, void 0, false, {
         fileName: "[project]/components/AllRooms/MobileViewRoomCard.tsx",
-        lineNumber: 14,
-        columnNumber: 4
+        lineNumber: 15,
+        columnNumber: 5
     }, this);
 };
 _c = MobileViewRoomCard;

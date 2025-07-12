@@ -28,23 +28,39 @@ const NavBar = () => {
   };
 
   return (
-    <header className='w-full h-full bg-[#00000040] p-4 rounded-full'>
-       <nav className='flex items-center justify-between w-full h-full pl-2'>
-          <ul className="hidden md:flex gap-20 uppercase text-lg tracking-wide ">
-                    <li><a href="/" className="text-white hover:underline">Home</a></li>
-                    <li><a href="/aboutus" className="text-white hover:underline">About Us</a></li>
-                    <li><a href="https://portal.brundhavangarden.com" className="text-white hover:underline">Portal</a></li>
-                </ul>
-                <div className="text-2xl font-bold font-mono text-yellow-400 tracking-widest">BRUNDHAVAN</div>
-                <ul className='hidden md:flex gap-30 uppercase text-lg tracking-wide font-sans'>
-                    <li><a href="/allrooms" className="text-white hover:underline font-sans">Rooms</a></li>
-                    <li><a href="/" className="text-white hover:underline font-sans">Contact</a></li>
-                    <li>        <a href={user ? "/" :'/sign-in'} className="border border-white px-5 text-white  py-2 rounded-full bg-white/10 transition-all inset-0 ">
-                        {user ? 'My Profile' :'Sign-In/Up'}
-                    </a></li>
-                </ul>
-       </nav>
-    </header>
+  <header className="w-full h-full bg-[#00000040] p-4 rounded-full relative max-sm:p-10">
+  <nav className="flex items-center justify-between w-full h-full pl-2  relative">
+    
+    {/* Left nav */}
+    <ul className="hidden md:flex gap-20 uppercase text-lg tracking-wide">
+      <li><a href="/" className="text-white hover:underline">Home</a></li>
+      <li><a href="/aboutus" className="text-white hover:underline">About Us</a></li>
+      <li><a href="https://portal.brundhavangarden.com" className="text-white hover:underline">Portal</a></li>
+    </ul>
+
+    {/* Center logo - centered only on mobile */}
+    <div className="text-2xl font-bold font-mono text-yellow-400 tracking-widest 
+                    md:static max-md:absolute max-md:left-1/2 max-md:-translate-x-1/2">
+      BRUNDHAVAN
+    </div>
+
+    {/* Right nav */}
+    <ul className="hidden md:flex gap-30 uppercase text-lg tracking-wide font-sans">
+      <li><a href="/allrooms" className="text-white hover:underline font-sans">Rooms</a></li>
+      <li><a href="/" className="text-white hover:underline font-sans">Contact</a></li>
+      <li>
+        <a
+          href={user ? "/" : "/sign-in"}
+          className="border border-white px-5 text-white py-2 rounded-full bg-white/10 transition-all"
+        >
+          {user ? "My Profile" : "Sign-In/Up"}
+        </a>
+      </li>
+    </ul>
+
+  </nav>
+</header>
+
   )
 }
 
