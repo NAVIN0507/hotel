@@ -3,6 +3,7 @@ import React, { useEffect, useState, useMemo } from 'react'
 import { BedDouble, Dot, InspectionPanel, UsersRound, Calendar, Clock } from 'lucide-react';
 import { addBookingWithoutToken, addBookingWithToken, fetchAllRoomByID } from '@/lib/actions/users.actions';
 import Image from 'next/image';
+import MobileRoomInfo from './MobileRoomInfo';
 
 
 interface BookingDetails {
@@ -212,7 +213,7 @@ const [width, setWidth] = useState<number>(0);
   }, []);
   return (
     <>
-    {width < 768 ? (<></>) : ( <>
+    {width < 768 ? (<><MobileRoomInfo id={id}/> </>) : ( <>
     <section className='flex flex-col gap-4 pl-10 pr-10 mt-10'>
       <div className='flex gap-1 items-center justify-between'>
         <div className='flex flex-col gap-1'>

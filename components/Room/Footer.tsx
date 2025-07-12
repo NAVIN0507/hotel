@@ -1,10 +1,20 @@
+'use client'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 const Footer = () => {
+  const [width, setWidth] = useState<number>(0);
+
+  useEffect(() => {
+    const updateWidth = () => setWidth(window.innerWidth);
+    updateWidth(); // Get initial width
+
+    window.addEventListener("resize", updateWidth); // Listen for resize
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
   return (
-   <footer className='bg-[#AA9061] text-white w-full h-full p-10'>
+   <footer className={`bg-[#AA9061] text-white w-full h-full p-10 ${width <  768 && 'hidden'}`}>
     <div className='flex items-center justify-between gap-4'>
     <div className='flex flex-col gap-1'>
         <h1 className='font-mono text-3xl'>LOCATION</h1>
