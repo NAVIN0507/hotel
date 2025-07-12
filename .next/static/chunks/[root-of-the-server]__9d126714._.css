@@ -2873,6 +2873,12 @@
   }
 
   @media (width < 40rem) {
+    .max-sm\:gap-10 {
+      gap: calc(var(--spacing) * 10);
+    }
+  }
+
+  @media (width < 40rem) {
     .max-sm\:p-0 {
       padding: calc(var(--spacing) * 0);
     }

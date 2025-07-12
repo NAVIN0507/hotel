@@ -473,6 +473,57 @@ const MobileRoomInfo = ({ id }: { id: string }) => {
                   </button>
                 </div>
               </div>
+
+                  <div className='flex gap-5 mt-10'>
+                      <div className='w-12/12 p-7 rounded-lg h-full border border-[#D7D7D7] flex flex-col gap-2'>
+                        <div className='flex flex-col gap-4'>
+                          <h1 className='font-mono text-4xl uppercase text-[#45443F]'>ABOUT STAY</h1>
+                          <p className='mt-2 text-[#3A3A3A]'>
+                            {plainText}
+                          </p>
+                        </div>
+                        <div className='w-full mt-10 p-1 h-1 border-b border-[#D7D7D7]' />
+                        <div className='mt-10'>
+                          <h1 className='font-mono text-4xl uppercase text-[#45443F]'>services & AMENITIES</h1>
+                          <div className='grid md:grid-cols-3 gap-5 mt-10'>
+                            {roomDetails?.services.length !== 0 ? roomDetails?.services.map((service, index) => (
+                              <div className='p-7 rounded-lg bg-[#F6F5F5] flex gap-3 text-black text-sm' key={index}>
+                                <Image
+                                  src={service.icon_pic}
+                                  alt='services'
+                                  width={20}
+                                  height={20}
+                                />
+                                {service.service_name}
+                              </div>
+                            )) : (
+                              <div className='p-7 rounded-lg bg-[#F6F5F5] flex gap-3 text-black text-md items-center justify-center'>
+                                No services availabel for this Room.
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                        <div className='w-full mt-10 p-1 h-1 border-b border-[#D7D7D7]' />
+                        <div className='mt-10'>
+                          <h1 className='font-mono text-4xl uppercase text-[#45443F]'>ROOM RULES</h1>
+                          <div className='flex max-sm:flex-col gap-30 max-sm:gap-10 mt-7 pl-5'>
+                            <div>
+                              <h3 className='text-[#3A3A3A]'>Check In</h3>
+                              {checkInruleList?.map((rule, i) => (
+                                <p className='flex gap-1 text-[#3A3A3A]' key={i}><Dot />{rule}</p>
+                              ))}
+                            </div>
+                            <div>
+                              <h3 className='text-[#3A3A3A]'>Check Out</h3>
+                              {checkOutruleList?.map((rule, i) => (
+                                <p className='flex gap-1 text-[#3A3A3A]' key={i}><Dot />{rule}</p>
+                              ))}
+                            </div>
+                          </div>
+                         
+                        </div>
+                      </div>
+                      </div>
     </section>
   )
 }
