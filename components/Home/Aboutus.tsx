@@ -29,9 +29,11 @@ const AboutUsSection = () => {
 exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.Ut enim ad minima Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
         </div>
         <div>
+            <Link href={"/aboutus"}>
         <button className="bg-[#b79464] mt-6 hover:bg-[#a28252] text-white px-6 py-3 rounded-full text-sm tracking-widest uppercase flex items-center gap-2">
                         Know More →
                     </button>
+                    </Link>
         </div>
         </section>
         </> ) :(
