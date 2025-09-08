@@ -56,7 +56,7 @@ exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
                     <img
                         src="./assets/images/feature_section.jpg"
                         alt="Restaurant"
-                        className="w-[350px] h-auto object-cover"
+                        className="w-[350px] h-[350px]"
                     />
                 </div>
 

@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 const NavBar = () => {
   const [user, setUser] = useState<User | null>(null);
   const router = useRouter();
-
+  console.log(user)
   useEffect(() => {
     const rawToken = localStorage.getItem("user_token");
     const token = rawToken?.replace(/^"(.*)"$/, "$1");
@@ -33,9 +33,9 @@ const NavBar = () => {
     
     {/* Left nav */}
     <ul className="hidden md:flex gap-20 uppercase text-lg tracking-wide">
-      <li><a href="/" className="text-white hover:underline">Home</a></li>
-      <li><a href="/aboutus" className="text-white hover:underline">About Us</a></li>
-      <li><a href="https://portal.brundhavangarden.com" className="text-white hover:underline">Portal</a></li>
+      <li><Link href="/" className="text-white hover:underline">Home</Link></li>
+      <li><Link href="/aboutus" className="text-white hover:underline">About Us</Link></li>
+      <li><a href="https://portal.brundhavangarden.com" target="_blank" rel="noopener noreferrer" className="text-white hover:underline">Portal</a></li>
     </ul>
 
     {/* Center logo - centered only on mobile */}
@@ -45,15 +45,15 @@ const NavBar = () => {
     </div>
 
     {/* Right nav */}
-    <ul className="hidden md:flex gap-30 uppercase text-lg tracking-wide font-sans">
-      <li><a href="/allrooms" className="text-white hover:underline font-sans">Rooms</a></li>
-      <li><a href="/" className="text-white hover:underline font-sans">Contact</a></li>
+    <ul className="hidden md:flex gap-30 uppercase text-lg tracking-wide font-sans mt-3">
+      <li><Link href="/allrooms" className="text-white hover:underline font-sans">Rooms</Link></li>
+      <li><Link href="/" className="text-white hover:underline font-sans">Contact</Link></li>
       <li>
         <a
           href={user ? "/" : "/sign-in"}
           className="border border-white px-5 text-white py-2 rounded-full bg-white/10 transition-all"
         >
-          {user ? "My Profile" : "Sign-In/Up"}
+          {user ? `Hi ${user.name}` : "Sign-In/Up"}
         </a>
       </li>
     </ul>

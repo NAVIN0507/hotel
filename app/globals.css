@@ -35,6 +35,10 @@
  .bg-hero {
    background-image: var(--bg-image);
  }
+  .bg-hero-f {
+   background-image: var(--bg-feature-image);
+   object-fit: contain;
+ }
  
  .features{
  background-image: var(--bg-feature-image);

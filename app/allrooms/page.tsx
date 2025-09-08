@@ -4,7 +4,7 @@ import Hero from '@/components/AllRooms/Hero'
 import MobileViewRoomCard from '@/components/AllRooms/MobileViewRoomCard'
 import React, { useEffect, useState } from 'react'
 
-const page = () => {
+const Page = () => {
   const [width, setWidth] = useState<number>(0);
   
     useEffect(() => {
@@ -25,4 +25,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

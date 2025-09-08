@@ -38,7 +38,7 @@ const MobileBentoGrid = () => {
           </h1>
             <p className="text-[#C1C1C1] text-center mt-5 leading-relaxed text-sm">
             Spoil yourself with the assortment in cuisine and taste. Explore & Investigate the wide
-            range of food you'd be honored with no place else.
+            range of food you&apos;d be honored with no place else.
           </p>
           <button className="bg-[#D4AF37] hover:bg-[#b9982e] text-white px-6 py-2 rounded-full w-full text-center justify-center items-center flex mx-auto mt-4 transition-all">
             Know more

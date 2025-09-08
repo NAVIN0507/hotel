@@ -8,7 +8,7 @@ const OtherRooms = () => {
     <h1 className='font-mono text-4xl text-[#45443F]'>OTHER ROOMS</h1>
      <div className='grid md:grid-cols-3 mt-10 gap-5'>
     {[1 , 2 , 3].map((room) => (
-        <div className='flex flex-col gap-2'>
+        <div key={room} className='flex flex-col gap-2'>
            
             <div className='relative'>
                 <Image

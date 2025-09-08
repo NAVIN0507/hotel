@@ -1,5 +1,5 @@
 // "use server"
-import axios from "axios"
+import axios, { AxiosError } from "axios"
 import { data } from "framer-motion/client"
 import createAxiosInstance from "./axiosInstance";
 import { string } from "zod"

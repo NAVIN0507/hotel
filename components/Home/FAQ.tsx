@@ -60,7 +60,7 @@ const FAQ = () => {
           GOT ANY QUESTIONS
         </h1>
         <h1 className="flex gap-2 text-3xl lg:text-4xl font-mono text-center">
-          WE'VE GOT ANSWERS
+          WE&apos;VE GOT ANSWERS
           <span className="hidden lg:block w-20 h-0 mt-6 border border-gray-500" />
         </h1>
       </div>

@@ -37,9 +37,9 @@ const Hero = () => {
 
   {/* Left Navigation */}
   <ul className="hidden md:flex gap-30 uppercase text-sm tracking-wide">
-    <li><a href="/" className="hover:text-yellow-300 hover:underline">Home</a></li>
-    <li><a href="/aboutus" className="hover:text-yellow-300 hover:underline">About Us</a></li>
-    <li><a href="https://portal.brundhavangarden.com" className="hover:text-yellow-300 hover:underline">Portal</a></li>
+    <li><Link href="/" className="hover:text-yellow-300 hover:underline">Home</Link></li>
+    <li><Link href="/aboutus" className="hover:text-yellow-300 hover:underline">About Us</Link></li>
+    <li><a href="https://portal.brundhavangarden.com" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-300 hover:underline">Portal</a></li>
   </ul>
 
   {/* Center Logo (centered only on mobile) */}
@@ -48,17 +48,17 @@ const Hero = () => {
   </div>
 
   {/* Right Navigation */}
-  <ul className="hidden md:flex gap-30 uppercase text-sm tracking-wide font-sans">
-    <li><a href="/allrooms" className="hover:text-yellow-300 hover:underline font-sans">Rooms</a></li>
-    <li><a href="/" className="hover:text-yellow-300 hover:underline font-sans">Contact</a></li>
+  <ul className="hidden md:flex gap-30 uppercase text-sm tracking-wide font-sans mt-2">
+    <li><Link href="/allrooms" className="hover:text-yellow-300 hover:underline font-sans">Rooms</Link></li>
+    <li><Link href="/" className="hover:text-yellow-300 hover:underline font-sans">Contact</Link></li>
     <li
-      className="cursor-pointer border border-white px-5 py-2 rounded-full bg-white/10 hover:bg-white hover:text-black transition-all"
+      className="cursor-pointer border border-white px-5 py-2 rounded-full bg-white/10 hover:bg-white hover:text-black transition-all -mt-2"
       onClick={() => {
         const destination = user ? "/" : "/sign-in";
         router.push(destination);
       }}
     >
-      {user ? "My Profile" : "Sign-In/Up"}
+      {user ? `Hi ${user.name}` : "Sign-In/Up"}
     </li>
   </ul>
 

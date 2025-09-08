@@ -46,7 +46,7 @@ const SpecialSection: React.FC = () => {
                 whileHover="hover"
                 initial="rest"
                 animate="rest"
-                className="snap-center shrink-0 w-[280px] sm:w-[300px] md:w-[350px] h-[400px] bg-hero  text-black shadow-lg group cursor-pointer overflow-hidden relative rounded-2xl"
+                className="snap-center shrink-0 w-[280px] sm:w-[300px] md:w-[350px] h-[400px] bg-hero-f  text-black shadow-lg group cursor-pointer overflow-hidden relative rounded-2xl object-cover"
               >
                 <motion.div
                   variants={{ rest: { y: 0 }, hover: { y: -10 } }}

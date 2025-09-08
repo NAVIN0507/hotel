@@ -12,13 +12,12 @@ const Amunities = () => {
             <h1 className='font-mono text-4xl text-[#45443F]'>YOUR COMFORT</h1>
         </div>
         <div className='w-[300px] hidden md:block'>
-            <p className='text-sm text-[#3A3A3A]'>Spoil yourself with the assortment in cuisine and taste. Explore & Investigate the wide range of food you'd be honored with no place else.
-</p>
+            <p className='text-sm text-[#3A3A3A]'>Spoil yourself with the assortment in cuisine and taste. Explore & Investigate the wide range of food you&apos;d be honored with no place else.</p>
         </div>
     </div>
     <div className='grid grid-cols-2 md:grid-cols-4 gap-10 mt-20 max-sm:mt-10'>
         {AmunitiesList.map((item, index) => (
-            <div className='flex flex-col gap-2 items-center justify-center'>
+            <div key={index} className='flex flex-col gap-2 items-center justify-center'>
                 <div className='w-24 h-16 bg-[#D9D9D9] '></div>
                 <p className='text-[10px] uppercase text-[#5C5C5C] text-center'>{item}</p>
             </div>
@@ -30,8 +29,9 @@ const Amunities = () => {
         ))}
     </div> */}
      <div className='grid grid-cols-2 md:grid-cols-4 gap-10 mt-10'>
-        {AmunitiesList2.map((item, index) => (
-            <div className='flex flex-col gap-2 items-center justify-center'>
+     
+            {AmunitiesList2.map((item, index) => (
+            <div key={index} className='flex flex-col gap-2 items-center justify-center'>
                 <div className='w-24 h-16 bg-[#D9D9D9] '></div>
                 <p className='text-[10px] uppercase text-[#5C5C5C] text-center'>{item}</p>
             </div>
