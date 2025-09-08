@@ -285,7 +285,7 @@ total
     }
     return {
       success:true,
-      message:"",
+      message:"Booking Created SuccessFully",
       data:data
     }
   } catch (error) {

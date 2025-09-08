@@ -4,6 +4,7 @@ import { BedDouble, Dot, InspectionPanel, UsersRound, Calendar, Clock } from 'lu
 import { addBookingWithoutToken, addBookingWithToken, fetchAllRoomByID } from '@/lib/actions/users.actions';
 import Image from 'next/image';
 import MobileRoomInfo from './MobileRoomInfo';
+import { toast } from 'sonner';
 
 
 interface BookingDetails {
@@ -175,10 +176,10 @@ const RoomInfo = ({ id }: { id: string }) => {
         const addBooking = await addBookingWithoutToken(formattedBookingDetailsWithoutToken);
   
         if (addBooking.success) {
-          alert("✅ Booking Created Successfully!");
           console.log("Booking success without token");
+          toast.success(addBooking.message)
         } else {
-          alert("❌ Booking Failed");
+          toast.error(addBooking.message)
           console.error("Error in non-token-based booking");
         }
        }
