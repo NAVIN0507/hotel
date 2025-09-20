@@ -19,9 +19,7 @@ const AboutUsSection = () => {
         <section className='bg-[#011D38] h-fit w-full p-10 rounded-md '>
         <div className='flex items-center justify-between gap-8'>
             <h1 className='font-mono  text-2xl text-white uppercase'>get to know about us</h1>
-            <div className='w-6 h-6   p-5 rounded-full border border-gray-50 text-center '>
-                <Play className='flex items-center justify-center -mt-3 -ml-3' color='#ffffff'/>
-            </div>
+           
         </div>
         <div className='ml-10 mt-5'>
             <p className='text-[#C1C1C1] font-normal text-left'>Qed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam aperiam. Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt. Ut enim ad minima veniam, quis nostrum
@@ -42,8 +40,8 @@ exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
                 {/* Left: Heading and Button */}
                 <div className="flex flex-col items-start gap-8">
                     <h2 className="text-lg md:text-5xl font-serif leading-tight">
-                        GET TO KNOW ABOUT <h2 className='flex'> US <div className="w-20 mt-7 hidden lg:block  ml-5  h-0 border border-gray-500" />
-                    </h2></h2>
+                        GET TO KNOW ABOUT <span className='flex'>  US <div className="w-20 mt-7 hidden lg:block  ml-5  h-0 border border-gray-500" />
+                    </span></h2>
                     <Link href={"/aboutus"}>
                     <button className="bg-[#b79464] mt-20 hover:bg-[#a28252] text-white px-6 py-3 rounded-full text-sm tracking-widest uppercase flex items-center gap-2 max-sm:hidden">
                         Know More →
@@ -76,19 +74,7 @@ exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
                     </p>
 
                     {/* Video Preview */}
-                    <div className="flex flex-col gap-2 items-end mt-10 justify-end max-sm:hidden">
-                        <p className="uppercase text-sm tracking-widest text-start flex items-start justify-center">Play Video</p>
-                        <div className="relative w-48 h-28 rounded-xl overflow-hidden shadow-md">
-                            <img
-                                src="/assets/images/feature_section.jpg"
-                                alt="Video Thumbnail"
-                                className="w-full h-full object-cover"
-                            />
-                            <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                                <Play className="text-white w-8 h-8" />
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
                 <Link href={"/aboutus"}>
                     <button className="bg-[#b79464]  hover:bg-[#a28252] text-white px-6 py-3 rounded-full text-sm tracking-widest uppercase flex items-center gap-2 md:hidden">

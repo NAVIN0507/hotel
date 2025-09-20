@@ -19,16 +19,11 @@ const Footer = () => {
     {width < 768 ? (<>
     
     </>) :(<>
-   <footer className='bg-[#E9E9E9] w-full h-full p-10'>
+   <footer id="footer" className='bg-[#E9E9E9] w-full h-full p-10'>
     <div className='flex items-center justify-between gap-4'>
     <div className='flex flex-col gap-1'>
         <h1 className='font-mono text-3xl'>LOCATION</h1>
-        <Image
-        src={"/assets/images/map1.png"}
-        alt='map'
-        width={200}
-        height={200}
-        />
+       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3791.9375963497077!2d77.63294822937205!3d10.288953248223544!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b075ea7b03954e5%3A0x2cc8b1d04c027abc!2sPannaikadu%20-%20Thandikudi%20Rd%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1758359844758!5m2!1sen!2sin" width="250" height="150" className="border:0;" loading="lazy"></iframe>
         <p className='underline mt-6 hover:cursor-pointer'>VIEW LARGER MAP</p>
     </div>
     <div className='flex flex-col gap-1'>

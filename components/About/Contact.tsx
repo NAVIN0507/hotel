@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 const Contact = () => {
@@ -8,8 +9,12 @@ const Contact = () => {
     </div>
 
     <div className='flex sm:mt-20 mt-5  md:flex-row flex-col gap-7'>
+      <Link href={"/allrooms"}>
         <button className='w-[300px] text-white h-[60px] cursor-pointer bg-[#AA9061] rounded-md'>EXPLORE ROOMS</button>
-        <button className='w-[300px] text-black h-[60px] border border-gray-600 cursor-pointer rounded-md'>EXPLORE ROOMS</button>
+        </Link>
+        <Link href={"/#footer"}>
+        <button className='w-[300px] text-black h-[60px] border border-gray-600 cursor-pointer rounded-md'>CONTACT US</button>
+        </Link>
     </div>
    </section>
   )
