@@ -104,7 +104,7 @@ className='h-full w-full rounded-xl  object-fill'
 </div>
 <div className='w-full max-sm:mt-30 max-sm:p-10  md:w-1/2 flex items-center justify-center'>
 <div className='w-full md:w-9/12 p-8 rounded-lg border border-gray-300'>
-<h1 className='font-mono text-[#b79464] text-5xl text-center uppercase'>Brindhavan</h1>
+<h1 className='font-mono text-[#b79464] text-5xl text-center uppercase max-sm:text-4xl'>Brindhavan</h1>
 <div className="mt-10">
 <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -137,9 +137,9 @@ className='h-full w-full rounded-xl  object-fill'
           )}
         />
         <div className="flex items-center justify-between gap-2 ml-2">
-            <div className="flex gap-2 text-gray-500"><input type="checkbox" className="w-5 h-5 accent-[#b79464] text-white"/>  <p className="-mt-1">Remember me</p></div>
+            <div className="flex gap-2 text-gray-500"><input type="checkbox" className="w-5 h-5 accent-[#b79464] text-white"/>  <p className="-mt-1 max-sm:text-sm">Remember me</p></div>
             <Dialog>
-  <DialogTrigger>  <p className="text-gray-500 underline cursor-pointer">Forgot Password ?</p></DialogTrigger>
+  <DialogTrigger>  <p className="text-gray-500 underline cursor-pointer max-sm:text-xs">Forgot Password ?</p></DialogTrigger>
   <DialogContent>
   <DialogHeader>
     <DialogTitle className="font-normal text-gray-700">Forgot Password ?</DialogTitle>

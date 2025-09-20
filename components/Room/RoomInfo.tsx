@@ -20,7 +20,7 @@ import MobileRoomInfo from "./MobileRoomInfo";
 
 interface BookingDetails {
   token: string;
-  room_categories_id: number;
+  room_categories_id: number;     
   check_in: string;
   check_out: string;
   adult_count: number;

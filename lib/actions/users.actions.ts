@@ -168,7 +168,7 @@ export const resetPassword = async({
       email:email,
       token:token,
       password:password,
-      confirmPassword:confirmPassword
+      password_confirmation:confirmPassword
     })
 
     if(!data){

@@ -15,7 +15,8 @@ const nextConfig: NextConfig = {
       {hostname:'portal.brundhavangarden.com'}
     ],
     unoptimized: true, 
-  }
+  },
+  devIndicators:false
 };
 
 export default nextConfig;

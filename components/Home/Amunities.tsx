@@ -1,44 +1,66 @@
-import { AmunitiesList, AmunitiesList2 } from '@/constants'
-import { div } from 'framer-motion/client'
-import React from 'react'
+"use client"
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+
+type Amenity = {
+  service_name: string;
+  icon_pic: string;
+};
 
 const Amunities = () => {
-  return (
-  <section className=' pl-14 pr-14'>
-    <div className=' flex  gap-1 items-center justify-between'>
-        <div className='flex flex-col gap-1'>
-            <p className='text-sm text-[#5C5C5C]'>AMUNITIES</p>
-            <h1 className='flex gap-1 font-mono text-4xl text-[#45443F] max-sm:ml-8'><div className="w-20 mt-5  hidden lg:block  ml-5  h-0 border border-gray-500" /> MADE FOR</h1>
-            <h1 className='font-mono text-4xl text-[#45443F]'>YOUR COMFORT</h1>
-        </div>
-        <div className='w-[300px] hidden md:block'>
-            <p className='text-sm text-[#3A3A3A]'>Spoil yourself with the assortment in cuisine and taste. Explore & Investigate the wide range of food you&apos;d be honored with no place else.</p>
-        </div>
-    </div>
-    <div className='grid grid-cols-2 md:grid-cols-4 gap-10 mt-20 max-sm:mt-10'>
-        {AmunitiesList.map((item, index) => (
-            <div key={index} className='flex flex-col gap-2 items-center justify-center'>
-                <div className='w-24 h-16 bg-[#D9D9D9] '></div>
-                <p className='text-[10px] uppercase text-[#5C5C5C] text-center'>{item}</p>
-            </div>
-        ))}
-    </div>
-     {/* <div className=' grid-cols-1 md:grid-cols-4 gap-32 mt-10 ml-20 hidden md:grid'>
-        {AmunitiesList.map((item, index) => (
-         <div className='w-28 border  border-[#D7D7D7] flex items-center justify-center'></div>
-        ))}
-    </div> */}
-     <div className='grid grid-cols-2 md:grid-cols-4 gap-10 mt-10'>
-     
-            {AmunitiesList2.map((item, index) => (
-            <div key={index} className='flex flex-col gap-2 items-center justify-center'>
-                <div className='w-24 h-16 bg-[#D9D9D9] '></div>
-                <p className='text-[10px] uppercase text-[#5C5C5C] text-center'>{item}</p>
-            </div>
-        ))}
-    </div>
-  </section>
-  )
-}
+  const [AmunitiesList, setAmunitiesList] = useState<Amenity[]>([]);
 
-export default Amunities
+  useEffect(() => {
+    const fetchAmunities = async () => {
+      const { data } = await axios.get(
+        "https://portal.brundhavangarden.com/api/services/amenities"
+      );
+      setAmunitiesList(data);
+    };
+    fetchAmunities();
+  }, []);
+  console.log(AmunitiesList)
+
+  return (
+    <section className="px-4 md:px-14 py-10">
+      <div className="flex flex-col md:flex-row gap-6 md:gap-12 items-start justify-between">
+        <div className="flex flex-col gap-2">
+          <p className="text-sm text-[#5C5C5C]">AMENITIES</p>
+          <h1 className="flex items-center gap-2 font-mono text-3xl md:text-4xl text-[#45443F]">
+            <div className="hidden lg:block w-16 h-0 border border-gray-500" /> MADE FOR
+          </h1>
+          <h1 className="font-mono text-3xl md:text-4xl text-[#45443F]">YOUR COMFORT</h1>
+        </div>
+        <div className="hidden md:block md:w-[300px]">
+          <p className="text-sm text-[#3A3A3A]">
+            Spoil yourself with the assortment in cuisine and taste. Explore &amp; Investigate the wide range of food you'd be honored with no place else.
+          </p>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6 md:gap-10 mt-10 md:mt-20">
+        {AmunitiesList.map((item, index) => (
+          <div
+            key={index}
+            className="flex flex-col gap-2 items-center "
+          >
+            <div className="w-16 h-16 md:w-24 md:h-24 flex items-center justify-center  overflow-hidden">
+              {item.icon_pic && (
+                <img
+                  src={item.icon_pic}
+                  alt={item.service_name}
+                  className="w-16 h-16 object-cover"
+                />
+              )}
+            </div>
+            <p className="text-[10px] md:text-sm uppercase text-center text-[#5C5C5C] font-medium">
+              {item.service_name}
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+export default Amunities;

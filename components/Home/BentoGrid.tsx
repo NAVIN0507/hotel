@@ -40,7 +40,7 @@ const BentoGrid = () => {
 <h1 className='text-[#5C5C5C] font-mono text-5xl'>DISCOVER OUR ROOMS</h1>
 <div className="w-20 hidden lg:block  ml-2 h-0 border border-gray-500" />
     </div>
-    <div className='flex flex-col gap-2 mx-auto items-center justify-center'>
+    <div className='flex flex-col gap-2 m-auto items-center justify-center'>
     <div className='flex flex-col md:flex-row'>
         <div>
             <Image
