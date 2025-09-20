@@ -16,36 +16,6 @@
       "static/chunks/671-24e7b190908d406e.js",
       "static/chunks/app/layout-32cadbcac63cd9ce.js"
     ],
-    "/aboutus/page": [
-      "static/chunks/webpack-a4e19879bee4d222.js",
-      "static/chunks/4bd1b696-047231aaf6c8d431.js",
-      "static/chunks/684-b7953ad74ec83366.js",
-      "static/chunks/main-app-2ca405ea4849bdd1.js",
-      "static/chunks/425-c9c52684df003e21.js",
-      "static/chunks/671-24e7b190908d406e.js",
-      "static/chunks/95-a520373bba66b2c6.js",
-      "static/chunks/app/aboutus/page-6c9165ea8c644232.js"
-    ],
-    "/(auth)/reset-password/page": [
-      "static/chunks/webpack-a4e19879bee4d222.js",
-      "static/chunks/4bd1b696-047231aaf6c8d431.js",
-      "static/chunks/684-b7953ad74ec83366.js",
-      "static/chunks/main-app-2ca405ea4849bdd1.js",
-      "static/chunks/425-c9c52684df003e21.js",
-      "static/chunks/848-b64a6ddd1447a8c1.js",
-      "static/chunks/299-52869baaef64cd42.js",
-      "static/chunks/app/(auth)/reset-password/page-9f7dae2a1e97e9c0.js"
-    ],
-    "/allrooms/page": [
-      "static/chunks/webpack-a4e19879bee4d222.js",
-      "static/chunks/4bd1b696-047231aaf6c8d431.js",
-      "static/chunks/684-b7953ad74ec83366.js",
-      "static/chunks/main-app-2ca405ea4849bdd1.js",
-      "static/chunks/425-c9c52684df003e21.js",
-      "static/chunks/671-24e7b190908d406e.js",
-      "static/chunks/95-a520373bba66b2c6.js",
-      "static/chunks/app/allrooms/page-94caafe27d63d90a.js"
-    ],
     "/(auth)/sign-in/page": [
       "static/chunks/webpack-a4e19879bee4d222.js",
       "static/chunks/4bd1b696-047231aaf6c8d431.js",
@@ -59,7 +29,17 @@
       "static/chunks/694-4b811c0e56251b06.js",
       "static/chunks/app/(auth)/sign-in/page-c20f82e332f0dc70.js"
     ],
-    "/page": [
+    "/(auth)/reset-password/page": [
+      "static/chunks/webpack-a4e19879bee4d222.js",
+      "static/chunks/4bd1b696-047231aaf6c8d431.js",
+      "static/chunks/684-b7953ad74ec83366.js",
+      "static/chunks/main-app-2ca405ea4849bdd1.js",
+      "static/chunks/425-c9c52684df003e21.js",
+      "static/chunks/848-b64a6ddd1447a8c1.js",
+      "static/chunks/299-52869baaef64cd42.js",
+      "static/chunks/app/(auth)/reset-password/page-9f7dae2a1e97e9c0.js"
+    ],
+    "/aboutus/page": [
       "static/chunks/webpack-a4e19879bee4d222.js",
       "static/chunks/4bd1b696-047231aaf6c8d431.js",
       "static/chunks/684-b7953ad74ec83366.js",
@@ -67,9 +47,7 @@
       "static/chunks/425-c9c52684df003e21.js",
       "static/chunks/671-24e7b190908d406e.js",
       "static/chunks/95-a520373bba66b2c6.js",
-      "static/chunks/848-b64a6ddd1447a8c1.js",
-      "static/chunks/949-6050b8d382c0624e.js",
-      "static/chunks/app/page-e0090e5508682aad.js"
+      "static/chunks/app/aboutus/page-6c9165ea8c644232.js"
     ],
     "/(auth)/sign-up/page": [
       "static/chunks/webpack-a4e19879bee4d222.js",
@@ -82,6 +60,28 @@
       "static/chunks/848-b64a6ddd1447a8c1.js",
       "static/chunks/299-52869baaef64cd42.js",
       "static/chunks/app/(auth)/sign-up/page-20ac324ae0c0b3a7.js"
+    ],
+    "/allrooms/page": [
+      "static/chunks/webpack-a4e19879bee4d222.js",
+      "static/chunks/4bd1b696-047231aaf6c8d431.js",
+      "static/chunks/684-b7953ad74ec83366.js",
+      "static/chunks/main-app-2ca405ea4849bdd1.js",
+      "static/chunks/425-c9c52684df003e21.js",
+      "static/chunks/671-24e7b190908d406e.js",
+      "static/chunks/95-a520373bba66b2c6.js",
+      "static/chunks/app/allrooms/page-94caafe27d63d90a.js"
+    ],
+    "/page": [
+      "static/chunks/webpack-a4e19879bee4d222.js",
+      "static/chunks/4bd1b696-047231aaf6c8d431.js",
+      "static/chunks/684-b7953ad74ec83366.js",
+      "static/chunks/main-app-2ca405ea4849bdd1.js",
+      "static/chunks/425-c9c52684df003e21.js",
+      "static/chunks/671-24e7b190908d406e.js",
+      "static/chunks/95-a520373bba66b2c6.js",
+      "static/chunks/848-b64a6ddd1447a8c1.js",
+      "static/chunks/949-6050b8d382c0624e.js",
+      "static/chunks/app/page-e0090e5508682aad.js"
     ],
     "/room/[id]/page": [
       "static/chunks/webpack-a4e19879bee4d222.js",
