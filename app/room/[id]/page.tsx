@@ -3,10 +3,25 @@ import Hero from '@/components/Room/Hero'
 import NavBar from '@/components/Room/NavBar'
 import OtherRooms from '@/components/Room/OtherRooms'
 import RoomInfo from '@/components/Room/RoomInfo'
-import { fetchAllRoomByID } from '@/lib/actions/users.actions'
+import { fetchAllRoomByID , fetchAllRoomCategories } from '@/lib/actions/users.actions'
+import { redirect } from 'next/navigation'
 import React from 'react'
+export async function generateStaticParams() {
+  // fetch all rooms once (assuming your API gives all room IDs)
+  const rooms = await fetchAllRoomCategories(); 
+
+  // return array of params for each [id]
+  return rooms.data.map((room: any) => ({
+    id: room.id.toString(),
+  }));
+}
 
 const page = async({params}:{params:{id:string}}) => {
+
+  const room   =await fetchAllRoomByID(params.id);
+  if(!room.data || room==null){
+    return redirect('/')
+  }
   
   const roomDetails = await fetchAllRoomByID(params.id);
   return (
@@ -24,11 +39,4 @@ const page = async({params}:{params:{id:string}}) => {
 
 export default page
 
-export function generateStaticParams() {
-  return [
-    { id: '2' },
-    { id: '2' },
-    { id: '3' },
-  ];
-}
 

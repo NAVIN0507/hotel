@@ -179,7 +179,7 @@ const NavBar = () => {
     </div>
 
     {/* Right nav */}
-    <ul className="hidden md:flex gap-30 uppercase text-lg tracking-wide font-sans mt-3">
+    <ul className="hidden md:flex gap-30 uppercase text-lg tracking-wide font-sans items-center justify-center ">
       <li><Link href="/allrooms" className="text-white hover:underline font-sans">Rooms</Link></li>
       <li><Link href="/" className="text-white hover:underline font-sans">Contact</Link></li>
       <li>

@@ -35,7 +35,9 @@ const BentoGrid = ({width}:{width:number}) => {
   return isMobile ? (
     <MobileViewRoomCard key={rooms.id} index={index} {...rooms} />
   ) : (
+    <Link href={`/room/${rooms.id}`}>
     <RoomCard key={rooms.id} index={index} c={isRotate} {...rooms} />
+    </Link>
   );
 })}
 

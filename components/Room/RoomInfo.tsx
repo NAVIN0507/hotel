@@ -17,6 +17,7 @@ import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 import MobileRoomInfo from "./MobileRoomInfo";
+import { redirect } from "next/navigation";
 
 interface BookingDetails {
   token: string;
@@ -131,7 +132,11 @@ const RoomInfo = ({ id }: { id: string }) => {
 
     const fetchRoom = async () => {
       const room = await fetchAllRoomByID(id);
+      if(room.success===false || !room.data){
+        return redirect("/")
+      }
       setroomDetails(room.data);
+
       setBookingDetails((prev) => ({
         ...prev,
         token: authtoken || "",
@@ -255,9 +260,7 @@ const RoomInfo = ({ id }: { id: string }) => {
           <section className="flex flex-col gap-4 pl-10 pr-10 mt-10">
             <div className="flex gap-1 items-center justify-between">
               <div className="flex flex-col gap-1">
-                <h3 className="text-[#5C5C5C]">
-                  HOME / ROOMS / {roomDetails?.name}
-                </h3>
+              
                 <h1 className="text-6xl font-mono text-[#45443F]">
                   {roomDetails?.name}
                 </h1>
