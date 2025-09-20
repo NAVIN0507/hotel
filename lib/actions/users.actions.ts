@@ -350,7 +350,7 @@ export const addBookingWithoutToken = async({
       }
       return {
         success:true,
-        message:"",
+        message:"Booking Created successfully",
         data:data
       }
     } catch (error) {
@@ -361,3 +361,50 @@ export const addBookingWithoutToken = async({
       }
     }
   }
+
+export const getFoodMenu =  async()=>{
+  try {
+    const {data:foodMenu}  = await axios.get("https://portal.brundhavangarden.com/api/services/food-menu");
+    if(!foodMenu) {
+      return{
+              success:false,
+        message:"Food Menu not found",
+        data:data
+      }
+    }
+    return {
+          success:true,
+        message:"Data Found",
+        data:foodMenu
+    }
+  } catch (error) {
+    return{
+      success:false,
+        message:"Internal server error",
+        data:data
+    }
+  }
+}
+export const getActivites =  async()=>{
+  try {
+    const {data:activities}  = await axios.get("https://portal.brundhavangarden.com/api/services/activities");
+    if(!activities) {
+      return{
+              success:false,
+        message:"Food Menu not found",
+        data:data
+      }
+    }
+    return {
+          success:true,
+        message:"Data Found",
+        data:activities
+    }
+  } catch (error) {
+    return{
+      success:false,
+        message:"Internal server error",
+        data:data
+    }
+  }
+}

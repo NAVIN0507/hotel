@@ -35,8 +35,11 @@ const RoomCard = ({id,
       <div className='md:w-4/12 h-[400px] bg-[#011D38] p-7 md:ml-14 mt-10 rounded-2xl'>
      <div className='mt-10'>
       <h1 className='text-white font-mono text-3xl'>{name}</h1>
-      <p className='text-[#C1C1C1] text-sm mt-4'>{description}
-  </p>
+      <div className='text-[#C1C1C1] text-sm mt-4'
+       dangerouslySetInnerHTML={{
+                        __html: description || "",
+                      }}
+      />
  <div className='flex gap-16   mt-10'>
   <div className='flex flex-col gap-1 items-center justify-center'>
       <InspectionPanel  color='#ffffff' width={40} height={40}/>

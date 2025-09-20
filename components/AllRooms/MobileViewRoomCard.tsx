@@ -16,7 +16,6 @@ const MobileViewRoomCard = ({id,
    <div className="w-[400px] rounded-xl m-10 p-4 h-full bg-[#011D38] -ml-5 text-white">
   {/* Header */}
   <div className="flex">
-    <p className="text-xl mt-2">/01</p>
     <h1 className="font-mono uppercase ml-1 text-4xl">{name}</h1>
   </div>
 
