@@ -408,3 +408,34 @@ export const getActivites =  async()=>{
     }
   }
 }
+
+type AppDetailsResponse =  {
+success:boolean;
+data:any;
+message:string;
+}
+
+export const getAppDetails = async() : Promise<AppDetailsResponse> => {
+  try {
+    const {data:appDetails}  =  await axios.get("https://portal.brundhavangarden.com/api/services/app-details")
+    if(!appDetails){
+      return {  
+      success:false,
+        message:"App details not found",
+        data:data
+      }
+    }
+    return {
+      success:true,
+      data:appDetails,
+      message:"Successfully fetched app details"
+    }
+
+  } catch (error) {
+    return{
+     success:false,
+     data:undefined,
+     message:"Internal server error" 
+    }
+  }
+}

@@ -1,9 +1,22 @@
 'use client'
-import Image from 'next/image'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
-import { FacebookIcon, Instagram, MessageCircle , Facebook } from "lucide-react";
+import { getAppDetails } from "@/lib/actions/users.actions";
 
+import { FacebookIcon, Instagram, MessageCircle , Facebook, Loader2Icon } from "lucide-react";
+interface AppDetails {
+    terms:string;
+  shipping:string;
+  refund:string;
+  name:string;
+  logo:string;
+  favicon:string;
+  email:string;
+  phone:string;
+  facebook_link:string;
+  instagram_link:string;
+  whatsapp_link:string;
+}
 const Footer = () => {
   const [width, setWidth] = useState<number>(0);
 
@@ -14,6 +27,27 @@ const Footer = () => {
     window.addEventListener("resize", updateWidth); // Listen for resize
     return () => window.removeEventListener("resize", updateWidth);
   }, []);
+     const [appDetails, setappDetails] = useState<AppDetails | null>(null)
+        const fetchAppDetails = async () => {
+          console.log(" i am inside room footer api");
+          
+          const {data , message}  =await getAppDetails();
+          console.log("message", message)
+          if(!data) return null;
+          setappDetails(data)
+        }
+        
+        useEffect(()=>{
+          fetchAppDetails()
+        } , [])
+
+        if(!appDetails) return (
+          <div className='h-full items-center justify-center flex'>
+            <Loader2Icon className='animate-spin'/>
+          </div>
+        )
+  
+        console.log("app Details from room" , appDetails)
   return (
    <footer className={`bg-[#AA9061] text-white w-full h-full p-10 ${width <  768 && 'hidden'}`}>
     <div className='flex items-center justify-between gap-4'>
@@ -29,28 +63,33 @@ const Footer = () => {
         <p className='text-sm underline mt-2'>Privacy Policy</p>
          <p className='text-sm underline mt-2'>Refund Policy</p>
         </div>
-           <div className='flex flex-col gap-1 -mt-18'>
+            <div className='flex flex-col gap-1 -mt-18'>
         <h1 className='font-mono text-3xl'>CONTACT US</h1>
-        <p className='text-sm mt-2'>Call: 99999 99999</p>
-        <p className='text-sm mt-2'>Write: Solvix@Gmail.com</p>
+        <p className='text-sm mt-2'>Call: {appDetails?.phone}</p>
+        <p className='text-sm mt-2'>Write: {appDetails?.email}</p>
         <p className='text-sm mt-2'>Find Us: Xxxx , Xxx , Dindigul , Tamil Nadu</p>
         
         </div>
        
-                   <div className='flex flex-col gap-1 -mt-28'>
-                <h1 className='font-mono text-3xl'>FOLLOW US</h1>
-                <div className='flex gap-4 mt-2'>
-               <div className='w-10 h-10 rounded-full'>
-                <MessageCircle className="size-10"/>
-               </div>
-                <div className='w-10 h-10 rounded-full'>
-                  <Instagram className="size-10"/>
-                </div>
-                 <div className='w-10 h-10 rounded-full'>
-                  <Facebook className="size-10"/>
-                 </div>
-               </div>
-              
+                       <div className='flex flex-col gap-1 -mt-28'>
+        <h1 className='font-mono text-3xl'>FOLLOW US</h1>
+        <div className='flex gap-4 mt-2'>
+       <div className='w-10 h-10 rounded-full'>
+        <Link href={appDetails?.whatsapp_link!}>
+        <MessageCircle className="size-10"/>
+        </Link>
+       </div>
+        <div className='w-10 h-10 rounded-full'>
+          <Link href={appDetails?.instagram_link!}>
+          <Instagram className="size-10"/>
+          </Link>
+        </div>
+         <div className='w-10 h-10 rounded-full'>
+          <Link href={appDetails?.facebook_link!}>
+          <Facebook className="size-10"/>
+          </Link>
+         </div>
+       </div>
         </div>
     </div>
     <div className='flex items-center justify-between mt-24'>

@@ -31,7 +31,7 @@ const Hero = ({ pictures, video }: RoomProps) => {
     const startAutoplay = () => {
       timer.current = setInterval(() => {
         slider.current?.next();
-      }, 3000);
+      }, 5000);
     };
 
     const stopAutoplay = () => {
@@ -77,7 +77,7 @@ const Hero = ({ pictures, video }: RoomProps) => {
                   alt={`hero-image-${index}`}
                   width={1500}
                   height={600}
-                  className="rounded-2xl w-full h-[600px] object-cover"
+                  className="rounded-2xl w-full h-[600px] object-fill"
                 />
               </div>
             ))}
