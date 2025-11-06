@@ -1617,7 +1617,7 @@ const BentoGrid = ()=>{
         }, void 0, false) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
                 id: "allrooms-bentogrid",
-                className: "w-full h-full p-2 mx-auto ",
+                className: "w-full h-full p-2  mx-auto ",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                         className: "text-[#5C5C5C] text-center",
@@ -2200,31 +2200,72 @@ __turbopack_context__.s({
     "default": (()=>TestimonialsSection)
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+;
+var _s = __turbopack_context__.k.signature();
 ;
 const testimonials = [
     {
-        name: 'Alex Harmony',
-        title: 'Co-Founder of D&IIT',
-        content: 'Immerse Yourself In The Captivating Works Of Bliss Gardens, Where Nature And Aesthetics Unite Seamlessly. Explore Lush Landscapes, Vibrant Gardens,Immerse Yourself In The Captivating Works Of Bliss Gardens, Where Nature And Aesthetics Unite Seamlessly. Explore Lush Landscapes, Vibrant Gardens.'
+        name: 'Vaibhav Menon',
+        content: 'My family loved our stay at Brundhavan Garden! The Deluxe Room was spacious, and the staff made us feel right at home. The view and cleanliness were excellent. Will definitely return'
     },
     {
-        name: 'Alex Harmony',
-        title: 'Co-Founder of D&IIT',
-        content: 'Immerse Yourself In The Captivating Works Of Bliss Gardens, Where Nature And Aesthetics Unite Seamlessly. Explore Lush Landscapes, Vibrant Gardens,Immerse Yourself In The Captivating Works Of Bliss Gardens, Where Nature And Aesthetics Unite Seamlessly. Explore Lush Landscapes, Vibrant Gardens.'
+        name: 'Priya Sharma',
+        content: 'A peaceful atmosphere and excellent amenities. The wooden room was cozy and beautiful. We enjoyed the kid’s play park and local attractions nearby. Highly recommended for couples!'
+    },
+    {
+        name: 'Raja Subramanian',
+        content: 'Our group booked the Deluxe Room for a weekend getaway. Everything from room service to food choices exceeded expectations. The jeep safari was unforgettable!'
+    },
+    {
+        name: 'Aishwarya Kumari',
+        content: 'Fantastic location with great facilities like Wi-Fi and power backup. The staff helped with our travel plans and pointed us to wonderful local sights. Our children loved the safe and fun environment.'
     }
 ];
 function TestimonialsSection() {
+    _s();
+    const [currentIndex, setCurrentIndex] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0);
+    const [isAutoPlaying, setIsAutoPlaying] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
+    const itemsPerView = "object" !== 'undefined' && window.innerWidth >= 768 ? 2 : 1;
+    const maxIndex = testimonials.length - itemsPerView;
+    const nextSlide = ()=>{
+        setCurrentIndex((prev)=>prev >= maxIndex ? 0 : prev + 1);
+    };
+    const prevSlide = ()=>{
+        setCurrentIndex((prev)=>prev <= 0 ? maxIndex : prev - 1);
+    };
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "TestimonialsSection.useEffect": ()=>{
+            if (!isAutoPlaying) return;
+            const interval = setInterval({
+                "TestimonialsSection.useEffect.interval": ()=>{
+                    nextSlide();
+                }
+            }["TestimonialsSection.useEffect.interval"], 2000);
+            return ({
+                "TestimonialsSection.useEffect": ()=>clearInterval(interval)
+            })["TestimonialsSection.useEffect"];
+        }
+    }["TestimonialsSection.useEffect"], [
+        currentIndex,
+        isAutoPlaying
+    ]);
+    const handleManualControl = (action)=>{
+        setIsAutoPlaying(false);
+        action();
+        setTimeout(()=>setIsAutoPlaying(true), 10000);
+    };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
         className: "bg-[#02162c] text-white py-16 px-4 rounded-2xl",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "max-w-6xl mx-auto",
+            className: "max-w-6xl max-h-fit mx-auto",
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                     className: "text-sm uppercase tracking-widest text-gray-300",
                     children: "Customers Reviews"
                 }, void 0, false, {
                     fileName: "[project]/components/Home/Testimonials.tsx",
-                    lineNumber: 22,
+                    lineNumber: 64,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -2235,7 +2276,7 @@ function TestimonialsSection() {
                             className: "hidden md:block"
                         }, void 0, false, {
                             fileName: "[project]/components/Home/Testimonials.tsx",
-                            lineNumber: 24,
+                            lineNumber: 66,
                             columnNumber: 30
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2245,97 +2286,114 @@ function TestimonialsSection() {
                                     className: "w-20 mt-6 mr-2 -ml-7 hidden lg:block h-0 border border-gray-500"
                                 }, void 0, false, {
                                     fileName: "[project]/components/Home/Testimonials.tsx",
-                                    lineNumber: 25,
+                                    lineNumber: 67,
                                     columnNumber: 40
                                 }, this),
                                 "Guests Have Said"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/Home/Testimonials.tsx",
-                            lineNumber: 25,
+                            lineNumber: 67,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/Home/Testimonials.tsx",
-                    lineNumber: 23,
+                    lineNumber: 65,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "mt-12 grid grid-cols-1 md:grid-cols-2 gap-6",
-                    children: testimonials.map((testimonial, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "bg-[#052d56] p-6 rounded-xl min-h-[250px] flex flex-col justify-between",
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "flex items-center mb-4",
+                    className: "mt-12 relative",
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "overflow-hidden",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "flex transition-transform duration-500 ease-in-out",
+                            style: {
+                                transform: `translateX(-${currentIndex * (100 / itemsPerView)}%)`
+                            },
+                            children: testimonials.map((testimonial, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "w-full md:w-1/2 flex-shrink-0 px-3",
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "w-12 h-12 bg-[#02162c] rounded-full mr-4"
-                                    }, void 0, false, {
+                                        className: "bg-[#052d56] p-6 rounded-xl min-h-[250px] flex flex-col justify-between",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "flex items-center mb-4",
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                                    src: "/assets/images/user_prof.avif",
+                                                    className: "size-8 rounded-full",
+                                                    alt: ""
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/Home/Testimonials.tsx",
+                                                    lineNumber: 83,
+                                                    columnNumber: 23
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/Home/Testimonials.tsx",
+                                                lineNumber: 82,
+                                                columnNumber: 21
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                className: "text-sm leading-relaxed text-gray-200",
+                                                children: testimonial.content
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/Home/Testimonials.tsx",
+                                                lineNumber: 85,
+                                                columnNumber: 21
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "mt-4",
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    className: "font-semibold text-white text-sm",
+                                                    children: testimonial.name
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/Home/Testimonials.tsx",
+                                                    lineNumber: 89,
+                                                    columnNumber: 23
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/Home/Testimonials.tsx",
+                                                lineNumber: 88,
+                                                columnNumber: 21
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
                                         fileName: "[project]/components/Home/Testimonials.tsx",
-                                        lineNumber: 35,
-                                        columnNumber: 17
+                                        lineNumber: 81,
+                                        columnNumber: 19
                                     }, this)
-                                }, void 0, false, {
+                                }, index, false, {
                                     fileName: "[project]/components/Home/Testimonials.tsx",
-                                    lineNumber: 34,
-                                    columnNumber: 15
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "text-sm leading-relaxed text-gray-200",
-                                    children: testimonial.content
-                                }, void 0, false, {
-                                    fileName: "[project]/components/Home/Testimonials.tsx",
-                                    lineNumber: 37,
-                                    columnNumber: 15
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "mt-4",
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                            className: "font-semibold text-white text-sm",
-                                            children: testimonial.name
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/Home/Testimonials.tsx",
-                                            lineNumber: 41,
-                                            columnNumber: 17
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                            className: "text-xs text-gray-400",
-                                            children: testimonial.title
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/Home/Testimonials.tsx",
-                                            lineNumber: 44,
-                                            columnNumber: 17
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/components/Home/Testimonials.tsx",
-                                    lineNumber: 40,
-                                    columnNumber: 15
-                                }, this)
-                            ]
-                        }, index, true, {
+                                    lineNumber: 77,
+                                    columnNumber: 17
+                                }, this))
+                        }, void 0, false, {
                             fileName: "[project]/components/Home/Testimonials.tsx",
-                            lineNumber: 30,
+                            lineNumber: 72,
                             columnNumber: 13
-                        }, this))
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/components/Home/Testimonials.tsx",
+                        lineNumber: 71,
+                        columnNumber: 11
+                    }, this)
                 }, void 0, false, {
                     fileName: "[project]/components/Home/Testimonials.tsx",
-                    lineNumber: 28,
+                    lineNumber: 70,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/components/Home/Testimonials.tsx",
-            lineNumber: 21,
+            lineNumber: 63,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/components/Home/Testimonials.tsx",
-        lineNumber: 20,
+        lineNumber: 62,
         columnNumber: 5
     }, this);
 }
+_s(TestimonialsSection, "GaMjhoJL+kq9QyJhTWKgFkGeqfI=");
 _c = TestimonialsSection;
 var _c;
 __turbopack_context__.k.register(_c, "TestimonialsSection");
@@ -2460,35 +2518,19 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$accordio
 const faqItems = [
     {
         question: "Is it accessible?",
-        answer: "Immerse yourself in the captivating works of Bliss Gardens, where nature and aesthetics unite seamlessly. Explore lush landscapes, vibrant gardens,Immerse yourself in the captivating works of Bliss Gardens, where nature and aesthetics unite seamlessly. Explore lush landscapes, vibrant gardens,"
+        answer: "Yes, Brundhavan Garden Homestay is located on Pannaikadu Main Road in Thandikudi, Dindigul,Tamil Nadu. The property is easy to reach by car, features on-site parking, and offers aconvenient location for travelers visiting the region."
     },
     {
         question: "How much does it cost?",
-        answer: "Immerse yourself in the captivating works of Bliss Gardens, where nature and aesthetics unite seamlessly. Explore lush landscapes, vibrant gardens,Immerse yourself in the captivating works of Bliss Gardens, where nature and aesthetics unite seamlessly. Explore lush landscapes, vibrant gardens,"
+        answer: "Deluxe Room: ₹3000 per night (160 sq. feet, up to 6 persons). Standard Room: ₹1500 per night (110 sq. feet, up to 2 persons). Wooden Room: ₹2000 per night (160 sq. feet, up to 2 persons)"
     },
     {
         question: "What is your cancellation policy?",
-        answer: "Immerse yourself in the captivating works of Bliss Gardens, where nature and aesthetics unite seamlessly. Explore lush landscapes, vibrant gardens,Immerse yourself in the captivating works of Bliss Gardens, where nature and aesthetics unite seamlessly. Explore lush landscapes, vibrant gardens,"
+        answer: "We offer flexible check-in and check-out options. For cancellation or changes, please contact usdirectly at least 48 hours before your scheduled arrival to avoid any charges. Please reach out for specific details during reservation."
     },
     {
         question: "Do you offer group discounts?",
-        answer: "Immerse yourself in the captivating works of Bliss Gardens, where nature and aesthetics unite seamlessly. Explore lush landscapes, vibrant gardens,Immerse yourself in the captivating works of Bliss Gardens, where nature and aesthetics unite seamlessly. Explore lush landscapes, vibrant gardens,"
-    },
-    {
-        question: "Is it accessible?",
-        answer: "Immerse yourself in the captivating works of Bliss Gardens, where nature and aesthetics unite seamlessly. Explore lush landscapes, vibrant gardens,Immerse yourself in the captivating works of Bliss Gardens, where nature and aesthetics unite seamlessly. Explore lush landscapes, vibrant gardens,"
-    },
-    {
-        question: "How much does it cost?",
-        answer: "Immerse yourself in the captivating works of Bliss Gardens, where nature and aesthetics unite seamlessly. Explore lush landscapes, vibrant gardens,Immerse yourself in the captivating works of Bliss Gardens, where nature and aesthetics unite seamlessly. Explore lush landscapes, vibrant gardens,"
-    },
-    {
-        question: "What is your cancellation policy?",
-        answer: "Immerse yourself in the captivating works of Bliss Gardens, where nature and aesthetics unite seamlessly. Explore lush landscapes, vibrant gardens,Immerse yourself in the captivating works of Bliss Gardens, where nature and aesthetics unite seamlessly. Explore lush landscapes, vibrant gardens,"
-    },
-    {
-        question: "Do you offer group discounts?",
-        answer: "Immerse yourself in the captivating works of Bliss Gardens, where nature and aesthetics unite seamlessly. Explore lush landscapes, vibrant gardens,Immerse yourself in the captivating works of Bliss Gardens, where nature and aesthetics unite seamlessly. Explore lush landscapes, vibrant gardens,"
+        answer: "Yes, special pricing and packages are available for large groups or extended stays. Contact us directly for group discount arrangements and special requests."
     }
 ];
 const FAQ = ()=>{
@@ -2500,7 +2542,7 @@ const FAQ = ()=>{
                 children: "FAQ"
             }, void 0, false, {
                 fileName: "[project]/components/Home/FAQ.tsx",
-                lineNumber: 55,
+                lineNumber: 33,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2513,14 +2555,14 @@ const FAQ = ()=>{
                                 className: "hidden lg:block w-20 h-0 mt-6 border border-gray-500"
                             }, void 0, false, {
                                 fileName: "[project]/components/Home/FAQ.tsx",
-                                lineNumber: 59,
+                                lineNumber: 37,
                                 columnNumber: 11
                             }, this),
                             "GOT ANY QUESTIONS"
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/Home/FAQ.tsx",
-                        lineNumber: 58,
+                        lineNumber: 36,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -2531,19 +2573,19 @@ const FAQ = ()=>{
                                 className: "hidden lg:block w-20 h-0 mt-6 border border-gray-500"
                             }, void 0, false, {
                                 fileName: "[project]/components/Home/FAQ.tsx",
-                                lineNumber: 64,
+                                lineNumber: 42,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/Home/FAQ.tsx",
-                        lineNumber: 62,
+                        lineNumber: 40,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/Home/FAQ.tsx",
-                lineNumber: 57,
+                lineNumber: 35,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2560,7 +2602,7 @@ const FAQ = ()=>{
                                     children: item.question
                                 }, void 0, false, {
                                     fileName: "[project]/components/Home/FAQ.tsx",
-                                    lineNumber: 73,
+                                    lineNumber: 51,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$accordion$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AccordionContent"], {
@@ -2568,29 +2610,29 @@ const FAQ = ()=>{
                                     children: item.answer
                                 }, void 0, false, {
                                     fileName: "[project]/components/Home/FAQ.tsx",
-                                    lineNumber: 76,
+                                    lineNumber: 54,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/Home/FAQ.tsx",
-                            lineNumber: 72,
+                            lineNumber: 50,
                             columnNumber: 13
                         }, this)
                     }, index, false, {
                         fileName: "[project]/components/Home/FAQ.tsx",
-                        lineNumber: 71,
+                        lineNumber: 49,
                         columnNumber: 11
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/components/Home/FAQ.tsx",
-                lineNumber: 69,
+                lineNumber: 47,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/Home/FAQ.tsx",
-        lineNumber: 54,
+        lineNumber: 32,
         columnNumber: 5
     }, this);
 };
@@ -2703,7 +2745,7 @@ const Footer = ()=>{
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                                     className: "font-mono text-2xl sm:text-3xl",
-                                    children: "CUSTOMER CARE"
+                                    children: "Other Pages"
                                 }, void 0, false, {
                                     fileName: "[project]/components/Home/Footer.tsx",
                                     lineNumber: 72,
@@ -2714,7 +2756,7 @@ const Footer = ()=>{
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             className: "text-sm underline mt-2",
-                                            children: "Track Orders"
+                                            children: "Shipping Policy"
                                         }, void 0, false, {
                                             fileName: "[project]/components/Home/Footer.tsx",
                                             lineNumber: 74,
@@ -2722,7 +2764,7 @@ const Footer = ()=>{
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             className: "text-sm underline mt-2",
-                                            children: "Shipping Policy"
+                                            children: "Terms & Conditions"
                                         }, void 0, false, {
                                             fileName: "[project]/components/Home/Footer.tsx",
                                             lineNumber: 75,
@@ -2730,26 +2772,10 @@ const Footer = ()=>{
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             className: "text-sm underline mt-2",
-                                            children: "Terms & Conditions"
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/Home/Footer.tsx",
-                                            lineNumber: 76,
-                                            columnNumber: 15
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                            className: "text-sm underline mt-2",
-                                            children: "Privacy Policy"
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/Home/Footer.tsx",
-                                            lineNumber: 77,
-                                            columnNumber: 15
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                            className: "text-sm underline mt-2",
                                             children: "Refund Policy"
                                         }, void 0, false, {
                                             fileName: "[project]/components/Home/Footer.tsx",
-                                            lineNumber: 78,
+                                            lineNumber: 76,
                                             columnNumber: 15
                                         }, this)
                                     ]
@@ -2772,7 +2798,7 @@ const Footer = ()=>{
                                     children: "CONTACT US"
                                 }, void 0, false, {
                                     fileName: "[project]/components/Home/Footer.tsx",
-                                    lineNumber: 84,
+                                    lineNumber: 82,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2783,7 +2809,7 @@ const Footer = ()=>{
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/Home/Footer.tsx",
-                                    lineNumber: 85,
+                                    lineNumber: 83,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2794,7 +2820,7 @@ const Footer = ()=>{
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/Home/Footer.tsx",
-                                    lineNumber: 86,
+                                    lineNumber: 84,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2802,13 +2828,13 @@ const Footer = ()=>{
                                     children: "Find Us: Xxxx , Xxx , Dindigul , Tamil Nadu"
                                 }, void 0, false, {
                                     fileName: "[project]/components/Home/Footer.tsx",
-                                    lineNumber: 87,
+                                    lineNumber: 85,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/Home/Footer.tsx",
-                            lineNumber: 83,
+                            lineNumber: 81,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2819,7 +2845,7 @@ const Footer = ()=>{
                                     children: "FOLLOW US"
                                 }, void 0, false, {
                                     fileName: "[project]/components/Home/Footer.tsx",
-                                    lineNumber: 94,
+                                    lineNumber: 92,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2834,12 +2860,12 @@ const Footer = ()=>{
                                                 alt: ""
                                             }, void 0, false, {
                                                 fileName: "[project]/components/Home/Footer.tsx",
-                                                lineNumber: 100,
+                                                lineNumber: 98,
                                                 columnNumber: 13
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/Home/Footer.tsx",
-                                            lineNumber: 96,
+                                            lineNumber: 94,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -2851,41 +2877,41 @@ const Footer = ()=>{
                                                 alt: ""
                                             }, void 0, false, {
                                                 fileName: "[project]/components/Home/Footer.tsx",
-                                                lineNumber: 106,
+                                                lineNumber: 104,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/Home/Footer.tsx",
-                                            lineNumber: 102,
+                                            lineNumber: 100,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                             href: appDetails?.facebook_link || "",
                                             className: "w-10 h-10 flex items-center justify-center rounded-full hover:scale-105 transition",
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                                src: "/assets/images/facebook-logo.jpeg",
+                                                src: "/assets/images/youtube-icon.avif",
                                                 className: "rounded-full",
                                                 alt: ""
                                             }, void 0, false, {
                                                 fileName: "[project]/components/Home/Footer.tsx",
-                                                lineNumber: 112,
+                                                lineNumber: 110,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/Home/Footer.tsx",
-                                            lineNumber: 108,
+                                            lineNumber: 106,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/Home/Footer.tsx",
-                                    lineNumber: 95,
+                                    lineNumber: 93,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/Home/Footer.tsx",
-                            lineNumber: 93,
+                            lineNumber: 91,
                             columnNumber: 12
                         }, this)
                     ]
@@ -2908,7 +2934,7 @@ const Footer = ()=>{
                                     children: "BRUNDHAVAN"
                                 }, void 0, false, {
                                     fileName: "[project]/components/Home/Footer.tsx",
-                                    lineNumber: 121,
+                                    lineNumber: 119,
                                     columnNumber: 13
                                 }, this),
                                 " ",
@@ -2916,7 +2942,7 @@ const Footer = ()=>{
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/Home/Footer.tsx",
-                            lineNumber: 119,
+                            lineNumber: 117,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -2931,19 +2957,19 @@ const Footer = ()=>{
                                     children: "SolvixSoftworks"
                                 }, void 0, false, {
                                     fileName: "[project]/components/Home/Footer.tsx",
-                                    lineNumber: 128,
+                                    lineNumber: 126,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/Home/Footer.tsx",
-                            lineNumber: 126,
+                            lineNumber: 124,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/Home/Footer.tsx",
-                    lineNumber: 118,
+                    lineNumber: 116,
                     columnNumber: 9
                 }, this)
             ]

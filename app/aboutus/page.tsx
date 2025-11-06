@@ -4,7 +4,6 @@ import Contact from '@/components/About/Contact'
 import Hero from '@/components/About/Hero'
 import Story from '@/components/About/Story'
 import SpecialSection from '@/components/About/Team'
-import TestimonialsSection from '@/components/About/Testimonial'
 import React , {useState , useEffect} from 'react'
 import { usePathname, useRouter } from "next/navigation";
 import { fetchUserDetails } from "@/lib/actions/users.actions";
@@ -12,6 +11,7 @@ import Link from "next/link";
 import { LogOut } from "lucide-react";
 import { toast } from "sonner";
 import Footer from '@/components/Home/Footer'
+import TestimonialsSection from '@/components/Home/Testimonials'
 const MobileSidebar = ({ isOpen, onClose }:{isOpen:boolean , onClose:()=>void}) => {
     const [user, setUser] = useState<User | null>(null);
     const router = useRouter();
@@ -180,7 +180,6 @@ const page = () => {
     <Hero/>
     <Story/>
     <AboutCard/>
-    <SpecialSection/>
     <TestimonialsSection/>
     <Contact/>
    </main>

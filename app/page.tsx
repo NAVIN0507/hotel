@@ -4,7 +4,7 @@ import { useState , useEffect } from "react";
 import Hero from "../components/Home/Hero";
 import AboutUsSection from "../components/Home/Aboutus";
 import SpecialSection from "@/components/Home/FeatureSectio";
-import BentoGrid from "@/components/Home/BentoGrid";
+import BentoGrid from "@/components/AllRooms/BentoGrid";
 import Amunities from "@/components/Home/Amunities";
 import Testimonials from "@/components/Home/Testimonials";
 import FAQ from "@/components/Home/FAQ";
@@ -14,6 +14,7 @@ import { fetchUserDetails } from "@/lib/actions/users.actions";
 import Link from "next/link";
 import { HomeIcon, House, Info, LayoutDashboard, LogOut } from "lucide-react";
 import { toast } from "sonner";
+import Activities from "@/components/Home/Activities";
 
 // Mobile Sidebar Component
 const MobileSidebar = ({ isOpen, onClose }:{isOpen:boolean , onClose:()=>void}) => {
@@ -148,6 +149,15 @@ export default function Home() {
 
   const openSidebar = () => setIsSidebarOpen(true);
   const closeSidebar = () => setIsSidebarOpen(false);
+    const [width, setWidth] = useState<number>(0);
+    
+      useEffect(() => {
+        const updateWidth = () => setWidth(window.innerWidth);
+        updateWidth(); // Get initial width
+    
+        window.addEventListener("resize", updateWidth); // Listen for resize
+        return () => window.removeEventListener("resize", updateWidth);
+      }, []);
 
   return (
     <>
@@ -163,7 +173,8 @@ export default function Home() {
         <Hero />
         <SpecialSection />
         <AboutUsSection />
-        <BentoGrid />
+        <BentoGrid width={width}  isHome/>
+        {/* <Activities/> */}
         <Amunities />
         <Testimonials />
         <FAQ />

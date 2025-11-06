@@ -22,9 +22,15 @@ const AboutUsSection = () => {
            
         </div>
         <div className='ml-10 mt-5'>
-            <p className='text-[#C1C1C1] font-normal text-left'>Qed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam aperiam. Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt. Ut enim ad minima veniam, quis nostrum
-
-exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.Ut enim ad minima Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
+            <p className='text-[#C1C1C1] font-normal text-left'>
+                At Brundhavan Garden, located in the serene Thandikudi Hills near Kodaikanal, we warmly invite
+you to escape the hustle and bustle of city life and immerse yourself in a tranquil retreat
+embraced by nature’s beauty and warmth. Our homestay is thoughtfully designed as a peaceful
+sanctuary, blending rustic charm with modern comforts, ensuring that every guest feels the
+warmth and hospitality of a true home away from home. We emphasize personalized service,
+attention to detail, and a clean, green environment where guests can relax, rejuvenate, and
+create lasting memories with scenic views and refreshing mountain air.
+            </p>
         </div>
         <div>
             <Link href={"/aboutus"}>
@@ -61,18 +67,17 @@ exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
                 {/* Right: Description and Video */}
                 <div className="flex flex-col gap-6 max-w-md text-sm leading-relaxed text-[#C1C1C1]">
                     <p>
-                        Qed Ut Perspiciatis Unde Omnis Iste Natus Error Sit Voluptatem
-                        Accusantium Doloremque Laudantium Totam Aperiam. Eaque Ipsa Quae Ab
-                        Illo Inventore Veritatis Et Quasi Architecto Beatae Vitae Dicta
-                        Sunt. Ut Enim Ad Minima Veniam, Quis Nostrum
-                    </p>
-                    <p>
-                        Exercitationem Ullam Corporis Suscipit Laboriosam, Nisi Ut Aliquid
-                        Ex Ea Commodi Consequatur. Ut Enim Ad Minima Quis Autem Vel Eum Iure
-                        Reprehenderit Qui In Ea Voluptate Velit Esse Quam Nihil Molestiae
-                        Consequatur.
-                    </p>
-
+                    At Brundhavan Garden, located in the serene Thandikudi Hills near Kodaikanal, we warmly invite
+you to escape the hustle and bustle of city life and immerse yourself in a tranquil retreat
+embraced by nature’s beauty and warmth. 
+</p>
+<p>
+Our homestay is thoughtfully designed as a peaceful
+sanctuary, blending rustic charm with modern comforts, ensuring that every guest feels the
+warmth and hospitality of a true home away from home. We emphasize personalized service,
+attention to detail, and a clean, green environment where guests can relax, rejuvenate, and
+create lasting memories with scenic views and refreshing mountain air.
+</p>
                     {/* Video Preview */}
                     
                 </div>

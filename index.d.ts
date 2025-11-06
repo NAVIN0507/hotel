@@ -44,6 +44,7 @@ type RoomCategoriesProps = {
     beds:string;
     c?:boolean;
     index:number;
+    isHome?:boolean
 }
 type Service = {
     service_name: string;

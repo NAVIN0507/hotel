@@ -10,8 +10,10 @@ const MobileViewRoomCard = ({id,
     price,
     square_ft,
     capability,
-    beds , c , index}:RoomCategoriesProps) => {
+    beds , c , index , isHome}:RoomCategoriesProps) => {
   return (
+    <>
+   
     <Link href={`/room/${id}`}>
    <div className="w-full rounded-xl p-4 mt-4 h-full bg-[#011D38]  text-white">
   {/* Header */}
@@ -61,6 +63,7 @@ const MobileViewRoomCard = ({id,
   </div>
 </div>
 </Link>
+</>
   )
 }
 

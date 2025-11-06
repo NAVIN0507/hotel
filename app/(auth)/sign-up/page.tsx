@@ -197,7 +197,7 @@ const SignUp = () => {
 </div>
 <div className='h-40 w-11/12 sticky sm:top-0 sm:min-h-screen sm:flex-1 hidden md:block p-4'>
 <Image
-src={"/assets/images/feature_section.jpg"}
+src={"/assets/images/sign-up-login.jpg"}
 alt="feature section"
 width={100}
 height={100}
