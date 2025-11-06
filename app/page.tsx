@@ -12,7 +12,7 @@ import Footer from "@/components/Home/Footer";
 import { useRouter } from "next/navigation";
 import { fetchUserDetails } from "@/lib/actions/users.actions";
 import Link from "next/link";
-import { LogOut } from "lucide-react";
+import { HomeIcon, House, Info, LayoutDashboard, LogOut } from "lucide-react";
 import { toast } from "sonner";
 
 // Mobile Sidebar Component
@@ -35,6 +35,12 @@ const MobileSidebar = ({ isOpen, onClose }:{isOpen:boolean , onClose:()=>void}) 
     toast.success("Logged Out Successfully")
     router.refresh()
   }
+  const sidebarItems = [
+    {label:"Home" , href:"/"  ,icon :HomeIcon},
+    {label:"About Us" , href:"/aboutus"  ,icon :Info},
+    {label:"Portal" , href:"https://portal.brundhavangarden.com/portal"  ,icon : LayoutDashboard},
+    {label:"Rooms" , href:"/allrooms"  ,icon : House}
+  ]
   return (
     <>
       {/* Overlay */}
@@ -77,43 +83,15 @@ const MobileSidebar = ({ isOpen, onClose }:{isOpen:boolean , onClose:()=>void}) 
 
           {/* Navigation Links */}
           <nav className="flex-1 p-4">
-            <ul className="space-y-2">
-              <li>
-                <a
-                  href="/"
-                  className="block px-4 py-2 text-black   rounded-md transition-colors"
-                  onClick={onClose}
-                >
-                  Home
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/aboutus"
-                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md transition-colors"
-                  onClick={onClose}
-                >
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://portal.brundhavangarden.com/portal"
-                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md transition-colors"
-                  onClick={onClose}
-                >
-                  Portal
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/allrooms"
-                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md transition-colors"
-                  onClick={onClose}
-                >
-                  Rooms
-                </a>
-              </li>
+            <ul className="space-y-7 p-5">
+           {sidebarItems.map((item)=>(
+            <div className="flex flex-row gap-3">
+              <Link href={item.href} className="flex gap-3">
+              <item.icon className="size-5"/>
+              <li>{item.label}</li>
+              </Link>
+            </div>
+           ))}
           
             </ul>
           </nav>
@@ -121,14 +99,16 @@ const MobileSidebar = ({ isOpen, onClose }:{isOpen:boolean , onClose:()=>void}) 
           {/* Footer */}
           <div className="p-4 border-t">
             <Link href={user ? `` :"/sign-in"}>
-            <button className="w-full  text-black border border-gray-400  py-2 px-4 rounded-full hover:bg-gray-400 transition-colors flex gap-2 items-center justify-center">
+            <button className="w-full  text-black border border-gray-400  py-2 px-4 rounded-full  transition-colors flex gap-2 items-center justify-between">
               {user ? `HI ${user.name}` : "SignIn/Up"}
               {user && (
-                <LogOut className="size-4" onClick={()=>{
+                <div className="">
+                <LogOut className="size-5" onClick={()=>{
                   handleLogout()
                   onClose()
                   router.replace("/")
                 }}/>
+                </div>
               )}
             </button>
             </Link>

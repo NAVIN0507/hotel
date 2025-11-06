@@ -13,7 +13,7 @@ const MobileViewRoomCard = ({id,
     beds , c , index}:RoomCategoriesProps) => {
   return (
     <Link href={`/room/${id}`}>
-   <div className="w-[400px] rounded-xl m-10 p-4 h-full bg-[#011D38] -ml-5 text-white">
+   <div className="w-full rounded-xl p-4 mt-4 h-full bg-[#011D38]  text-white">
   {/* Header */}
   <div className="flex">
     <h1 className="font-mono uppercase ml-1 text-4xl">{name}</h1>

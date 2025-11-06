@@ -26,7 +26,7 @@ const BentoGrid = ({width}:{width:number}) => {
   return (
    <section className='w-full h-full   flex items-center justify-center'>
 
-    <div className='flex flex-col gap-2 mx-auto items-center justify-center  ml-16'>
+    <div className='flex flex-col gap-2 items-center justify-center  '>
     
 {room_categories?.map((rooms, index) => {
   const isRotate = index % 2 === 0;

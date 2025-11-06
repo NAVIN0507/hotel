@@ -45,8 +45,8 @@ const MobileBentoGrid = () => {
           </button>
         </div>
       </div>
-      <div className='flex flex-col md:flex-row gap-4 items-center justify-center mt-7 p-4 '>
-        <div className= 'w-[400px] h-full p-5 rounded-md bg-[#011D38] text-white'>
+      <div className='flex flex-col md:flex-row gap-4 items-center justify-center mt-7 '>
+        <div className= 'w-[510px] h-full p-7 rounded-md bg-[#011D38] text-white'>
         <div className='flex flex-col'>
         <p className='text-[10px]'>ACTIVITIES & GAMES</p>
         <h1 className='uppercase font-mono text-4xl leading-relaxed -mt-3'>Unwind to Nature</h1>
@@ -66,7 +66,7 @@ const MobileBentoGrid = () => {
       />
         </div>
         </div>
-         <div className= 'w-[400px] h-full p-5 rounded-md bg-[#011D38] text-white'>
+         <div className= 'w-[510px] h-full p-5 rounded-md bg-[#011D38] text-white'>
           <div className='flex flex-col'>
         <p className='text-[10px]'>ACTIVITIES & GAMES</p>
         <h1 className='uppercase font-mono text-4xl leading-relaxed -mt-3'>Unwind to Nature</h1>

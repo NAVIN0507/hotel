@@ -150,7 +150,7 @@ className='h-full w-full rounded-xl  object-fill'
 </Dialog>
           
         </div>
-        <Button type="submit" className="bg-[#b79464] hover:bg-[#b79464] hover:text-white cursor-pointer text-white w-full h-16 text-xl" disabled={isLoading}>{isLoading ? "Loging In..." :"Log IN"}</Button>
+        <Button type="submit" className="bg-[#b79464] hover:bg-[#b79464] hover:text-white cursor-pointer text-white w-full h-16 text-xl" disabled={isLoading}>{isLoading ? "Loging In..." :"Log In"}</Button>
       </form>
     </Form>
 
