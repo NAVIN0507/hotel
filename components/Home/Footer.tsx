@@ -71,9 +71,15 @@ const Footer = () => {
           <div className="flex flex-col gap-2 flex-1 min-w-[200px]">
             <h1 className="font-mono text-2xl sm:text-3xl">Other Pages</h1>
             <div className="mt-3 flex flex-col">
+              <Link href={"/shipping-policies"}>
               <p className="text-sm underline mt-2">Shipping Policy</p>
+              </Link>
+              <Link href={"/terms-conditions"}>
               <p className="text-sm underline mt-2">Terms & Conditions</p>
+              </Link>
+              <Link href={"/refund-policy"}>
               <p className="text-sm underline mt-2">Refund Policy</p>
+              </Link>
             </div>
           </div>
 

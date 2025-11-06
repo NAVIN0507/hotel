@@ -4,6 +4,7 @@ import {
   addBookingWithToken,
   fetchAllRoomByID,
   getActivites,
+  getAdditionalActivites,
   getFoodMenu,
 } from "@/lib/actions/users.actions";
 import {
@@ -53,6 +54,9 @@ interface BookingDetailsWithoutToken {
     address: string;
   };
 }
+type AddAct = {
+  [key: string]: number;
+}
 
 const RoomInfo = ({ id }: { id: string }) => {
   const [roomDetails, setroomDetails] = useState<RoomProps | null>(null);
@@ -91,40 +95,44 @@ const RoomInfo = ({ id }: { id: string }) => {
         phone: "",
       },
     });
-
+    const [addAct , setAddAct] = useState<AddAct | null>(null);
+    const fetchAddAct =  async() =>{
+      const {data}  = await getAdditionalActivites();
+      if(!data) return null;
+      setAddAct(data)
+    }
+    
+    
+    
   // Format datetime from "YYYY-MM-DDTHH:mm" to "YYYY-MM-DD HH:mm:ss"
   function formatDateTime(input: string) {
     if (!input) return "";
     return input.replace("T", " ") + ":00";
   }
 
-  const totalPrice = useMemo(() => {
-    if (!roomDetails) return 0;
+  var totalPrice = useMemo(() => {
+    if (!roomDetails || !addAct) return 0;
 
-    // Base price: 1499 if at least 1 adult or child, else roomDetails.price (fallback)
-    const basePrice =
-      bookingDetails.adult_count > 0 || bookingDetails.child_count > 0
-        ? 1499
-        : roomDetails.price;
+    // Base room price
+    const basePrice = roomDetails.price;
 
-    // Extra services price
-    const extrasCount = [
-      bookingDetails.extra_bed,
-      bookingDetails.fire_camp,
-      bookingDetails.jeep_safari,
-    ].filter(Boolean).length;
-
-    const extrasPrice = extrasCount * 299;
+    // Calculate extras price from addAct based on selected checkboxes
+    let extrasPrice = 0;
+    Object.entries(addAct).forEach(([key, value]) => {
+      if (bookingDetails[key as keyof typeof bookingDetails] === true) {
+        extrasPrice += Number(value);
+      }
+    });
 
     return basePrice + extrasPrice;
   }, [
-    bookingDetails.adult_count,
-    bookingDetails.child_count,
     bookingDetails.extra_bed,
     bookingDetails.fire_camp,
     bookingDetails.jeep_safari,
     roomDetails,
+    addAct,
   ]);
+
   useEffect(() => {
     const rawToken = localStorage.getItem("user_token");
     const authtoken = rawToken?.replace(/^"(.*)"$/, "$1") || null;
@@ -136,7 +144,7 @@ const RoomInfo = ({ id }: { id: string }) => {
         return redirect("/")
       }
       setroomDetails(room.data);
-
+      
       setBookingDetails((prev) => ({
         ...prev,
         token: authtoken || "",
@@ -144,6 +152,8 @@ const RoomInfo = ({ id }: { id: string }) => {
       }));
     };
     fetchRoom();
+   fetchAddAct();
+
   }, [id]);
   const [foodMenu, setfoodMenu] = useState<number[] | null>(null);
   useEffect(() => {
@@ -165,8 +175,17 @@ const RoomInfo = ({ id }: { id: string }) => {
     wantActivites();
   }, []);
 
-  const aboutRawText = roomDetails?.about_stay;
-  const plainText = aboutRawText?.replace(/<[^>]+>/g, "");
+const aboutRawText = roomDetails?.about_stay || "";
+
+// Step 1: Remove HTML tags
+let cleanText = aboutRawText.replace(/<[^>]*>/g, "");
+
+// Step 2: Split using &nbsp; as divider (each becomes a new bullet)
+const sentences = cleanText
+  .split(/&nbsp;+/g) // split by one or more &nbsp;
+  .map((s) => s.trim()) // remove extra spaces
+  .filter(Boolean); // remove empty entries
+
   const checkInRules = roomDetails?.check_in_rules;
   const checkInruleList = checkInRules
     ?.match(/<li>(.*?)<\/li>/g)
@@ -178,6 +197,74 @@ const RoomInfo = ({ id }: { id: string }) => {
 
   const onClick = async () => {
     try {
+      // Validation checks
+      const totalGuests = bookingDetails.adult_count + bookingDetails.child_count;
+      
+      // Check if room capacity is exceeded
+      if (roomDetails && totalGuests > roomDetails.capability) {
+        toast.error(
+          `Room capacity exceeded! Maximum ${roomDetails.capability} guests allowed. You selected ${totalGuests} guests.`,
+          { position: "top-center" }
+        );
+        return;
+      }
+
+      // Check if at least one guest is selected
+      if (totalGuests === 0) {
+        toast.error("Please select at least one guest (adult or child)", {
+          position: "top-center",
+        });
+        return;
+      }
+
+      // Check if dates are selected
+      if (!bookingDetails.check_in || !bookingDetails.check_out) {
+        toast.error("Please select check-in and check-out dates", {
+          position: "top-center",
+        });
+        return;
+      }
+
+      // Check if check-out is after check-in
+      const checkIn = new Date(bookingDetails.check_in);
+      const checkOut = new Date(bookingDetails.check_out);
+      if (checkOut <= checkIn) {
+        toast.error("Check-out date must be after check-in date", {
+          position: "top-center",
+        });
+        return;
+      }
+
+      // Check if guest details are provided (for non-logged-in users)
+      if (!userToken) {
+        const { name, email, phone, address } = bookingDetailsWithoutToken.customer_data;
+        
+        if (!name || !email || !phone || !address) {
+          toast.error("Please fill in all customer details", {
+            position: "top-center",
+          });
+          return;
+        }
+
+        // Basic email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          toast.error("Please enter a valid email address", {
+            position: "top-center",
+          });
+          return;
+        }
+
+        // Basic phone validation (10 digits)
+        const phoneRegex = /^\d{10}$/;
+        if (!phoneRegex.test(phone.replace(/\s/g, ""))) {
+          toast.error("Please enter a valid 10-digit phone number", {
+            position: "top-center",
+          });
+          return;
+        }
+      }
+
       if (userToken) {
         // Logged-in flow
         const formattedBookingDetails = {
@@ -192,8 +279,14 @@ const RoomInfo = ({ id }: { id: string }) => {
         const addBooking = await addBookingWithToken(formattedBookingDetails);
 
         if (addBooking.success) {
+          toast.success("Booking successful!", {
+            position: "top-center",
+          });
           console.log("Booking success with token");
         } else {
+          toast.error(addBooking.message || "Error in booking", {
+            position: "top-center",
+          });
           console.error("Error in token-based booking");
         }
       } else {
@@ -204,6 +297,11 @@ const RoomInfo = ({ id }: { id: string }) => {
           check_out: formatDateTime(bookingDetails.check_out),
           child_count: bookingDetails.child_count,
           adult_count: bookingDetails.adult_count,
+          extra_bed: bookingDetails.extra_bed,
+          fire_camp: bookingDetails.fire_camp,
+          jeep_safari: bookingDetails.jeep_safari,
+          special_food_menu: bookingDetails.special_food_menu,
+          activities: bookingDetails.activities,
           total: totalPrice,
         };
 
@@ -218,11 +316,16 @@ const RoomInfo = ({ id }: { id: string }) => {
             position:"top-center"
           });
         } else {
-          toast.error(addBooking.message);
+          toast.error(addBooking.message, {
+            position: "top-center",
+          });
         }
       }
     } catch (error: any) {
-      toast.error("Unexpected error");
+      toast.error("Unexpected error occurred. Please try again.", {
+        position: "top-center",
+      });
+      console.error("Booking error:", error);
     }
   };
 
@@ -249,6 +352,9 @@ const RoomInfo = ({ id }: { id: string }) => {
     window.addEventListener("resize", updateWidth); // Listen for resize
     return () => window.removeEventListener("resize", updateWidth);
   }, []);
+  console.log("Add Act" , addAct);
+  
+  if(!addAct) return null
   return (
     <>
       {width < 768 ? (
@@ -273,7 +379,7 @@ const RoomInfo = ({ id }: { id: string }) => {
                 <div className="flex flex-col gap-1 items-center justify-center">
                   <UsersRound color="#5C5C5C" width={40} height={40} />
                   <p className="text-[#5C5C5C]">
-                    {roomDetails?.capability} PERSON
+                    1-{roomDetails?.capability} PERSON
                   </p>
                 </div>
                 <div className="flex flex-col gap-1 items-center justify-center">
@@ -289,17 +395,11 @@ const RoomInfo = ({ id }: { id: string }) => {
                   <h1 className="font-mono text-4xl uppercase text-[#45443F]">
                     ABOUT STAY
                   </h1>
-                  <p className="mt-2 text-[#3A3A3A]">
-                    {plainText}
-                    {/* {
-                 foodMenu?.map((menu)=>{
-    console.log(menu)
-    return(
-      <p></p>
-    )
-  })
-              } */}
-                  </p>
+                  <ul className="list-disc pl-6 space-y-2 text-gray-700 leading-relaxed">
+  {sentences.map((item, index) => (
+    <li key={index}>{item}</li>
+  ))}
+</ul>
                 </div>
                 <div className="w-full mt-10 p-1 h-1 border-b border-[#D7D7D7]" />
                 <div className="mt-10">
@@ -384,7 +484,7 @@ const RoomInfo = ({ id }: { id: string }) => {
 
                     {/* Name */}
                     <div className="flex flex-col gap-2 mt-4 border-b border-[#D0D0D0] mb-2">
-                      <label className="text-[#C5C5C5] text-sm">Name</label>
+                      <label className="text-[#C5C5C5] text-sm">Name *</label>
                       <input
                         type="text"
                         value={bookingDetailsWithoutToken.customer_data.name}
@@ -404,7 +504,7 @@ const RoomInfo = ({ id }: { id: string }) => {
 
                     {/* Email */}
                     <div className="flex flex-col gap-2 mt-4 border-b border-[#D0D0D0] mb-2">
-                      <label className="text-[#C5C5C5] text-sm">Email</label>
+                      <label className="text-[#C5C5C5] text-sm">Email *</label>
                       <input
                         type="email"
                         value={bookingDetailsWithoutToken.customer_data.email}
@@ -424,7 +524,7 @@ const RoomInfo = ({ id }: { id: string }) => {
 
                     {/* Address */}
                     <div className="flex flex-col gap-2 mt-4 border-b border-[#D0D0D0] mb-2">
-                      <label className="text-[#C5C5C5] text-sm">Address</label>
+                      <label className="text-[#C5C5C5] text-sm">Address *</label>
                       <input
                         type="text"
                         value={bookingDetailsWithoutToken.customer_data.address}
@@ -444,7 +544,7 @@ const RoomInfo = ({ id }: { id: string }) => {
 
                     {/* Phone */}
                     <div className="flex flex-col gap-2 mt-4 border-b border-[#D0D0D0] mb-2">
-                      <label className="text-[#C5C5C5] text-sm">Phone</label>
+                      <label className="text-[#C5C5C5] text-sm">Phone *</label>
                       <input
                         type="text"
                         value={bookingDetailsWithoutToken.customer_data.phone}
@@ -473,7 +573,7 @@ const RoomInfo = ({ id }: { id: string }) => {
                   {/* Check In - Elegant Date Field */}
                   <div className="mt-6">
                     <label className="text-[#C5C5C5] text-sm font-medium mb-3 block">
-                      CHECK IN
+                      CHECK IN *
                     </label>
                     <div className="relative group">
                       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
@@ -504,7 +604,7 @@ const RoomInfo = ({ id }: { id: string }) => {
                   {/* Check Out - Elegant Date Field */}
                   <div className="mt-6">
                     <label className="text-[#C5C5C5] text-sm font-medium mb-3 block">
-                      CHECK OUT
+                      CHECK OUT *
                     </label>
                     <div className="relative group">
                       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
@@ -534,10 +634,11 @@ const RoomInfo = ({ id }: { id: string }) => {
 
                   {/* Adults Count */}
                   <div className="flex flex-col gap-2 mt-6 border-b border-[#D0D0D0] mb-2">
-                    <label className="text-[#C5C5C5]">ADULTS COUNT (18+)</label>
+                    <label className="text-[#C5C5C5]">ADULTS COUNT (18+) *</label>
                     <input
                       type="number"
                       min={0}
+                      max={roomDetails?.capability || 10}
                       value={bookingDetails.adult_count}
                       onChange={(e) =>
                         setBookingDetails({
@@ -557,6 +658,7 @@ const RoomInfo = ({ id }: { id: string }) => {
                     <input
                       type="number"
                       min={0}
+                      max={roomDetails?.capability || 10}
                       value={bookingDetails.child_count}
                       onChange={(e) =>
                         setBookingDetails({
@@ -566,6 +668,11 @@ const RoomInfo = ({ id }: { id: string }) => {
                       }
                       className="text-white mb-2 bg-transparent outline-none"
                     />
+                  </div>
+                  
+                  {/* Guest capacity indicator */}
+                  <div className="mt-2 text-xs text-[#AA9061]">
+                    Total guests: {bookingDetails.adult_count + bookingDetails.child_count} / {roomDetails?.capability || 0} (Max capacity)
                   </div>
                 </div>
 
@@ -581,7 +688,7 @@ const RoomInfo = ({ id }: { id: string }) => {
                       onChange={(e) =>
                         setBookingDetails({
                           ...bookingDetails,
-                          special_food_menu: [Number(e.target.value)], // convert string → number
+                          special_food_menu: [Number(e.target.value)],
                         })
                       }
                       className="text-white mb-2 bg-transparent outline-none"
@@ -603,7 +710,7 @@ const RoomInfo = ({ id }: { id: string }) => {
                       onChange={(e) =>
                         setBookingDetails({
                           ...bookingDetails,
-                          activities: [Number(e.target.value)], // convert string → number
+                          activities: [Number(e.target.value)],
                         })
                       }
                       className="text-white mb-2 bg-transparent outline-none"
@@ -618,38 +725,38 @@ const RoomInfo = ({ id }: { id: string }) => {
                   </div>
 
                   {/* Checkboxes */}
-                  <div className="flex flex-col gap-2 mt-7">
-                    {[
-                      { label: "ADD EXTRA BED (1)", key: "extra_bed" },
-                      { label: "FIRE CAMP ARRANGEMENTS", key: "fire_camp" },
-                      { label: "JEEP SAFARI", key: "jeep_safari" },
-                    ].map((item) => (
-                      <div
-                        className="flex items-center justify-between"
-                        key={item.key}
-                      >
-                        <div className="flex gap-2">
-                          <input
-                            type="checkbox"
-                            checked={
-                              bookingDetails[
-                                item.key as keyof typeof bookingDetails
-                              ] as boolean
-                            }
-                            onChange={(e) =>
-                              setBookingDetails({
-                                ...bookingDetails,
-                                [item.key]: e.target.checked,
-                              })
-                            }
-                            className="w-4 h-4 mt-1"
-                          />
-                          <label className="text-[#C5C5C5]">{item.label}</label>
-                        </div>
-                        <p className="text-[#C5C5C5]">₹ 299</p>
-                      </div>
-                    ))}
-                  </div>
+                 <div className="flex flex-col gap-2 mt-7">
+  {Object.entries(addAct)
+    .filter(([key]) => {
+      const roomServiceNames =
+        roomDetails?.services?.map((s) => s.service_name.toLowerCase()) || [];
+      return roomServiceNames.includes(key.toLowerCase());
+    })
+    .map(([key, value], idx) => (
+      <div className="flex items-center justify-between" key={idx}>
+        <div className="flex gap-2 items-center">
+          <input
+            type="checkbox"
+            checked={
+              bookingDetails[key as keyof typeof bookingDetails] as boolean
+            }
+            onChange={(e) =>{
+              setBookingDetails({
+                ...bookingDetails,
+                [key]: e.target.checked,
+              })
+              const price = Number(value)
+              totalPrice+=price
+            }
+            }
+            className="w-4 h-4"
+          />
+          <label className="text-[#C5C5C5] capitalize">{key.replace(/_/g, ' ')}</label>
+        </div>
+        <p className="text-[#C5C5C5]">₹ {value}</p>
+      </div>
+    ))}
+</div>
 
                   {/* Footer and Total */}
                   <div className="w-full p-1 h-1 border-b border-[#D0D0D0] mt-3" />

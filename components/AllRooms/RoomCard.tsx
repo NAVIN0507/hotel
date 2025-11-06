@@ -21,7 +21,7 @@ const RoomCard = ({
           <Link href={`/room/${id}`}>
             <div className="relative">
               <Image
-                src={pictures[index]}
+                src={pictures[0]}
                 alt="feature_section"
                 width={500}
                 height={500}
@@ -58,7 +58,7 @@ const RoomCard = ({
                 </div>
                 <div className="flex flex-col gap-1 items-center justify-center">
                   <UsersRound color="#ffffff" width={40} height={40} />
-                  <p className="text-white">{capability} PERSON</p>
+                  <p className="text-white">1-{capability} PERSON</p>
                 </div>
                 <div className="flex flex-col gap-1 items-center justify-center">
                   <BedDouble color="#ffffff" width={40} height={40} />
@@ -86,7 +86,7 @@ const RoomCard = ({
                 </div>
                 <div className="flex flex-col gap-1 items-center justify-center">
                   <UsersRound color="#ffffff" width={40} height={40} />
-                  <p className="text-white">{capability} PERSON</p>
+                  <p className="text-white">1-{capability} PERSON</p>
                 </div>
                 <div className="flex flex-col gap-1 items-center justify-center">
                   <BedDouble color="#ffffff" width={40} height={40} />
@@ -99,7 +99,7 @@ const RoomCard = ({
           <div className="relative">
             <Link href={`/room/${id}`}>
               <Image
-                src={pictures[index]}
+                src={pictures[0]}
                 alt="feature_section"
                 width={500}
                 height={500}

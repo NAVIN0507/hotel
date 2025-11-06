@@ -60,7 +60,7 @@ type RoomProps = {
     video:string;
     price:number;
     square_ft:number;
-    capability:string;
+    capability:number;
     beds:string;
     about_stay:string;
     check_in_rules:string;

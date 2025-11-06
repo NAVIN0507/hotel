@@ -32,7 +32,7 @@ const MobileViewRoomCard = ({id,
     </div>
     <div className="flex flex-col items-center gap-2">
       <UsersRound color="#ffffff" width={40} height={40} />
-      <p className="text-white text-center">{capability}</p>
+      <p className="text-white text-center">1-{capability}</p>
     </div>
     <div className="flex flex-col items-center gap-2">
       <BedDouble color="#ffffff" width={40} height={40} />
@@ -44,7 +44,7 @@ const MobileViewRoomCard = ({id,
   <div className="relative mt-5">
     {/* Image */}
     <Image
-      src={pictures[index]}
+      src={pictures[0]}
       alt="room"
       width={400}
       height={250}
