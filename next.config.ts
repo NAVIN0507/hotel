@@ -1,22 +1,29 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-  typescript:{
+  typescript: {
     ignoreBuildErrors: true,
   },
-  eslint:{
+  eslint: {
     ignoreDuringBuilds: true,
   },
-  output:"export",
-    
-  images:{
-    remotePatterns:[
-      {hostname:'portal.brundhavangarden.com'}
+  output: "export",
+
+  images: {
+    remotePatterns: [
+      { hostname: "portal.brundhavangarden.com" },
     ],
-    unoptimized: true, 
+    unoptimized: true,
   },
-  devIndicators:false
+
+  devIndicators: false,
+  experimental:{
+    webpackBuildWorker:false
+  },
+  onDemandEntries:{
+    maxInactiveAge:25*1000,
+    pagesBufferLength:2
+  }
 };
 
 export default nextConfig;
