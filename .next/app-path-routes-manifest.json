@@ -2,10 +2,10 @@
   "/favicon.ico/route": "/favicon.ico",
   "/_not-found/page": "/_not-found",
   "/(auth)/reset-password/page": "/reset-password",
-  "/page": "/",
-  "/allrooms/page": "/allrooms",
   "/(auth)/sign-in/page": "/sign-in",
-  "/aboutus/page": "/aboutus",
   "/(auth)/sign-up/page": "/sign-up",
+  "/aboutus/page": "/aboutus",
+  "/allrooms/page": "/allrooms",
+  "/page": "/",
   "/room/[id]/page": "/room/[id]"
 }
