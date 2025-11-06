@@ -2,13 +2,14 @@
 
 import { fetchUserDetails } from "@/lib/actions/users.actions";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const Hero = () => {
   const [user, setUser] = useState<User | null>(null);
   const router = useRouter();
-
+  const pathname = usePathname();
+  const isActive  = pathname === "/allrooms"
   useEffect(() => {
     const rawToken = localStorage.getItem("user_token");
     const token = rawToken?.replace(/^"(.*)"$/, "$1");
@@ -64,14 +65,21 @@ const Hero = () => {
 
         {/* Right Navigation */}
         <ul className="hidden md:flex gap-30 uppercase text-sm tracking-wide font-sans items-center justify-center">
-          <li>
-            <Link
-              href="/allrooms"
-              className="hover:text-yellow-300 hover:underline font-sans"
-            >
-              Rooms
-            </Link>
-          </li>
+          <li
+  className={`${
+    isActive
+      ? "backdrop-blur-md bg-white/10 border border-white/20 rounded-full text-yellow-300 transition-all duration-300"
+      : "transition-all duration-300"
+  }`}
+>
+  <Link
+    href="/aboutus"
+    className="hover:text-yellow-300 hover:underline px-4 py-2 inline-block"
+  >
+   Rooms
+  </Link>
+</li>
+
           <li>
             <Link
               href="/"

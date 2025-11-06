@@ -6,11 +6,12 @@ import Story from '@/components/About/Story'
 import SpecialSection from '@/components/About/Team'
 import TestimonialsSection from '@/components/About/Testimonial'
 import React , {useState , useEffect} from 'react'
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { fetchUserDetails } from "@/lib/actions/users.actions";
 import Link from "next/link";
 import { LogOut } from "lucide-react";
 import { toast } from "sonner";
+import Footer from '@/components/Home/Footer'
 const MobileSidebar = ({ isOpen, onClose }:{isOpen:boolean , onClose:()=>void}) => {
     const [user, setUser] = useState<User | null>(null);
     const router = useRouter();
@@ -25,11 +26,15 @@ const MobileSidebar = ({ isOpen, onClose }:{isOpen:boolean , onClose:()=>void}) 
         });
       }
     }, []);
+    const pathname = usePathname();
   const handleLogout  = ()=>{
     localStorage.removeItem("user_token")
     toast.success("Logged Out Successfully")
     router.refresh()
   }
+  console.log(pathname);
+  
+  const isActive = pathname === "/aboutus"
   return (
     <>
       {/* Overlay */}
@@ -82,10 +87,10 @@ const MobileSidebar = ({ isOpen, onClose }:{isOpen:boolean , onClose:()=>void}) 
                   Home
                 </a>
               </li>
-              <li>
+              <li className={`${isActive && "underline"}`}>
                 <a
                   href="/aboutus"
-                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md transition-colors"
+                  className={`block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md transition-colors ${isActive && "underline"}`}
                   onClick={onClose}
                 >
                   About Us
@@ -179,6 +184,7 @@ const page = () => {
     <TestimonialsSection/>
     <Contact/>
    </main>
+   <Footer/>
    </>
   )
 }

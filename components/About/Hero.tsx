@@ -2,13 +2,14 @@
 
 import { fetchUserDetails } from "@/lib/actions/users.actions";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const Hero = () => {
   const [user, setUser] = useState<User | null>(null);
   const router = useRouter();
-
+  const pathname = usePathname();
+  const isActive  = pathname === "/aboutus"
   useEffect(() => {
     const rawToken = localStorage.getItem("user_token");
     const token = rawToken?.replace(/^"(.*)"$/, "$1");
@@ -38,14 +39,21 @@ const Hero = () => {
               Home
             </Link>
           </li>
-          <li>
-            <Link
-              href="/aboutus"
-              className="hover:text-yellow-300 hover:underline"
-            >
-              About Us
-            </Link>
-          </li>
+       <li
+  className={`${
+    isActive
+      ? "backdrop-blur-md bg-white/10 border border-white/20 rounded-full  transition-all duration-300 -mt-2"
+      : "transition-all duration-300"
+  }`}
+>
+  <Link
+    href="/aboutus"
+    className="hover:text-yellow-300 hover:underline px-4 py-2 inline-block"
+  >
+    About Us
+  </Link>
+</li>
+
           <li>
             <a
               href="https://portal.brundhavangarden.com"

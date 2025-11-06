@@ -77,7 +77,7 @@ const Hero = ({ pictures, video }: RoomProps) => {
                   alt={`hero-image-${index}`}
                   width={1500}
                   height={600}
-                  className="rounded-2xl w-full h-[600px] object-fill"
+                  className="rounded-2xl w-full h-[600px] object-fill max-sm:object-cover"
                 />
               </div>
             ))}

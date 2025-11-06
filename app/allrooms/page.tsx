@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation'
 import { fetchUserDetails } from '@/lib/actions/users.actions'
 import { toast } from 'sonner'
 import { LogOut } from 'lucide-react'
+import Footer from '@/components/Home/Footer'
     const MobileSidebar = ({ isOpen, onClose }:{isOpen:boolean , onClose:()=>void}) => {
     const [user, setUser] = useState<User | null>(null);
     const router = useRouter();
@@ -171,7 +172,7 @@ const Page = () => {
   const closeSidebar = () => setIsSidebarOpen(false);
   return (
   <>
-        <MobileSidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
+    <MobileSidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
       
       {/* Mobile Menu Button */}
       
@@ -179,8 +180,9 @@ const Page = () => {
   <main className='p-4 flex flex-col gap-10 mb-20'>
     <Hero/>
     <BentoGrid width={width}/>
-  
+ 
   </main>
+     <Footer/>
   </>
   )
 }
