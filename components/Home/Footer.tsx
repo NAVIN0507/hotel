@@ -80,6 +80,9 @@ const Footer = () => {
               <Link href={"/refund-policy"}>
               <p className="text-sm underline mt-2">Refund Policy</p>
               </Link>
+                <Link href={"/privacy-policy"}>
+              <p className="text-sm underline mt-2">Privacy Policy</p>
+              </Link>
             </div>
           </div>
 

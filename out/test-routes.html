@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Complete Route Testing - Hostinger Compatibility</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; max-width: 1200px; margin: 0 auto; }
+        .test-link { display: block; margin: 5px 0; padding: 8px; background: #f0f0f0; text-decoration: none; color: #333; border-radius: 4px; }
+        .test-link:hover { background: #e0e0e0; }
+        .section { margin: 30px 0; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .working { background: #d4edda !important; }
+        .broken { background: #f8d7da !important; }
+    </style>
+</head>
+<body>
+    <h1>Complete Route Testing for Hostinger</h1>
+    <p>Click each link to test which routing method works on your Hostinger hosting. Mark working links as green and broken ones as red.</p>
+    
+    <div class="grid">
+        <div class="section">
+            <h2>Reset Password Routes</h2>
+            <a href="/reset-password/?email=test@example.com&token=abc123" class="test-link">
+                /reset-password/ (directory with trailing slash)
+            </a>
+            <a href="/reset-password?email=test@example.com&token=abc123" class="test-link">
+                /reset-password (directory without trailing slash)
+            </a>
+            <a href="/reset-password.html?email=test@example.com&token=abc123" class="test-link">
+                /reset-password.html (direct HTML file)
+            </a>
+            <a href="/reset-password/index.html?email=test@example.com&token=abc123" class="test-link">
+                /reset-password/index.html (full path)
+            </a>
+        </div>
+
+        <div class="section">
+            <h2>Success Page Routes</h2>
+            <a href="/success/?message=Payment%20Successful&payment_id=pay123&order_id=ord456" class="test-link">
+                /success/ (directory with trailing slash)
+            </a>
+            <a href="/success?message=Payment%20Successful&payment_id=pay123&order_id=ord456" class="test-link">
+                /success (directory without trailing slash)
+            </a>
+            <a href="/success.html?message=Payment%20Successful&payment_id=pay123&order_id=ord456" class="test-link">
+                /success.html (direct HTML file)
+            </a>
+            <a href="/success/index.html?message=Payment%20Successful&payment_id=pay123&order_id=ord456" class="test-link">
+                /success/index.html (full path)
+            </a>
+        </div>
+
+        <div class="section">
+            <h2>Failed Page Routes</h2>
+            <a href="/failed/?message=Payment%20Failed&error_code=ERR001&payment_id=pay123" class="test-link">
+                /failed/ (directory with trailing slash)
+            </a>
+            <a href="/failed?message=Payment%20Failed&error_code=ERR001&payment_id=pay123" class="test-link">
+                /failed (directory without trailing slash)
+            </a>
+            <a href="/failed.html?message=Payment%20Failed&error_code=ERR001&payment_id=pay123" class="test-link">
+                /failed.html (direct HTML file)
+            </a>
+            <a href="/failed/index.html?message=Payment%20Failed&error_code=ERR001&payment_id=pay123" class="test-link">
+                /failed/index.html (full path)
+            </a>
+        </div>
+
+        <div class="section">
+            <h2>Authentication Routes</h2>
+            <a href="/sign-in" class="test-link">/sign-in</a>
+            <a href="/sign-in/" class="test-link">/sign-in/</a>
+            <a href="/sign-in.html" class="test-link">/sign-in.html</a>
+            <a href="/sign-up" class="test-link">/sign-up</a>
+            <a href="/sign-up/" class="test-link">/sign-up/</a>
+            <a href="/sign-up.html" class="test-link">/sign-up.html</a>
+        </div>
+
+        <div class="section">
+            <h2>Content Pages</h2>
+            <a href="/aboutus" class="test-link">/aboutus</a>
+            <a href="/aboutus/" class="test-link">/aboutus/</a>
+            <a href="/aboutus.html" class="test-link">/aboutus.html</a>
+            <a href="/allrooms" class="test-link">/allrooms</a>
+            <a href="/allrooms/" class="test-link">/allrooms/</a>
+            <a href="/allrooms.html" class="test-link">/allrooms.html</a>
+        </div>
+
+        <div class="section">
+            <h2>Policy Pages</h2>
+            <a href="/refund-policy" class="test-link">/refund-policy</a>
+            <a href="/refund-policy/" class="test-link">/refund-policy/</a>
+            <a href="/refund-policy.html" class="test-link">/refund-policy.html</a>
+            <a href="/shipping-policies" class="test-link">/shipping-policies</a>
+            <a href="/shipping-policies/" class="test-link">/shipping-policies/</a>
+            <a href="/shipping-policies.html" class="test-link">/shipping-policies.html</a>
+            <a href="/terms-conditions" class="test-link">/terms-conditions</a>
+            <a href="/terms-conditions/" class="test-link">/terms-conditions/</a>
+            <a href="/terms-conditions.html" class="test-link">/terms-conditions.html</a>
+        </div>
+
+        <div class="section">
+            <h2>Dynamic Room Routes</h2>
+            <a href="/room/2" class="test-link">/room/2</a>
+            <a href="/room/2/" class="test-link">/room/2/</a>
+            <a href="/room/3" class="test-link">/room/3</a>
+            <a href="/room/3/" class="test-link">/room/3/</a>
+            <a href="/room/5" class="test-link">/room/5</a>
+            <a href="/room/5/" class="test-link">/room/5/</a>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Instructions</h2>
+        <ol>
+            <li>Upload your entire 'out' folder to Hostinger's public_html directory</li>
+            <li>Access this page at: <strong>https://yourdomain.com/test-routes.html</strong></li>
+            <li>Click each link to test which ones work</li>
+            <li>Right-click working links and select "Mark as working" (or manually note them)</li>
+            <li>Update your application's navigation and payment redirect URLs to use the working format</li>
+            <li>The .htaccess file should handle most routing automatically</li>
+        </ol>
+        
+        <h3>What to Look For:</h3>
+        <ul>
+            <li><strong>Working:</strong> Page loads correctly with proper content</li>
+            <li><strong>Broken:</strong> 404 error, blank page, or incorrect content</li>
+            <li><strong>Parameters:</strong> For payment pages, check if URL parameters are properly extracted</li>
+        </ul>
+
+        <h3>Common Working Patterns:</h3>
+        <ul>
+            <li>Most hosting providers work with: <code>/page-name/</code> (with trailing slash)</li>
+            <li>Some work better with: <code>/page-name.html</code> (direct HTML)</li>
+            <li>Dynamic routes usually need: <code>/room/2/</code> format</li>
+        </ul>
+    </div>
+
+    <script>
+        // Add click handlers to mark working/broken links
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('test-link')) {
+                if (e.ctrlKey) {
+                    e.preventDefault();
+                    e.target.classList.toggle('working');
+                    e.target.classList.remove('broken');
+                } else if (e.shiftKey) {
+                    e.preventDefault();
+                    e.target.classList.toggle('broken');
+                    e.target.classList.remove('working');
+                }
+            }
+        });
+        
+        // Add instructions
+        const instructions = document.createElement('div');
+        instructions.innerHTML = '<p><small><strong>Tip:</strong> Ctrl+Click to mark as working (green), Shift+Click to mark as broken (red)</small></p>';
+        instructions.style.position = 'fixed';
+        instructions.style.top = '10px';
+        instructions.style.right = '10px';
+        instructions.style.background = '#fff';
+        instructions.style.padding = '10px';
+        instructions.style.border = '1px solid #ccc';
+        instructions.style.borderRadius = '4px';
+        instructions.style.fontSize = '12px';
+        document.body.appendChild(instructions);
+    </script>
+</body>
+</html>

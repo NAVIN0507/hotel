@@ -1,4 +1,4 @@
-// File: C:\Solvix\hotel\app\refund-policy\page.tsx
+// File: D:\PROJECTS\WEB\hotel\app\refund-policy\page.tsx
 import * as entry from '../../../../app/refund-policy/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
