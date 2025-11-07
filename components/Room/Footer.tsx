@@ -88,7 +88,7 @@ const Footer = () => {
             <p className="text-sm mt-2">Call: {appDetails?.phone}</p>
             <p className="text-sm mt-2">Write: {appDetails?.email}</p>
             <p className="text-sm mt-2">
-              Find Us: Xxxx , Xxx , Dindigul , Tamil Nadu
+              Find Us: 3/347A Pannaikadu Main Road, Thandikudi, Dindigul
             </p>
           </div>
 
