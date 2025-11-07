@@ -9,23 +9,18 @@ const nextConfig: NextConfig = {
   },
   output: "export",
   trailingSlash: true,
-  skipTrailingSlashRedirect: true,
-
+  
   images: {
     remotePatterns: [
       { hostname: "portal.brundhavangarden.com" },
     ],
     unoptimized: true,
   },
-
-  devIndicators: false,
-  experimental:{
-    webpackBuildWorker:false
-  },
-  onDemandEntries:{
-    maxInactiveAge:25*1000,
-    pagesBufferLength:2
-  }
+  
+  // Remove these - they're for dev server only:
+  // devIndicators: false,
+  // onDemandEntries: {...}
+  // skipTrailingSlashRedirect: true,
 };
 
 export default nextConfig;

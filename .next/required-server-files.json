@@ -65,10 +65,12 @@
       ],
       "unoptimized": true
     },
-    "devIndicators": false,
+    "devIndicators": {
+      "position": "bottom-left"
+    },
     "onDemandEntries": {
-      "maxInactiveAge": 25000,
-      "pagesBufferLength": 2
+      "maxInactiveAge": 60000,
+      "pagesBufferLength": 5
     },
     "amp": {
       "canonicalBase": ""
@@ -183,7 +185,6 @@
       "parallelServerBuildTraces": false,
       "ppr": false,
       "authInterrupts": false,
-      "webpackBuildWorker": false,
       "webpackMemoryOptimizations": false,
       "optimizeServerReact": true,
       "useEarlyImport": false,
@@ -282,7 +283,6 @@
     "htmlLimitedBots": "Mediapartners-Google|Slurp|DuckDuckBot|baiduspider|yandex|sogou|bitlybot|tumblr|vkShare|quora link preview|redditbot|ia_archiver|Bingbot|BingPreview|applebot|facebookexternalhit|facebookcatalog|Twitterbot|LinkedInBot|Slackbot|Discordbot|WhatsApp|SkypeUriPreview|Yeti",
     "bundlePagesRouterDependencies": false,
     "configFileName": "next.config.ts",
-    "skipTrailingSlashRedirect": true,
     "turbopack": {
       "root": "D:\\PROJECTS\\WEB\\hotel"
     }

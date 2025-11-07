@@ -1,34 +1,18 @@
 RewriteEngine On
 
-# Specific rules for required pages
-RewriteRule ^reset-password/?$ /reset-password.html [L]
-RewriteRule ^reset-password/index\.html$ /reset-password.html [L]
-RewriteRule ^privacy-policy/?$ /privacy-policy.html [L]
-RewriteRule ^privacy-policy/index\.html$ /privacy-policy.html [L]
-RewriteRule ^success/?$ /success.html [L]
-RewriteRule ^success/index\.html$ /success.html [L]
-RewriteRule ^failed/?$ /failed.html [L]
-RewriteRule ^failed/index\.html$ /failed.html [L]
-RewriteRule ^shipping-policies/?$ /shipping-policies.html [L]
-RewriteRule ^shipping-policies/index\.html$ /shipping-policies.html [L]
-RewriteRule ^contact/?$ /contact.html [L]
-RewriteRule ^contact/index\.html$ /contact.html [L]
-RewriteRule ^refund-policy/?$ /refund-policy.html [L]
-RewriteRule ^refund-policy/index\.html$ /refund-policy.html [L]
-RewriteRule ^terms-conditions/?$ /terms-conditions.html [L]
-RewriteRule ^terms-conditions/index\.html$ /terms-conditions.html [L]
-
-# Handle other static routes - try directory first, then .html
+# Remove .html extension from URLs
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^([^/]+)/?$ /$1/index.html [L]
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+)$ $1.html [L]
 
-# If directory approach fails, try .html
+# Handle trailing slashes - try index.html in directory
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^([^/]+)/?$ /$1.html [L]
+RewriteCond %{REQUEST_FILENAME}/index.html -f
+RewriteRule ^(.+)$ $1/index.html [L]
 
-# Fallback to main index
+# Fallback to index.html for client-side routing
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /index.html [L]
+RewriteRule ^ /index.html [L]
