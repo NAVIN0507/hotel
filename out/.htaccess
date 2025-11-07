@@ -1,17 +1,20 @@
 RewriteEngine On
 
-# Handle client-side routing for Next.js static export
+# Specific rule for reset-password (try multiple approaches)
+RewriteRule ^reset-password/?$ /reset-password.html [L]
+RewriteRule ^reset-password/index\.html$ /reset-password.html [L]
+
+# Handle other static routes - try directory first, then .html
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_URI} ^/reset-password
-RewriteRule ^.*$ /reset-password.html [L]
+RewriteRule ^([^/]+)/?$ /$1/index.html [L]
 
-# Handle other routes
+# If directory approach fails, try .html
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^([^.]+)$ /$1.html [L]
+RewriteRule ^([^/]+)/?$ /$1.html [L]
 
-# Fallback to index for SPA behavior
+# Fallback to main index
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.html [L]
