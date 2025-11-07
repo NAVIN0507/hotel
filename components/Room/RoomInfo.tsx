@@ -18,7 +18,7 @@ import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 import MobileRoomInfo from "./MobileRoomInfo";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 
 interface BookingDetails {
   token: string;
@@ -61,6 +61,7 @@ type AddAct = {
 const RoomInfo = ({ id }: { id: string }) => {
   const [roomDetails, setroomDetails] = useState<RoomProps | null>(null);
   const [userToken, setuserToken] = useState("");
+  const router =  useRouter();
   const [bookingDetails, setBookingDetails] = useState<BookingDetails>({
     token: "",
     room_categories_id: Number(id),
@@ -293,6 +294,7 @@ const sentences = cleanText
           toast.success("Booking successful!", {
             position: "top-center",
           });
+          router.push(addBooking.data.redirect_url)
         } else {
           toast.error(addBooking.message || "Error in booking", {
             position: "top-center",

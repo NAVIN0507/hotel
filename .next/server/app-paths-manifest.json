@@ -1,14 +1,16 @@
 {
   "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/_not-found/page": "app/_not-found/page.js",
-  "/(auth)/reset-password/page": "app/(auth)/reset-password/page.js",
-  "/page": "app/page.js",
-  "/aboutus/page": "app/aboutus/page.js",
   "/(auth)/sign-in/page": "app/(auth)/sign-in/page.js",
+  "/aboutus/page": "app/aboutus/page.js",
+  "/(auth)/reset-password/page": "app/(auth)/reset-password/page.js",
   "/(auth)/sign-up/page": "app/(auth)/sign-up/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
   "/allrooms/page": "app/allrooms/page.js",
-  "/refund-policy/page": "app/refund-policy/page.js",
-  "/terms-conditions/page": "app/terms-conditions/page.js",
   "/shipping-policies/page": "app/shipping-policies/page.js",
+  "/success/page": "app/success/page.js",
+  "/terms-conditions/page": "app/terms-conditions/page.js",
+  "/refund-policy/page": "app/refund-policy/page.js",
+  "/failed/page": "app/failed/page.js",
+  "/page": "app/page.js",
   "/room/[id]/page": "app/room/[id]/page.js"
 }

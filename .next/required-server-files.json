@@ -99,7 +99,7 @@
         "transform": "lodash/{{member}}"
       }
     },
-    "outputFileTracingRoot": "D:\\PROJECTS\\WEB\\hotel",
+    "outputFileTracingRoot": "C:\\Solvix\\hotel",
     "experimental": {
       "nodeMiddleware": false,
       "cacheLife": {
@@ -157,7 +157,7 @@
       "middlewarePrefetch": "flexible",
       "optimisticClientCache": true,
       "manualClientBasePath": false,
-      "cpus": 7,
+      "cpus": 15,
       "memoryBasedWorkersCount": false,
       "imgOptConcurrency": null,
       "imgOptTimeoutInSeconds": 7,
@@ -284,10 +284,10 @@
     "configFileName": "next.config.ts",
     "skipTrailingSlashRedirect": true,
     "turbopack": {
-      "root": "D:\\PROJECTS\\WEB\\hotel"
+      "root": "C:\\Solvix\\hotel"
     }
   },
-  "appDir": "D:\\PROJECTS\\WEB\\hotel",
+  "appDir": "C:\\Solvix\\hotel",
   "relativeAppDir": "",
   "files": [
     ".next\\routes-manifest.json",

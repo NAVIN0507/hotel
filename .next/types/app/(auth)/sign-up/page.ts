@@ -1,4 +1,4 @@
-// File: D:\PROJECTS\WEB\hotel\app\(auth)\sign-up\page.tsx
+// File: C:\Solvix\hotel\app\(auth)\sign-up\page.tsx
 import * as entry from '../../../../../app/(auth)/sign-up/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

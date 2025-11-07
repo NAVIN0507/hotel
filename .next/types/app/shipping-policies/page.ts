@@ -1,4 +1,4 @@
-// File: D:\PROJECTS\WEB\hotel\app\shipping-policies\page.tsx
+// File: C:\Solvix\hotel\app\shipping-policies\page.tsx
 import * as entry from '../../../../app/shipping-policies/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

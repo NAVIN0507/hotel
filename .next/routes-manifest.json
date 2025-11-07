@@ -41,6 +41,12 @@
       "namedRegex": "^/allrooms(?:/)?$"
     },
     {
+      "page": "/failed",
+      "regex": "^/failed(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/failed(?:/)?$"
+    },
+    {
       "page": "/favicon.ico",
       "regex": "^/favicon\\.ico(?:/)?$",
       "routeKeys": {},
@@ -75,6 +81,12 @@
       "regex": "^/sign\\-up(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/sign\\-up(?:/)?$"
+    },
+    {
+      "page": "/success",
+      "regex": "^/success(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/success(?:/)?$"
     },
     {
       "page": "/terms-conditions",
