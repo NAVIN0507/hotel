@@ -288,10 +288,10 @@ total
       message:"Booking Created SuccessFully",
       data:data
     }
-  } catch (error) {
+  } catch (error:any) {
      return{
       success:false,
-      message:"Internal server error",
+      message:`${error?.message}`,
       data:data
     }
   }

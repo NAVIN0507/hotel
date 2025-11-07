@@ -110,28 +110,38 @@ const RoomInfo = ({ id }: { id: string }) => {
     return input.replace("T", " ") + ":00";
   }
 
-  var totalPrice = useMemo(() => {
+  // Calculate total price: (base price + selected extras) * number of nights
+  const totalPrice = useMemo(() => {
     if (!roomDetails || !addAct) return 0;
 
-    // Base room price
-    const basePrice = roomDetails.price;
+    const basePrice = Number(roomDetails.price) || 0;
 
     // Calculate extras price from addAct based on selected checkboxes
     let extrasPrice = 0;
+    // helper to normalize keys like 'Jeep Safari' -> 'jeep_safari'
+    const normalize = (s: string) =>
+      s?.toString().toLowerCase().replace(/\s+/g, "_").replace(/[^a-z0-9_]/g, "");
+
     Object.entries(addAct).forEach(([key, value]) => {
-      if (bookingDetails[key as keyof typeof bookingDetails] === true) {
-        extrasPrice += Number(value);
+      const prop = normalize(key);
+      if ((bookingDetails as any)[prop] === true) {
+        extrasPrice += Number(value) || 0;
       }
     });
 
-    return basePrice + extrasPrice;
-  }, [
-    bookingDetails.extra_bed,
-    bookingDetails.fire_camp,
-    bookingDetails.jeep_safari,
-    roomDetails,
-    addAct,
-  ]);
+    // Compute number of nights (at least 1)
+    let nights = 1;
+    if (bookingDetails.check_in && bookingDetails.check_out) {
+      const inDate = new Date(bookingDetails.check_in);
+      const outDate = new Date(bookingDetails.check_out);
+      const diff = outDate.getTime() - inDate.getTime();
+      if (diff > 0) {
+        nights = Math.max(1, Math.ceil(diff / (1000 * 60 * 60 * 24)));
+      }
+    }
+
+    return (basePrice + extrasPrice) * nights;
+  }, [bookingDetails, roomDetails, addAct]);
 
   useEffect(() => {
     const rawToken = localStorage.getItem("user_token");
@@ -174,6 +184,9 @@ const RoomInfo = ({ id }: { id: string }) => {
     };
     wantActivites();
   }, []);
+
+  console.log("Booking Details" , bookingDetails);
+  
 
 const aboutRawText = roomDetails?.about_stay || "";
 
@@ -725,28 +738,28 @@ const sentences = cleanText
                   </div>
 
                   {/* Checkboxes */}
-                 <div className="flex flex-col gap-2 mt-7">
+                    <div className="flex flex-col gap-2 mt-7">
   {Object.entries(addAct)
     .filter(([key]) => {
+      const normalize = (s: string) =>
+        s?.toString().toLowerCase().replace(/\s+/g, "_").replace(/[^a-z0-9_]/g, "");
       const roomServiceNames =
-        roomDetails?.services?.map((s) => s.service_name.toLowerCase()) || [];
-      return roomServiceNames.includes(key.toLowerCase());
+        roomDetails?.services?.map((s) => normalize(s.service_name)) || [];
+      return roomServiceNames.includes(normalize(key));
     })
-    .map(([key, value], idx) => (
+    .map(([key, value], idx) => {
+      const propName = key.toString().toLowerCase().replace(/\s+/g, "_").replace(/[^a-z0-9_]/g, "");
+      return (
       <div className="flex items-center justify-between" key={idx}>
         <div className="flex gap-2 items-center">
           <input
             type="checkbox"
-            checked={
-              bookingDetails[key as keyof typeof bookingDetails] as boolean
-            }
+            checked={Boolean((bookingDetails as any)[propName])}
             onChange={(e) =>{
-              setBookingDetails({
-                ...bookingDetails,
-                [key]: e.target.checked,
-              })
-              const price = Number(value)
-              totalPrice+=price
+              setBookingDetails((prev) => ({
+                ...prev,
+                [propName]: e.target.checked,
+              }))
             }
             }
             className="w-4 h-4"
@@ -755,7 +768,8 @@ const sentences = cleanText
         </div>
         <p className="text-[#C5C5C5]">₹ {value}</p>
       </div>
-    ))}
+      )
+    })}
 </div>
 
                   {/* Footer and Total */}

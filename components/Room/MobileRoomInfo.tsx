@@ -1,204 +1,362 @@
 "use client"
 import React, { useEffect, useState, useMemo } from 'react'
 import { BedDouble, Dot, InspectionPanel, UsersRound, Calendar, Clock } from 'lucide-react';
-import { addBookingWithoutToken, addBookingWithToken, fetchAllRoomByID } from '@/lib/actions/users.actions';
+import { addBookingWithoutToken, addBookingWithToken, fetchAllRoomByID, getActivites, getAdditionalActivites, getFoodMenu } from '@/lib/actions/users.actions';
 import Image from 'next/image';
+import { toast } from "sonner";
+import { redirect } from 'next/navigation';
+
 
 
 interface BookingDetails {
   token: string;
-  room_categories_id: number;
+  room_categories_id: number;     
   check_in: string;
   check_out: string;
   adult_count: number;
   child_count: number;
-  special_food_menu: string;
-  activities: string;
+  special_food_menu: number[];
+  activities: number[];
   extra_bed: boolean;
   fire_camp: boolean;
   jeep_safari: boolean;
   total: number;
 }
 
-interface BookingDetailsWithoutToken{
+interface BookingDetailsWithoutToken {
   room_categories_id: number;
   check_in: string;
   check_out: string;
   adult_count: number;
   child_count: number;
-  special_food_menu: string;
-  activities: string;
+  special_food_menu: number[];
+  activities: number[];
   extra_bed: boolean;
   fire_camp: boolean;
   jeep_safari: boolean;
   total: number;
-  customer_data:{
-    name:string;
-    email:string;
-    phone:string;
-    address:string;
-  }
+  customer_data: {
+    name: string;
+    email: string;
+    phone: string;
+    address: string;
+  };
 }
+type AddAct = {
+  [key: string]: number;
+}
+
 
 const MobileRoomInfo = ({ id }: { id: string }) => {
     const [roomDetails, setroomDetails] = useState<RoomProps | null>(null);
-    const [userToken, setuserToken] = useState("")
-    const [bookingDetails, setBookingDetails] = useState<BookingDetails>({
-      token: "",
+  const [userToken, setuserToken] = useState("");
+  const [bookingDetails, setBookingDetails] = useState<BookingDetails>({
+    token: "",
+    room_categories_id: Number(id),
+    check_in: "",
+    check_out: "",
+    adult_count: 0,
+    child_count: 0,
+    special_food_menu: [1],
+    activities: [1],
+    extra_bed: false,
+    fire_camp: false,
+    jeep_safari: false,
+    total: 0,
+  });
+  const [bookingDetailsWithoutToken, setbookingDetailsWithoutToken] =
+    useState<BookingDetailsWithoutToken>({
       room_categories_id: Number(id),
-      check_in: '',
-      check_out: '',
+      check_in: "",
+      check_out: "",
       adult_count: 0,
       child_count: 0,
-      special_food_menu: 'South Indian',
-      activities: 'Cricket',
+      special_food_menu: [],
+      activities: [],
       extra_bed: false,
       fire_camp: false,
       jeep_safari: false,
-      total: 0
+      total: 0,
+      customer_data: {
+        name: "",
+        email: "",
+        address: "",
+        phone: "",
+      },
     });
-    const [bookingDetailsWithoutToken, setbookingDetailsWithoutToken] = useState<BookingDetailsWithoutToken>({
-      room_categories_id:Number(id),
-      check_in:'',
-      check_out:'',
-      adult_count:0,
-      child_count:0,
-      special_food_menu:'South Indian',
-      activities:'Cricket',
-      extra_bed:false,
-      fire_camp:false,
-      jeep_safari:false,
-      total:0,
-      customer_data:{
-        name:'',
-        email:'',
-        address:'',
-        phone:''
-      }
-    })
-
-    function formatDateTime(input: string) {
-      if (!input) return "";
-      return input.replace("T", " ") + ":00";
+    const [addAct , setAddAct] = useState<AddAct | null>(null);
+    const fetchAddAct =  async() =>{
+      const {data}  = await getAdditionalActivites();
+      if(!data) return null;
+      setAddAct(data)
     }
-  
-    const totalPrice = useMemo(() => {
-      if (!roomDetails) return 0;
-  
-     
-      const basePrice = (bookingDetails.adult_count > 0 || bookingDetails.child_count > 0) ? 1499 : roomDetails.price;
-  
-      const extrasCount = [
-        bookingDetails.extra_bed,
-        bookingDetails.fire_camp,
-        bookingDetails.jeep_safari,
-      ].filter(Boolean).length;
-  
-      const extrasPrice = extrasCount * 299;
-  
-      return basePrice + extrasPrice;
-    }, [
-      bookingDetails.adult_count,
-      bookingDetails.child_count,
-      bookingDetails.extra_bed,
-      bookingDetails.fire_camp,
-      bookingDetails.jeep_safari,
-      roomDetails,
-    ]);
-  
-    useEffect(() => {
-      const rawToken = localStorage.getItem("user_token");
-      const authtoken = rawToken?.replace(/^"(.*)"$/, '$1') || null;
-      setuserToken(authtoken ?? "");
-  
-      const fetchRoom = async () => {
-        const room = await fetchAllRoomByID(id);
-        setroomDetails(room.data);
-        setBookingDetails((prev) => ({
-          ...prev,
-          token: authtoken || "",
-          room_categories_id: room.data?.id ?? null,
-        }));
-      };
-      fetchRoom();
-    }, [id]);
-  
-    const aboutRawText = roomDetails?.about_stay;
-    const plainText = aboutRawText?.replace(/<[^>]+>/g, '');
-    const checkInRules = roomDetails?.check_in_rules
-    const checkInruleList = checkInRules?.match(/<li>(.*?)<\/li>/g)?.map(item =>
-      item.replace(/<\/?li>/g, '')
-    );
-    const checkoutRules = roomDetails?.check_out_rules
-    const checkOutruleList = checkoutRules?.match(/<li>(.*?)<\/li>/g)?.map(item =>
-      item.replace(/<\/?li>/g, '')
-    );
-  
-    const onClick = async () => {
-      try {
-        if (userToken) {
-        
-          const formattedBookingDetails = {
-            ...bookingDetails,
-            check_in: formatDateTime(bookingDetails.check_in),
-            check_out: formatDateTime(bookingDetails.check_out),
-            total: totalPrice,
-            token: userToken,
-          };
-          console.log(formattedBookingDetails)
     
-          const addBooking = await addBookingWithToken(formattedBookingDetails);
     
-          if (addBooking.success) {
-            alert("✅ Booking Created Successfully!");
-            console.log("Booking success with token");
-          } else {
-            alert("❌ Booking Failed");
-            console.error("Error in token-based booking");
-          }
-        } else {
-          // Guest flow
-          const formattedBookingDetailsWithoutToken = {
-            ...bookingDetailsWithoutToken,
-            check_in: formatDateTime(bookingDetails.check_in),
-            check_out: formatDateTime(bookingDetails.check_out),
-            child_count:bookingDetails.child_count,
-            adult_count:bookingDetails.adult_count,
-            total: totalPrice,
-          };
-  
-          console.log(formattedBookingDetailsWithoutToken)
     
-          const addBooking = await addBookingWithoutToken(formattedBookingDetailsWithoutToken);
-    
-          if (addBooking.success) {
-            alert("✅ Booking Created Successfully!");
-            console.log("Booking success without token");
-          } else {
-            alert("❌ Booking Failed");
-            console.error("Error in non-token-based booking");
-          }
-         }
-      } catch (error) {
-        console.error("Unexpected Error:", error);
-        alert("⚠️ Something went wrong. Please try again.");
+  // Format datetime from "YYYY-MM-DDTHH:mm" to "YYYY-MM-DD HH:mm:ss"
+  function formatDateTime(input: string) {
+    if (!input) return "";
+    return input.replace("T", " ") + ":00";
+  }
+
+  // Calculate total price: (base price + selected extras) * number of nights
+  const totalPrice = useMemo(() => {
+    if (!roomDetails || !addAct) return 0;
+
+    const basePrice = Number(roomDetails.price) || 0;
+
+    // Calculate extras price from addAct based on selected checkboxes
+    let extrasPrice = 0;
+    // helper to normalize keys like 'Jeep Safari' -> 'jeep_safari'
+    const normalize = (s: string) =>
+      s?.toString().toLowerCase().replace(/\s+/g, "_").replace(/[^a-z0-9_]/g, "");
+
+    Object.entries(addAct).forEach(([key, value]) => {
+      const prop = normalize(key);
+      if ((bookingDetails as any)[prop] === true) {
+        extrasPrice += Number(value) || 0;
       }
+    });
+
+    // Compute number of nights (at least 1)
+    let nights = 1;
+    if (bookingDetails.check_in && bookingDetails.check_out) {
+      const inDate = new Date(bookingDetails.check_in);
+      const outDate = new Date(bookingDetails.check_out);
+      const diff = outDate.getTime() - inDate.getTime();
+      if (diff > 0) {
+        nights = Math.max(1, Math.ceil(diff / (1000 * 60 * 60 * 24)));
+      }
+    }
+
+    return (basePrice + extrasPrice) * nights;
+  }, [bookingDetails, roomDetails, addAct]);
+
+  useEffect(() => {
+    const rawToken = localStorage.getItem("user_token");
+    const authtoken = rawToken?.replace(/^"(.*)"$/, "$1") || null;
+    setuserToken(authtoken ?? "");
+
+    const fetchRoom = async () => {
+      const room = await fetchAllRoomByID(id);
+      if(room.success===false || !room.data){
+        return redirect("/")
+      }
+      setroomDetails(room.data);
+      
+      setBookingDetails((prev) => ({
+        ...prev,
+        token: authtoken || "",
+        room_categories_id: room.data?.id ?? null,
+      }));
     };
+    fetchRoom();
+   fetchAddAct();
+
+  }, [id]);
+  const [foodMenu, setfoodMenu] = useState<number[] | null>(null);
+  useEffect(() => {
+    const wantFoodMenu = async () => {
+      const foodMenu = await getFoodMenu();
+      if (!foodMenu) return null;
+      setfoodMenu(foodMenu.data);
+    };
+    wantFoodMenu();
+  }, []);
+
+  const [activites, setactivites] = useState<number[] | null>(null);
+  useEffect(() => {
+    const wantActivites = async () => {
+      const activites = await getActivites();
+      if (!activites) return null;
+    setactivites(activites.data);
+    };
+    wantActivites();
+  }, []);
+
+  console.log("Booking Details" , bookingDetails);
   
-    // Function to format date for display
-    const formatDateForDisplay = (dateString: string) => {
-      if (!dateString) return "";
-      const date = new Date(dateString);
-      const options: Intl.DateTimeFormatOptions = {
-        weekday: 'short',
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-      };
-      return date.toLocaleDateString('en-US', options);
+
+const aboutRawText = roomDetails?.about_stay || "";
+
+// Step 1: Remove HTML tags
+let cleanText = aboutRawText.replace(/<[^>]*>/g, "");
+
+// Step 2: Split using &nbsp; as divider (each becomes a new bullet)
+const sentences = cleanText
+  .split(/&nbsp;+/g) // split by one or more &nbsp;
+  .map((s) => s.trim()) // remove extra spaces
+  .filter(Boolean); // remove empty entries
+
+  const checkInRules = roomDetails?.check_in_rules;
+  const checkInruleList = checkInRules
+    ?.match(/<li>(.*?)<\/li>/g)
+    ?.map((item) => item.replace(/<\/?li>/g, ""));
+  const checkoutRules = roomDetails?.check_out_rules;
+  const checkOutruleList = checkoutRules
+    ?.match(/<li>(.*?)<\/li>/g)
+    ?.map((item) => item.replace(/<\/?li>/g, ""));
+
+  const onClick = async () => {
+    try {
+      // Validation checks
+      const totalGuests = bookingDetails.adult_count + bookingDetails.child_count;
+      
+      // Check if room capacity is exceeded
+      if (roomDetails && totalGuests > roomDetails.capability) {
+        toast.error(
+          `Room capacity exceeded! Maximum ${roomDetails.capability} guests allowed. You selected ${totalGuests} guests.`,
+          { position: "top-center" }
+        );
+        return;
+      }
+
+      // Check if at least one guest is selected
+      if (totalGuests === 0) {
+        toast.error("Please select at least one guest (adult or child)", {
+          position: "top-center",
+        });
+        return;
+      }
+
+      // Check if dates are selected
+      if (!bookingDetails.check_in || !bookingDetails.check_out) {
+        toast.error("Please select check-in and check-out dates", {
+          position: "top-center",
+        });
+        return;
+      }
+
+      // Check if check-out is after check-in
+      const checkIn = new Date(bookingDetails.check_in);
+      const checkOut = new Date(bookingDetails.check_out);
+      if (checkOut <= checkIn) {
+        toast.error("Check-out date must be after check-in date", {
+          position: "top-center",
+        });
+        return;
+      }
+
+      // Check if guest details are provided (for non-logged-in users)
+      if (!userToken) {
+        const { name, email, phone, address } = bookingDetailsWithoutToken.customer_data;
+        
+        if (!name || !email || !phone || !address) {
+          toast.error("Please fill in all customer details", {
+            position: "top-center",
+          });
+          return;
+        }
+
+        // Basic email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          toast.error("Please enter a valid email address", {
+            position: "top-center",
+          });
+          return;
+        }
+
+        // Basic phone validation (10 digits)
+        const phoneRegex = /^\d{10}$/;
+        if (!phoneRegex.test(phone.replace(/\s/g, ""))) {
+          toast.error("Please enter a valid 10-digit phone number", {
+            position: "top-center",
+          });
+          return;
+        }
+      }
+
+      if (userToken) {
+        // Logged-in flow
+        const formattedBookingDetails = {
+          ...bookingDetails,
+          check_in: formatDateTime(bookingDetails.check_in),
+          check_out: formatDateTime(bookingDetails.check_out),
+          total: totalPrice,
+          token: userToken,
+        };
+        console.log(formattedBookingDetails);
+
+        const addBooking = await addBookingWithToken(formattedBookingDetails);
+
+        if (addBooking.success) {
+          toast.success("Booking successful!", {
+            position: "top-center",
+          });
+          console.log("Booking success with token");
+        } else {
+          toast.error(addBooking.message || "Error in booking", {
+            position: "top-center",
+          });
+          console.error("Error in token-based booking");
+        }
+      } else {
+        // Guest flow
+        const formattedBookingDetailsWithoutToken = {
+          ...bookingDetailsWithoutToken,
+          check_in: formatDateTime(bookingDetails.check_in),
+          check_out: formatDateTime(bookingDetails.check_out),
+          child_count: bookingDetails.child_count,
+          adult_count: bookingDetails.adult_count,
+          extra_bed: bookingDetails.extra_bed,
+          fire_camp: bookingDetails.fire_camp,
+          jeep_safari: bookingDetails.jeep_safari,
+          special_food_menu: bookingDetails.special_food_menu,
+          activities: bookingDetails.activities,
+          total: totalPrice,
+        };
+
+        console.log(formattedBookingDetailsWithoutToken);
+
+        const addBooking = await addBookingWithoutToken(
+          formattedBookingDetailsWithoutToken
+        );
+
+        if (addBooking.success) {
+          toast.success(addBooking.message , {
+            position:"top-center"
+          });
+        } else {
+          toast.error(addBooking.message, {
+            position: "top-center",
+          });
+        }
+      }
+    } catch (error: any) {
+      toast.error("Unexpected error occurred. Please try again.", {
+        position: "top-center",
+      });
+      console.error("Booking error:", error);
+    }
+  };
+
+  // Function to format date for display
+  const formatDateForDisplay = (dateString: string) => {
+    if (!dateString) return "";
+    const date = new Date(dateString);
+    const options: Intl.DateTimeFormatOptions = {
+      weekday: "short",
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
     };
+    return date.toLocaleDateString("en-US", options);
+  };
+  const [width, setWidth] = useState<number>(0);
+
+  useEffect(() => {
+    const updateWidth = () => setWidth(window.innerWidth);
+    updateWidth(); // Get initial width
+
+    window.addEventListener("resize", updateWidth); // Listen for resize
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
+  console.log("Add Act" , addAct);
+  
+  if(!addAct) return null
   
   return (
     <section className='p-5 flex flex-col gap-4 -mt-20'>
@@ -404,17 +562,25 @@ const MobileRoomInfo = ({ id }: { id: string }) => {
                   <h1 className="font-mono text-2xl text-white">ADD EXTRA</h1>
       
                   {/* Special Food Menu */}
+                    {/* Special Food Menu */}
                   <div className="flex flex-col gap-2 mt-4 border-b border-[#D0D0D0] mb-2">
                     <label className="text-[#C5C5C5]">SPECIAL FOOD MENU</label>
                     <select
-                      value={bookingDetails.special_food_menu}
+                      value={bookingDetails.special_food_menu[0] ?? ""}
                       onChange={(e) =>
-                        setBookingDetails({ ...bookingDetails, special_food_menu: e.target.value })
+                        setBookingDetails({
+                          ...bookingDetails,
+                          special_food_menu: [Number(e.target.value)],
+                        })
                       }
                       className="text-white mb-2 bg-transparent outline-none"
                     >
-                      <option value="NORTH INDIAN" className="text-black">NORTH INDIAN</option>
-                      <option value="SOUTH INDIAN" className="text-black">SOUTH INDIAN</option>
+                      {foodMenu &&
+                        Object.entries(foodMenu).map(([key, value]) => (
+                          <option key={key} value={key} className="text-black">
+                            {value}
+                          </option>
+                        ))}
                     </select>
                   </div>
       
@@ -422,44 +588,59 @@ const MobileRoomInfo = ({ id }: { id: string }) => {
                   <div className="flex flex-col gap-2 mt-4 border-b border-[#D0D0D0] mb-2">
                     <label className="text-[#C5C5C5]">ACTIVITIES & GAMES</label>
                     <select
-                      value={bookingDetails.activities}
+                      value={bookingDetails.activities[0] ?? ""}
                       onChange={(e) =>
-                        setBookingDetails({ ...bookingDetails, activities: e.target.value })
+                        setBookingDetails({
+                          ...bookingDetails,
+                          activities: [Number(e.target.value)],
+                        })
                       }
                       className="text-white mb-2 bg-transparent outline-none"
                     >
-                      <option value="BASKET BALL" className="text-black">BASKET BALL</option>
-                      <option value="CRICKET" className="text-black">CRICKET</option>
+                      {activites &&
+                        Object.entries(activites).map(([key, value]) => (
+                          <option key={key} value={key} className="text-black">
+                            {value}
+                          </option>
+                        ))}
                     </select>
                   </div>
       
                   {/* Checkboxes */}
-                  <div className="flex flex-col gap-2 mt-7">
-                    {[
-                      { label: 'ADD EXTRA BED (1)', key: 'extra_bed' },
-                      { label: 'FIRE CAMP ARRANGEMENTS', key: 'fire_camp' },
-                      { label: 'JEEP SAFARI', key: 'jeep_safari' },
-                    ].map((item) => (
-                      <div className="flex items-center justify-between" key={item.key}>
-                        <div className="flex gap-2">
-                          <input
-                            type="checkbox"
-                            checked={bookingDetails[item.key as keyof typeof bookingDetails] as boolean}
-                            onChange={(e) =>
-                              setBookingDetails({
-                                ...bookingDetails,
-                                [item.key]: e.target.checked,
-                              })
-                            }
-                            className="w-4 h-4 mt-1"
-                          />
-                          <label className="text-[#C5C5C5]">{item.label}</label>
-                        </div>
-                        <p className="text-[#C5C5C5]">₹ 299</p>
-                      </div>
-                    ))}
-                  </div>
-      
+                  {/* Checkboxes */}
+                <div className="flex flex-col gap-2 mt-7">
+  {Object.entries(addAct)
+    .filter(([key]) => {
+      const normalize = (s: string) =>
+        s?.toString().toLowerCase().replace(/\s+/g, "_").replace(/[^a-z0-9_]/g, "");
+      const roomServiceNames =
+        roomDetails?.services?.map((s) => normalize(s.service_name)) || [];
+      return roomServiceNames.includes(normalize(key));
+    })
+    .map(([key, value], idx) => {
+      const propName = key.toString().toLowerCase().replace(/\s+/g, "_").replace(/[^a-z0-9_]/g, "");
+      return (
+      <div className="flex items-center justify-between" key={idx}>
+        <div className="flex gap-2 items-center">
+          <input
+            type="checkbox"
+            checked={Boolean((bookingDetails as any)[propName])}
+            onChange={(e) =>{
+              setBookingDetails((prev) => ({
+                ...prev,
+                [propName]: e.target.checked,
+              }))
+            }
+            }
+            className="w-4 h-4"
+          />
+          <label className="text-[#C5C5C5] capitalize">{key.replace(/_/g, ' ')}</label>
+        </div>
+        <p className="text-[#C5C5C5]">₹ {value}</p>
+      </div>
+      )
+    })}
+</div>
                   {/* Footer and Total */}
                   <div className="w-full p-1 h-1 border-b border-[#D0D0D0] mt-3" />
                   <div className="flex items-center justify-between mt-3">
@@ -478,9 +659,11 @@ const MobileRoomInfo = ({ id }: { id: string }) => {
                       <div className='w-12/12 p-7 rounded-lg h-full border border-[#D7D7D7] flex flex-col gap-2'>
                         <div className='flex flex-col gap-4'>
                           <h1 className='font-mono text-4xl uppercase text-[#45443F]'>ABOUT STAY</h1>
-                          <p className='mt-2 text-[#3A3A3A]'>
-                            {plainText}
-                          </p>
+                         <ul className="list-disc pl-6 space-y-2 text-gray-700 leading-relaxed">
+  {sentences.map((item, index) => (
+    <li key={index}>{item}</li>
+  ))}
+</ul>
                         </div>
                         <div className='w-full mt-10 p-1 h-1 border-b border-[#D7D7D7]' />
                         <div className='mt-10'>

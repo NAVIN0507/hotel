@@ -55,10 +55,22 @@
       "namedRegex": "^/favicon\\.ico(?:/)?$"
     },
     {
+      "page": "/refund-policy",
+      "regex": "^/refund\\-policy(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/refund\\-policy(?:/)?$"
+    },
+    {
       "page": "/reset-password",
       "regex": "^/reset\\-password(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/reset\\-password(?:/)?$"
+    },
+    {
+      "page": "/shipping-policies",
+      "regex": "^/shipping\\-policies(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/shipping\\-policies(?:/)?$"
     },
     {
       "page": "/sign-in",
@@ -71,6 +83,12 @@
       "regex": "^/sign\\-up(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/sign\\-up(?:/)?$"
+    },
+    {
+      "page": "/terms-conditions",
+      "regex": "^/terms\\-conditions(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/terms\\-conditions(?:/)?$"
     }
   ],
   "dataRoutes": [],
