@@ -1,14 +1,14 @@
 {
   "/favicon.ico/route": "/favicon.ico",
   "/_not-found/page": "/_not-found",
+  "/(auth)/sign-up/page": "/sign-up",
   "/(auth)/reset-password/page": "/reset-password",
   "/(auth)/sign-in/page": "/sign-in",
-  "/(auth)/sign-up/page": "/sign-up",
   "/aboutus/page": "/aboutus",
   "/allrooms/page": "/allrooms",
   "/page": "/",
-  "/refund-policy/page": "/refund-policy",
   "/shipping-policies/page": "/shipping-policies",
+  "/refund-policy/page": "/refund-policy",
   "/terms-conditions/page": "/terms-conditions",
   "/room/[id]/page": "/room/[id]"
 }
