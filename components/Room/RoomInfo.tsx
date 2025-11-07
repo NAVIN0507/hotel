@@ -185,7 +185,6 @@ const RoomInfo = ({ id }: { id: string }) => {
     wantActivites();
   }, []);
 
-  console.log("Booking Details" , bookingDetails);
   
 
 const aboutRawText = roomDetails?.about_stay || "";
@@ -287,7 +286,6 @@ const sentences = cleanText
           total: totalPrice,
           token: userToken,
         };
-        console.log(formattedBookingDetails);
 
         const addBooking = await addBookingWithToken(formattedBookingDetails);
 
@@ -295,7 +293,6 @@ const sentences = cleanText
           toast.success("Booking successful!", {
             position: "top-center",
           });
-          console.log("Booking success with token");
         } else {
           toast.error(addBooking.message || "Error in booking", {
             position: "top-center",
@@ -318,7 +315,6 @@ const sentences = cleanText
           total: totalPrice,
         };
 
-        console.log(formattedBookingDetailsWithoutToken);
 
         const addBooking = await addBookingWithoutToken(
           formattedBookingDetailsWithoutToken
@@ -365,7 +361,6 @@ const sentences = cleanText
     window.addEventListener("resize", updateWidth); // Listen for resize
     return () => window.removeEventListener("resize", updateWidth);
   }, []);
-  console.log("Add Act" , addAct);
   
   if(!addAct) return null
   return (

@@ -32,7 +32,6 @@ const MobileSidebar = ({ isOpen, onClose }:{isOpen:boolean , onClose:()=>void}) 
     toast.success("Logged Out Successfully")
     router.refresh()
   }
-  console.log(pathname);
   
   const isActive = pathname === "/aboutus"
   return (

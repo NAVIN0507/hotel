@@ -23,7 +23,6 @@ const BentoGrid = ({width , isHome}:{width:number;isHome?:boolean}) => {
     }
     fetchRooms();
   } , [])
-console.log("Rooms" , room_categories);
 
   return (
     <>

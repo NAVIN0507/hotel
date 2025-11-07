@@ -138,7 +138,6 @@ const MobileMenuButton = ({ onClick }:{onClick:()=>void}) => {
 const NavBar = () => {
   const [user, setUser] = useState<User | null>(null);
   const router = useRouter();
-  console.log(user)
   useEffect(() => {
     const rawToken = localStorage.getItem("user_token");
     const token = rawToken?.replace(/^"(.*)"$/, "$1");

@@ -78,7 +78,6 @@ const SignIn = () => {
   })
 
   localStorage.setItem("user_token", JSON.stringify(logins.data?.token));
-   console.log(logins.data)
    router.push("/")
 }
   setisLoading(false);

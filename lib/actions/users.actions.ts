@@ -3,20 +3,7 @@ import axios, { AxiosError } from "axios"
 import { data } from "framer-motion/client"
 import createAxiosInstance from "./axiosInstance";
 import { string } from "zod"
-// export const login = async(email:string , password : string)=>{
-//     const {data} = await axios.post("https://zenpose.solvixsoftworks.com/api/login" , {
-//         email:email,
-//         password:password
-//     })   
 
-//     if(!data){
-//         return console.log("Error")
-//     }
-//    return {
-//     success:true,
-//     message:"Logged In",
-//     data:data
-//    }
 // }   
 
 export const userRegister = async({name , email , password , phone , address }:RegisterProps)=>{
@@ -49,7 +36,6 @@ export const userRegister = async({name , email , password , phone , address }:R
             data:data
         }
     } catch (error:any) {
-      console.log(error.message)
         return{
            
                success:false,

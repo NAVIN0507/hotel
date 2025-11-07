@@ -19,7 +19,6 @@ const Amunities = () => {
     };
     fetchAmunities();
   }, []);
-  console.log(AmunitiesList)
 
   return (
     <section className="px-4 md:px-14 py-10 -mt-10">

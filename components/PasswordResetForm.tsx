@@ -19,7 +19,6 @@ export default function PasswordResetForm() {
   const searchparams = useSearchParams();
   const email = searchparams.get("email");
   const token = searchparams.get("token");
-  console.log(email , token)
   const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
