@@ -82,7 +82,7 @@ const Hero = () => {
 
           <li>
             <Link
-              href="/"
+              href="/contact"
               className="hover:text-yellow-300 hover:underline font-sans"
             >
               Contact

@@ -1,18 +1,18 @@
 {
   "/favicon.ico/route": "/favicon.ico",
+  "/(auth)/reset-password/page": "/reset-password",
   "/(auth)/sign-in/page": "/sign-in",
   "/_not-found/page": "/_not-found",
-  "/(auth)/reset-password/page": "/reset-password",
-  "/(auth)/sign-up/page": "/sign-up",
   "/aboutus/page": "/aboutus",
   "/contact/page": "/contact",
   "/allrooms/page": "/allrooms",
   "/failed/page": "/failed",
+  "/(auth)/sign-up/page": "/sign-up",
+  "/privacy-policy/page": "/privacy-policy",
   "/page": "/",
   "/refund-policy/page": "/refund-policy",
-  "/shipping-policies/page": "/shipping-policies",
   "/success/page": "/success",
-  "/privacy-policy/page": "/privacy-policy",
+  "/shipping-policies/page": "/shipping-policies",
   "/terms-conditions/page": "/terms-conditions",
   "/room/[id]/page": "/room/[id]"
 }

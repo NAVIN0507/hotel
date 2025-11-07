@@ -231,11 +231,14 @@ export default function Home() {
     const [width, setWidth] = useState<number>(0);
     
       useEffect(() => {
-        const updateWidth = () => setWidth(window.innerWidth);  
-        updateWidth(); // Get initial width
-    
-        window.addEventListener("resize", updateWidth); // Listen for resize
-        return () => window.removeEventListener("resize", updateWidth);
+        // Check if window is available (client-side)
+        if (typeof window !== 'undefined') {
+          const updateWidth = () => setWidth(window.innerWidth);  
+          updateWidth(); // Get initial width
+      
+          window.addEventListener("resize", updateWidth); // Listen for resize
+          return () => window.removeEventListener("resize", updateWidth);
+        }
       }, []);
 
   return (
