@@ -1,4 +1,5 @@
-import Footer from '@/components/Room/Footer'
+
+import Footer from '@/components/Home/Footer'
 import Hero from '@/components/Room/Hero'
 import NavBar from '@/components/Room/NavBar'
 import OtherRooms from '@/components/Room/OtherRooms'

@@ -51,10 +51,10 @@ const Footer = () => {
     <>
       <footer
         id="footer"
-        className="bg-[#E9E9E9] w-full h-full p-6 sm:p-10 flex flex-col"
+        className="bg-[#2a2552] w-full h-full p-6 sm:p-10 flex flex-col"
       >
         {/* --- Top Section --- */}
-        <div className="flex flex-col sm:flex-wrap md:flex-row items-start justify-between gap-10">
+        <div className="flex flex-col sm:flex-wrap md:flex-row items-start justify-between text-white gap-10">
           {/* Location */}
           <div className="flex flex-col gap-2 flex-1 min-w-[250px]">
             <h1 className="font-mono text-2xl sm:text-3xl">LOCATION</h1>
@@ -104,13 +104,13 @@ const Footer = () => {
                 href={appDetails?.whatsapp_link || ""}
                 className="w-10 h-10 flex items-center justify-center rounded-full hover:scale-105 transition"
               >
-            <img src="/assets/images/whatsapp-ogo.png" className="rounded-full" alt="" />
+            <img src="/assets/images/whatsapp-ogo.png" className="rounded-md" alt="" />
               </Link>
               <Link
                 href={appDetails?.instagram_link || ""}
-                className="w-10 h-10 flex items-center justify-center rounded-full hover:scale-105 transition"
+                className="w-9 h-9 flex items-center justify-center rounded-full hover:scale-105 transition"
               >
-                <img src="/assets/images/instagram-logo.avif" className="rounded-full" alt="" />
+                <img src="/assets/images/instagram.png" className="rounded-md " alt="" />
               </Link>
               {/* <Link
                 href={appDetails?.facebook_link || ""}
@@ -122,7 +122,7 @@ const Footer = () => {
           </div>
         </div>
         {/* --- Bottom Section --- */}
-        <div className="flex flex-col sm:flex-row items-center justify-between mt-10 gap-3 text-center sm:text-left">
+        <div className="flex flex-col sm:flex-row items-center text-white justify-between mt-10 gap-3 text-center sm:text-left">
           <h1 className="text-sm sm:text-base">
             Copyright © 2025{" "}
             <Link href={"/"} className="font-semibold underline">
