@@ -3,10 +3,9 @@ RewriteEngine On
 # Specific rule for reset-password (try multiple approaches)
 RewriteRule ^reset-password/?$ /reset-password.html [L]
 RewriteRule ^reset-password/index\.html$ /reset-password.html [L]
-RewriteRule ^success/?$ /success.html [L]
-RewriteRule ^success/index\.html$ /success.html [L]
-RewriteRule ^failed/?$ /failed.html [L]
-RewriteRule ^failed/index\.html$ /failed.html [L]
+RewriteRule ^success/?$  /success/index.html [L]
+
+RewriteRule ^failed/?$  /failed/index.html [L]
 
 # Handle other static routes - try directory first, then .html
 RewriteCond %{REQUEST_FILENAME} !-f
