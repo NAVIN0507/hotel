@@ -21,12 +21,16 @@ const MobileSidebar = ({
 }) => {
   const [user, setUser] = useState<User | null>(null);
   const [activeItem, setActiveItem] = useState<string>('');
-
-  useEffect(() => {
-    // Note: In production, replace with your actual auth logic
-    // Using in-memory state instead of localStorage for demo
-    const mockUser = null; // Set to { name: "John" } to test logged-in state
-    setUser(mockUser);
+ useEffect(() => {
+    const rawToken = localStorage.getItem("user_token");
+    const token = rawToken?.replace(/^"(.*)"$/, "$1");
+    if (token) {
+      fetchUserDetails(token).then((res) => {
+        if (res.success) {
+          setUser(res.data);
+        }
+      });
+    }
   }, []);
 
   const handleLogout = () => {
@@ -155,13 +159,13 @@ const MobileSidebar = ({
               }}
               className={`w-full py-3.5 px-4 rounded-xl font-medium transition-all duration-200 flex gap-2 items-center justify-center shadow-lg hover:shadow-xl active:scale-95 ${
                 user
-                  ? 'bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700'
+                  ? 'shadow-none  border bg-none text-black'
                   : 'bg-gradient-to-r from-gray-800 to-gray-700 text-white hover:from-gray-700 hover:to-gray-600'
               }`}
             >
               {user ? (
                 <>
-                  <LogOut className="w-4 h-4" />
+                  <LogOut className="w-4 h-4 " />
                   <span>Logout</span>
                 </>
               ) : (

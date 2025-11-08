@@ -9,7 +9,7 @@ const Hero = () => {
   const [user, setUser] = useState<User | null>(null);
   const router = useRouter();
   const pathname = usePathname();
-  const isActive  = pathname === "/aboutus"
+  const isActive  = pathname === "/aboutus/"
   useEffect(() => {
     const rawToken = localStorage.getItem("user_token");
     const token = rawToken?.replace(/^"(.*)"$/, "$1");
