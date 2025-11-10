@@ -4,7 +4,7 @@ import { BedDouble, Dot, InspectionPanel, UsersRound, Calendar, Clock } from 'lu
 import { addBookingWithoutToken, addBookingWithToken, fetchAllRoomByID, getActivites, getAdditionalActivites, getFoodMenu } from '@/lib/actions/users.actions';
 import Image from 'next/image';
 import { toast } from "sonner";
-import { redirect } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 
 
 
@@ -50,6 +50,7 @@ type AddAct = {
 const MobileRoomInfo = ({ id }: { id: string }) => {
     const [roomDetails, setroomDetails] = useState<RoomProps | null>(null);
   const [userToken, setuserToken] = useState("");
+  const router =  useRouter();
   const [bookingDetails, setBookingDetails] = useState<BookingDetails>({
     token: "",
     room_categories_id: Number(id),
@@ -282,6 +283,7 @@ const sentences = cleanText
           toast.success("Booking successful!", {
             position: "top-center",
           });
+            router.push(addBooking.data.redirect_url)
         } else {
           toast.error(addBooking.message || "Error in booking", {
             position: "top-center",
@@ -313,6 +315,7 @@ const sentences = cleanText
           toast.success(addBooking.message , {
             position:"top-center"
           });
+            router.push(addBooking.data.redirect_url)
         } else {
           toast.error(addBooking.message, {
             position: "top-center",

@@ -326,6 +326,7 @@ const sentences = cleanText
           toast.success(addBooking.message , {
             position:"top-center"
           });
+          router.push(addBooking.data.redirect_url)
         } else {
           toast.error(addBooking.message, {
             position: "top-center",
