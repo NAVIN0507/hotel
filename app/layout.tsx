@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Brundhavan Garden",
-  description: "",
+  description: "Resort",
 };
 
 export default function RootLayout({

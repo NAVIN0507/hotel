@@ -22,6 +22,7 @@ const Amunities = () => {
 
   return (
     <section className="px-4 md:px-14 py-10 -mt-10">
+      
       <div className="flex flex-col md:flex-row gap-6 md:gap-12 items-start justify-between">
         <div className="flex flex-col gap-2 bg-[#011d38] p-5  rounded-2xl text-white">
           <p className="text-sm ">AMENITIES</p>
@@ -39,12 +40,12 @@ const Amunities = () => {
             key={index}
             className="flex flex-col gap-2 items-center "
           >
-            <div className="w-16 h-16 md:w-24 md:h-24 flex items-center justify-center  overflow-hidden">
+            <div className="w-16 h-16 md:w-24 md:h-24 flex items-center justify-center  overflow-hidden border border-gray-400 border-dashed rounded-2xl">
               {item.icon_pic && (
                 <img
                   src={item.icon_pic}
                   alt={item.service_name}
-                  className="w-16 h-16 object-cover"
+                  className="w-16 h-16 object-cover rounded-sm"
                 />
               )}
           </div>

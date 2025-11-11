@@ -1,70 +1,88 @@
-import { BedDouble, InspectionPanel, UsersRound } from 'lucide-react'
-import Image from 'next/image'
-import Link from 'next/link'
-import React from 'react'
+import { BedDouble, InspectionPanel, UsersRound } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
 
-const MobileViewRoomCard = ({id,
-    name,
-    description,
-    pictures,
-    price,
-    square_ft,
-    capability,
-    beds , c , index , isHome}:RoomCategoriesProps) => {
+const MobileViewRoomCard = ({
+  id,
+  name,
+  description,
+  pictures,
+  price,
+  square_ft,
+  capability,
+  beds,
+}: RoomCategoriesProps) => {
   return (
-    <>
-   
-    <Link href={`/room/${id}`}>
-   <div className="w-full rounded-xl p-4 mt-4 h-full bg-[#011D38]  text-white">
-  {/* Header */}
-  <div className="flex">
-    <h1 className="font-mono uppercase ml-1 text-4xl">{name}</h1>
-  </div>
+    <Link href={`/room/${id}`} className="block w-full">
+      <div className="w-full rounded-xl p-4 sm:p-6 mt-4 bg-[#011D38] text-white shadow-lg hover:scale-[1.01] transition-transform duration-300">
+        {/* Header */}
+        <div className="flex flex-wrap items-center justify-between">
+          <h1 className="font-mono uppercase text-2xl sm:text-3xl md:text-4xl tracking-wide">
+            {name}
+          </h1>
+        </div>
 
-  {/* Description */}
-  <p className="text-[#C1C1C1] text-sm mt-3">{description}</p>
+        {/* Description */}
+        <p
+          className="text-[#C1C1C1] text-xs sm:text-sm md:text-base mt-3 sm:mt-4 leading-relaxed"
+          dangerouslySetInnerHTML={{
+            __html: description || "",
+          }}
+        />
 
-  {/* Info Section */}
-  <div className="flex p-10 items-center justify-between -mt-5">
-    <div className="flex flex-col items-center gap-2">
-      <InspectionPanel color="#ffffff" width={40} height={40} />
-      <p className="text-white">{square_ft}M2</p>
-    </div>
-    <div className="flex flex-col items-center gap-2">
-      <UsersRound color="#ffffff" width={40} height={40} />
-      <p className="text-white text-center">1-{capability}</p>
-    </div>
-    <div className="flex flex-col items-center gap-2">
-      <BedDouble color="#ffffff" width={40} height={40} />
-      <p className="text-white">{beds} Beds</p>
-    </div>
-  </div>
+        {/* Info Section */}
+        <div className="flex flex-wrap items-center justify-around sm:justify-between gap-5 sm:gap-8 p-5 sm:p-8 md:p-10 mt-3 sm:mt-4">
+          <div className="flex flex-col items-center gap-2">
+            <InspectionPanel className="w-8 h-8 sm:w-10 sm:h-10" color="#ffffff" />
+            <p className="text-white text-xs sm:text-sm md:text-base">
+              {square_ft}M²
+            </p>
+          </div>
 
-  {/* Image + Price Tag */}
-  <div className="relative mt-5">
-    {/* Image */}
-    <Image
-      src={pictures[0]}
-      alt="room"
-      width={400}
-      height={250}
-      className="rounded-xl w-full h-[250px] object-cover"
-    />
+          <div className="flex flex-col items-center gap-2">
+            <UsersRound className="w-8 h-8 sm:w-10 sm:h-10" color="#ffffff" />
+            <p className="text-white text-xs sm:text-sm md:text-base text-center">
+              1–{capability}
+            </p>
+          </div>
 
-    {/* Price Tag */}
-    <div className="absolute -mt-14  left-1/2 -translate-x-1/2 w-full bg-white rounded-full p-2 shadow-lg flex items-center justify-between ">
-      <h1 className="font-mono text-black text-sm sm:text-base">
-        STARTS FROM <span className="text-lg font-bold">{price}</span> /PER NIGHT
-      </h1>
-      <button className="bg-[#AA9061] text-white rounded-full px-5 py-2 text-sm">
-        EXPLORE
-      </button>
-    </div>
-  </div>
-</div>
-</Link>
-</>
-  )
-}
+          <div className="flex flex-col items-center gap-2">
+            <BedDouble className="w-8 h-8 sm:w-10 sm:h-10" color="#ffffff" />
+            <p className="text-white text-xs sm:text-sm md:text-base">
+              {beds} Beds
+            </p>
+          </div>
+        </div>
 
-export default MobileViewRoomCard
+        {/* Image + Overlay Section */}
+        <div className="relative mt-5 sm:mt-8 overflow-hidden rounded-xl">
+          {/* Room Image */}
+          <Image
+            src={pictures[0]}
+            alt="room"
+            width={800}
+            height={400}
+            className="w-full h-48 sm:h-64 md:h-72 object-cover transition-transform duration-500 hover:scale-105"
+          />
+
+          {/* Dark gradient overlay */}
+          <div className="absolute inset-0 from-black/70 via-black/20 to-transparent rounded-xl"></div>
+
+          {/* Price + Button overlay */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-[90%] sm:w-[80%] bg-white/90 backdrop-blur-md rounded-full p-1 shadow-lg flex  items-center justify-between gap-2 sm:gap-4">
+            <h1 className="font-mono text-black text-xs  text-center">
+              STARTS FROM{" "}
+              <span className="text-lg font-bold">{price}</span> / PER NIGHT
+            </h1>
+            <button className="bg-[#AA9061] hover:bg-[#967b4e] text-white rounded-full px-4 sm:px-6 py-2 text-xs sm:text-sm transition-colors">
+              EXPLORE
+            </button>
+          </div>
+        </div>
+      </div>
+    </Link>
+  );
+};
+
+export default MobileViewRoomCard;

@@ -68,19 +68,19 @@ const Footer = () => {
           </div>
 
           {/* Customer Care */}
-          <div className="flex flex-col gap-2 flex-1 min-w-[200px]">
+          <div className="flex flex-col gap-2  min-w-[200px]">
             <h1 className="font-mono text-2xl sm:text-3xl uppercase">Other Pages</h1>
             <div className="mt-3 flex flex-col">
-              <Link href={"/shipping-policies"}>
+              <Link href={"/shipping-policies"} className="w-fit">
               <p className="text-sm underline mt-2">Shipping Policy</p>
               </Link>
-              <Link href={"/terms-conditions"}>
+              <Link href={"/terms-conditions"} className="w-fit">
               <p className="text-sm underline mt-2">Terms & Conditions</p>
               </Link>
-              <Link href={"/refund-policy"}>
+              <Link href={"/refund-policy"} className="w-fit">
               <p className="text-sm underline mt-2">Refund Policy</p>
               </Link>
-                <Link href={"/privacy-policy"}>
+                <Link href={"/privacy-policy"} className="w-fit">
               <p className="text-sm underline mt-2">Privacy Policy</p>
               </Link>
             </div>
@@ -89,7 +89,7 @@ const Footer = () => {
           {/* Contact */}
           <div className="flex flex-col gap-2 flex-1 min-w-[200px]">
             <h1 className="font-mono text-2xl sm:text-3xl">CONTACT US</h1>
-            <p className="text-sm mt-2">Call: {appDetails?.phone}</p>
+            <p className="text-sm mt-2">Call: +91 {appDetails?.phone.slice(0, 5)} {" "}{appDetails?.phone.slice(5, 10)}</p>
             <p className="text-sm mt-2">Write: {appDetails?.email}</p>
             <p className="text-sm mt-2">
               Find Us: 3/347A Pannaikadu Main Road, Thandikudi, Dindigul
