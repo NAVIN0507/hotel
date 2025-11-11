@@ -72,13 +72,16 @@ const Hero = ({ pictures, video }: RoomProps) => {
           <div ref={sliderRef} className="keen-slider rounded-2xl overflow-hidden">
             {pictures.map((pic, index) => (
               <div className="keen-slider__slide" key={index}>
-                <Image
-                  src={pic}
-                  alt={`hero-image-${index}`}
-                  width={1500}
-                  height={600}
-                  className="rounded-2xl w-full h-[600px] object-fill max-sm:object-cover"
-                />
+              <Image
+  src={pic}
+  alt={`hero-image-${index}`}
+  width={1500}
+  height={600}
+  quality={100}
+  placeholder="blur"
+  blurDataURL="/placeholder-blur.jpg"
+  className="rounded-2xl w-full h-[600px] object-cover"
+/>
               </div>
             ))}
           </div>

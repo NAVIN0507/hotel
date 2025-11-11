@@ -103,7 +103,7 @@ export default function SpecialSection() {
   }, []); // only run once on mount (recompute if you change content dynamically)
 
   return (
-    <section className="py-10 px-4 sm:px-6 lg:px-20 bg-white">
+    <section className=" sm:px-6 lg:px-20 bg-white">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-mono text-gray-700 flex flex-col lg:flex-row gap-4 lg:gap-2">
           WHAT'S SPECIAL WITH US?

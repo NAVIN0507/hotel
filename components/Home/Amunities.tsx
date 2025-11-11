@@ -24,12 +24,19 @@ const Amunities = () => {
     <section className="px-4 md:px-14 py-10 -mt-10">
       
       <div className="flex flex-col md:flex-row gap-6 md:gap-12 items-start justify-between">
-        <div className="flex flex-col gap-2 bg-[#011d38] p-5  rounded-2xl text-white">
-          <p className="text-sm ">AMENITIES</p>
-          <h1 className="flex items-center gap-2 font-mono text-3xl md:text-4xl">
-            <div className="hidden lg:block w-16 h-0 border border-gray-500" /> MADE FOR
+        <div className="flex flex-col gap-2 bg-[#011d38] p-5  rounded-2xl text-white w-full">
+          <p className="text-sm  text-center">AMENITIES</p>
+          <div className="flex items-center justify-center gap-4 mt-1 mb-1">
+            <div className="w-16 sm:w-24 h-0.5 bg-[#b79464]"></div>
+            <div className="w-2 h-2 bg-[#b79464] rounded-full"></div>
+            <div className="w-16 sm:w-24 h-0.5 bg-[#b79464]"></div>
+          </div>
+          <div className="flex items-center justify-center">
+          <h1 className="flex items-center gap-2 font-mono text-3xl md:text-4xl text-center">
+             MADE FOR YOUR COMFORT
           </h1>
-          <h1 className="font-mono text-3xl md:text-4xl ">YOUR COMFORT</h1>
+          
+          </div>
         </div>
       
       </div>
