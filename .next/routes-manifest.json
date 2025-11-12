@@ -74,12 +74,6 @@
       "namedRegex": "^/failed(?:/)?$"
     },
     {
-      "page": "/favicon.ico",
-      "regex": "^/favicon\\.ico(?:/)?$",
-      "routeKeys": {},
-      "namedRegex": "^/favicon\\.ico(?:/)?$"
-    },
-    {
       "page": "/privacy-policy",
       "regex": "^/privacy\\-policy(?:/)?$",
       "routeKeys": {},
