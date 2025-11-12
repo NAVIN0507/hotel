@@ -6,7 +6,7 @@ import React from "react";
 
 const page = () => {
   return (
-    <div className="space-y-5">
+    <div className="">
       <div className="p-4">
         <Hero />
       </div>

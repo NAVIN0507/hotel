@@ -52,7 +52,7 @@ const Footer = () => {
       {/* 🌊 Wave Top Shape */}
       <div className="w-full overflow-hidden leading-[0]">
         <svg
-          className="block w-full h-[100px]"
+          className="block w-full h-[100px] "
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 512 112"
           preserveAspectRatio="none"
@@ -137,7 +137,7 @@ const Footer = () => {
           {/* 📱 Follow Us */}
           <div className="flex flex-col gap-2 flex-1 min-w-[200px]">
             <h1 className="font-mono text-2xl sm:text-3xl">FOLLOW US</h1>
-            <div className="flex gap-3 mt-3">
+            <div className="flex gap-1 mt-3">
               <Link
                 href={appDetails?.whatsapp_link || ""}
                 className="w-10 h-10 flex items-center justify-center rounded-full hover:scale-105 transition"
@@ -157,8 +157,8 @@ const Footer = () => {
                 <Image
                   src="/assets/images/instagram.png"
                   alt="instagram"
-                  width={30}
-                  height={30}
+                  width={28}
+                  height={28}
                   className="rounded-md"
                 />
               </Link>
