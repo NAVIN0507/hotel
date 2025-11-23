@@ -77,11 +77,10 @@ type BookingDetails  =  {
     check_out: string;
     adult_count: number;
     child_count: number;
-    special_food_menu: number[];
-    activities: number[];
+    special_food_menu: boolean;
+    activities: boolean;
     extra_bed: boolean;
-    fire_camp: boolean;
-    jeep_safari: boolean;
+  
     total:number;
   }
   

@@ -104,11 +104,7 @@ export default function PasswordResetForm() {
         <div className='w-full md:w-9/12 p-8 rounded-lg border border-gray-300'>
           <h1 className='font-mono text-[#b79464] text-5xl text-center uppercase'>Brindhavan</h1>
           <div className="mt-10">
-            {error && (
-              <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg">
-                <p className="text-red-600 text-sm">{error}</p>
-              </div>
-            )}
+           
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                 <FormField

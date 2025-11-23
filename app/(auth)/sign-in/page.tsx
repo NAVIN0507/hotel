@@ -39,6 +39,7 @@ const SignIn = () => {
   const router = useRouter();
   const [isLoading, setisLoading] = useState(false)
   const [reset_email, setreset_email] = useState("");
+  const [open, setopen] = useState(false)
   
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -52,12 +53,12 @@ const SignIn = () => {
     setisLoading(true);
     const logins = await userLogin(values.email, values.password);
     if (!logins.success) {
-      ShowToast({
-        title: logins.message,
-        description: "Signed In Cancelled",
-        type: "danger",
-        icon: <X className="p-1 rounded-full w-7 h-7" />
-      })
+      // ShowToast({
+      //   title: logins.message,
+      //   description: "Signed In Cancelled",
+      //   type: "danger",
+      //   icon: <X className="p-1 rounded-full w-7 h-7" />
+      // })
     } else {
       ShowToast({
         title: "Signed In",
@@ -67,7 +68,7 @@ const SignIn = () => {
       })
 
       localStorage.setItem("user_token", JSON.stringify(logins.data?.token));
-      router.push("/")
+      router.push("/allrooms")
     }
     setisLoading(false);
   }
@@ -78,6 +79,7 @@ const SignIn = () => {
       router.push("/sign-in")
       toast.success("Reset Mail has been sent to your email")
     }
+    setopen(false)
   }
   
   return (
@@ -154,7 +156,7 @@ const SignIn = () => {
                     <p className="text-xs sm:text-sm md:text-sm lg:text-base">Remember me</p>
                   </div>
                   
-                  <Dialog>
+                  <Dialog open={open} onOpenChange={setopen}>
                     <DialogTrigger>
                       <p className="text-gray-500 underline cursor-pointer text-xs sm:text-sm md:text-sm lg:text-base whitespace-nowrap">
                         Forgot Password?
@@ -162,7 +164,7 @@ const SignIn = () => {
                     </DialogTrigger>
                     <DialogContent className="w-[90vw] max-w-md">
                       <DialogHeader>
-                        <DialogTitle className="font-normal text-gray-700 text-base sm:text-lg">
+                        <DialogTitle className="font-normal text-gray-700 text-base sm:text-lg" onClick={()=>setopen(true)}>
                           Forgot Password?
                         </DialogTitle>
                       </DialogHeader>
@@ -174,7 +176,9 @@ const SignIn = () => {
                       />
                       <Button 
                         className="bg-[#b79464] hover:bg-[#b79464] hover:text-white cursor-pointer text-white w-full h-12 sm:h-14 text-base sm:text-lg" 
-                        onClick={handleResetPassowrd}
+                        onClick={
+                          handleResetPassowrd
+                        }
                       >
                         Verify Your E-Mail
                       </Button>

@@ -1,6 +1,5 @@
 "use client";
 import {
-  addBookingWithoutToken,
   addBookingWithToken,
   fetchAllRoomByID,
   getActivites,
@@ -20,6 +19,10 @@ import { useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 import MobileRoomInfo from "./MobileRoomInfo";
 import { redirect, useRouter } from "next/navigation";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
+import Link from "next/link";
+import { Calendar as ShadCncalendar } from "@/components/ui/calendar"
 
 interface BookingDetails {
   token: string;
@@ -28,33 +31,14 @@ interface BookingDetails {
   check_out: string;
   adult_count: number;
   child_count: number;
-  special_food_menu: number[];
-  activities: number[];
+  special_food_menu: boolean;
+  activities: boolean;
   extra_bed: boolean;
-  fire_camp: boolean;
-  jeep_safari: boolean;
+  
   total: number;
 }
 
-interface BookingDetailsWithoutToken {
-  room_categories_id: number;
-  check_in: string;
-  check_out: string;
-  adult_count: number;
-  child_count: number;
-  special_food_menu: number[];
-  activities: number[];
-  extra_bed: boolean;
-  fire_camp: boolean;
-  jeep_safari: boolean;
-  total: number;
-  customer_data: {
-    name: string;
-    email: string;
-    phone: string;
-    address: string;
-  };
-}
+
 
 type AddAct = {
   [key: string]: number;
@@ -72,33 +56,12 @@ const RoomInfo = ({ id }: { id: string }) => {
     check_out: "",
     adult_count: 0,
     child_count: 0,
-    special_food_menu: [1],
-    activities: [1],
+    special_food_menu: false,
+    activities: false,
     extra_bed: false,
-    fire_camp: false,
-    jeep_safari: false,
     total: 0,
   });
-  const [bookingDetailsWithoutToken, setbookingDetailsWithoutToken] =
-    useState<BookingDetailsWithoutToken>({
-      room_categories_id: Number(id),
-      check_in: "",
-      check_out: "",
-      adult_count: 0,
-      child_count: 0,
-      special_food_menu: [],
-      activities: [],
-      extra_bed: false,
-      fire_camp: false,
-      jeep_safari: false,
-      total: 0,
-      customer_data: {
-        name: "",
-        email: "",
-        address: "",
-        phone: "",
-      },
-    });
+ 
   const [addAct, setAddAct] = useState<AddAct | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -183,6 +146,9 @@ const RoomInfo = ({ id }: { id: string }) => {
     wantFoodMenu();
   }, []);
 
+  console.log(bookingDetails);
+  
+
   const [activites, setactivites] = useState<number[] | null>(null);
   useEffect(() => {
     const wantActivites = async () => {
@@ -247,33 +213,7 @@ const RoomInfo = ({ id }: { id: string }) => {
         return;
       }
 
-      if (!userToken) {
-        const { name, email, phone, address } =
-          bookingDetailsWithoutToken.customer_data;
-
-        if (!name || !email || !phone || !address) {
-          toast.error("Please fill in all customer details", {
-            position: "top-center",
-          });
-          return;
-        }
-
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-          toast.error("Please enter a valid email address", {
-            position: "top-center",
-          });
-          return;
-        }
-
-        const phoneRegex = /^\d{10}$/;
-        if (!phoneRegex.test(phone.replace(/\s/g, ""))) {
-          toast.error("Please enter a valid 10-digit phone number", {
-            position: "top-center",
-          });
-          return;
-        }
-      }
+    
 
       if (userToken) {
         const formattedBookingDetails = {
@@ -297,36 +237,8 @@ const RoomInfo = ({ id }: { id: string }) => {
           });
           console.error("Error in token-based booking");
         }
-      } else {
-        const formattedBookingDetailsWithoutToken = {
-          ...bookingDetailsWithoutToken,
-          check_in: formatDateTime(bookingDetails.check_in),
-          check_out: formatDateTime(bookingDetails.check_out),
-          child_count: bookingDetails.child_count,
-          adult_count: bookingDetails.adult_count,
-          extra_bed: bookingDetails.extra_bed,
-          fire_camp: bookingDetails.fire_camp,
-          jeep_safari: bookingDetails.jeep_safari,
-          special_food_menu: bookingDetails.special_food_menu,
-          activities: bookingDetails.activities,
-          total: totalPrice,
-        };
-
-        const addBooking = await addBookingWithoutToken(
-          formattedBookingDetailsWithoutToken
-        );
-
-        if (addBooking.success) {
-          toast.success(addBooking.message, {
-            position: "top-center",
-          });
-          router.push(addBooking.data.redirect_url);
-        } else {
-          toast.error(addBooking.message, {
-            position: "top-center",
-          });
-        }
-      }
+      } 
+      
     } catch (error: any) {
       toast.error("Unexpected error occurred. Please try again.", {
         position: "top-center",
@@ -544,107 +456,17 @@ const RoomInfo = ({ id }: { id: string }) => {
                   </div>
                 </div>
               </div>
-
-              {/* Guest Details Form */}
-              {!userToken && (
-                <div className="w-full h-fit rounded-2xl p-6 bg-[#011D38] shadow-lg">
-                  <h1 className="font-mono text-2xl text-white mb-6 tracking-wide">
-                    ENTER YOUR DETAILS
-                  </h1>
-
-                  <div className="space-y-5">
-                    {/* Name Input */}
-                    <div className="group">
-                      <label className="text-[#C5C5C5] text-sm font-medium mb-2 block">
-                        Name *
-                      </label>
-                      <input
-                        type="text"
-                        value={bookingDetailsWithoutToken.customer_data.name}
-                        onChange={(e) =>
-                          setbookingDetailsWithoutToken((prev) => ({
-                            ...prev,
-                            customer_data: {
-                              ...prev.customer_data,
-                              name: e.target.value,
-                            },
-                          }))
-                        }
-                        placeholder="Enter your Name"
-                        className="w-full px-4 py-3 bg-transparent border-b-2 border-[#3a4f6a] text-white outline-none transition-all duration-300 focus:border-[#AA9061] placeholder-[#6a7f9a]"
-                      />
-                    </div>
-
-                    {/* Email Input */}
-                    <div className="group">
-                      <label className="text-[#C5C5C5] text-sm font-medium mb-2 block">
-                        Email *
-                      </label>
-                      <input
-                        type="email"
-                        value={bookingDetailsWithoutToken.customer_data.email}
-                        onChange={(e) =>
-                          setbookingDetailsWithoutToken((prev) => ({
-                            ...prev,
-                            customer_data: {
-                              ...prev.customer_data,
-                              email: e.target.value,
-                            },
-                          }))
-                        }
-                        placeholder="Enter your E-Mail"
-                        className="w-full px-4 py-3 bg-transparent border-b-2 border-[#3a4f6a] text-white outline-none transition-all duration-300 focus:border-[#AA9061] placeholder-[#6a7f9a]"
-                      />
-                    </div>
-
-                    {/* Address Input */}
-                    <div className="group">
-                      <label className="text-[#C5C5C5] text-sm font-medium mb-2 block">
-                        Address *
-                      </label>
-                      <input
-                        type="text"
-                        value={bookingDetailsWithoutToken.customer_data.address}
-                        onChange={(e) =>
-                          setbookingDetailsWithoutToken((prev) => ({
-                            ...prev,
-                            customer_data: {
-                              ...prev.customer_data,
-                              address: e.target.value,
-                            },
-                          }))
-                        }
-                        placeholder="Enter your Address"
-                        className="w-full px-4 py-3 bg-transparent border-b-2 border-[#3a4f6a] text-white outline-none transition-all duration-300 focus:border-[#AA9061] placeholder-[#6a7f9a]"
-                      />
-                    </div>
-
-                    {/* Phone Input */}
-                    <div className="group">
-                      <label className="text-[#C5C5C5] text-sm font-medium mb-2 block">
-                        Phone *
-                      </label>
-                      <input
-                        type="text"
-                        value={bookingDetailsWithoutToken.customer_data.phone}
-                        onChange={(e) =>
-                          setbookingDetailsWithoutToken((prev) => ({
-                            ...prev,
-                            customer_data: {
-                              ...prev.customer_data,
-                              phone: e.target.value,
-                            },
-                          }))
-                        }
-                        placeholder="Enter your Phone Number"
-                        className="w-full px-4 py-3 bg-transparent border-b-2 border-[#3a4f6a] text-white outline-none transition-all duration-300 focus:border-[#AA9061] placeholder-[#6a7f9a]"
-                      />
-                    </div>
+                {!userToken && (
+                  <div>
+                    <Link href={"/sign-in"}>
+                    <Button className="w-full p-4 h-20 text-2xl bg-[#AA9061] text-white hover:bg-[#AA9061] hover:text-white">
+                      Login to Book this Room
+                    </Button>
+                    </Link>
                   </div>
-                </div>
-              )}
-
+                )}
               {/* Booking Form */}
+            {userToken && (
               <div className="w-full h-fit rounded-2xl p-6 bg-[#011D38] shadow-lg">
                 <h1 className="font-mono text-2xl text-white mb-6 tracking-wide">
                   BOOK THIS ROOM
@@ -660,8 +482,9 @@ const RoomInfo = ({ id }: { id: string }) => {
                       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
                         <Calendar className="h-5 w-5 text-[#AA9061] group-hover:text-[#C5C5C5] transition-colors duration-200" />
                       </div>
+                      
                       <input
-                        type="datetime-local"
+                        type="date"
                         value={bookingDetails.check_in}
                         onChange={(e) =>
                           setBookingDetails({
@@ -690,7 +513,7 @@ const RoomInfo = ({ id }: { id: string }) => {
                         <Calendar className="h-5 w-5 text-[#AA9061] group-hover:text-[#C5C5C5] transition-colors duration-200" />
                       </div>
                       <input
-                        type="datetime-local"
+                        type="date"
                         value={bookingDetails.check_out}
                         onChange={(e) =>
                           setBookingDetails({
@@ -728,10 +551,9 @@ const RoomInfo = ({ id }: { id: string }) => {
                     <label className="text-[#C5C5C5] text-sm font-medium mb-3 block">
                       ADULTS COUNT (18+) *
                     </label>
-                    <input
+                    <Input
                       type="number"
-                      min={0}
-                      max={roomDetails?.capability || 10}
+                      max={roomDetails?.capability }
                       value={bookingDetails.adult_count}
                       onChange={(e) =>
                         setBookingDetails({
@@ -739,7 +561,7 @@ const RoomInfo = ({ id }: { id: string }) => {
                           adult_count: Number(e.target.value),
                         })
                       }
-                      className="w-full px-4 py-3 bg-gradient-to-r from-[#1a2f4a] to-[#2a3f5a] border border-[#3a4f6a] rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#AA9061] transition-all duration-200 hover:border-[#AA9061]"
+                      className="w-full px-4 py-3 bg-gradient-to-r from-[#1a2f4a] to-[#2a3f5a] border border-[#3a4f6a] h-12 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#AA9061] transition-all duration-200 hover:border-[#AA9061]"
                     />
                   </div>
 
@@ -748,10 +570,10 @@ const RoomInfo = ({ id }: { id: string }) => {
                     <label className="text-[#C5C5C5] text-sm font-medium mb-3 block">
                       CHILDREN COUNT (0-17)
                     </label>
-                    <input
+                    <Input
                       type="number"
-                      min={0}
-                      max={roomDetails?.capability || 10}
+                      
+                      max={roomDetails?.capability }
                       value={bookingDetails.child_count}
                       onChange={(e) =>
                         setBookingDetails({
@@ -759,7 +581,7 @@ const RoomInfo = ({ id }: { id: string }) => {
                           child_count: Number(e.target.value),
                         })
                       }
-                      className="w-full px-4 py-3 bg-gradient-to-r from-[#1a2f4a] to-[#2a3f5a] border border-[#3a4f6a] rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#AA9061] transition-all duration-200 hover:border-[#AA9061]"
+                      className="w-full px-4 py-3 bg-gradient-to-r from-[#1a2f4a] to-[#2a3f5a] border border-[#3a4f6a] h-12 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#AA9061] transition-all duration-200 hover:border-[#AA9061]"
                     />
                   </div>
 
@@ -782,8 +604,9 @@ const RoomInfo = ({ id }: { id: string }) => {
                   </div>
                 </div>
               </div>
-
-              {/* Extras Section */}
+            )}
+            {userToken &&  (
+              
               <div className="w-full h-fit rounded-2xl p-6 bg-[#011D38] shadow-lg">
                 <h1 className="font-mono text-2xl text-white mb-6 tracking-wide">
                   ADD EXTRA
@@ -795,23 +618,17 @@ const RoomInfo = ({ id }: { id: string }) => {
                     <label className="text-[#C5C5C5] text-sm font-medium mb-3 block">
                       SPECIAL FOOD MENU
                     </label>
-                    <select
-                      value={bookingDetails.special_food_menu[0] ?? ""}
-                      onChange={(e) =>
-                        setBookingDetails({
-                          ...bookingDetails,
-                          special_food_menu: [Number(e.target.value)],
-                        })
-                      }
-                      className="w-full px-4 py-3 bg-gradient-to-r from-[#1a2f4a] to-[#2a3f5a] border border-[#3a4f6a] rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#AA9061] transition-all duration-200 hover:border-[#AA9061] cursor-pointer"
-                    >
-                      {foodMenu &&
-                        Object.entries(foodMenu).map(([key, value]) => (
-                          <option key={key} value={key} className="bg-[#011D38]">
-                            {value}
-                          </option>
-                        ))}
-                    </select>
+                    <div  className="w-full px-4 py-3 flex  gap-3 bg-gradient-to-r items-center from-[#1a2f4a] to-[#2a3f5a] border border-[#3a4f6a] rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#AA9061] transition-all duration-200 hover:border-[#AA9061] cursor-pointer">
+                   <input type="checkbox" name="" id=""  className="w-5 h-5"
+                   onClick={()=>{
+                      setBookingDetails({
+                      ...bookingDetails,
+                      special_food_menu:true
+                    })
+                   }}
+                   />
+                   <p>Food Required ?</p>
+                   </div>
                   </div>
 
                   {/* Activities */}
@@ -819,23 +636,17 @@ const RoomInfo = ({ id }: { id: string }) => {
                     <label className="text-[#C5C5C5] text-sm font-medium mb-3 block">
                       ACTIVITIES & GAMES
                     </label>
-                    <select
-                      value={bookingDetails.activities[0] ?? ""}
-                      onChange={(e) =>
-                        setBookingDetails({
-                          ...bookingDetails,
-                          activities: [Number(e.target.value)],
-                        })
-                      }
-                      className="w-full px-4 py-3 bg-gradient-to-r from-[#1a2f4a] to-[#2a3f5a] border border-[#3a4f6a] rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#AA9061] transition-all duration-200 hover:border-[#AA9061] cursor-pointer"
-                    >
-                      {activites &&
-                        Object.entries(activites).map(([key, value]) => (
-                          <option key={key} value={key} className="bg-[#011D38]">
-                            {value}
-                          </option>
-                        ))}
-                    </select>
+                     <div  className="w-full px-4 py-3 flex  gap-3 bg-gradient-to-r items-center from-[#1a2f4a] to-[#2a3f5a] border border-[#3a4f6a] rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#AA9061] transition-all duration-200 hover:border-[#AA9061] cursor-pointer">
+                   <input type="checkbox" name="" id=""  className="w-5 h-5"
+                   onClick={()=>{
+                      setBookingDetails({
+                      ...bookingDetails,
+                      activities:true
+                    })
+                   }}
+                   />
+                   <p>Activites Required ?</p>
+                   </div>
                   </div>
 
                   {/* Additional Services Checkboxes */}
@@ -910,7 +721,7 @@ const RoomInfo = ({ id }: { id: string }) => {
                   <button
                     className="w-full py-5 bg-gradient-to-r from-[#AA9061] to-[#c0a575] rounded-xl text-white font-semibold text-lg transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 relative overflow-hidden group"
                     onClick={onClick}
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || !userToken}
                   >
                     <span className="relative z-10">
                       {isSubmitting ? (
@@ -919,13 +730,18 @@ const RoomInfo = ({ id }: { id: string }) => {
                           Processing...
                         </span>
                       ) : (
-                        "BOOK NOW"
+                        <>
+                        {!userToken ? "Sign In to Create Booking" :  "BOOK NOW"}
+                        </>
+                        
                       )}
                     </span>
                     <div className="absolute inset-0 bg-gradient-to-r from-[#c0a575] to-[#AA9061] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </button>
                 </div>
               </div>
+
+      )}
             </div>
           </div>
         </section>

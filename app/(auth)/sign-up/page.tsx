@@ -27,13 +27,13 @@ import { Input } from "@/components/ui/input"
 import Link from "next/link"
 import { Check, Eye, Mail, NotebookPen, Phone, User, X } from "lucide-react"
 import { Textarea } from "@/components/ui/textarea"
-import { toast } from "sonner"
 import { userRegister } from "@/lib/actions/users.actions"
 import ShowToast from "@/components/error"
+import { useRouter } from "next/navigation"
 
 const SignUp = () => {
   const [isSubmitting, setisSubmitting] = useState(false)
-  
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -56,12 +56,12 @@ const SignUp = () => {
       password: values.password
     })
     if (!regitation.success) {
-      ShowToast({
-        title: regitation.message,
-        description: "Signed up Cancelled",
-        type: "danger",
-        icon: <X className="p-1 rounded-full w-7 h-7" />
-      })
+      // ShowToast({
+      //   title: regitation.message,
+      //   description: "Signed up Cancelled",
+      //   type: "danger",
+      //   icon: <X className="p-1 rounded-full w-7 h-7" />
+      // })
     } else {
       ShowToast({
         title: "Signed Up",
@@ -69,6 +69,7 @@ const SignUp = () => {
         type: "success",
         icon: <Check className="p-1 rounded-full w-7 h-7" />
       })
+    router.push("/sign-in")
     }
     setisSubmitting(false)
   }

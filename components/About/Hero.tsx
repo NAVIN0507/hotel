@@ -96,7 +96,7 @@ const Hero = () => {
               router.push(destination);
             }}
           >
-            {user ? "My Profile" : "Sign-In/Up"}
+             {user ? `Hi ${user.name}` : "Sign-In/Up"}
           </li>
         </ul>
       </nav>
