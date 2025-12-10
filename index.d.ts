@@ -28,6 +28,7 @@ type RoomCategories = {
     name:string;
     description:string;
     pictures:Array<string>;
+    alt:Array<string>;
     price:number;
     square_ft:number;
     capability:string;
@@ -38,16 +39,19 @@ type RoomCategoriesProps = {
     name:string;
     description:string;
     pictures:Array<string>;
+    alt:Array<string>;
     price:number;
     square_ft:number;
     capability:string;
     beds:string;
     c?:boolean;
     index:number;
+    isHome?:boolean
 }
 type Service = {
     service_name: string;
     icon_pic: string;
+    icon_alt: string;
   };
   
 
@@ -56,10 +60,11 @@ type RoomProps = {
     name:string;
     description:string;
     pictures:Array<string>;
+    alt:Array<string>;
     video:string;
     price:number;
     square_ft:number;
-    capability:string;
+    capability:number;
     beds:string;
     about_stay:string;
     check_in_rules:string;
@@ -76,11 +81,10 @@ type BookingDetails  =  {
     check_out: string;
     adult_count: number;
     child_count: number;
-    special_food_menu: number[];
-    activities: number[];
+    special_food_menu: boolean;
+    activities: boolean;
     extra_bed: boolean;
-    fire_camp: boolean;
-    jeep_safari: boolean;
+  
     total:number;
   }
   

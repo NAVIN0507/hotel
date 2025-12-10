@@ -1,4 +1,5 @@
-import Footer from '@/components/Room/Footer'
+
+import Footer from '@/components/Home/Footer'
 import Hero from '@/components/Room/Hero'
 import NavBar from '@/components/Room/NavBar'
 import OtherRooms from '@/components/Room/OtherRooms'
@@ -22,15 +23,17 @@ const page = async({params}:{params:{id:string}}) => {
   if(!room.data || room==null){
     return redirect('/')
   }
+  const numberRoomId =  Number(params.id)
   
   const roomDetails = await fetchAllRoomByID(params.id);
+  const allRooms = await fetchAllRoomCategories()
   return (
     <>
    <main className='p-4 flex flex-col gap-10 mb-20'>
     <NavBar/>
     <Hero {...roomDetails.data}/>
     <RoomInfo id={params.id}/>
-    <OtherRooms/>
+    <OtherRooms roomProps={allRooms.data} currRoomId={numberRoomId }/>
    </main>
    <Footer/>
    </>

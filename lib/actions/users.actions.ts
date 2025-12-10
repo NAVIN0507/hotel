@@ -2,22 +2,81 @@
 import axios, { AxiosError } from "axios"
 import { data } from "framer-motion/client"
 import createAxiosInstance from "./axiosInstance";
-import { string } from "zod"
-// export const login = async(email:string , password : string)=>{
-//     const {data} = await axios.post("https://zenpose.solvixsoftworks.com/api/login" , {
-//         email:email,
-//         password:password
-//     })   
+import { any, string } from "zod"
+import { toast } from "sonner";
 
-//     if(!data){
-//         return console.log("Error")
-//     }
-//    return {
-//     success:true,
-//     message:"Logged In",
-//     data:data
-//    }
-// }   
+function extractErrorMessages(payload: any, fieldPrefix = ""): void {
+  // No payload
+  if (payload == null) {
+    toast.error("Unknown error", { id: `error-unknown-${Date.now()}` });
+    return;
+  }
+
+  // If already a string
+  if (typeof payload === "string") {
+    const key = fieldPrefix || `error-${Date.now()}`;
+    toast.error(payload, { id: key });
+    return;
+  }
+
+  // If it's an array, show each item as separate toast
+  if (Array.isArray(payload)) {
+    payload.forEach((item, index) => {
+      if (typeof item === "string") {
+        const key = fieldPrefix 
+          ? `${fieldPrefix}-${index}` 
+          : `error-${index}-${Date.now()}`;
+        toast.error(item, { id: key });
+      } else {
+        extractErrorMessages(item, `${fieldPrefix}-${index}`);
+      }
+    });
+    return;
+  }
+
+  // If it's an object, process each field
+  if (typeof payload === "object") {
+    for (const key of Object.keys(payload)) {
+      const value = payload[key];
+      const currentPrefix = fieldPrefix ? `${fieldPrefix}-${key}` : key;
+
+      // Empty string or null: show generic invalid message
+      if (value === "" || value === null) {
+        toast.error(`${key} is invalid`, { id: `${currentPrefix}-invalid` });
+        continue;
+      }
+
+      if (typeof value === "string") {
+        if (value.trim()) {
+          toast.error(value, { id: currentPrefix });
+        }
+      } else if (Array.isArray(value)) {
+        // e.g. { check_in: ["can't be blank", "must be a date"] }
+        value.forEach((v, idx) => {
+          if (typeof v === "string") {
+            toast.error(v, { id: `${currentPrefix}-${idx}` });
+          } else {
+            extractErrorMessages(v, `${currentPrefix}-${idx}`);
+          }
+        });
+      } else if (typeof value === "object") {
+        // nested object => recurse
+        extractErrorMessages(value, currentPrefix);
+      } else {
+        // fallback to stringifying
+        toast.error(String(value), { id: currentPrefix });
+      }
+    }
+    return;
+  }
+
+  // fallback
+  try {
+    toast.error(JSON.stringify(payload), { id: `error-fallback-${Date.now()}` });
+  } catch {
+    toast.error(String(payload), { id: `error-fallback-${Date.now()}` });
+  }
+}
 
 export const userRegister = async({name , email , password , phone , address }:RegisterProps)=>{
 
@@ -36,7 +95,6 @@ export const userRegister = async({name , email , password , phone , address }:R
           }
         })
         if(!data){
-            throw new Error("Error from registration")
             return {
                 success:false,
                 message:'Regitration Canceled',
@@ -48,14 +106,40 @@ export const userRegister = async({name , email , password , phone , address }:R
             message:'Registration SuccessFull',
             data:data
         }
-    } catch (error:any) {
-      console.log(error.message)
-        return{
-           
-               success:false,
-                message:'Regitration Canceled',
-                data:error
+    } catch (err:any) {
+      let message = "Network or server error";
+    let payload: any = null;
+
+    if (axios.isAxiosError(err)) {
+      const axiosErr = err as AxiosError;
+      payload = axiosErr.response?.data ?? axiosErr.toJSON?.() ?? null;
+
+      if (payload) {
+        if (payload.errors || payload.error) {
+          // Show all error toasts
+          extractErrorMessages(payload.errors ?? payload.error);
+          message = "Validation errors occurred";
+        } else if (typeof payload === "object" && payload.message) {
+          message = String(payload.message);
+          toast.error(message, { id: `error-response-${Date.now()}` });
+        } else {
+          extractErrorMessages(payload);
+          message = "An error occurred";
         }
+      } else if (axiosErr.message) {
+        message = axiosErr.message;
+        toast.error(message, { id: `error-network-${Date.now()}` });
+      }
+    } else {
+      message = err?.message || "An unexpected error occurred";
+      toast.error(message, { id: `error-unknown-${Date.now()}` });
+    }
+    
+    return {
+      success: false,
+      message,
+      data: payload,
+    };
     }
 }
 
@@ -85,12 +169,40 @@ export const  userLogin = async(email:string , password:string)=>{
             message:'Login SuccessFull',
             data:data
         }
-    } catch (error:any) {
-        return {
-            success:false,
-            message:'Login Failed',
-            data:error.message
+    } catch (err:any) {
+          let message = "Network or server error";
+    let payload: any = null;
+
+    if (axios.isAxiosError(err)) {
+      const axiosErr = err as AxiosError;
+      payload = axiosErr.response?.data ?? axiosErr.toJSON?.() ?? null;
+
+      if (payload) {
+        if (payload.errors || payload.error) {
+          // Show all error toasts
+          extractErrorMessages(payload.errors ?? payload.error);
+          message = "Validation errors occurred";
+        } else if (typeof payload === "object" && payload.message) {
+          message = String(payload.message);
+          toast.error(message, { id: `error-response-${Date.now()}` });
+        } else {
+          extractErrorMessages(payload);
+          message = "An error occurred";
         }
+      } else if (axiosErr.message) {
+        message = axiosErr.message;
+        toast.error(message, { id: `error-network-${Date.now()}` });
+      }
+    } else {
+      message = err?.message || "An unexpected error occurred";
+      toast.error(message, { id: `error-unknown-${Date.now()}` });
+    }
+    
+    return {
+      success: false,
+      message,
+      data: payload,
+    };
     }
 }
 export const fetchUserDetails = async (token: string) => {
@@ -104,7 +216,7 @@ export const fetchUserDetails = async (token: string) => {
     }
   
     try {
-      const { data } = await axios.get("https://portal.brundhavangarden.com/api/user/details", {
+      const { data } = await axios.get("https://portal.brundhavangarden.com/api/user/details", { 
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -183,12 +295,40 @@ export const resetPassword = async({
       message:"Password Changed",
       data:data
     }
-  } catch (error) {
-    return{
-      success:false,
-      message:"Internal server error",
-      data:null
+  } catch (err:any) {
+        let message = "Network or server error";
+    let payload: any = null;
+
+    if (axios.isAxiosError(err)) {
+      const axiosErr = err as AxiosError;
+      payload = axiosErr.response?.data ?? axiosErr.toJSON?.() ?? null;
+
+      if (payload) {
+        if (payload.errors || payload.error) {
+          // Show all error toasts
+          extractErrorMessages(payload.errors ?? payload.error);
+          message = "Validation errors occurred";
+        } else if (typeof payload === "object" && payload.message) {
+          message = String(payload.message);
+          toast.error(message, { id: `error-response-${Date.now()}` });
+        } else {
+          extractErrorMessages(payload);
+          message = "An error occurred";
+        }
+      } else if (axiosErr.message) {
+        message = axiosErr.message;
+        toast.error(message, { id: `error-network-${Date.now()}` });
+      }
+    } else {
+      message = err?.message || "An unexpected error occurred";
+      toast.error(message, { id: `error-unknown-${Date.now()}` });
     }
+    
+    return {
+      success: false,
+      message : err.message || message ,
+      data: payload,
+    };
   }
 }
 
@@ -241,6 +381,8 @@ export const fetchAllRoomByID = async(id:string)=>{
   }
 }
 
+
+
 export const addBookingWithToken = async({
 token,
 room_categories_id,
@@ -251,8 +393,7 @@ child_count,
 special_food_menu,
 activities,
 extra_bed,
-fire_camp,
-jeep_safari,
+
 total
 }:BookingDetails)=>{
   try {
@@ -266,8 +407,7 @@ total
       special_food_menu,
       activities,
       extra_bed,
-      fire_camp,
-      jeep_safari,
+   
       total
   } , {
     headers:{
@@ -288,79 +428,45 @@ total
       message:"Booking Created SuccessFully",
       data:data
     }
-  } catch (error) {
-     return{
-      success:false,
-      message:"Internal server error",
-      data:data
+  } catch (err:any) {
+      let message = "Network or server error";
+    let payload: any = null;
+
+    if (axios.isAxiosError(err)) {
+      const axiosErr = err as AxiosError;
+      payload = axiosErr.response?.data ?? axiosErr.toJSON?.() ?? null;
+
+      if (payload) {
+        if (payload.errors || payload.error) {
+          // Show all error toasts
+          extractErrorMessages(payload.errors ?? payload.error);
+          message = "Validation errors occurred";
+        } else if (typeof payload === "object" && payload.message) {
+          message = String(payload.message);
+          toast.error(message, { id: `error-response-${Date.now()}` });
+        } else {
+          extractErrorMessages(payload);
+          message = "An error occurred";
+        }
+      } else if (axiosErr.message) {
+        message = axiosErr.message;
+        toast.error(message, { id: `error-network-${Date.now()}` });
+      }
+    } else {
+      message = err?.message || "An unexpected error occurred";
+      toast.error(message, { id: `error-unknown-${Date.now()}` });
     }
+    
+    return {
+      success: false,
+      message,
+      data: payload,
+    };
   }
 }
-export const addBookingWithoutToken = async({
-  room_categories_id,
-  check_in,
-  check_out,
-  adult_count,
-  child_count,
-  special_food_menu,
-  activities,
-  extra_bed,
-  fire_camp,
-  jeep_safari,
-  total,
-  customer_data:{
-    name,
-    email,
-    address, 
-    phone
-  }
-  }:BookingDetailsWithoutToken)=>{
-    try {
-      const {data} = await axios.post("https://portal.brundhavangarden.com/api/room-booking" , {
-        
-        room_categories_id,
-        check_in,
-        check_out,
-        adult_count,
-        child_count,
-        special_food_menu,
-        activities,
-        extra_bed,
-        fire_camp,
-        jeep_safari,
-        total,
-        customer_data:{
-          name,
-          email,
-          address,
-          phone
-        }
-    } , {
-      headers:{
-        "Accept":"application/json",
-        "Content-Type":"application/json"
-      }
-    })
-      if(data?.errors){
-        return{
-          success:false,
-          message:"Sorry some thing went wrong",
-          data:data?.errors
-        }
-      }
-      return {
-        success:true,
-        message:"Booking Created successfully",
-        data:data
-      }
-    } catch (error) {
-       return{
-        success:false,
-        message:"Internal server error",
-        data:data
-      }
-    }
-  }
+
+
+
 
 export const getFoodMenu =  async()=>{
   try {
@@ -439,3 +545,29 @@ export const getAppDetails = async() : Promise<AppDetailsResponse> => {
     }
   }
 }
+
+export const getAdditionalActivites = async() : Promise<AppDetailsResponse> => {
+  try {
+    const {data:appDetails}  =  await axios.get("https://portal.brundhavangarden.com/api/services/additionalactivities")
+    if(!appDetails){
+      return {  
+      success:false,
+        message:"App details not found",
+        data:data
+      }
+    }
+    return {
+      success:true,
+      data:appDetails,
+      message:"Successfully fetched app details"
+    }
+
+  } catch (error) {
+    return{
+     success:false,
+     data:undefined,
+     message:"Internal server error" 
+    }
+  }
+}
+

@@ -33,7 +33,7 @@ const BentoGrid = () => {
     {width < 768 ? (<>
     <MobileBentoGrid/>
     </>) : (<>
-   <section id="allrooms-bentogrid" className='w-full h-full p-2 mx-auto '>
+   <section id="allrooms-bentogrid" className='w-full h-full p-2  mx-auto '>
     <p className='text-[#5C5C5C] text-center'>ROOMS AND COTTAGES</p>
     <div className='flex gap-2 items-center justify-center mt-4 mb-4'>
 <div className="w-20 mr-2  hidden lg:block ml-10 h-0 border border-gray-500" />
@@ -118,12 +118,12 @@ const BentoGrid = () => {
         <p className='text-[10px]'>ACTIVITIES & GAMES</p>
         <h1 className='uppercase font-mono text-4xl leading-relaxed -mt-3'>Unwind to Nature</h1>
         <p className='text-[10px] text-[#C1C1C1]'>Nestled in the centre of Kodaikanal, we offer the perfect adventurous retreat. Numerous exhilarating activities are available at our opulent resort, guaranteeing you and your loved ones an experience they won’t soon forget.</p>
-           <InfiniteMovingPills
+           {/* <InfiniteMovingPills
         items={activityItems}
         direction="right"
         speed="slow"
         className='p-5'
-      />
+      /> */}
       <Image
       src={featureSectionImg3}
       alt='feature_section'
@@ -138,12 +138,12 @@ const BentoGrid = () => {
         <p className='text-[10px]'>ACTIVITIES & GAMES</p>
         <h1 className='uppercase font-mono text-4xl leading-relaxed -mt-3'>Unwind to Nature</h1>
         <p className='text-[10px] text-[#C1C1C1]'>Nestled in the centre of Kodaikanal, we offer the perfect adventurous retreat. Numerous exhilarating activities are available at our opulent resort, guaranteeing you and your loved ones an experience they won’t soon forget.</p>
-           <InfiniteMovingPills
+           {/* <InfiniteMovingPills
         items={activityItems}
         direction="right"
         speed="slow"
         className='p-5'
-      />
+      /> */}
        <Image
       src={featureSectionImg4}
       alt='feature_section'

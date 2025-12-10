@@ -9,7 +9,7 @@ const Hero = () => {
   const [user, setUser] = useState<User | null>(null);
   const router = useRouter();
   const pathname = usePathname();
-  const isActive  = pathname === "/aboutus"
+  const isActive  = pathname === "/aboutus/"
   useEffect(() => {
     const rawToken = localStorage.getItem("user_token");
     const token = rawToken?.replace(/^"(.*)"$/, "$1");
@@ -83,7 +83,7 @@ const Hero = () => {
           </li>
           <li>
             <Link
-              href="/"
+              href="/contact"
               className="hover:text-yellow-300 hover:underline font-sans"
             >
               Contact
@@ -96,7 +96,7 @@ const Hero = () => {
               router.push(destination);
             }}
           >
-            {user ? "My Profile" : "Sign-In/Up"}
+             {user ? `Hi ${user.name}` : "Sign-In/Up"}
           </li>
         </ul>
       </nav>

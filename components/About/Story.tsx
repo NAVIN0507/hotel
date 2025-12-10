@@ -7,11 +7,15 @@ const Story = () => {
             <h1 className='text-[#45443F] text-5xl font-mono'>OUR STORY</h1>
             <div className='p-20 max-sm:p-10 flex flex-col gap-10 -mt-5'>
             <p className='text-center text-xl max-sm:text-sm  text-[#3A3A3A] leading-relaxed'>
-                Qraesent eros turpis, commodo vel justo at, pulvinar mollis eros. Mauris aliquet eu quam id ornare. Morbi ac quam enim. Cras vitae nulla condimentum, semper dolor non, faucibus dolor. Vivamus adipiscing eros quis orci fringilla, sed pretium lectus viverra. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec nec velit non odio aliquam suscipit. Sed non neque faucibus, condimentum lectus at, accumsan enim
+              Brundhavan Garden was born from a heartfelt vision to provide travelers with a genuine homely
+experience nestled amidst the pristine beauty of the Palani hills. Our story is one of passion for
+nature, culture, and warmth—a sanctuary where guests explore the slow, meaningful rhythms of
+hill life. We prioritize eco-friendly practices, meticulous cleanliness, and heartfelt hospitality,
+ensuring visitors feel welcomed, cared for, and inspired by the surroundings. This commitment to
+service and sustainable tourism is reflected in every detail from our lovingly maintained gardens
+to the personalized touches that make every stay unique.
             </p>
-              <p className='text-center max-sm:text-sm   text-xl text-[#3A3A3A] leading-relaxed'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat. In fermentum facilisis massa, a consequat purus viverra. Interdum et malesu they adamale fames ac anteipsu pimsine faucibus curabitur arcu site feugiat in tortor in, volutpat sollicitudin libero. Hotel non lorem acer suscipit bibendum vulla facilisi nedeuter.
-            </p>
+              
             </div>
         </div>
     </section>

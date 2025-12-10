@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Loader2Icon, MessageCircle, Instagram, Facebook } from "lucide-react";
+import { Loader2Icon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { getAppDetails } from "@/lib/actions/users.actions";
@@ -49,13 +49,38 @@ const Footer = () => {
 
   return (
     <>
+      {/* 🌊 Wave Top Shape */}
+      <div className="w-full overflow-hidden leading-[0]">
+        <svg
+          className="block w-full h-[100px] "
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 112"
+          preserveAspectRatio="none"
+        >
+          {/* Filled main wave */}
+          <path
+            d="M0,64 C80,16 180,16 260,56 C340,96 432,96 512,48 L512,112 L0,112 Z"
+            fill="#2a2552"
+          />
+          {/* White highlight wave line */}
+          <path
+            d="M0,64 C80,16 180,16 260,56 C340,96 432,96 512,48"
+            fill="none"
+            stroke="#ffffff"
+            strokeWidth="3"
+            opacity="0.5"
+          />
+        </svg>
+      </div>
+
+      {/* 🌌 Footer Section */}
       <footer
         id="footer"
-        className="bg-[#E9E9E9] w-full h-full p-6 sm:p-10 flex flex-col"
+        className="bg-[#2a2552] w-full h-full p-6 sm:p-10 flex flex-col text-white"
       >
         {/* --- Top Section --- */}
         <div className="flex flex-col sm:flex-wrap md:flex-row items-start justify-between gap-10">
-          {/* Location */}
+          {/* 📍 Location */}
           <div className="flex flex-col gap-2 flex-1 min-w-[250px]">
             <h1 className="font-mono text-2xl sm:text-3xl">LOCATION</h1>
             <iframe
@@ -67,59 +92,89 @@ const Footer = () => {
             ></iframe>
           </div>
 
-          {/* Customer Care */}
-          <div className="flex flex-col gap-2 flex-1 min-w-[200px]">
-            <h1 className="font-mono text-2xl sm:text-3xl">CUSTOMER CARE</h1>
+          {/* 📄 Other Pages */}
+          <div className="flex flex-col gap-2 min-w-[200px]">
+            <h1 className="font-mono text-2xl sm:text-3xl uppercase">
+              Other Pages
+            </h1>
             <div className="mt-3 flex flex-col">
-              <p className="text-sm underline mt-2">Track Orders</p>
-              <p className="text-sm underline mt-2">Shipping Policy</p>
-              <p className="text-sm underline mt-2">Terms & Conditions</p>
-              <p className="text-sm underline mt-2">Privacy Policy</p>
-              <p className="text-sm underline mt-2">Refund Policy</p>
+              <Link href={"/shipping-policies"} className="w-fit">
+                <p className="text-sm underline mt-2 hover:text-gray-200 transition">
+                  Shipping Policy
+                </p>
+              </Link>
+              <Link href={"/terms-conditions"} className="w-fit">
+                <p className="text-sm underline mt-2 hover:text-gray-200 transition">
+                  Terms & Conditions
+                </p>
+              </Link>
+              <Link href={"/refund-policy"} className="w-fit">
+                <p className="text-sm underline mt-2 hover:text-gray-200 transition">
+                  Refund Policy
+                </p>
+              </Link>
+              <Link href={"/privacy-policy"} className="w-fit">
+                <p className="text-sm underline mt-2 hover:text-gray-200 transition">
+                  Privacy Policy
+                </p>
+              </Link>
             </div>
           </div>
 
-          {/* Contact */}
+          {/* ☎️ Contact */}
           <div className="flex flex-col gap-2 flex-1 min-w-[200px]">
             <h1 className="font-mono text-2xl sm:text-3xl">CONTACT US</h1>
-            <p className="text-sm mt-2">Call: {appDetails?.phone}</p>
+            <p className="text-sm mt-2">
+              Call: +91 {appDetails?.phone.slice(0, 5)}{" "}
+              {appDetails?.phone.slice(5, 10)}
+            </p>
             <p className="text-sm mt-2">Write: {appDetails?.email}</p>
             <p className="text-sm mt-2">
-              Find Us: Xxxx , Xxx , Dindigul , Tamil Nadu
+              Find Us: 3/347A Pannaikadu Main Road, Thandikudi, Dindigul
             </p>
           </div>
 
-          {/* Follow Us */}
-           <div className="flex flex-col gap-2 flex-1 min-w-[200px]">
+          {/* 📱 Follow Us */}
+          <div className="flex flex-col gap-2 flex-1 min-w-[200px]">
             <h1 className="font-mono text-2xl sm:text-3xl">FOLLOW US</h1>
-            <div className="flex gap-2 mt-3">
+            <div className="flex gap-1 mt-3">
               <Link
                 href={appDetails?.whatsapp_link || ""}
                 className="w-10 h-10 flex items-center justify-center rounded-full hover:scale-105 transition"
               >
-            <img src="/assets/images/whatsapp-ogo.png" className="rounded-full" alt="" />
+                <Image
+                  src="/assets/images/whatsapp-ogo.png"
+                  alt="whatsapp"
+                  width={30}
+                  height={30}
+                  className="rounded-md"
+                />
               </Link>
               <Link
                 href={appDetails?.instagram_link || ""}
                 className="w-10 h-10 flex items-center justify-center rounded-full hover:scale-105 transition"
               >
-                <img src="/assets/images/instagram-logo.avif" className="rounded-full" alt="" />
-              </Link>
-              <Link
-                href={appDetails?.facebook_link || ""}
-                className="w-10 h-10 flex items-center justify-center rounded-full hover:scale-105 transition"
-              >
-                <img src="/assets/images/facebook-logo.jpeg" className="rounded-full" alt="" />
+                <Image
+                  src="/assets/images/instagram.png"
+                  alt="instagram"
+                  width={28}
+                  height={28}
+                  className="rounded-md"
+                />
               </Link>
             </div>
           </div>
         </div>
-        {/* --- Bottom Section --- */}
-        <div className="flex flex-col sm:flex-row items-center justify-between mt-10 gap-3 text-center sm:text-left">
+
+        {/* Divider */}
+        <div className="h-px bg-white/20 my-8"></div>
+
+        {/* ⚙️ Bottom Section */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
           <h1 className="text-sm sm:text-base">
             Copyright © 2025{" "}
             <Link href={"/"} className="font-semibold underline">
-              BRUNDHAVAN
+              BRUNDHAVAN GARDENS
             </Link>{" "}
             | All Rights Reserved
           </h1>

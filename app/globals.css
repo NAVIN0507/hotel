@@ -24,6 +24,7 @@
  
    /* Background image (adjust URL to your actual image path) */
    --bg-image: url('/assets/images/hero_bg.jpg');
+   --bg-about-image:url('/assets/images/about-us-pic.jpg')
    --bg-feature-image: url('/assets/images/feature_section.jpg'); /* ← your image path */
  }
  
@@ -35,6 +36,13 @@
  .bg-hero {
    background-image: var(--bg-image);
  }
+ .bg-about-image {
+  background-image: var(--bg-about-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
   .bg-hero-f {
    background-image: var(--bg-feature-image);
    object-fit: contain;

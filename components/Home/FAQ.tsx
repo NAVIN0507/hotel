@@ -10,43 +10,21 @@ const faqItems = [
   {
     question: "Is it accessible?",
     answer:
-      "Immerse yourself in the captivating works of Bliss Gardens, where nature and aesthetics unite seamlessly. Explore lush landscapes, vibrant gardens,Immerse yourself in the captivating works of Bliss Gardens, where nature and aesthetics unite seamlessly. Explore lush landscapes, vibrant gardens,",
+      "Yes, Brundhavan Garden Homestay is located on Pannaikadu Main Road in Thandikudi, Dindigul,Tamil Nadu. The property is easy to reach by car, features on-site parking, and offers aconvenient location for travelers visiting the region.",
   },
   {
     question: "How much does it cost?",
     answer:
-      "Immerse yourself in the captivating works of Bliss Gardens, where nature and aesthetics unite seamlessly. Explore lush landscapes, vibrant gardens,Immerse yourself in the captivating works of Bliss Gardens, where nature and aesthetics unite seamlessly. Explore lush landscapes, vibrant gardens,",
+      "Deluxe Room: ₹3000 per night (160 sq. feet, up to 6 persons). Standard Room: ₹1500 per night (110 sq. feet, up to 2 persons). Wooden Room: ₹2000 per night (160 sq. feet, up to 2 persons)",
   },
   {
     question: "What is your cancellation policy?",
-    answer:
-      "Immerse yourself in the captivating works of Bliss Gardens, where nature and aesthetics unite seamlessly. Explore lush landscapes, vibrant gardens,Immerse yourself in the captivating works of Bliss Gardens, where nature and aesthetics unite seamlessly. Explore lush landscapes, vibrant gardens,",
+    answer:"We offer flexible check-in and check-out options. For cancellation or changes, please contact usdirectly at least 48 hours before your scheduled arrival to avoid any charges. Please reach out for specific details during reservation."
   },
   {
-    question: "Do you offer group discounts?",
-    answer:
-      "Immerse yourself in the captivating works of Bliss Gardens, where nature and aesthetics unite seamlessly. Explore lush landscapes, vibrant gardens,Immerse yourself in the captivating works of Bliss Gardens, where nature and aesthetics unite seamlessly. Explore lush landscapes, vibrant gardens,",
-  },
-   {
-    question: "Is it accessible?",
-    answer:
-      "Immerse yourself in the captivating works of Bliss Gardens, where nature and aesthetics unite seamlessly. Explore lush landscapes, vibrant gardens,Immerse yourself in the captivating works of Bliss Gardens, where nature and aesthetics unite seamlessly. Explore lush landscapes, vibrant gardens,",
-  },
-  {
-    question: "How much does it cost?",
-    answer:
-      "Immerse yourself in the captivating works of Bliss Gardens, where nature and aesthetics unite seamlessly. Explore lush landscapes, vibrant gardens,Immerse yourself in the captivating works of Bliss Gardens, where nature and aesthetics unite seamlessly. Explore lush landscapes, vibrant gardens,",
-  },
-  {
-    question: "What is your cancellation policy?",
-    answer:
-      "Immerse yourself in the captivating works of Bliss Gardens, where nature and aesthetics unite seamlessly. Explore lush landscapes, vibrant gardens,Immerse yourself in the captivating works of Bliss Gardens, where nature and aesthetics unite seamlessly. Explore lush landscapes, vibrant gardens,",
-  },
-  {
-    question: "Do you offer group discounts?",
-    answer:
-      "Immerse yourself in the captivating works of Bliss Gardens, where nature and aesthetics unite seamlessly. Explore lush landscapes, vibrant gardens,Immerse yourself in the captivating works of Bliss Gardens, where nature and aesthetics unite seamlessly. Explore lush landscapes, vibrant gardens,",
-  },
+    question:"Do you offer group discounts?",
+    answer:"Yes, special pricing and packages are available for large groups or extended stays. Contact us directly for group discount arrangements and special requests."
+  }
 ];
 
 const FAQ = () => {

@@ -12,8 +12,8 @@ const Contact = () => {
       <Link href={"/allrooms"}>
         <button className='w-[300px] text-white h-[60px] cursor-pointer bg-[#AA9061] rounded-md'>EXPLORE ROOMS</button>
         </Link>
-        <Link href={"/#footer"}>
-        <button className='w-[300px] text-black h-[60px] border border-gray-600 cursor-pointer rounded-md'>CONTACT US</button>
+        <Link href={"/"}>
+        <button className='w-[300px] text-black h-[60px] border border-gray-600 cursor-pointer rounded-md'>HOME</button>
         </Link>
     </div>
    </section>

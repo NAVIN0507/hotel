@@ -67,15 +67,18 @@ const Footer = () => {
             ></iframe>
           </div>
 
-          {/* Customer Care */}
           <div className="flex flex-col gap-2 flex-1 min-w-[200px]">
-            <h1 className="font-mono text-2xl sm:text-3xl">CUSTOMER CARE</h1>
+            <h1 className="font-mono text-2xl sm:text-3xl">Other Pages</h1>
             <div className="mt-3 flex flex-col">
-              <p className="text-sm underline mt-2">Track Orders</p>
+              <Link href={"/shipping-policies"}>
               <p className="text-sm underline mt-2">Shipping Policy</p>
+              </Link>
+              <Link href={"/terms-conditions"}>
               <p className="text-sm underline mt-2">Terms & Conditions</p>
-              <p className="text-sm underline mt-2">Privacy Policy</p>
+              </Link>
+              <Link href={"/refund-policy"}>
               <p className="text-sm underline mt-2">Refund Policy</p>
+              </Link>
             </div>
           </div>
 
@@ -85,7 +88,7 @@ const Footer = () => {
             <p className="text-sm mt-2">Call: {appDetails?.phone}</p>
             <p className="text-sm mt-2">Write: {appDetails?.email}</p>
             <p className="text-sm mt-2">
-              Find Us: Xxxx , Xxx , Dindigul , Tamil Nadu
+              Find Us: 3/347A Pannaikadu Main Road, Thandikudi, Dindigul
             </p>
           </div>
 
@@ -97,20 +100,20 @@ const Footer = () => {
                 href={appDetails?.whatsapp_link || ""}
                 className="w-10 h-10 flex items-center justify-center rounded-full hover:scale-105 transition"
               >
-            <img src="/assets/images/whatsapp-ogo.png" className="rounded-full" alt="" />
+            <img src="/assets/images/whatsapp-ogo.png" className="rounded-full" alt="whatsapp" />
               </Link>
               <Link
                 href={appDetails?.instagram_link || ""}
                 className="w-10 h-10 flex items-center justify-center rounded-full hover:scale-105 transition"
               >
-                <img src="/assets/images/instagram-logo.avif" className="rounded-full" alt="" />
+                <img src="/assets/images/instagram-logo.avif" className="rounded-full" alt="instagram" />
               </Link>
-              <Link
+              {/* <Link
                 href={appDetails?.facebook_link || ""}
                 className="w-10 h-10 flex items-center justify-center rounded-full hover:scale-105 transition"
               >
-                <img src="/assets/images/facebook-logo.jpeg" className="rounded-full" alt="" />
-              </Link>
+                <img src="/assets/images/youtube-icon.avif" className="rounded-full" alt="youtube" />
+              </Link> */}
             </div>
           </div>
         </div>
