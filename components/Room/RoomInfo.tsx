@@ -376,7 +376,7 @@ const RoomInfo = ({ id }: { id: string }) => {
                         <div className="w-6 h-6 flex-shrink-0 transition-transform duration-300 group-hover:scale-110">
                           <Image
                             src={service.icon_pic}
-                            alt={service.service_name}
+                            alt={service.icon_alt}
                             width={24}
                             height={24}
                             className="object-contain  transition-all duration-300"

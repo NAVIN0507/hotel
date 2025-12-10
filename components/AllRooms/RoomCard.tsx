@@ -7,6 +7,7 @@ const RoomCard = ({
   name,
   description,
   pictures,
+  alt,
   price,
   square_ft,
   capability,
@@ -22,7 +23,7 @@ const RoomCard = ({
             <div className="relative">
               <Image
                 src={pictures[0]}
-                alt="feature_section"
+                alt={alt[0]}
                 width={500}
                 height={500}
                 className="w-[800px] h-[400px] object-cover rounded-lg mt-10 ml-10"
@@ -100,7 +101,7 @@ const RoomCard = ({
             <Link href={`/room/${id}`}>
               <Image
                 src={pictures[0]}
-                alt="feature_section"
+                alt={alt[0]}
                 width={500}
                 height={500}
                 className="w-[800px] h-[400px] object-cover rounded-lg mt-10 ml-10"

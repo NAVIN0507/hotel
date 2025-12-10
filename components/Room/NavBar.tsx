@@ -47,13 +47,13 @@ const Navbar = () => {
         <Link href="/" className="flex items-center gap-2">
           <Image
             src={"/assets/images/Brundhavan_word_logo.png"}
-            alt="Brundhavan Garden"
+            alt="brundhavan-gardens-logo"
             width={35}
             height={35}
             className="rounded-full"
           />
           <span className="font-serif text-[#011D38] text-lg font-semibold tracking-wide">
-            Brundhavan
+            Brundhavan Gardens
           </span>
         </Link>
 

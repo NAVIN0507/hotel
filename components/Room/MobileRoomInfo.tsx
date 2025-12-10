@@ -600,7 +600,7 @@ const MobileRoomInfo = ({ id }: { id: string }) => {
                               <div className='p-7 rounded-lg bg-[#F6F5F5] flex gap-3 text-black text-sm' key={index}>
                                 <Image
                                   src={service.icon_pic}
-                                  alt='services'
+                                  alt={service.icon_alt}
                                   width={20}
                                   height={20}
                                 />

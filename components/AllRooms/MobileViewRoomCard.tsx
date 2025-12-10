@@ -8,6 +8,7 @@ const MobileViewRoomCard = ({
   name,
   description,
   pictures,
+  alt,
   price,
   square_ft,
   capability,
@@ -60,7 +61,7 @@ const MobileViewRoomCard = ({
           {/* Room Image */}
           <Image
             src={pictures[0]}
-            alt="room"
+            alt={alt[0]}
             width={800}
             height={400}
             className="w-full h-48 sm:h-64 md:h-72 object-cover transition-transform duration-500 hover:scale-105"

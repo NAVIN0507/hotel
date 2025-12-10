@@ -100,19 +100,19 @@ const Footer = () => {
                 href={appDetails?.whatsapp_link || ""}
                 className="w-10 h-10 flex items-center justify-center rounded-full hover:scale-105 transition"
               >
-            <img src="/assets/images/whatsapp-ogo.png" className="rounded-full" alt="" />
+            <img src="/assets/images/whatsapp-ogo.png" className="rounded-full" alt="whatsapp" />
               </Link>
               <Link
                 href={appDetails?.instagram_link || ""}
                 className="w-10 h-10 flex items-center justify-center rounded-full hover:scale-105 transition"
               >
-                <img src="/assets/images/instagram-logo.avif" className="rounded-full" alt="" />
+                <img src="/assets/images/instagram-logo.avif" className="rounded-full" alt="instagram" />
               </Link>
               {/* <Link
                 href={appDetails?.facebook_link || ""}
                 className="w-10 h-10 flex items-center justify-center rounded-full hover:scale-105 transition"
               >
-                <img src="/assets/images/youtube-icon.avif" className="rounded-full" alt="" />
+                <img src="/assets/images/youtube-icon.avif" className="rounded-full" alt="youtube" />
               </Link> */}
             </div>
           </div>

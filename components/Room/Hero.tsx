@@ -7,10 +7,11 @@ import 'keen-slider/keen-slider.min.css';
 
 type RoomProps = {
   pictures: string[];
+  alt: string[];
   video: string;
 };
 
-const Hero = ({ pictures, video }: RoomProps) => {
+const Hero = ({ pictures, alt, video }: RoomProps) => {
   const timer = useRef<NodeJS.Timeout | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -74,7 +75,7 @@ const Hero = ({ pictures, video }: RoomProps) => {
               <div className="keen-slider__slide" key={index}>
               <Image
   src={pic}
-  alt={`hero-image-${index}`}
+  alt={`${alt[index]}`}
   width={1500}
   height={600}
   quality={100}

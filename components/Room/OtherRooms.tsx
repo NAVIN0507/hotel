@@ -12,6 +12,7 @@ interface RoomProps {
   capability: number;
   beds: number;
   pictures: string[];
+  alt: string[];
 }
 
 const OtherRooms = ({
@@ -39,7 +40,7 @@ const OtherRooms = ({
             <div className="relative overflow-hidden rounded-xl shadow-lg">
               <Image
                 src={room.pictures[0]}
-                alt={room.name}
+                alt={room.alt[0]}
                 width={450}
                 height={350}
                 className="w-full h-[350px] object-cover rounded-xl transition-transform duration-500 group-hover:scale-105"

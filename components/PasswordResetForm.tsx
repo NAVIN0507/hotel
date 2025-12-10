@@ -94,7 +94,7 @@ export default function PasswordResetForm() {
       <div className='h-40 w-11/12 sm:top-0 sm:min-h-screen sm:flex-1 hidden md:block p-4'>
         <Image
           src={"/assets/images/feature_section.jpg"}
-          alt="feature section"
+          alt="reset-password-image"
           width={100}
           height={100}
           className='h-full w-full rounded-xl object-fill'

@@ -174,7 +174,7 @@ const Footer = () => {
           <h1 className="text-sm sm:text-base">
             Copyright © 2025{" "}
             <Link href={"/"} className="font-semibold underline">
-              BRUNDHAVAN
+              BRUNDHAVAN GARDENS
             </Link>{" "}
             | All Rights Reserved
           </h1>

@@ -28,6 +28,7 @@ type RoomCategories = {
     name:string;
     description:string;
     pictures:Array<string>;
+    alt:Array<string>;
     price:number;
     square_ft:number;
     capability:string;
@@ -38,6 +39,7 @@ type RoomCategoriesProps = {
     name:string;
     description:string;
     pictures:Array<string>;
+    alt:Array<string>;
     price:number;
     square_ft:number;
     capability:string;
@@ -49,6 +51,7 @@ type RoomCategoriesProps = {
 type Service = {
     service_name: string;
     icon_pic: string;
+    icon_alt: string;
   };
   
 
@@ -57,6 +60,7 @@ type RoomProps = {
     name:string;
     description:string;
     pictures:Array<string>;
+    alt:Array<string>;
     video:string;
     price:number;
     square_ft:number;
