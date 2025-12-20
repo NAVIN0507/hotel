@@ -74,7 +74,7 @@ const RoomInfo = ({ id }: { id: string }) => {
 
   function formatDateTime(input: string) {
     if (!input) return "";
-    return input.replace("T", " ") + ":00";
+    return input;
   }
 
   // Calculate number of nights
