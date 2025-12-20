@@ -7,6 +7,7 @@ export default function SuccessPageContent() {
   const params = useSearchParams();
 
   const message = params.get("message") || "Payment Successful";
+  const booking_url = params.get("booking_url") || "https://portal.brundhavangarden.com/portal/room-bookings";
   const paymentId = params.get("payment_id");
   const orderId = params.get("order_id");
 
@@ -67,14 +68,13 @@ export default function SuccessPageContent() {
               Go to Home
             </span>
           </a>
-          
           <a
-            href={`https://portal.brundhavangarden.com/portal/room-bookings/${orderId}`}
+            href={booking_url}
             className="flex-1 group px-6 py-3.5 border-2 border-[#b79464] text-[#b79464] hover:bg-[#b79464] hover:text-white rounded-xl font-medium transition-all duration-300 hover:-translate-y-0.5"
           >
             <span className="flex items-center justify-center gap-2">
               <Package className="size-4" />
-              View Orders
+              View Booking
             </span>
           </a>
         </div>
