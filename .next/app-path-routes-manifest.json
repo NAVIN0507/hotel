@@ -1,0 +1,17 @@
+{
+  "/(auth)/reset-password/page": "/reset-password",
+  "/(auth)/sign-in/page": "/sign-in",
+  "/_not-found/page": "/_not-found",
+  "/(auth)/sign-up/page": "/sign-up",
+  "/allrooms/page": "/allrooms",
+  "/contact/page": "/contact",
+  "/failed/page": "/failed",
+  "/aboutus/page": "/aboutus",
+  "/privacy-policy/page": "/privacy-policy",
+  "/page": "/",
+  "/refund-policy/page": "/refund-policy",
+  "/success/page": "/success",
+  "/shipping-policies/page": "/shipping-policies",
+  "/terms-conditions/page": "/terms-conditions",
+  "/room/[id]/page": "/room/[id]"
+}

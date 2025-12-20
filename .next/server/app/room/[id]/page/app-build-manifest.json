@@ -1,0 +1,28 @@
+{
+  "pages": {
+    "/room/[id]/page": [
+      "static/chunks/[root-of-the-server]__9d126714._.css",
+      "static/chunks/node_modules_d4065aff._.js",
+      "static/chunks/components_ui_sonner_tsx_955f24b2._.js",
+      "static/chunks/app_layout_tsx_007ca514._.js",
+      "static/chunks/_aa76064f._.js",
+      "static/chunks/app_not-found_tsx_eb67ca6d._.js",
+      "static/chunks/_7ce9c159._.js",
+      "static/chunks/node_modules_next_c3b29c8c._.js",
+      "static/chunks/node_modules_axios_lib_99999129._.js",
+      "static/chunks/node_modules_framer-motion_dist_es_a14cf652._.js",
+      "static/chunks/node_modules_motion-dom_dist_es_f2ff1a64._.js",
+      "static/chunks/node_modules_tailwind-merge_dist_bundle-mjs_mjs_b854acb4._.js",
+      "static/chunks/node_modules_b640d351._.js",
+      "static/chunks/node_modules_keen-slider_keen-slider_min_be2e1e5c.css",
+      "static/chunks/app_room_[id]_page_tsx_eb67ca6d._.js",
+      "static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_17e42fcf._.js",
+      "static/chunks/node_modules_next_dist_compiled_2ce9398a._.js",
+      "static/chunks/node_modules_next_dist_client_8f19e6fb._.js",
+      "static/chunks/node_modules_next_dist_0eb1e458._.js",
+      "static/chunks/node_modules_@swc_helpers_cjs_00636ac3._.js",
+      "static/chunks/_e69f0d32._.js",
+      "static/chunks/_a894171a._.js"
+    ]
+  }
+}
