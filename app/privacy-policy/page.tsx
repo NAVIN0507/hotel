@@ -1,8 +1,14 @@
+import { Metadata } from "next";
 import Footer from "@/components/Home/Footer";
 import Hero from "@/components/Home/Hero";
 import { getAppDetails } from "@/lib/actions/users.actions";
 import { Shield, Lock, Eye, Cookie, UserCheck, Mail, FileText } from "lucide-react";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description: "Read our privacy policy to understand how Brundhavan Garden Resort collects, uses, and protects your personal information.",
+};
 
 const page = () => {
   return (
@@ -136,7 +142,7 @@ const PrivacyPolicy = async () => {
         </div>
 
         {/* Contact Section */}
-      
+
 
         {/* Last Updated */}
         <div className="mt-8 text-center text-sm text-gray-500">

@@ -1,8 +1,14 @@
+import { Metadata } from "next";
 import Footer from "@/components/Home/Footer";
 import Hero from "@/components/Home/Hero";
 import { getAppDetails } from "@/lib/actions/users.actions";
 import { Mail, MapPin, Phone, Building2 } from "lucide-react";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Contact Us",
+  description: "Get in touch with Brundhavan Garden Resort. Find our address, phone number, and email for inquiries and bookings in Thandigudi, Dindigul.",
+};
 
 const page = () => {
   return (

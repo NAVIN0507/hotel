@@ -1,17 +1,19 @@
 {
+  "/robots.txt/route": "/robots.txt",
+  "/sitemap.xml/route": "/sitemap.xml",
+  "/_not-found/page": "/_not-found",
   "/(auth)/reset-password/page": "/reset-password",
   "/(auth)/sign-in/page": "/sign-in",
-  "/_not-found/page": "/_not-found",
-  "/(auth)/sign-up/page": "/sign-up",
-  "/allrooms/page": "/allrooms",
-  "/contact/page": "/contact",
   "/failed/page": "/failed",
-  "/aboutus/page": "/aboutus",
-  "/privacy-policy/page": "/privacy-policy",
   "/page": "/",
-  "/refund-policy/page": "/refund-policy",
-  "/success/page": "/success",
+  "/(auth)/sign-up/page": "/sign-up",
   "/shipping-policies/page": "/shipping-policies",
+  "/success/page": "/success",
+  "/refund-policy/page": "/refund-policy",
   "/terms-conditions/page": "/terms-conditions",
-  "/room/[id]/page": "/room/[id]"
+  "/contact/page": "/contact",
+  "/privacy-policy/page": "/privacy-policy",
+  "/room/[id]/page": "/room/[id]",
+  "/aboutus/page": "/aboutus",
+  "/allrooms/page": "/allrooms"
 }

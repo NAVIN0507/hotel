@@ -1,4 +1,4 @@
-// File: C:\PROJECTS\hotel\app\privacy-policy\page.tsx
+// File: /Users/gayathris/Projects/brindhavan_seo/hotel/app/privacy-policy/page.tsx
 import * as entry from '../../../../app/privacy-policy/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

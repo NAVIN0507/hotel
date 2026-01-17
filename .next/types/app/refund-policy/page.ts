@@ -1,4 +1,4 @@
-// File: C:\PROJECTS\hotel\app\refund-policy\page.tsx
+// File: /Users/gayathris/Projects/brindhavan_seo/hotel/app/refund-policy/page.tsx
 import * as entry from '../../../../app/refund-policy/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
